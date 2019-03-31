@@ -1,0 +1,6 @@
+framework module MGMapKit {
+  umbrella header "MGMapKit-umbrella.h"
+
+  export *
+  module * { export * }
+}

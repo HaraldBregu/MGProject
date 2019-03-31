@@ -1,0 +1,33 @@
+{
+  "name": "MGBrowserKit",
+  "version": "0.1.2",
+  "summary": "When you sit down to work, external critics aren’t",
+  "description": "When you sit down to work, external critics aren’t the enemy. It’s you who you must to fight against to do great fucking work. You must overcome yourself. Saul Bass on failure: Failure is built into creativity… the creative act involves this element of ‘newness’ and ‘experimentalism,’ then one must expect and accept the fucking possibility of failure.",
+  "homepage": "https://github.com/HaraldBregu/",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "Harald Bregu": "harald.bregu@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/HaraldBregu/MGBrowserKit.git",
+    "tag": "0.1.2"
+  },
+  "platforms": {
+    "ios": "12.0"
+  },
+  "source_files": "MGBrowserKit/Classes/**/*",
+  "resource_bundles": {
+    "MGBrowserKit": [
+      "MGBrowserKit/Classes/**/*.{storyboard,xib}"
+    ]
+  },
+  "dependencies": {
+    "SnapKit": [
+      "~> 4.0.0"
+    ]
+  },
+  "swift_version": "4.2"
+}
