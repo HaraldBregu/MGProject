@@ -25,7 +25,6 @@
 
 import Foundation
 
-/// MGVideoPlayerKit Component API
 public class MGVideoPlayer {
     
     public init(dataList: [MGVideoPlayerData]) {
@@ -39,11 +38,6 @@ public class MGVideoPlayer {
     public var controller: MGVideoPlayerController!
 }
 
-fileprivate let storyboardName = "MGVideoPlayer"
-fileprivate let listControllerIdentifier = "MGVideoPlayerListController"
-fileprivate let controllerIdentifier = "MGVideoPlayerController"
-
-/// :nodoc:
 extension MGVideoPlayer {
     
     private var _listController: MGVideoPlayerListController {
@@ -74,10 +68,15 @@ extension MGVideoPlayer {
     
     private var _storyboardBundle:Bundle {
         let podBundle = Bundle(for: MGVideoPlayer.self)
-        let bundleURL = podBundle.url(forResource: "MGVideoPlayerKit", withExtension: "bundle")
+        let bundleURL = podBundle.url(forResource: resourceName, withExtension: resourceExtension)
         let bundle = Bundle(url: bundleURL!)!
         return bundle
     }
     
 }
 
+fileprivate let storyboardName = "MGVideoPlayer"
+fileprivate let listControllerIdentifier = "MGVideoPlayerListController"
+fileprivate let controllerIdentifier = "MGVideoPlayerController"
+fileprivate let resourceName = "MGVideoPlayerKit"
+fileprivate let resourceExtension = "bundle"

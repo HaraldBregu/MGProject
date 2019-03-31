@@ -28,17 +28,38 @@ import MGTemplateKit
 import MGLandingKit
 import MGVideoPlayerKit
 import MGAudioPlayerKit
+import MGBrowserKit
+import MGMapKit
+import MGFeedKit
 
 class SideMenuDataSource: MGSideMenuDataSource {
     
     var landing:MGLanding!
     var videoPlayer:MGVideoPlayer!
     var audioPlayer:MGAudioPlayer!
-
+    var browser:MGBrowser!
+    var map:MGMap!
+    var feed:MGFeed!
+    
     init() {
         landing = MGLanding(dataSource: LandingComponent(), delegate: LandingComponent())
         videoPlayer = MGVideoPlayer(dataList: VideoData.items)
         audioPlayer = MGAudioPlayer()
+        
+        let browserData = MGBrowserData(title: "Website", urlString: "https://thenextweb.com/")
+        let browserDesign = MGBrowserDesign()
+        browser = MGBrowser(data: browserData, design: browserDesign)
+        
+        let data = MGMapData(latitude: 21.282778, longitude: -157.829444)
+        map = MGMap(mapData: data)
+        
+//        let nextWebData = MGFeedData(title: "The Next Web", urlString: "https://thenextweb.com/feed/")
+////        let data = MGFeedData(title: "Tech Crunch", urlString: "https://techcrunch.com/feed/")
+////        let data = MGFeedData(title: "The Verge", urlString: "https://www.theverge.com/rss/index.xml")
+////        let data = MGFeedData(title: "Digital Trend", urlString: "https://www.digitaltrends.com/feed/")
+//
+//        feed = MGFeed(data: nextWebData)
+//        feed.feedData = nextWebData
     }
     
     var headerTitle: String {
@@ -207,13 +228,34 @@ class SideMenuDataSource: MGSideMenuDataSource {
     }
     
     func centerController(data: MGSideMenuData, forIndexPath indexPath: IndexPath) -> UIViewController? {
-        switch indexPath.row {
-        case 0:
+
+        switch data.identifier {
+        case "menu.home.identifier":
             return landing.controller
-        case 1:
+        case "menu.video.identifier":
             return UINavigationController(rootViewController: videoPlayer.listController)
-        case 2:
+        case "menu.audio.identifier":
             return UINavigationController(rootViewController: audioPlayer.listController)
+        case "menu.webBrowser.identifier":
+            return UINavigationController(rootViewController: browser.controller)
+        case "menu.maps.identifier":
+            return UINavigationController(rootViewController: map.controller)
+        case "menu.theNextWeb.identifier":
+            let feedData = MGFeedData(title: "The Next Web", urlString: "https://thenextweb.com/feed/")
+            feed = MGFeed(data: feedData)
+            return UINavigationController(rootViewController: feed.controller)
+        case "menu.techCrunch.identifier":
+            let feedData = MGFeedData(title: "Tech Crunch", urlString: "https://techcrunch.com/feed/")
+            feed = MGFeed(data: feedData)
+            return UINavigationController(rootViewController: feed.controller)
+        case "menu.theVerge.identifier":
+            let feedData = MGFeedData(title: "The Verge", urlString: "https://www.theverge.com/rss/index.xml")
+            feed = MGFeed(data: feedData)
+            return UINavigationController(rootViewController: feed.controller)
+        case "menu.digitalTrend.identifier":
+            let feedData = MGFeedData(title: "Digital Trend", urlString: "https://www.digitaltrends.com/feed/")
+            feed = MGFeed(data: feedData)
+            return UINavigationController(rootViewController: feed.controller)
         default:
             return nil
         }
