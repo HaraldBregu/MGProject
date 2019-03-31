@@ -1,0 +1,6 @@
+framework module MGVideoPlayerKit {
+  umbrella header "MGVideoPlayerKit-umbrella.h"
+
+  export *
+  module * { export * }
+}

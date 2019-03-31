@@ -1,0 +1,71 @@
+PODS:
+  - Cosmos (18.0.1)
+  - FontBlaster (4.1.0)
+  - MGLandingKit (0.0.2):
+    - SDWebImage
+  - MGSideMenuKit (0.1.4):
+    - SideMenuSwift
+  - MGTemplateKit (0.1.7):
+    - FontBlaster
+    - UIColor_Hex_Swift (~> 4.2.0)
+  - MGVideoPlayerKit (0.1.1):
+    - Cosmos (~> 18.0)
+    - SDWebImage
+  - SDWebImage (4.4.6):
+    - SDWebImage/Core (= 4.4.6)
+  - SDWebImage/Core (4.4.6)
+  - SideMenuSwift (1.0.2)
+  - UIColor_Hex_Swift (4.2.0)
+
+DEPENDENCIES:
+  - "MGLandingKit (from `https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGLandingKit.git`)"
+  - "MGSideMenuKit (from `https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGSideMenuKit.git`)"
+  - "MGTemplateKit (from `https://haraldbregu:SSETajd9Ez53C25bKRw7@bitbucket.org/haraldbregu/mgtemplatekit.git`)"
+  - "MGVideoPlayerKit (from `https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGVideoPlayerKit.git`)"
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Cosmos
+    - FontBlaster
+    - SDWebImage
+    - SideMenuSwift
+    - UIColor_Hex_Swift
+
+EXTERNAL SOURCES:
+  MGLandingKit:
+    :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGLandingKit.git"
+  MGSideMenuKit:
+    :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGSideMenuKit.git"
+  MGTemplateKit:
+    :git: "https://haraldbregu:SSETajd9Ez53C25bKRw7@bitbucket.org/haraldbregu/mgtemplatekit.git"
+  MGVideoPlayerKit:
+    :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGVideoPlayerKit.git"
+
+CHECKOUT OPTIONS:
+  MGLandingKit:
+    :commit: 88ecc9ae511aad7430b97d22024a04290c14e195
+    :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGLandingKit.git"
+  MGSideMenuKit:
+    :commit: 1ddc92c9110ca2238142b0bcf6d9871ef7023f11
+    :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGSideMenuKit.git"
+  MGTemplateKit:
+    :commit: e59c8c520191913bf6c0fa04fd8234fb499ba5f6
+    :git: "https://haraldbregu:SSETajd9Ez53C25bKRw7@bitbucket.org/haraldbregu/mgtemplatekit.git"
+  MGVideoPlayerKit:
+    :commit: 79dd3ca9d5b5ae7cb5e6d2806039406bf6f1ad04
+    :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGVideoPlayerKit.git"
+
+SPEC CHECKSUMS:
+  Cosmos: 7dfaa3f52584ca5f94ab74b5c2e264019cc9f7f5
+  FontBlaster: 127aa66419478d1c62926c7fdb39841633344a45
+  MGLandingKit: 53f8fecb85af1a3417035868e1db7aef63af5c75
+  MGSideMenuKit: 81341ee5bcb9de290e3a62e8b23fd99e4bdcbff1
+  MGTemplateKit: 8ccf7019c7411698e55b35ee9f6fd0050dbb431d
+  MGVideoPlayerKit: f16fc3053821f1255866bcbfa5fbfcdc85702fee
+  SDWebImage: 3f3f0c02f09798048c47a5ed0a13f17b063572d8
+  SideMenuSwift: 435ede4955a813fc4fd6c822c067784626621448
+  UIColor_Hex_Swift: bc07fc197421ee896b9ed6dcfa2054b7fbf75145
+
+PODFILE CHECKSUM: 51235cc28fe90c0c09f9d325268ce14512313456
+
+COCOAPODS: 1.6.1

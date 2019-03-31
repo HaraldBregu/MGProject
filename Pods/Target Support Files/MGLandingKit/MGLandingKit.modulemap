@@ -1,0 +1,6 @@
+framework module MGLandingKit {
+  umbrella header "MGLandingKit-umbrella.h"
+
+  export *
+  module * { export * }
+}

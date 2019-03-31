@@ -1,0 +1,91 @@
+
+// Menu Component
+"mg.menu.tableview.item.home" = "Home";
+"mg.menu.tableview.item.cinema" = "The Cinema";
+"mg.menu.tableview.item.music" = "My Music";
+"menu.tableview.item.title.woocommerce" = "Woocommerce";
+"menu.tableview.item.title.facebook" = "Facebook";
+"menu.tableview.item.title.instagram" = "Instagram";
+"menu.tableview.item.title.soundCloud" = "SoundCloud";
+"menu.tableview.item.title.tumblr" = "Tumblr";
+"menu.tableview.item.title.flick" = "Flick";
+"menu.tableview.item.title.twitter" = "Twitter";
+"menu.tableview.item.title.pinterest" = "Pinterest";
+
+
+"mg.menu.tableview.item.thenextweb" = "The Next Web";
+"mg.menu.tableview.item.techcrunch" = "Tech Crunch";
+"mg.menu.tableview.item.theverge" = "The Verge";
+"mg.menu.tableview.item.digitaltrend" = "DigitalTrend";
+"mg.menu.tableview.item.ourwebsite" = "Our Website";
+"mg.menu.tableview.item.wearehere" = "We Are Here";
+"menu.tableview.item.title.settings" = "Settings";
+"mg.menu.tableview.item.copyright" = "Copyright (c) 2020 MegaGeneral. All Rights Reserved. This product is protected by copyright and distributed under licenses restricting copying, distribution and decompilation.";
+
+// MegaGeneral Component
+"mg.megageneral.nav.title" = "MegaGeneral";
+"mg.megageneral.title.one" = "Scalable multipurpose component based iOS framework";
+"mg.megageneral.title.two" = "MegaGeneral is a scalable multipurpose conponent based iOS framework. You can start develop many awesome apps from MegaGeneral framework. You can use a big sets of icons, fonts, and change dark theme with your personal custom theme.";
+"mg.megageneral.componentcollection.title" = "Components";
+"mg.megageneral.componentcollection.item.one" = "Feed parser";
+"mg.megageneral.componentcollection.item.two" = "Video Streaming";
+"mg.megageneral.componentcollection.item.three" = "Audio Streaming";
+"mg.megageneral.componentcollection.item.four" = "Web Browser";
+"mg.megageneral.componentcollection.item.five" = "Maps";
+"mg.megageneral.componentcollection.item.settings" = "Settings";
+
+// AudioPlayer Component
+"mg.audioplayerlist.nav.title" = "My Music";
+"mg.audioplayerlist.nav.search.title" = "Search";
+"mg.audioplayerlist.table.header.title" = "Top Playlist";
+"mg.audioplayer.nav.title" = "Now Playing";
+"mg.audioplayer.btm.option.sheet.title" = "Options";
+"mg.audioplayer.btm.option.sheet.description" = "Select an option";
+"mg.audioplayer.btm.option.sheet.opton.one" = "First option";
+"mg.audioplayer.btm.option.sheet.opton.two" = "Second option";
+"mg.audioplayer.btm.option.sheet.opton.three" = "Third option";
+"mg.audioplayer.btm.option.sheet.opton.cancel" = "Cancel";
+
+// VideoPlayer Component
+"mg.videoplayerlist.nav.title" = "My Cinema";
+"mg.videoplayerlist.nav.search.title" = "Search";
+"mg.videoplayerlist.table.header.title" = "My Movies";
+"mg.videoplayerlist.table.footer.title" = "This is a list of my favorite movies";
+"mg.videoplayer.nav.title" = "Now Playing";
+
+// MapView Component
+"mg.mapview.nav.title" = "Our Offices";
+
+// In App Purchase
+"mg.settings.table.section.application.inapp.alert.title" = "Products";
+"mg.settings.table.section.application.inapp.alert.description" = "List of all products available";
+"mg.settings.table.section.application.inapp.alert.cancel" = "Cancel";
+
+// Settings Component
+"mg.settings.nav.title" = "Settings";
+"mg.settings.nav.save.title" = "Save";
+"mg.settings.table.section.account.title" = "Account";
+"mg.settings.table.section.account.first.title" = "Update your account information just by typing in the textfield.";
+"mg.settings.table.section.account.first.placeholder" = "Full Name";
+"mg.settings.table.section.account.second.placeholder" = "Profession";
+"mg.settings.table.section.account.third.placeholder" = "Email";
+"mg.settings.table.section.account.fourth.placeholder" = "Number";
+"mg.settings.table.section.notification.title" = "Notification";
+"mg.settings.table.section.notification.first.title" = "Push notification";
+"mg.settings.table.section.notification.second.title" = "Local notification";
+"mg.settings.table.section.application.title" = "Application";
+"mg.settings.table.section.application.first.title" = "Debug mode";
+"mg.settings.table.section.application.second.title" = "Developer";
+"mg.settings.table.section.application.third.title" = "Backup";
+"mg.settings.table.section.application.fourth.title" = "Lights";
+"mg.settings.table.section.application.fifth.title" = "Rate my app";
+"mg.settings.table.section.application.sixth.title" = "Purchase Features";
+"mg.settings.table.section.informations.title" = "Informations";
+"mg.settings.table.section.informations.first.title" = "Privacy policy";
+"mg.settings.table.section.informations.second.title" = "Terms and conditions";
+"mg.settings.table.section.informations.third.title" = "Analytics";
+"mg.settings.table.section.informations.fourth.title" = "Help";
+"mg.settings.table.section.informations.fifth.title" = "Copyright (c) 2020 MegaGeneral. All Rights Reserved. This product is protected by copyright and distributed under licenses restricting copying, distribution and decompilation.";
+
+// Feed Component
+"mg.feedlist.nav.search.title" = "Search";
