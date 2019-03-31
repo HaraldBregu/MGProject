@@ -1,0 +1,6 @@
+framework module MGAudioPlayerKit {
+  umbrella header "MGAudioPlayerKit-umbrella.h"
+
+  export *
+  module * { export * }
+}

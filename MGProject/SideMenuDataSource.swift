@@ -27,15 +27,18 @@ import MGSideMenuKit
 import MGTemplateKit
 import MGLandingKit
 import MGVideoPlayerKit
+import MGAudioPlayerKit
 
 class SideMenuDataSource: MGSideMenuDataSource {
     
     var landing:MGLanding!
     var videoPlayer:MGVideoPlayer!
-    
+    var audioPlayer:MGAudioPlayer!
+
     init() {
         landing = MGLanding(dataSource: LandingComponent(), delegate: LandingComponent())
         videoPlayer = MGVideoPlayer(dataList: VideoData.items)
+        audioPlayer = MGAudioPlayer()
     }
     
     var headerTitle: String {
@@ -209,6 +212,8 @@ class SideMenuDataSource: MGSideMenuDataSource {
             return landing.controller
         case 1:
             return UINavigationController(rootViewController: videoPlayer.listController)
+        case 2:
+            return UINavigationController(rootViewController: audioPlayer.listController)
         default:
             return nil
         }

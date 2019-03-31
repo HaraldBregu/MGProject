@@ -1,9 +1,9 @@
 {
-  "name": "MGTemplateKit",
-  "version": "0.1.8",
+  "name": "MGAudioPlayerKit",
+  "version": "0.1.0",
   "summary": "When you sit down to work, external critics aren’t",
   "description": "When you sit down to work, external critics aren’t the enemy. It’s you who you must to fight against to do great fucking work. You must overcome yourself. Saul Bass on failure: Failure is built into creativity… the creative act involves this element of ‘newness’ and ‘experimentalism,’ then one must expect and accept the fucking possibility of failure.",
-  "homepage": "https://github.com/HaraldBregu/",
+  "homepage": "https://github.com/HaraldBregu",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
@@ -12,25 +12,22 @@
     "Harald Bregu": "harald.bregu@gmail.com"
   },
   "source": {
-    "git": "https://github.com/HaraldBregu/MGTemplateKit.git",
-    "tag": "0.1.8"
+    "git": "https://github.com/HaraldBregu/MGAudioPlayerKit.git",
+    "tag": "0.1.0"
   },
-  "source_files": "MGTemplateKit/Classes/**/*",
+  "platforms": {
+    "ios": "12.0"
+  },
+  "source_files": "MGAudioPlayerKit/Classes/**/*",
   "resource_bundles": {
-    "MGTemplateKit": [
-      "MGTemplateKit/Assets/*.ttf"
+    "MGAudioPlayerKit": [
+      "MGAudioPlayerKit/Assets/*.{png,lproj,storyboard}"
     ]
   },
   "dependencies": {
-    "UIColor_Hex_Swift": [
-      "~> 4.2.0"
-    ],
-    "FontBlaster": [
+    "SDWebImage": [
 
     ]
   },
-  "swift_version": "4.2",
-  "platforms": {
-    "ios": "12.0"
-  }
+  "swift_version": "4.2"
 }

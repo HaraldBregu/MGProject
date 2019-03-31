@@ -155,6 +155,7 @@ strip_invalid_archs() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Cosmos/Cosmos.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FontBlaster/FontBlaster.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/MGAudioPlayerKit/MGAudioPlayerKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MGLandingKit/MGLandingKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MGSideMenuKit/MGSideMenuKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MGTemplateKit/MGTemplateKit.framework"
@@ -166,6 +167,7 @@ fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Cosmos/Cosmos.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FontBlaster/FontBlaster.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/MGAudioPlayerKit/MGAudioPlayerKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MGLandingKit/MGLandingKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MGSideMenuKit/MGSideMenuKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MGTemplateKit/MGTemplateKit.framework"
