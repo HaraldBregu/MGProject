@@ -34,15 +34,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var sideMenu: MGSideMenu!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
         MGTemplate.setup()
-        
         sideMenu = MGSideMenu(dataSource: SideMenuDataSource(), delegate: SideMenuDataDelegate())
-    
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = UINavigationController(rootViewController: sideMenu.containerController)
+        window?.rootViewController = sideMenu.containerController
         window?.makeKeyAndVisible()
-
         return true
     }
 

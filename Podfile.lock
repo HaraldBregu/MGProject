@@ -17,7 +17,7 @@ PODS:
   - MGMapKit (0.1.2):
     - Cosmos (~> 18.0)
     - SDWebImage
-  - MGSideMenuKit (0.1.4):
+  - MGSideMenuKit (0.1.6):
     - SideMenuSwift
   - MGTemplateKit (0.1.8):
     - FontBlaster
@@ -90,7 +90,7 @@ CHECKOUT OPTIONS:
     :commit: 0486ef873d4bc1e1c6fae0cf0443bcde940ca1f2
     :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGMapKit.git"
   MGSideMenuKit:
-    :commit: 1ddc92c9110ca2238142b0bcf6d9871ef7023f11
+    :commit: 32b77cd2f3a8ae076ccaec0460f243c7c0d2ec04
     :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGSideMenuKit.git"
   MGTemplateKit:
     :commit: 714d770728041650e79f3dac73dca2699cd2cb6d
@@ -109,7 +109,7 @@ SPEC CHECKSUMS:
   MGFeedKit: b6b4a572d10633100ccf08f489f2510210d2f451
   MGLandingKit: 53f8fecb85af1a3417035868e1db7aef63af5c75
   MGMapKit: 5d4ab366d9b6133392f17e39dfda2e76c4a1b503
-  MGSideMenuKit: 81341ee5bcb9de290e3a62e8b23fd99e4bdcbff1
+  MGSideMenuKit: 4cdadacfa4bf8184e7eecad1ada0e831800a99f9
   MGTemplateKit: 59eb00bb69ae7c313203351de312fab4894040d9
   MGVideoPlayerKit: f16fc3053821f1255866bcbfa5fbfcdc85702fee
   SDWebImage: 3f3f0c02f09798048c47a5ed0a13f17b063572d8
