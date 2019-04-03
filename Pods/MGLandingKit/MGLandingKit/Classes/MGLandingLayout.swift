@@ -26,13 +26,69 @@
 import Foundation
 
 public class MGLandingLayout {
-    public var navBackgroundColor:UIColor!
-    public var navTintColor:UIColor!
+    public var view:MGViewLayout!
+    public var collectionView:MGViewLayout!
+    public var navigationBar:MGNavigationBarLayout!
+    public var navigationItemMenu:MGNavigationItemLayout!
+    public var titleLabel:MGLabelLayout!
+    public var subTitleLabel:MGLabelLayout!
+    public var usernameLabel:MGLabelLayout!
+    public var headlineLabel:MGLabelLayout!
+    public var itemTitleLabel:MGLabelLayout!
+    public var collectionTitleLabel:MGLabelLayout!
+    public var heartImage:MGImageViewLayout!
+    public init() {
+        view = MGViewLayout()
+        collectionView = MGViewLayout()
+        navigationBar = MGNavigationBarLayout()
+        navigationItemMenu = MGNavigationItemLayout()
+        titleLabel = MGLabelLayout()
+        subTitleLabel = MGLabelLayout()
+        usernameLabel = MGLabelLayout()
+        headlineLabel = MGLabelLayout()
+        itemTitleLabel = MGLabelLayout()
+        collectionTitleLabel = MGLabelLayout()
+        heartImage = MGImageViewLayout()
+    }
+}
+
+public class MGViewLayout {
+    public var backgroundColor:UIColor!
+    public init() {
+        backgroundColor = #colorLiteral(red: 0.05098039216, green: 0.05098039216, blue: 0.05098039216, alpha: 1)
+    }
+}
+public class MGImageViewLayout {
+    public var normal:UIImage!
+    public var selected:UIImage!
+    public init() {
+        normal = UIImage()
+        selected = UIImage()
+    }
+}
+
+
+public class MGNavigationBarLayout {
     public var backgroundColor:UIColor!
     public var tintColor:UIColor!
-    public var font:UIFont!
-    
     public init() {
-        
+        backgroundColor = #colorLiteral(red: 0.05098039216, green: 0.05098039216, blue: 0.05098039216, alpha: 1)
+        tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+    }
+}
+
+public class MGNavigationItemLayout {
+    public var image:UIImage!
+    public init() {
+        image = UIImage()
+    }
+}
+
+public class MGLabelLayout {
+    public var font: UIFont!
+    public var tintColor: UIColor!
+    public init() {
+        font = UIFont()
+        tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
     }
 }

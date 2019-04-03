@@ -2,7 +2,7 @@ PODS:
   - Cosmos (18.0.1)
   - FeedKit (8.1.1)
   - FontBlaster (4.1.0)
-  - GSImageViewerController (1.5.2)
+  - GSImageViewerController (1.6.0)
   - MGAudioPlayerKit (0.1.0):
     - SDWebImage
   - MGBrowserKit (0.1.2):
@@ -12,8 +12,8 @@ PODS:
     - GSImageViewerController
     - SDWebImage
     - SwiftSoup
-  - MGLandingKit (0.0.2):
-    - SDWebImage
+  - MGLandingKit (0.0.4):
+    - SDWebImage (~> 4.0)
   - MGMapKit (0.1.2):
     - Cosmos (~> 18.0)
     - SDWebImage
@@ -84,7 +84,7 @@ CHECKOUT OPTIONS:
     :commit: c8d8aaab7604fa8becd4980125776a169efbe98c
     :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGFeedKit.git"
   MGLandingKit:
-    :commit: 88ecc9ae511aad7430b97d22024a04290c14e195
+    :commit: 324bb2bbb4b7678fd70e85df6c28b5ca8da6c1c2
     :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGLandingKit.git"
   MGMapKit:
     :commit: 0486ef873d4bc1e1c6fae0cf0443bcde940ca1f2
@@ -103,11 +103,11 @@ SPEC CHECKSUMS:
   Cosmos: 7dfaa3f52584ca5f94ab74b5c2e264019cc9f7f5
   FeedKit: 3418eed25f0b493b205b4de1b8511ac21d413fa9
   FontBlaster: 127aa66419478d1c62926c7fdb39841633344a45
-  GSImageViewerController: 010a2754686462c3e3085a85005d7c83ba96317e
+  GSImageViewerController: 397f8954afac8bd1c3a75c630e3c4ab4c4a4dfe3
   MGAudioPlayerKit: 821fa88bf5b477b330d7069ce963f563653a5d83
   MGBrowserKit: 8612710ff5c0e5fda0cbc260a6f210a3584afed7
   MGFeedKit: b6b4a572d10633100ccf08f489f2510210d2f451
-  MGLandingKit: 53f8fecb85af1a3417035868e1db7aef63af5c75
+  MGLandingKit: 1f5df6a3bcc8964697f981c0e112fb8373d80694
   MGMapKit: 5d4ab366d9b6133392f17e39dfda2e76c4a1b503
   MGSideMenuKit: 4cdadacfa4bf8184e7eecad1ada0e831800a99f9
   MGTemplateKit: 59eb00bb69ae7c313203351de312fab4894040d9

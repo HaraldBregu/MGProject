@@ -50,11 +50,11 @@ class MGLandingCollectionCell: UICollectionViewCell {
         containerCoverView.layer.addSublayer(gradient)
         containerCoverView.layer.masksToBounds = true
         containerCoverView.clipsToBounds = true
-        containerCoverView.layer.cornerRadius = 3.0
+        containerCoverView.layer.cornerRadius = 1.0
         backgroundImageView.layer.masksToBounds = true
         backgroundImageView.clipsToBounds = true
-        backgroundImageView.layer.cornerRadius = 3
-        containerView.layer.cornerRadius = 3
+        backgroundImageView.layer.cornerRadius = 1.0
+        containerView.layer.cornerRadius = 1.0
         containerView.layer.masksToBounds = true
     }
 

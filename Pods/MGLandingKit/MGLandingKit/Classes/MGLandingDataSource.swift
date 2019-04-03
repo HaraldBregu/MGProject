@@ -26,10 +26,7 @@
 import Foundation
 
 public protocol MGLandingDataSource {
-    var navTitle:String { get }
-    var title:String { get }
-    var subTitle:String { get }
-    var headerIcon:UIImage? { get }
-    var dataList:[MGLandingData] { get }
+    var data:MGLandingData { get }
     var layout:MGLandingLayout { get }
+    var items:[MGLandingItemData] { get }
 }

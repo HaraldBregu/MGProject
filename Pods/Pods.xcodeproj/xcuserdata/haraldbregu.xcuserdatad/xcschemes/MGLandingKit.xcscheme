@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E4ABA0DB1A25BE0CC434B2F292C3A1B3"
+               BlueprintIdentifier = "6134220E97A4F9C0874D1E451A569655"
                BuildableName = "MGLandingKit.framework"
                BlueprintName = "MGLandingKit"
                ReferencedContainer = "container:Pods.xcodeproj">
