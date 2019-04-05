@@ -271,7 +271,6 @@ open class SideMenuController: UIViewController {
                 if reveal {
                     self.delegate?.sideMenuControllerDidRevealMenu(self)
                 } else {
-                    self.delegate?.sideMenuControllerDidHideMneu(self)
                     self.delegate?.sideMenuControllerDidHideMenu(self)
                 }
             }
@@ -444,7 +443,13 @@ open class SideMenuController: UIViewController {
             }
 
             if shouldShowShadowOnContent {
-                let shadowPercent = min(menuContainerView.frame.maxX / menuWidth, 1)
+                let movingDistance: CGFloat
+                if isLeft {
+                    movingDistance = menuContainerView.frame.maxX
+                } else {
+                    movingDistance = menuWidth - menuContainerView.frame.minX
+                }
+                let shadowPercent = min(movingDistance / menuWidth, 1)
                 contentContainerOverlay?.alpha = self.preferences.animation.shadowAlpha * shadowPercent
             }
         case .ended, .cancelled, .failed:
@@ -639,7 +644,7 @@ open class SideMenuController: UIViewController {
     ///
     /// - Returns: if not exist, returns nil.
     open func currentCacheIdentifier() -> String? {
-        guard let index = lazyCachedViewControllers.values.index(of: contentViewController) else {
+        guard let index = lazyCachedViewControllers.values.firstIndex(of: contentViewController) else {
             return nil
         }
         return lazyCachedViewControllers.keys[index]
@@ -751,7 +756,7 @@ extension SideMenuController: UIGestureRecognizerDelegate {
                 return false
         }
 
-        if let index = navigationController.viewControllers.index(of: viewController) {
+        if let index = navigationController.viewControllers.firstIndex(of: viewController) {
             return index > 0
         }
         return false

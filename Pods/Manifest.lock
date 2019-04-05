@@ -17,7 +17,7 @@ PODS:
   - MGMapKit (0.1.2):
     - Cosmos (~> 18.0)
     - SDWebImage
-  - MGSideMenuKit (0.1.6):
+  - MGSideMenuKit (0.1.7):
     - SideMenuSwift
   - MGTemplateKit (0.1.8):
     - FontBlaster
@@ -28,7 +28,7 @@ PODS:
   - SDWebImage (4.4.6):
     - SDWebImage/Core (= 4.4.6)
   - SDWebImage/Core (4.4.6)
-  - SideMenuSwift (1.0.2)
+  - SideMenuSwift (2.0.0)
   - SnapKit (4.0.1)
   - SwiftSoup (1.7.4)
   - UIColor_Hex_Swift (4.2.0)
@@ -90,7 +90,7 @@ CHECKOUT OPTIONS:
     :commit: 0486ef873d4bc1e1c6fae0cf0443bcde940ca1f2
     :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGMapKit.git"
   MGSideMenuKit:
-    :commit: 32b77cd2f3a8ae076ccaec0460f243c7c0d2ec04
+    :commit: 3446b24d3266746b92ba7caa2656dff130908fe8
     :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGSideMenuKit.git"
   MGTemplateKit:
     :commit: 714d770728041650e79f3dac73dca2699cd2cb6d
@@ -109,11 +109,11 @@ SPEC CHECKSUMS:
   MGFeedKit: b6b4a572d10633100ccf08f489f2510210d2f451
   MGLandingKit: 1f5df6a3bcc8964697f981c0e112fb8373d80694
   MGMapKit: 5d4ab366d9b6133392f17e39dfda2e76c4a1b503
-  MGSideMenuKit: 4cdadacfa4bf8184e7eecad1ada0e831800a99f9
+  MGSideMenuKit: ddcb3a5e4cc397076cfee6bcfa017156f643e785
   MGTemplateKit: 59eb00bb69ae7c313203351de312fab4894040d9
   MGVideoPlayerKit: f16fc3053821f1255866bcbfa5fbfcdc85702fee
   SDWebImage: 3f3f0c02f09798048c47a5ed0a13f17b063572d8
-  SideMenuSwift: 435ede4955a813fc4fd6c822c067784626621448
+  SideMenuSwift: 1bee5a0e54c6df7d8106f749b82567eae5c6d974
   SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
   SwiftSoup: 92f5b348c131aed8af04f4326db1579ab19fa08c
   UIColor_Hex_Swift: bc07fc197421ee896b9ed6dcfa2054b7fbf75145

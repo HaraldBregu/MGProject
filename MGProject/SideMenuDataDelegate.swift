@@ -36,7 +36,7 @@ class SideMenuDataDelegate {
 
 extension SideMenuDataDelegate: MGSideMenuDataDelegate {
     
-    func menuController(_ controller: MGMenuController, didSelectData data: MGSideMenuData, atIndexPath indexPath: IndexPath) {
+    func menuController(_ controller: MGMenuController, didSelectItem item: MGSideMenuItem, atIndexPath indexPath: IndexPath) {
 //        print("menudata: \(data.title)")
 //        print("indexpath: \(indexPath.row)")
     }

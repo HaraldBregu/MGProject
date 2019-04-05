@@ -42,7 +42,7 @@ class LandingComponent: MGLandingDelegate, MGLandingDataSource {
         
         var itemFeed = MGLandingItemData()
         itemFeed.title = "mg.megageneral.componentcollection.item.one".localized
-        itemFeed.thumbUrl = "https://siliconcanals.nl/wp-content/uploads/2018/05/tnw-.jpg"
+        itemFeed.thumbUrl = "https://firebasestorage.googleapis.com/v0/b/megageneral-8d8a3.appspot.com/o/Latest-News.jpg?alt=media&token=fb163c62-cc01-4826-8482-b240877df839"
         megaitems.append(itemFeed)
         
         var item2 = MGLandingItemData()
@@ -52,7 +52,7 @@ class LandingComponent: MGLandingDelegate, MGLandingDataSource {
         
         var item4 = MGLandingItemData()
         item4.title = "mg.megageneral.componentcollection.item.three".localized
-        item4.thumbUrl = "https://r7h9p6s7.stackpathcdn.com/wp-content/uploads/2007/11/south_africa_commercial_radio_stations.jpg"
+        item4.thumbUrl = "https://www.apple.com/v/apple-music/i/images/shared/og_image.png"
         megaitems.append(item4)
         
         var itemWeb = MGLandingItemData()

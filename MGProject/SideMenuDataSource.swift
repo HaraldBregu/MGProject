@@ -42,6 +42,7 @@ class SideMenuDataSource: MGSideMenuDataSource {
     var feed:MGFeed!
     
     init() {
+        
         landing = MGLanding(dataSource: LandingComponent(), delegate: LandingComponent())
         videoPlayer = MGVideoPlayer(dataList: VideoData.items)
         audioPlayer = MGAudioPlayer()
@@ -52,164 +53,143 @@ class SideMenuDataSource: MGSideMenuDataSource {
         
         let data = MGMapData(latitude: 21.282778, longitude: -157.829444)
         map = MGMap(mapData: data)
+    }
+    
+    var data: MGSideMenuData {
+        let data = MGSideMenuData()
+        data.title = "MegaGeneral Ltd"
+        data.image = #imageLiteral(resourceName: "MGIconLight")
+        return data
+    }
+    
+    var items: [MGSideMenuItem] {
+        var newData = [MGSideMenuItem]()
         
-//        let nextWebData = MGFeedData(title: "The Next Web", urlString: "https://thenextweb.com/feed/")
-////        let data = MGFeedData(title: "Tech Crunch", urlString: "https://techcrunch.com/feed/")
-////        let data = MGFeedData(title: "The Verge", urlString: "https://www.theverge.com/rss/index.xml")
-////        let data = MGFeedData(title: "Digital Trend", urlString: "https://www.digitaltrends.com/feed/")
-//
-//        feed = MGFeed(data: nextWebData)
-//        feed.feedData = nextWebData
-    }
-    
-    var headerTitle: String {
-        return "MegaGeneral"
-    }
-    
-    var headerIcon: UIImage? {
-        return nil
-    }
-    
-    var data: [MGSideMenuData] {
-        var newData = [MGSideMenuData]()
-        
-        let homeItem = MGSideMenuData()
-        homeItem.title = "Home"
-        homeItem.icon = UIImage(icon: .ionicons(IoniconsType.androidHome), size: CGSize(width: 30, height: 30), textColor: .white, backgroundColor: .clear)
-        homeItem.indicatorIcon = UIImage()
+        let homeItem = MGSideMenuItem()
+        homeItem.title = "Home".localized
+        homeItem.icon = #imageLiteral(resourceName: "landing-page")
         homeItem.identifier = "menu.home.identifier"
         newData.append(homeItem)
         
-        let videoItem = MGSideMenuData()
-        videoItem.title = "Video"
-        videoItem.icon = UIImage(icon: .ionicons(IoniconsType.androidFilm), size: CGSize(width: 30, height: 30), textColor: .white)
-        videoItem.indicatorIcon = UIImage()
+        let videoItem = MGSideMenuItem()
+        videoItem.title = "Video".localized
+        videoItem.icon = #imageLiteral(resourceName: "youtube-1")
         videoItem.identifier = "menu.video.identifier"
         newData.append(videoItem)
         
-        let audioItem = MGSideMenuData()
-        audioItem.title = "Audio"
-        audioItem.icon = UIImage(icon: .ionicons(IoniconsType.musicNote), size: CGSize(width: 30, height: 30), textColor: .white)
-        audioItem.indicatorIcon = UIImage()
+        let audioItem = MGSideMenuItem()
+        audioItem.title = "Audio".localized
+        audioItem.icon = #imageLiteral(resourceName: "music-player (1)")
         audioItem.identifier = "menu.audio.identifier"
         newData.append(audioItem)
         
-        let theNextWeb = MGSideMenuData()
-        theNextWeb.title = "The Next Web"
+        let theNextWeb = MGSideMenuItem()
+        theNextWeb.title = "The Next Web".localized
         theNextWeb.icon = #imageLiteral(resourceName: "tnw")
-        theNextWeb.indicatorIcon = UIImage()
         theNextWeb.identifier = "menu.theNextWeb.identifier"
         newData.append(theNextWeb)
 
-        let techCrunch = MGSideMenuData()
-        techCrunch.title = "Tech Crunch"
+        let techCrunch = MGSideMenuItem()
+        techCrunch.title = "Tech Crunch".localized
         techCrunch.icon = #imageLiteral(resourceName: "techcrunch")
-        techCrunch.indicatorIcon = UIImage()
         techCrunch.identifier = "menu.techCrunch.identifier"
         newData.append(techCrunch)
         
-        let theVerge = MGSideMenuData()
-        theVerge.title = "The Verge"
+        let theVerge = MGSideMenuItem()
+        theVerge.title = "The Verge".localized
         theVerge.icon = #imageLiteral(resourceName: "thv")
-        theVerge.indicatorIcon = UIImage()
         theVerge.identifier = "menu.theVerge.identifier"
         newData.append(theVerge)
 
-        let digitalTrend = MGSideMenuData()
-        digitalTrend.title = "Digital Trend"
+        let digitalTrend = MGSideMenuItem()
+        digitalTrend.title = "Digital Trend".localized
         digitalTrend.icon = #imageLiteral(resourceName: "digitaltrend")
-        digitalTrend.indicatorIcon = UIImage()
         digitalTrend.identifier = "menu.digitalTrend.identifier"
         newData.append(digitalTrend)
 
-        let webBrowser = MGSideMenuData()
-        webBrowser.title = "Web Browser"
-        webBrowser.icon = UIImage(icon: .ionicons(IoniconsType.androidGlobe), size: CGSize(width: 30, height: 30), textColor: .white)
-        webBrowser.indicatorIcon = UIImage()
+        let webBrowser = MGSideMenuItem()
+        webBrowser.title = "menu.tableview.item.browser".localized
+        webBrowser.icon = #imageLiteral(resourceName: "browser")
         webBrowser.identifier = "menu.webBrowser.identifier"
         newData.append(webBrowser)
         
-        let maps = MGSideMenuData()
-        maps.title = "Maps"
-        maps.icon = UIImage(icon: .ionicons(IoniconsType.map), size: CGSize(width: 30, height: 30), textColor: .white)
-        maps.indicatorIcon = UIImage()
+        let maps = MGSideMenuItem()
+        maps.title = "menu.tableview.item.map".localized
+        maps.icon = #imageLiteral(resourceName: "map")
         maps.identifier = "menu.maps.identifier"
         newData.append(maps)
 
-        let wordpress = MGSideMenuData()
-        wordpress.title = "Wordpress"
-        wordpress.icon = UIImage(icon: .ionicons(IoniconsType.socialWordpress), size: CGSize(width: 30, height: 30), textColor: .white)
-        wordpress.indicatorIcon = UIImage()
-        wordpress.identifier = "menu.wordpress.identifier"
-        newData.append(wordpress)
-
-        let youtube = MGSideMenuData()
+        let shopify = MGSideMenuItem()
+        shopify.title = "menu.tableview.item.title.shopify".localized
+        shopify.icon = #imageLiteral(resourceName: "shopify")
+        shopify.identifier = "menu.shopify.identifier"
+        newData.append(shopify)
+        
+//        let wordpress = MGSideMenuData()
+//        wordpress.title = "Wordpress"
+//        wordpress.icon = UIImage(icon: .ionicons(IoniconsType.socialWordpress), size: CGSize(width: 30, height: 30), textColor: .white)
+//        wordpress.indicatorIcon = UIImage()
+//        wordpress.identifier = "menu.wordpress.identifier"
+//        newData.append(wordpress)
+//
+        let youtube = MGSideMenuItem()
         youtube.title = "Youtube"
-        youtube.icon = UIImage(icon: .ionicons(IoniconsType.socialYoutube), size: CGSize(width: 30, height: 30), textColor: .white)
-        youtube.indicatorIcon = UIImage()
+        youtube.icon = #imageLiteral(resourceName: "youtube")
         youtube.identifier = "menu.youtube.identifier"
         newData.append(youtube)
 
-        let woocommerce = MGSideMenuData()
-        woocommerce.title = "menu.tableview.item.title.woocommerce".localized
-        woocommerce.icon = #imageLiteral(resourceName: "woocommerce")
-        woocommerce.indicatorIcon = UIImage()
-        woocommerce.identifier = "menu.woocommerce.identifier"
-        newData.append(woocommerce)
+//        let woocommerce = MGSideMenuData()
+//        woocommerce.title = "menu.tableview.item.title.woocommerce".localized
+//        woocommerce.icon = #imageLiteral(resourceName: "woocommerce")
+//        woocommerce.indicatorIcon = UIImage()
+//        woocommerce.identifier = "menu.woocommerce.identifier"
+//        newData.append(woocommerce)
 
-        let facebook = MGSideMenuData()
+        let facebook = MGSideMenuItem()
         facebook.title = "menu.tableview.item.title.facebook".localized
-        facebook.icon = UIImage(icon: .ionicons(IoniconsType.socialFacebook), size: CGSize(width: 30, height: 30), textColor: .white)
-        facebook.indicatorIcon = UIImage()
+        facebook.icon = #imageLiteral(resourceName: "facebook")
         facebook.identifier = "menu.facebook.identifier"
         newData.append(facebook)
 
-        let instagram = MGSideMenuData()
+        let instagram = MGSideMenuItem()
         instagram.title = "menu.tableview.item.title.instagram".localized
-        instagram.icon = UIImage(icon: .ionicons(IoniconsType.socialInstagram), size: CGSize(width: 30, height: 30), textColor: .white)
-        instagram.indicatorIcon = UIImage()
+        instagram.icon = #imageLiteral(resourceName: "instagram")
         instagram.identifier = "menu.instagram.identifier"
         newData.append(instagram)
 
-        let soundCloud = MGSideMenuData()
+        let soundCloud = MGSideMenuItem()
         soundCloud.title = "menu.tableview.item.title.soundCloud".localized
         soundCloud.icon = #imageLiteral(resourceName: "soundcloud")
-        soundCloud.indicatorIcon = UIImage()
         soundCloud.identifier = "menu.soundCloud.identifier"
         newData.append(soundCloud)
 
-        let tumblr = MGSideMenuData()
+        let tumblr = MGSideMenuItem()
         tumblr.title = "menu.tableview.item.title.tumblr".localized
-        tumblr.icon = UIImage(icon: .ionicons(IoniconsType.socialTumblr), size: CGSize(width: 30, height: 30), textColor: .white)
-        tumblr.indicatorIcon = UIImage()
+        tumblr.icon = #imageLiteral(resourceName: "tumblr")
         tumblr.identifier = "menu.tumblr.identifier"
         newData.append(tumblr)
 
-        let flick = MGSideMenuData()
+        let flick = MGSideMenuItem()
         flick.title = "menu.tableview.item.title.flick".localized
         flick.icon = #imageLiteral(resourceName: "flickr")
-        flick.indicatorIcon = UIImage()
         flick.identifier = "menu.flick.identifier"
         newData.append(flick)
 
-        let twitter = MGSideMenuData()
+        let twitter = MGSideMenuItem()
         twitter.title = "menu.tableview.item.title.twitter".localized
-        twitter.icon = UIImage(icon: .ionicons(IoniconsType.socialTwitter), size: CGSize(width: 30, height: 30), textColor: .white)
-        twitter.indicatorIcon = UIImage()
+        twitter.icon = #imageLiteral(resourceName: "twitter")
         twitter.identifier = "menu.twitter.identifier"
         newData.append(twitter)
 
-        let pinterest = MGSideMenuData()
+        let pinterest = MGSideMenuItem()
         pinterest.title = "menu.tableview.item.title.pinterest".localized
-        pinterest.icon = UIImage(icon: .ionicons(IoniconsType.socialPinterest), size: CGSize(width: 30, height: 30), textColor: .white)
-        pinterest.indicatorIcon = UIImage()
+        pinterest.icon = #imageLiteral(resourceName: "pinterest")
         pinterest.identifier = "menu.pinterest.identifier"
         newData.append(pinterest)
 
-        let settings = MGSideMenuData()
+        let settings = MGSideMenuItem()
         settings.title = "menu.tableview.item.title.settings".localized
         settings.icon = UIImage(icon: .ionicons(IoniconsType.settings), size: CGSize(width: 30, height: 30), textColor: .white)
-        settings.indicatorIcon = UIImage()
         settings.identifier = "menu.settings.identifier"
         newData.append(settings)
 
@@ -227,35 +207,35 @@ class SideMenuDataSource: MGSideMenuDataSource {
         return landing.controller
     }
     
-    func centerController(data: MGSideMenuData, forIndexPath indexPath: IndexPath) -> UIViewController? {
+    func centerController(item: MGSideMenuItem, forIndexPath indexPath: IndexPath) -> UIViewController? {
 
-        switch data.identifier {
+        switch item.identifier {
         case "menu.home.identifier":
             return landing.controller
         case "menu.video.identifier":
-            return UINavigationController(rootViewController: videoPlayer.listController)
+            return videoPlayer.listController
         case "menu.audio.identifier":
-            return UINavigationController(rootViewController: audioPlayer.listController)
+            return audioPlayer.listController
         case "menu.webBrowser.identifier":
-            return UINavigationController(rootViewController: browser.controller)
+            return browser.controller
         case "menu.maps.identifier":
-            return UINavigationController(rootViewController: map.controller)
+            return map.controller
         case "menu.theNextWeb.identifier":
             let feedData = MGFeedData(title: "The Next Web", urlString: "https://thenextweb.com/feed/")
             feed = MGFeed(data: feedData)
-            return UINavigationController(rootViewController: feed.controller)
+            return feed.controller
         case "menu.techCrunch.identifier":
             let feedData = MGFeedData(title: "Tech Crunch", urlString: "https://techcrunch.com/feed/")
             feed = MGFeed(data: feedData)
-            return UINavigationController(rootViewController: feed.controller)
+            return feed.controller
         case "menu.theVerge.identifier":
             let feedData = MGFeedData(title: "The Verge", urlString: "https://www.theverge.com/rss/index.xml")
             feed = MGFeed(data: feedData)
-            return UINavigationController(rootViewController: feed.controller)
+            return feed.controller
         case "menu.digitalTrend.identifier":
             let feedData = MGFeedData(title: "Digital Trend", urlString: "https://www.digitaltrends.com/feed/")
             feed = MGFeed(data: feedData)
-            return UINavigationController(rootViewController: feed.controller)
+            return feed.controller
         default:
             return nil
         }

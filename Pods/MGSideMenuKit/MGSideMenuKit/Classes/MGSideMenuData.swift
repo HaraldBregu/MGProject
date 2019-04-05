@@ -27,12 +27,10 @@ import Foundation
 
 public class MGSideMenuData {
     public var title:String!
-    public var icon:UIImage?
-    public var indicatorIcon:UIImage?
-    public var identifier:String!
-    public var data:Any?
-    
+    public var image:UIImage?
+
     public init() {
-        
+        title = "Landing Title"
+        image = UIImage()
     }
 }
