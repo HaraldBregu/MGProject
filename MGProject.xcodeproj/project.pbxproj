@@ -14,8 +14,8 @@
 		A9A4C037224AC1E10093A7AE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9A4C035224AC1E10093A7AE /* Main.storyboard */; };
 		A9A4C039224AC1E40093A7AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9A4C038224AC1E40093A7AE /* Assets.xcassets */; };
 		A9A4C03C224AC1E40093A7AE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9A4C03A224AC1E40093A7AE /* LaunchScreen.storyboard */; };
-		A9A4C044224AC8980093A7AE /* SideMenuDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A4C043224AC8980093A7AE /* SideMenuDataSource.swift */; };
-		A9A4C046224AC8B70093A7AE /* SideMenuDataDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A4C045224AC8B70093A7AE /* SideMenuDataDelegate.swift */; };
+		A9A4C044224AC8980093A7AE /* SideMenuComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A4C043224AC8980093A7AE /* SideMenuComponent.swift */; };
+		A9F0F53922591C72004B2CD8 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F0F53822591C72004B2CD8 /* Data.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,8 +29,8 @@
 		A9A4C038224AC1E40093A7AE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A9A4C03B224AC1E40093A7AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A9A4C03D224AC1E40093A7AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A9A4C043224AC8980093A7AE /* SideMenuDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuDataSource.swift; sourceTree = "<group>"; };
-		A9A4C045224AC8B70093A7AE /* SideMenuDataDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuDataDelegate.swift; sourceTree = "<group>"; };
+		A9A4C043224AC8980093A7AE /* SideMenuComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuComponent.swift; sourceTree = "<group>"; };
+		A9F0F53822591C72004B2CD8 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		FEC423B49DFD4689C64449B9 /* Pods-MGProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MGProject.debug.xcconfig"; path = "Target Support Files/Pods-MGProject/Pods-MGProject.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -76,9 +76,9 @@
 			isa = PBXGroup;
 			children = (
 				A9A4C031224AC1E10093A7AE /* AppDelegate.swift */,
-				A9A4C043224AC8980093A7AE /* SideMenuDataSource.swift */,
-				A9A4C045224AC8B70093A7AE /* SideMenuDataDelegate.swift */,
+				A9A4C043224AC8980093A7AE /* SideMenuComponent.swift */,
 				A91D4A2C224F94A9006134F1 /* LandingComponent.swift */,
+				A9F0F53822591C72004B2CD8 /* Data.swift */,
 				A9A4C035224AC1E10093A7AE /* Main.storyboard */,
 				A9A4C038224AC1E40093A7AE /* Assets.xcassets */,
 				A9960437224EAF5E001FA5EE /* Localizable.strings */,
@@ -250,9 +250,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A9A4C046224AC8B70093A7AE /* SideMenuDataDelegate.swift in Sources */,
+				A9F0F53922591C72004B2CD8 /* Data.swift in Sources */,
 				A91D4A2D224F94A9006134F1 /* LandingComponent.swift in Sources */,
-				A9A4C044224AC8980093A7AE /* SideMenuDataSource.swift in Sources */,
+				A9A4C044224AC8980093A7AE /* SideMenuComponent.swift in Sources */,
 				A9A4C032224AC1E10093A7AE /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

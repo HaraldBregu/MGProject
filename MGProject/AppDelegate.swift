@@ -26,16 +26,19 @@
 import UIKit
 import MGSideMenuKit
 import MGTemplateKit
+import SideMenuSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var sideMenu: MGSideMenu!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         MGTemplate.setup()
-        sideMenu = MGSideMenu(dataSource: SideMenuDataSource(), delegate: SideMenuDataDelegate())
+        let sideMenu = MGSideMenu()
+        sideMenu.dataSource = SideMenuComponent()
+        sideMenu.delegate = SideMenuComponent()
+        
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = sideMenu.containerController
         window?.makeKeyAndVisible()

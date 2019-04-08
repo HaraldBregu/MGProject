@@ -30,10 +30,11 @@ public class MGLanding {
     public init(dataSource: MGLandingDataSource, delegate: MGLandingDelegate) {
         self.dataSource = dataSource
         self.delegate = delegate
-        self.controller = _controller
+        
+        self.initialController = _navigationController
     }
     
-    public var controller:MGLandingController!
+    public var initialController: UINavigationController!
     private var dataSource: MGLandingDataSource!
     private var delegate: MGLandingDelegate!
     
@@ -41,6 +42,12 @@ public class MGLanding {
 
 extension MGLanding {
     
+    private var _navigationController: UINavigationController {
+        let navigationController = UINavigationController(rootViewController: _controller)
+        
+        return navigationController
+    }
+
     private var _controller: MGLandingController {
         guard let controller = _storyboard.instantiateViewController(withIdentifier: controllerIdentifier) as? MGLandingController
             else { return MGLandingController() }
@@ -48,6 +55,10 @@ extension MGLanding {
         controller.data = dataSource.data
         controller.items = dataSource.items
         controller.layout = dataSource.layout
+        
+        controller.didTapMenuNavigationItem = { [unowned self] (landingController, barButtonItem) in
+            self.delegate.landingController(landingController, didTapMenuNavigationItem: barButtonItem)
+        }
         
         return controller
     }
@@ -67,5 +78,7 @@ extension MGLanding {
 
 fileprivate let storyboardName = "MGLanding"
 fileprivate let controllerIdentifier = "MGLandingController"
+fileprivate let navigationControllerIdentifier = "MGLandingNavigationController"
 fileprivate let resourceName = "MGLandingKit"
 fileprivate let resourceExtension = "bundle"
+

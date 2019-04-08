@@ -12,12 +12,12 @@ PODS:
     - GSImageViewerController
     - SDWebImage
     - SwiftSoup
-  - MGLandingKit (0.0.4):
+  - MGLandingKit (0.0.5):
     - SDWebImage (~> 4.0)
   - MGMapKit (0.1.2):
     - Cosmos (~> 18.0)
     - SDWebImage
-  - MGSideMenuKit (0.1.7):
+  - MGSideMenuKit (0.2.0):
     - SideMenuSwift
   - MGTemplateKit (0.1.8):
     - FontBlaster
@@ -84,13 +84,13 @@ CHECKOUT OPTIONS:
     :commit: c8d8aaab7604fa8becd4980125776a169efbe98c
     :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGFeedKit.git"
   MGLandingKit:
-    :commit: 324bb2bbb4b7678fd70e85df6c28b5ca8da6c1c2
+    :commit: 73ee673ebe08d55304e4fcf6f022a04683d8d09d
     :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGLandingKit.git"
   MGMapKit:
     :commit: 0486ef873d4bc1e1c6fae0cf0443bcde940ca1f2
     :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGMapKit.git"
   MGSideMenuKit:
-    :commit: 3446b24d3266746b92ba7caa2656dff130908fe8
+    :commit: 4d8a5c434d4bd001b4b0b895c136b4419383a564
     :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGSideMenuKit.git"
   MGTemplateKit:
     :commit: 714d770728041650e79f3dac73dca2699cd2cb6d
@@ -107,9 +107,9 @@ SPEC CHECKSUMS:
   MGAudioPlayerKit: 821fa88bf5b477b330d7069ce963f563653a5d83
   MGBrowserKit: 8612710ff5c0e5fda0cbc260a6f210a3584afed7
   MGFeedKit: b6b4a572d10633100ccf08f489f2510210d2f451
-  MGLandingKit: 1f5df6a3bcc8964697f981c0e112fb8373d80694
+  MGLandingKit: 2ee12518bb7d209e6dd6054b04dddbe3bda02d3c
   MGMapKit: 5d4ab366d9b6133392f17e39dfda2e76c4a1b503
-  MGSideMenuKit: ddcb3a5e4cc397076cfee6bcfa017156f643e785
+  MGSideMenuKit: d0cee17b30c08e8d813cefce3d034a19c7129051
   MGTemplateKit: 59eb00bb69ae7c313203351de312fab4894040d9
   MGVideoPlayerKit: f16fc3053821f1255866bcbfa5fbfcdc85702fee
   SDWebImage: 3f3f0c02f09798048c47a5ed0a13f17b063572d8

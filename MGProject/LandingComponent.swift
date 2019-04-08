@@ -25,8 +25,11 @@
 
 import Foundation
 import MGLandingKit
+import MGTemplateKit
+import MGSideMenuKit
 
 class LandingComponent: MGLandingDelegate, MGLandingDataSource {
+    var menuController:MGMenuController!
     
     var data: MGLandingData {
         var landingData = MGLandingData()
@@ -76,25 +79,30 @@ class LandingComponent: MGLandingDelegate, MGLandingDataSource {
     var layout: MGLandingLayout {
         let layout = MGLandingLayout()
         
-//        layout.navigationItemMenu.image =#imageLiteral(resourceName: "image-1")
-        
         if UIDevice.current.userInterfaceIdiom == .phone {
-            layout.titleLabel.font = UIFont(name: "HelveticaNeue-Bold", size: 35)
-            layout.subTitleLabel.font = UIFont(name: "HelveticaNeue-Light", size: 22)
-            layout.usernameLabel.font = UIFont(name: "HelveticaNeue-Medium", size: 18)
-            layout.headlineLabel.font = UIFont(name: "HelveticaNeue-Regular", size: 16)
-            layout.collectionTitleLabel.font = UIFont(name: "HelveticaNeue", size: 16)
+            layout.titleLabel.font = MGTemplate.Font(size: 35).medium
+            layout.subTitleLabel.font = MGTemplate.Font(size: 20).light
+            layout.usernameLabel.font = MGTemplate.Font(size: 18).medium
+            layout.headlineLabel.font = MGTemplate.Font(size: 16).regular
+            layout.collectionTitleLabel.font = MGTemplate.Font(size: 16).regular
         }
         
         if UIDevice.current.userInterfaceIdiom == .pad {
-            layout.titleLabel.font = UIFont(name: "HelveticaNeue-Bold", size: 65)
-            layout.subTitleLabel.font = UIFont(name: "HelveticaNeue-Light", size: 25)
-            layout.usernameLabel.font = UIFont(name: "HelveticaNeue-Medium", size: 32)
-            layout.headlineLabel.font = UIFont(name: "HelveticaNeue-Light", size: 20)
-            layout.collectionTitleLabel.font = UIFont(name: "HelveticaNeue-Medium", size: 26)
+            layout.titleLabel.font = MGTemplate.Font(size: 65).medium
+            layout.subTitleLabel.font = MGTemplate.Font(size: 32).light
+            layout.usernameLabel.font = MGTemplate.Font(size: 28).medium
+            layout.headlineLabel.font = MGTemplate.Font(size: 22).regular
+            layout.collectionTitleLabel.font = MGTemplate.Font(size: 22).regular
         }
         
+        layout.navigationItemMenu.image = UIImage(icon: .ionicons(IoniconsType.androidMenu), size: CGSize(width: 30, height: 30), textColor: .white)
+
         return layout
+    }
+    
+    func landingController(_ controller: MGLandingController, didTapMenuNavigationItem: UIBarButtonItem) {
+        
+        menuController.showMenu()
     }
     
 }

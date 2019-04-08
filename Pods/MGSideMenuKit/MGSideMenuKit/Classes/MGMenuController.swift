@@ -26,15 +26,12 @@
 import UIKit
 import SideMenuSwift
 
-public class MGMenuController: UIViewController {
+public class MGMenuController: UIViewController, MGSideMenuProtocol {
     @IBOutlet var tableView: UITableView!
     
     var data:MGSideMenuData!
     var items:[MGSideMenuItem] = []
     var layout:MGSideMenuLayout!
-
-    var headerTitle: String!
-    var headerIcon: UIImage?
 
     var didSelectMenuItemAtIndexPath:((MGMenuController, MGSideMenuItem, IndexPath) -> ())!
     var canCloseMenuAtIndexPath:((MGMenuController, IndexPath) -> (Bool))!
@@ -63,10 +60,9 @@ public class MGMenuController: UIViewController {
     public override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
-
+    
 }
 
-/// :nodoc:
 extension MGMenuController: UITableViewDataSource {
     
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -112,6 +108,7 @@ extension MGMenuController: UITableViewDataSource {
         
         return cell
     }
+    
 }
 
 extension MGMenuController: UITableViewDelegate {
@@ -122,6 +119,13 @@ extension MGMenuController: UITableViewDelegate {
         didSelectMenuItemAtIndexPath(self, item, indexPath)
         if canCloseMenuAtIndexPath(self, indexPath) {
             sideMenuController?.hideMenu()
+            if UIDevice.current.userInterfaceIdiom == .pad {
+                if let splitViewController = self.splitViewController {
+                    UIApplication.shared.sendAction(
+                        splitViewController.displayModeButtonItem.action!,
+                        to: splitViewController.displayModeButtonItem.target, from: nil, for: nil)
+                }
+            }
         }
 
         if let controller = controllerForIndexPath(self, item, indexPath) {
@@ -130,6 +134,6 @@ extension MGMenuController: UITableViewDelegate {
                 self.splitViewController?.viewControllers[1] = controller
             }
         }
-
     }
+
 }

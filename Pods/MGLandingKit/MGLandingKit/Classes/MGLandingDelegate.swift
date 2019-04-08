@@ -26,5 +26,5 @@
 import Foundation
 
 public protocol MGLandingDelegate {
-    
+    func landingController(_ controller:MGLandingController, didTapMenuNavigationItem:UIBarButtonItem)
 }

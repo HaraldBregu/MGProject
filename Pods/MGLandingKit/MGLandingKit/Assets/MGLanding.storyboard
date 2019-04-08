@@ -279,7 +279,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uLK-BR-5Es" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="113.59999999999999" y="-152.21674876847291"/>
+            <point key="canvasLocation" x="1056" y="-152.21674876847291"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="VYi-0W-Bdw">
+            <objects>
+                <navigationController storyboardIdentifier="MGLandingNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="FGA-TT-VCP" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="5KV-R1-El8">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="RPA-V3-yca" kind="relationship" relationship="rootViewController" id="oj7-2s-HXl"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XSB-hf-U21" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-618" y="-131"/>
         </scene>
     </scenes>
     <resources>

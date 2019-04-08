@@ -41,7 +41,7 @@ public class MGLandingController: UIViewController {
     var items:[MGLandingItemData] = []
     var layout:MGLandingLayout!
 
-    var didTapMenu:((MGLandingController) -> ()) = { _ in }
+    var didTapMenuNavigationItem:((MGLandingController, UIBarButtonItem) -> ())!
 
     override public func viewDidLoad() {
         super.viewDidLoad()
@@ -55,7 +55,7 @@ public class MGLandingController: UIViewController {
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.isTranslucent = true
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: layout.navigationItemMenu.image, style: .plain, target: self, action: #selector(navigationItemMenuAction))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: layout.navigationItemMenu.image, style: .plain, target: self, action: #selector(navigationItemMenuAction(barButtonItem:)))
 
         titleLabel.text = data.title
         titleLabel.tintColor = layout.titleLabel.tintColor
@@ -125,8 +125,8 @@ public class MGLandingController: UIViewController {
         super.viewDidDisappear(animated)
     }
     
-    @objc private func navigationItemMenuAction() {
-        
+    @objc private func navigationItemMenuAction(barButtonItem: UIBarButtonItem) {
+        didTapMenuNavigationItem(self, barButtonItem)
     }
 }
 
