@@ -1,7 +1,7 @@
 // 
 //  MGVideoPlayerData.swift
 //
-//  Created by harald bregu on 16/03/2019.
+//  Created by harald bregu on 09/04/2019.
 //  Copyright © 2019 Dream Building Company. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -27,31 +27,13 @@ import Foundation
 
 public class MGVideoPlayerData {
     public var title:String!
-    public var description:String!
-    public var pubYear:String!
-    public var category:String!
-    public var url: URL!
-    public var thumbUrl: URL!
-    public var starCount:Double!
-    public var reviewCount:Int!
-    public var actors:[MGVideoPlayerActorData]!
-    public var isFeatured:Bool = false
+    public var navigationBarTitle:String!
+    public var searchBarPlaceholder:String!
 
     public init() {
-        
-    }
-    
-}
-
-public class MGVideoPlayerActorData {
-    public var name:String!
-    public var roleName:String!
-    public var pictureUrl:String!
-    
-    public init(name:String, roleName:String, pictureUrl:String) {
-        self.name = name
-        self.roleName = roleName
-        self.pictureUrl = pictureUrl
+        title = "List"
+        navigationBarTitle = "List"
+        searchBarPlaceholder = "List"
     }
 
 }

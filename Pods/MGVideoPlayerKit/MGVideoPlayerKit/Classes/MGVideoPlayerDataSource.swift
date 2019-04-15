@@ -1,7 +1,7 @@
 // 
-//  MGFeedController+Addon.swift
+//  MGVideoPlayerDataSource.swift
 //
-//  Created by harald bregu on 01/03/2019.
+//  Created by harald bregu on 09/04/2019.
 //  Copyright © 2019 Dream Building Company. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -23,25 +23,11 @@
 //  THE SOFTWARE.
 //
 
-import UIKit
+import Foundation
 
-/// :nodoc:
-extension MGFeedController {
-    
-    var isFiltering: Bool {
-        return searchController.isActive && !searchBarIsEmpty
-    }
-    
-    var searchBarIsEmpty:Bool {
-        return searchController.searchBar.text?.isEmpty ?? true
-    }
-    
-    func filterContentForSearchText(_ searchText: String) {
-        filterFeedDataItems = feedDataItems.filter({( item : MGFeedDataItem) -> Bool in
-            return item.title.lowercased().contains(searchText.lowercased())
-        })
-        tableView.reloadData()
-    }
-    
+public protocol MGVideoPlayerDataSource {
+    var data:MGVideoPlayerData { get }
+    var items:[MGVideoPlayerItem] { get }
+    var layout:MGVideoPlayerLayout { get }
 }
 

@@ -95,7 +95,7 @@ class LandingComponent: MGLandingDelegate, MGLandingDataSource {
             layout.collectionTitleLabel.font = MGTemplate.Font(size: 22).regular
         }
         
-        layout.navigationItemMenu.image = UIImage(icon: .ionicons(IoniconsType.androidMenu), size: CGSize(width: 30, height: 30), textColor: .white)
+        layout.navigationItemMenu.image = UIImage(icon: .fontAwesomeSolid(.bars), size: CGSize(width: 36, height: 36), textColor: .white)
 
         return layout
     }

@@ -26,7 +26,6 @@
 import UIKit
 import Cosmos
 
-/// :nodoc:
 class MGVideoPlayerListCell: UITableViewCell {
     @IBOutlet var thumbImageView: UIImageView!
     @IBOutlet var titleLabel: UILabel!
@@ -48,7 +47,6 @@ class MGVideoPlayerListCell: UITableViewCell {
         super.awakeFromNib()
         
         ratingView.settings.updateOnTouch = false
-//        ratingView.settings.textFont = MGGeneral.Font.regular(size: 12)!
         ratingView.settings.starSize = 15
         ratingView.settings.starMargin = 2
         thumbImageView.layer.cornerRadius = 5

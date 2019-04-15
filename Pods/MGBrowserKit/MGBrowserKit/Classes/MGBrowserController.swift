@@ -29,71 +29,153 @@ import WebKit
 
 public class MGBrowserController: UIViewController {
     @IBOutlet var webView: WKWebView!
-    var data:MGBrowserData!
-    var design:MGBrowserDesign!
+    
     public var delegate:MGBrowserControllerDelegate!
+    public var dataSource:MGBrowserControllerDataSource?
+
+    public var string:MGBrowserString!
+    public var color:MGBrowserColor!
+    public var image:MGBrowserImage!
+    public var data:MGBrowser!
+
+    var activityIndicatorView:UIActivityIndicatorView!
+    var back:UIBarButtonItem!
+    var forward:UIBarButtonItem!
+    var reload:UIBarButtonItem!
+    var spacer:UIBarButtonItem!
 
     override public func viewDidLoad() {
         super.viewDidLoad()
         
-        title = data.title
-        navigationItem.title = data.title
-        view.backgroundColor = design.viewBackgroundColor
+        title = string.title
+        navigationItem.title = string.title
+
+        view.backgroundColor = color.backgroundView
+        navigationController?.navigationBar.tintColor = color.navigationBarTint
+        navigationController?.navigationBar.barTintColor = color.navigationBar
         navigationController?.navigationBar.isTranslucent = false
-        navigationController?.navigationBar.barTintColor = design.navigationBarBackgroundColor
-        navigationController?.navigationBar.tintColor = design.navigationBarTintColor
         navigationController?.navigationBar.barStyle = .black
         navigationController?.navigationBar.prefersLargeTitles = false
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: design.leftBarButtonImage, style: .plain, target: self, action: #selector(revealMenuViewcontroller))
         
-        activityIndicatorView.style = .white
-        activityIndicatorView.center = webView.center
+        if let items = dataSource?.leftBarButtonItems(self) {
+            items.forEach({ $0.target = self })
+            items.forEach({ $0.action = #selector(navigationItemMenuAction(barButtonItem:)) })
+            navigationItem.leftBarButtonItems = items
+        }
+        
+    
+        let goBack = #selector(goBack(barButtonItem:))
+        let goForward = #selector(goForward(barButtonItem:))
+        let reloadPage = #selector(reload(barButtonItem:))
+
+        spacer = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        back = UIBarButtonItem(barButtonSystemItem: .undo, target: self, action: goBack)
+        forward = UIBarButtonItem(barButtonSystemItem: .redo, target: self, action: goForward)
+        reload = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: reloadPage)
+        
+        if let items = dataSource?.toolBarButtonItems(self) {
+            items.forEach { item in
+                switch item.accessibilityIdentifier {
+                case "BACK":
+                    back = item
+                    back.target = self
+                    back.action = goBack
+                    break
+                case "FORWARD":
+                    forward = item
+                    forward.target = self
+                    forward.action = goForward
+                    break
+                case "RELOAD":
+                    reload = item
+                    reload.target = self
+                    reload.action = reloadPage
+                    break
+                default:
+                    break
+                }
+            }
+        }
+        
+        toolbarItems = [back, spacer, reload, spacer, forward]
+        navigationController?.setToolbarHidden(false, animated: false)
+        navigationController?.toolbar.tintColor = color.toolBarTint
+        navigationController?.toolbar.barTintColor = color.toolBar
+        navigationController?.toolbar.isTranslucent = false
         
         webView.navigationDelegate = self
         webView.allowsBackForwardNavigationGestures = true
-        webView.isOpaque = false
-        webView.backgroundColor = design.viewBackgroundColor
-    }
-    
-    override public func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        let websiteUrl = URL(string: data.urlString) ?? URL(string: "https://google.com/")!
-        let urlRequest = URLRequest(url: websiteUrl)
+        let url = URL(string: data.url) ?? URL(string: "https://google.com/")!
+        let urlRequest = URLRequest(url: url)
         webView.load(urlRequest)
-        startActivityIndicatorView()
-    }
-    
-    private lazy var activityIndicatorView:UIActivityIndicatorView = {
-        let activityIndicatorView = UIActivityIndicatorView(style: .gray)
+        
+        activityIndicatorView = UIActivityIndicatorView(style: .gray)
+        view.addSubview(activityIndicatorView)
         activityIndicatorView.center = view.center
-        return activityIndicatorView
-    }()
-    
-    private func startActivityIndicatorView() {
-        webView.addSubview(activityIndicatorView)
         activityIndicatorView.startAnimating()
+        
+        back.isEnabled = webView.canGoBack
+        forward.isEnabled = webView.canGoForward
     }
+    
+    @objc private func navigationItemMenuAction(barButtonItem: UIBarButtonItem) {
+        self.delegate.browserController(self, didTapBarButtonItem: barButtonItem)
+    }
+    
+    @objc private func goBack(barButtonItem: UIBarButtonItem) {
+        back.isEnabled = webView.canGoBack
+        webView.goBack()
+    }
+    
+    @objc private func goForward(barButtonItem: UIBarButtonItem) {
+        forward.isEnabled = webView.canGoForward
+        webView.goForward()
+    }
+    
+    @objc private func reload(barButtonItem: UIBarButtonItem) {
+        webView.reload()
+    }
+}
 
-    private func stopActivityIndicatorView() {
-        activityIndicatorView.removeFromSuperview()
+extension MGBrowserController: WKNavigationDelegate {
+
+    public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        back.isEnabled = webView.canGoBack
+        forward.isEnabled = webView.canGoForward
         activityIndicatorView.stopAnimating()
     }
     
-    @objc private func revealMenuViewcontroller() {
-        delegate.didTapLeftBarButtonItem(controller: self)
+    public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        back.isEnabled = webView.canGoBack
+        forward.isEnabled = webView.canGoForward
+        decisionHandler(WKNavigationActionPolicy.allow)
     }
 
-}
-
-/// :nodoc:
-extension MGBrowserController: WKNavigationDelegate {
+    public func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
+        back.isEnabled = webView.canGoBack
+        forward.isEnabled = webView.canGoForward
+        decisionHandler(WKNavigationResponsePolicy.allow)
+    }
     
-    public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        stopActivityIndicatorView()
-    }
 }
 
-public protocol MGBrowserControllerDelegate {
-    func didTapLeftBarButtonItem(controller: MGBrowserController)
+
+extension MGBrowserController {
+
+    public static var controller: MGBrowserController {
+        let podBundle = Bundle(for: MGBrowserController.self)
+        let bundleURL = podBundle.url(forResource: resourceName, withExtension: resourceExtension)
+        let bundle = Bundle(url: bundleURL!) ?? Bundle()
+        let storyboard = UIStoryboard(name: storyboardName, bundle: bundle)
+        guard let controller = storyboard.instantiateViewController(withIdentifier: controllerIdentifier) as? MGBrowserController else {
+            return MGBrowserController()
+        }
+        return controller
+    }
+    
 }
+
+fileprivate let storyboardName          = "MGBrowser"
+fileprivate let controllerIdentifier    = "MGBrowserController"
+fileprivate let resourceName            = "MGBrowserKit"
+fileprivate let resourceExtension       = "bundle"

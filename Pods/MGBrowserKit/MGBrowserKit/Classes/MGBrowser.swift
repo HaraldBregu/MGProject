@@ -1,5 +1,5 @@
 // 
-//  MGBrowser.swift
+//  MGBrowserData.swift
 //
 //  Created by harald bregu on 11/03/2019.
 //  Copyright © 2019 Dream Building Company. All rights reserved.
@@ -25,75 +25,7 @@
 
 import Foundation
 
-/// Component APIs
 public class MGBrowser {
-    
-    /**
-     Initializes a new browser with data.
-     
-     - Parameters: all parameter to pass in the MGBrowser object
-     - data: The data to pass in the initializer
-     
-     - Returns: The module component
-     */
-    public init(data: MGBrowserData, design: MGBrowserDesign) {
-        self.data = data
-        self.design = design
-        self.controller = _controller
-        self.controller.data = data
-        self.controller.design = design
-    }
-    
-    /**
-     This is the initial view controller of the module MGBrowser.
-     
-     - Returns: The initial view controller
-     */
-    public var controller: MGBrowserController!
-    
-    /**
-     This is data to read from initialized object or to get.
-     
-     - Returns: The data of MGBrowser
-     */
-    public var data:MGBrowserData!
-    
-    /**
-     This is design ui to read from initialized object or to get.
-     
-     - Returns: The design ui of MGBrowser
-     */
-    public var design:MGBrowserDesign!
-
-}
-
-fileprivate let storyboardName = "MGBrowser"
-fileprivate let initialViewControllerIdentifier = "MGBrowserController"
-
-extension MGBrowser {
-    
-    private var _controller: MGBrowserController? {
-        return _initialViewController as? MGBrowserController
-    }
-    
-    private var _initialViewController: UIViewController {
-        return _storyboard.instantiateViewController(withIdentifier: _initialViewControllerIdentifier)
-    }
-    
-    private var _initialViewControllerIdentifier:String {
-        return initialViewControllerIdentifier
-    }
-    
-    private var _storyboard:UIStoryboard {
-        return UIStoryboard(name: _storyboardName, bundle: _storyboardBundle)
-    }
-    
-    private var _storyboardName:String {
-        return storyboardName
-    }
-    
-    private var _storyboardBundle:Bundle {
-        return Bundle(for: MGBrowserController.self)
-    }
-    
+    public var url:String!
+    public init() { }
 }

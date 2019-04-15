@@ -33,26 +33,15 @@ import MGMapKit
 import MGFeedKit
 
 class SideMenuComponent: MGSideMenuDataSource, MGSideMenuDataDelegate {
-    
+    var menuController:MGMenuController!
+
     var landing:MGLanding!
-    var videoPlayer:MGVideoPlayer!
     var audioPlayer:MGAudioPlayer!
-    var browser:MGBrowser!
-    var map:MGMap!
-    var feed:MGFeed!
-    
     var landingComponent = LandingComponent()
     
     init() {
         landing = MGLanding(dataSource: landingComponent, delegate: landingComponent)
-        
-        videoPlayer = MGVideoPlayer(dataList: VideoData.items)
         audioPlayer = MGAudioPlayer()
-        let browserData = MGBrowserData(title: "Website", urlString: "https://thenextweb.com/")
-        let browserDesign = MGBrowserDesign()
-        browser = MGBrowser(data: browserData, design: browserDesign)
-        let data = MGMapData(latitude: 21.282778, longitude: -157.829444)
-        map = MGMap(mapData: data)
     }
     
     var data: MGSideMenuData {
@@ -190,6 +179,7 @@ class SideMenuComponent: MGSideMenuDataSource, MGSideMenuDataDelegate {
     }
     
     func primaryCenterController(fromController controller: MGMenuController) -> UIViewController {
+        menuController = controller
         landingComponent.menuController = controller
         return landing.initialController
     }
@@ -198,30 +188,130 @@ class SideMenuComponent: MGSideMenuDataSource, MGSideMenuDataDelegate {
         switch item.identifier {
         case "menu.home.identifier":
             return landing.initialController
-        case "menu.video.identifier":
-            return videoPlayer.listController
+//        case "menu.video.identifier":
+//            return videoPlayer.listController
         case "menu.audio.identifier":
             return audioPlayer.listController
         case "menu.webBrowser.identifier":
-            return browser.controller
+            let controller = MGBrowserController.controller
+            controller.dataSource = self
+            controller.delegate = self
+            let string = MGBrowserString()
+            string.title = "The Next Web"
+            string.navigationTitle = "The Next Web"
+            controller.string = string
+            let color = MGBrowserColor()
+            color.backgroundView = MGTemplate.View.backgroundColor
+            color.navigationBar = MGTemplate.NavigationBar.backgroundColor
+            color.navigationBarTint = .white
+            color.toolBar = MGTemplate.NavigationBar.backgroundColor
+            color.toolBarTint = .white
+            controller.color = color
+            let image = MGBrowserImage()
+            controller.image = image
+            let data = MGBrowser()
+            data.url = "https://thenextweb.com/"
+            controller.data = data
+            return UINavigationController(rootViewController: controller)
         case "menu.maps.identifier":
-            return map.controller
+            let controller = MGMapController.controller
+            let component = MapComponent()
+            component.menuController = menuController
+            controller.dataSource = component
+            controller.delegate = component
+            let asset = MGMapKit.MGAsset()
+            let string = MGMapKit.MGString()
+            string.title = "My Location"
+            asset.string = string
+            let color = MGMapKit.MGColor()
+            color.backgroundView = MGTemplate.View.backgroundColor
+            color.navigationBar = MGTemplate.NavigationBar.backgroundColor
+            color.navigationBarTint = .white
+            color.toolBar = MGTemplate.NavigationBar.backgroundColor
+            color.toolBarTint = .white
+            asset.color = color
+            controller.asset = asset
+            return UINavigationController(rootViewController: controller)
         case "menu.theNextWeb.identifier":
-            let feedData = MGFeedData(title: "The Next Web", urlString: "https://thenextweb.com/feed/")
-            feed = MGFeed(data: feedData)
-            return feed.controller
+            let controller = MGFeedController.instance
+            let data = MGFeed()
+            data.url = "https://thenextweb.com/feed"
+            controller.data = data
+            let asset = MGFeedKit.MGAsset()
+            let string = MGFeedKit.MGString()
+            string.title = "The Next Web"
+            asset.string = string
+            let color = MGFeedKit.MGColor()
+            color.backgroundView = MGTemplate.View.backgroundColor
+            color.navigationBar = MGTemplate.NavigationBar.backgroundColor
+            color.navigationBarTint = .white
+            color.toolBar = MGTemplate.NavigationBar.backgroundColor
+            color.toolBarTint = .white
+            color.backgroundViewCell = .black
+            color.cellTint = .white
+            asset.color = color
+            controller.assets = asset
+            return UINavigationController(rootViewController: controller)
         case "menu.techCrunch.identifier":
-            let feedData = MGFeedData(title: "Tech Crunch", urlString: "https://techcrunch.com/feed/")
-            feed = MGFeed(data: feedData)
-            return feed.controller
+            let controller = MGFeedController.instance
+            let data = MGFeed()
+            data.url = "https://techcrunch.com/feed"
+            controller.data = data
+            let asset = MGFeedKit.MGAsset()
+            let string = MGFeedKit.MGString()
+            string.title = "Tech Crunch"
+            asset.string = string
+            let color = MGFeedKit.MGColor()
+            color.backgroundView = MGTemplate.View.backgroundColor
+            color.navigationBar = MGTemplate.NavigationBar.backgroundColor
+            color.navigationBarTint = .white
+            color.toolBar = MGTemplate.NavigationBar.backgroundColor
+            color.toolBarTint = .white
+            color.backgroundViewCell = .black
+            color.cellTint = .white
+            asset.color = color
+            controller.assets = asset
+            return UINavigationController(rootViewController: controller)
         case "menu.theVerge.identifier":
-            let feedData = MGFeedData(title: "The Verge", urlString: "https://www.theverge.com/rss/index.xml")
-            feed = MGFeed(data: feedData)
-            return feed.controller
+            let controller = MGFeedController.instance
+            let data = MGFeed()
+            data.url = "https://www.theverge.com/rss/index.xml"
+            controller.data = data
+            let asset = MGFeedKit.MGAsset()
+            let string = MGFeedKit.MGString()
+            string.title = "The Verge"
+            asset.string = string
+            let color = MGFeedKit.MGColor()
+            color.backgroundView = MGTemplate.View.backgroundColor
+            color.navigationBar = MGTemplate.NavigationBar.backgroundColor
+            color.navigationBarTint = .white
+            color.toolBar = MGTemplate.NavigationBar.backgroundColor
+            color.toolBarTint = .white
+            color.backgroundViewCell = .black
+            color.cellTint = .white
+            asset.color = color
+            controller.assets = asset
+            return UINavigationController(rootViewController: controller)
         case "menu.digitalTrend.identifier":
-            let feedData = MGFeedData(title: "Digital Trend", urlString: "https://www.digitaltrends.com/feed/")
-            feed = MGFeed(data: feedData)
-            return feed.controller
+            let controller = MGFeedController.instance
+            let data = MGFeed()
+            data.url = "https://www.digitaltrends.com/feed"
+            controller.data = data
+            let asset = MGFeedKit.MGAsset()
+            let string = MGFeedKit.MGString()
+            string.title = "Digital Trend"
+            asset.string = string
+            let color = MGFeedKit.MGColor()
+            color.backgroundView = MGTemplate.View.backgroundColor
+            color.navigationBar = MGTemplate.NavigationBar.backgroundColor
+            color.navigationBarTint = .white
+            color.toolBar = MGTemplate.NavigationBar.backgroundColor
+            color.toolBarTint = .white
+            color.backgroundViewCell = .black
+            color.cellTint = .white
+            asset.color = color
+            controller.assets = asset
+            return UINavigationController(rootViewController: controller)
         default:
             return nil
         }
@@ -241,3 +331,106 @@ class SideMenuComponent: MGSideMenuDataSource, MGSideMenuDataDelegate {
     }
 }
 
+extension SideMenuComponent: MGBrowserControllerDataSource, MGBrowserControllerDelegate {
+    
+    func leftBarButtonItems(_ controller: MGBrowserController) -> [UIBarButtonItem] {
+        let menuButton = UIBarButtonItem()
+        menuButton.image = UIImage(icon: .fontAwesomeSolid(.bars), size: CGSize(width: 36, height: 36), textColor: .white)
+        menuButton.style = .plain
+        menuButton.accessibilityIdentifier = "MENU"
+        
+        return [menuButton]
+    }
+    
+    func toolBarButtonItems(_ controller: MGBrowserController) -> [UIBarButtonItem] {
+        let backButton = UIBarButtonItem()
+        backButton.image = UIImage(icon: .fontAwesomeSolid(.chevronLeft), size: CGSize(width: 30, height: 30), textColor: .white)
+        backButton.style = .plain
+        backButton.accessibilityIdentifier = "BACK"
+        
+        let forwardButton = UIBarButtonItem()
+        forwardButton.image = UIImage(icon: .fontAwesomeSolid(.chevronRight), size: CGSize(width: 30, height: 30), textColor: .white)
+        forwardButton.style = .plain
+        forwardButton.accessibilityIdentifier = "FORWARD"
+        
+        let reloadButton = UIBarButtonItem()
+        reloadButton.image = UIImage(icon: .fontAwesomeSolid(.redo), size: CGSize(width: 30, height: 30), textColor: .white)
+        reloadButton.style = .plain
+        reloadButton.accessibilityIdentifier = "RELOAD"
+        
+        return [backButton, forwardButton, reloadButton]
+    }
+    
+    func browserController(_ controller: MGBrowserController, didTapBarButtonItem barButtonItem: UIBarButtonItem) {
+        print("Navigation item is: \(String(describing: barButtonItem.accessibilityIdentifier))")
+
+        if barButtonItem.accessibilityIdentifier == "MENU" {
+            menuController.showMenu()
+        }
+    }
+
+}
+
+class MapComponent: MGMapControllerDataSource, MGMapControllerDelegate {
+    var menuController:MGMenuController!
+
+    func controller(_ controller: MGMapController, didTapBarButtonItem barButtonItem: UIBarButtonItem) {
+        print("Navigation item is: \(String(describing: barButtonItem.accessibilityIdentifier))")
+        
+        if barButtonItem.accessibilityIdentifier == "MENU" {
+            menuController.showMenu()
+        }
+    }
+    
+    func leftBarButtonItems(_ controller: MGMapController) -> [UIBarButtonItem] {
+        let menuButton = UIBarButtonItem()
+        menuButton.image = UIImage(icon: .fontAwesomeSolid(.bars), size: CGSize(width: 36, height: 36), textColor: .white)
+        menuButton.style = .plain
+        menuButton.accessibilityIdentifier = "MENU"
+
+        return [menuButton]
+    }
+    
+    var items: [MGMap] {
+        var items:[MGMap] = []
+        
+        let london = MGMap()
+        london.location = "London"
+        london.latitude = 51.507222
+        london.longitude = -0.1275
+        items.append(london)
+        
+        let berlin = MGMap()
+        berlin.location = "Berlin"
+        berlin.latitude = 52.520008
+        berlin.longitude = 13.404954
+        items.append(berlin)
+        
+        let lyon = MGMap()
+        lyon.location = "Lyon"
+        lyon.latitude = 45.74846
+        lyon.longitude = 4.84671
+        items.append(lyon)
+        
+        let madrid = MGMap()
+        madrid.location = "Madrid"
+        madrid.latitude = 40.416775
+        madrid.longitude = -3.703790
+        items.append(madrid)
+        
+        let milano = MGMap()
+        milano.location = "Milano"
+        milano.latitude = 45.46427
+        milano.longitude = 9.18951
+        items.append(milano)
+        
+        let durres = MGMap()
+        durres.location = "Durrës"
+        durres.latitude = 41.32306
+        durres.longitude = 19.44139
+        items.append(durres)
+        
+        return items
+    }
+
+}

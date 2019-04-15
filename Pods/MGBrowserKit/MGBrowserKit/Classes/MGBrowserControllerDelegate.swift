@@ -1,7 +1,7 @@
 // 
-//  MGBrowserData.swift
+//  MGBrowserControllerDelegate.swift
 //
-//  Created by harald bregu on 11/03/2019.
+//  Created by harald bregu on 13/04/2019.
 //  Copyright © 2019 Dream Building Company. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -23,37 +23,10 @@
 //  THE SOFTWARE.
 //
 
-import Foundation
+import UIKit
 
-/// MGBrowserData class
-public class MGBrowserData {
-    
-    /**
-     This is the title of Browser data object. This will be used in navigationbar title.
-     
-     - Returns: The title of the data.
-     */
-    public var title:String!
-    
-    /**
-     This is the url of the website.
-     
-     - Returns: The website url.
-     */
-    public var urlString:String!
-    
-    /**
-     Initializes a new MGBrowserData with data.
-     
-     - Parameters: all parameter to pass in the MGBrowserData object
-     - title: The title of the website.
-     - urlString: The string url of the website.
-
-     - Returns: The object MGBrowserData returned.
-     */
-    public init(title:String, urlString:String) {
-        self.title = title
-        self.urlString = urlString
-    }
-
+public protocol MGBrowserControllerDelegate {
+    func browserController(_ controller:MGBrowserController, didTapBarButtonItem barButtonItem:UIBarButtonItem)
 }
+
+

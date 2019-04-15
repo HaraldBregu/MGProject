@@ -24,43 +24,97 @@
 //
 
 import Foundation
+import MapKit
 
 public class MGMap {
-    
-    public init(mapData: MGMapData) {
-        self.mapData = mapData
-        self.controller = _controller
+    public var location:String!
+    public var latitude: CLLocationDegrees!
+    public var longitude: CLLocationDegrees!
+    public init() {
+
     }
-    
-    public var mapData: MGMapData!
-    public var controller: MGMapController!
 }
 
-extension MGMap {
-    
-    private var _controller: MGMapController {
-        guard let controller = _storyboard.instantiateViewController(withIdentifier: controllerIdentifier) as? MGMapController else { return MGMapController() }
-        return controller
+public class MGAsset {
+    public var image:MGImage!
+    public var font:MGFont!
+    public var color:MGColor!
+    public var string:MGString!
+    public init() {
+        
     }
-    
-    private var _storyboard:UIStoryboard {
-        return UIStoryboard(name: _storyboardName, bundle: _storyboardBundle)
-    }
-    
-    private var _storyboardName:String {
-        return storyboardName
-    }
-    
-    private var _storyboardBundle:Bundle {
-        let podBundle = Bundle(for: MGMap.self)
-        let bundleURL = podBundle.url(forResource: resourceName, withExtension: resourceExtension)
-        let bundle = Bundle(url: bundleURL!)!
-        return bundle
-    }
-    
 }
 
-fileprivate let storyboardName = "MGMap"
-fileprivate let controllerIdentifier = "MGMapController"
-fileprivate let resourceName = "MGMapKit"
-fileprivate let resourceExtension = "bundle"
+public class MGImage {
+    public var navigationItemMenu:UIImage = UIImage()
+    public init() {
+
+    }
+}
+
+public class MGFont {
+    public var title = UIFont(name: "ddd", size: 32)
+    public init() {
+        
+    }
+}
+
+public class MGColor {
+    public var backgroundView:UIColor!
+    public var navigationBar:UIColor!
+    public var navigationBarTint:UIColor!
+    public var toolBar:UIColor!
+    public var toolBarTint:UIColor!
+    public init() {
+        
+    }
+}
+
+public class MGString {
+    public var title:String!
+    public var navigationTitle:String!
+    public init() {
+        
+    }
+}
+
+
+//public class MGMap {
+//    
+//    public init(mapData: MGMapData) {
+//        self.mapData = mapData
+//        self.controller = _controller
+//    }
+//    
+//    public var mapData: MGMapData!
+//    public var controller: MGMapController!
+//}
+//
+//extension MGMap {
+//    
+//    private var _controller: MGMapController {
+//        guard let controller = _storyboard.instantiateViewController(withIdentifier: controllerIdentifier) as? MGMapController else { return MGMapController() }
+//        return controller
+//    }
+//    
+//    private var _storyboard:UIStoryboard {
+//        return UIStoryboard(name: _storyboardName, bundle: _storyboardBundle)
+//    }
+//    
+//    private var _storyboardName:String {
+//        return storyboardName
+//    }
+//    
+//    private var _storyboardBundle:Bundle {
+//        let podBundle = Bundle(for: MGMap.self)
+//        let bundleURL = podBundle.url(forResource: resourceName, withExtension: resourceExtension)
+//        let bundle = Bundle(url: bundleURL!)!
+//        return bundle
+//    }
+//    
+//}
+//
+//fileprivate let storyboardName = "MGMap"
+//fileprivate let controllerIdentifier = "MGMapController"
+//fileprivate let resourceName = "MGMapKit"
+//fileprivate let resourceExtension = "bundle"

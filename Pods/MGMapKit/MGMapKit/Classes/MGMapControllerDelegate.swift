@@ -1,7 +1,7 @@
 // 
-//  MGMapData.swift
+//  MGMapControllerDelegate.swift
 //
-//  Created by harald bregu on 02/03/2019.
+//  Created by harald bregu on 14/04/2019.
 //  Copyright © 2019 Dream Building Company. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -24,16 +24,7 @@
 //
 
 import Foundation
-import MapKit
 
-public class MGMapData {
-    
-    public var latitude: CLLocationDegrees!
-    
-    public var longitude: CLLocationDegrees!
-
-    public init(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
-        self.latitude = latitude
-        self.longitude = longitude
-    }
+public protocol MGMapControllerDelegate {
+    func controller(_ controller:MGMapController, didTapBarButtonItem barButtonItem:UIBarButtonItem)
 }

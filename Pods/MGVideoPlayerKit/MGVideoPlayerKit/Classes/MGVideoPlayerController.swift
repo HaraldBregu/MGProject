@@ -29,7 +29,6 @@ import Cosmos
 import SDWebImage
 
 
-/// :nodoc:
 public class MGVideoPlayerController: UIViewController {
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var videoPlayerView: UIView!
@@ -43,8 +42,12 @@ public class MGVideoPlayerController: UIViewController {
     @IBOutlet var yearCategory: UILabel!
     @IBOutlet var topCastTitleLabel: UILabel!
     @IBOutlet var likeButton: UIButton!
-    var videoData:MGVideoPlayerData!
-    private var isLiked:Bool = false
+    
+    var data:MGVideoPlayerData!
+    var item:MGVideoPlayerItem!
+    var layout:MGVideoPlayerLayout!
+
+    var isLiked:Bool = false
 
     override public func viewDidLoad() {
         super.viewDidLoad()
@@ -75,7 +78,7 @@ public class MGVideoPlayerController: UIViewController {
 //        likeButton.setImage(isLiked ? heartImage : heart0Image, for: .highlighted)
 //        likeButton.setImage(isLiked ? heartImage : heart0Image, for: .selected)
         
-        let player = AVPlayer(url: videoData.url)
+        let player = AVPlayer(url: item.url)
         let playerController = AVPlayerViewController()
         playerController.videoGravity = AVLayerVideoGravity.resizeAspectFill
         playerController.player = player
@@ -84,17 +87,17 @@ public class MGVideoPlayerController: UIViewController {
         videoPlayerView.addSubview(playerController.view)
         player.play()
         
-        titleLabel.text = videoData.title
-        yearCategory.text = videoData.pubYear + " - " + videoData.category
+        titleLabel.text = item.title
+        yearCategory.text = item.pubYear + " - " + item.category
         ratingView.settings.updateOnTouch = false
 //        ratingView.settings.textFont = MGGeneral.Font.regular(size: 12)!
         ratingView.settings.starSize = 15
         ratingView.settings.starMargin = 2
-        ratingView.rating = Double(videoData.starCount)
-        ratingView.text = "(\(String(videoData.reviewCount)))"
-        descriptionLabel.text = videoData.description
+        ratingView.rating = Double(item.starCount)
+        ratingView.text = "(\(String(item.reviewCount)))"
+        descriptionLabel.text = item.description
         
-        if let actors = videoData.actors {
+        if let actors = item.actors {
             authorImagesViews[0].sd_setShowActivityIndicatorView(true)
             authorImagesViews[0].sd_setIndicatorStyle(.white)
             authorImagesViews[0].sd_setImage(with: URL(string: actors[0].pictureUrl))

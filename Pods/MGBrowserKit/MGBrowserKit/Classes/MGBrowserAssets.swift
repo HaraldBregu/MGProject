@@ -1,7 +1,7 @@
 // 
-//  MGFeedDataItem.swift
+//  MGBrowserAssets.swift
 //
-//  Created by harald bregu on 28/02/2019.
+//  Created by harald bregu on 11/03/2019.
 //  Copyright © 2019 Dream Building Company. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -23,14 +23,29 @@
 //  THE SOFTWARE.
 //
 
-import Foundation
+import UIKit
 
-public class MGFeedItem {
+public class MGBrowserImage {
+    public var navigationItemMenu:UIImage = UIImage()
+    public init() {
+        
+    }
+}
+
+public class MGBrowserColor {
+    public var backgroundView:UIColor!
+    public var navigationBar:UIColor!
+    public var navigationBarTint:UIColor!
+    public var toolBar:UIColor!
+    public var toolBarTint:UIColor!
+    public init() {
+        
+    }
+}
+
+public class MGBrowserString {
     public var title:String!
-    public var imageUrl:String!
-    public var author_pubDate:Date?
-    public var itemDescription:String!
-    public var itemUrl:String!
+    public var navigationTitle:String!
     public init() {
         
     }

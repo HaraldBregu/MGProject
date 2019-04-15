@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DFFF1C414EA86615DB1BE8E2CB14015E"
+               BlueprintIdentifier = "6E1E4E7BD88406672B6953EBCD1D0BC4"
                BuildableName = "MGFeedKit.framework"
                BlueprintName = "MGFeedKit"
                ReferencedContainer = "container:Pods.xcodeproj">

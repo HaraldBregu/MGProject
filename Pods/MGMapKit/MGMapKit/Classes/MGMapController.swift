@@ -27,64 +27,52 @@ import MapKit
 
 public class MGMapController: UIViewController {
     @IBOutlet var mapView: MKMapView!
-    var mapData:MGMapData!
-    var didTapMenu:((MGMapController) -> ()) = { _ in }
+    
+    public var delegate:MGMapControllerDelegate?
+    public var dataSource:MGMapControllerDataSource?
+
+    public var asset:MGAsset!
+    public var data:MGMap!
 
     override public func viewDidLoad() {
         super.viewDidLoad()
         
-//        title = "mg.mapview.nav.title".localized
-//        navigationItem.title = "mg.mapview.nav.title".localized
+        title = asset.string.title
+        navigationItem.title = asset.string.title
 
+        view.backgroundColor = asset.color.backgroundView
+        navigationController?.navigationBar.tintColor = asset.color.navigationBarTint
+        navigationController?.navigationBar.barTintColor = asset.color.navigationBar
         navigationController?.navigationBar.isTranslucent = false
-//        navigationController?.navigationBar.barTintColor = MGGeneral.NavBar.Theme.dark
-        navigationController?.navigationBar.tintColor = .white
         navigationController?.navigationBar.barStyle = .black
         navigationController?.navigationBar.prefersLargeTitles = false
 
-//        let icon: IoniconsType = IoniconsType.naviconRound
-//        let image = UIImage(icon: .ionicons(icon), size: CGSize(width: 34, height: 34), textColor: .white)
-//        navigationItem.leftBarButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(revealMenuViewcontroller))
-
-        let london = MKPointAnnotation()
-        london.title = "London"
-        london.coordinate = CLLocationCoordinate2D(latitude: 51.507222, longitude: -0.1275)
-        mapView.addAnnotation(london)
-
-        let berlin = MKPointAnnotation()
-        berlin.title = "Berlin"
-        berlin.coordinate = CLLocationCoordinate2D(latitude: 52.520008, longitude: 13.404954)
-        mapView.addAnnotation(berlin)
-
-        let lyon = MKPointAnnotation()
-        lyon.title = "Lyon"
-        lyon.coordinate = CLLocationCoordinate2D(latitude: 45.74846, longitude: 4.84671)
-        mapView.addAnnotation(lyon)
-
-        let madrid = MKPointAnnotation()
-        madrid.title = "Madrid"
-        madrid.coordinate = CLLocationCoordinate2D(latitude: 40.416775, longitude: -3.703790)
-        mapView.addAnnotation(madrid)
-
-        let milano = MKPointAnnotation()
-        milano.title = "Milano"
-        milano.coordinate = CLLocationCoordinate2D(latitude: 45.46427, longitude: 9.18951)
-        mapView.addAnnotation(milano)
-
-        let durres = MKPointAnnotation()
-        durres.title = "Durrës"
-        durres.coordinate = CLLocationCoordinate2D(latitude: 41.32306, longitude: 19.44139)
-        mapView.addAnnotation(durres)
-
-        mapView.showAnnotations([london, berlin, lyon, madrid, milano, durres], animated: true)
+        if let items = dataSource?.leftBarButtonItems(self) {
+            items.forEach({ $0.target = self })
+            items.forEach({ $0.action = #selector(navigationItemMenuAction(barButtonItem:)) })
+            navigationItem.leftBarButtonItems = items
+        }
+        
+        if let items = dataSource?.items {
+            var pointAnnotations:[MKPointAnnotation] = []
+            items.forEach { (item) in
+                let annotation = MKPointAnnotation()
+                annotation.title = item.location
+                annotation.coordinate = CLLocationCoordinate2D(latitude: item.latitude, longitude: item.longitude)
+                mapView.addAnnotation(annotation)
+                pointAnnotations.append(annotation)
+            }
+            mapView.showAnnotations(pointAnnotations, animated: true)
+        }
     }
     
-    @objc private func revealMenuViewcontroller() {
-        didTapMenu(self)
+    @objc private func navigationItemMenuAction(barButtonItem: UIBarButtonItem) {
+        self.delegate?.controller(self, didTapBarButtonItem: barButtonItem)
     }
 }
 
 extension MGMapController: MKMapViewDelegate {
+    
     public func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         guard annotation is MKPointAnnotation else { return nil }
         
@@ -100,6 +88,26 @@ extension MGMapController: MKMapViewDelegate {
         
         return annotationView
     }
+    
 }
 
 
+extension MGMapController {
+    
+    public static var controller: MGMapController {
+        let podBundle = Bundle(for: MGMapController.self)
+        let bundleURL = podBundle.url(forResource: resourceName, withExtension: resourceExtension)
+        let bundle = Bundle(url: bundleURL!) ?? Bundle()
+        let storyboard = UIStoryboard(name: storyboardName, bundle: bundle)
+        guard let controller = storyboard.instantiateViewController(withIdentifier: controllerIdentifier) as? MGMapController else {
+            return MGMapController()
+        }
+        return controller
+    }
+    
+}
+
+fileprivate let storyboardName          = "MGMap"
+fileprivate let controllerIdentifier    = "MGMapController"
+fileprivate let resourceName            = "MGMapKit"
+fileprivate let resourceExtension       = "bundle"

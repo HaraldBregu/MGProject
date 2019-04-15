@@ -1,7 +1,7 @@
 // 
-//  MGFeedDataItem.swift
+//  MGBrowserControllerDataSource.swift
 //
-//  Created by harald bregu on 28/02/2019.
+//  Created by harald bregu on 14/04/2019.
 //  Copyright © 2019 Dream Building Company. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -23,15 +23,9 @@
 //  THE SOFTWARE.
 //
 
-import Foundation
+import UIKit
 
-public class MGFeedItem {
-    public var title:String!
-    public var imageUrl:String!
-    public var author_pubDate:Date?
-    public var itemDescription:String!
-    public var itemUrl:String!
-    public init() {
-        
-    }
+public protocol MGBrowserControllerDataSource {
+    func leftBarButtonItems(_ controller:MGBrowserController) -> [UIBarButtonItem]
+    func toolBarButtonItems(_ controller:MGBrowserController) -> [UIBarButtonItem]
 }

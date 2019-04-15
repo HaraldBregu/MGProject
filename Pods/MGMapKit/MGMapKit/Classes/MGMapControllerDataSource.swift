@@ -1,7 +1,7 @@
 // 
-//  MGBrowserUI.swift
+//  MGMapControllerDataSource.swift
 //
-//  Created by harald bregu on 11/03/2019.
+//  Created by harald bregu on 14/04/2019.
 //  Copyright © 2019 Dream Building Company. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -23,15 +23,9 @@
 //  THE SOFTWARE.
 //
 
-import UIKit
+import Foundation
 
-/// MGBrowserData class
-public class MGBrowserDesign {
-    public var navigationBarBackgroundColor:UIColor!
-    public var navigationBarTintColor:UIColor!
-    public var viewBackgroundColor:UIColor!
-    public var leftBarButtonImage:UIImage!
-    public init() {
-        
-    }
+public protocol MGMapControllerDataSource {
+    var items:[MGMap] { get }
+    func leftBarButtonItems(_ controller:MGMapController) -> [UIBarButtonItem]
 }

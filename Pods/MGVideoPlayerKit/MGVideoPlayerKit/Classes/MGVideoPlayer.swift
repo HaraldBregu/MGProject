@@ -26,44 +26,41 @@
 import Foundation
 
 public class MGVideoPlayer {
+    public var containerController: UINavigationController!
     
-    public init(dataList: [MGVideoPlayerData]) {
-        self.dataList = dataList
-        self.listController = _listController
-        self.listController.videoDataList = dataList
+    public init() {
+        controller = _controller
+        containerController = UINavigationController(rootViewController: controller)
     }
     
-    public var dataList: [MGVideoPlayerData]!
-    public var listController: MGVideoPlayerListController!
-    public var controller: MGVideoPlayerController!
+    public var dataSource: MGVideoPlayerDataSource! {
+        didSet {
+            controller.data = dataSource.data
+            controller.items = dataSource.items
+            controller.layout = dataSource.layout
+        }
+    }
+    
+    public var delegate: MGVideoPlayerDelegate! {
+        didSet {
+            controller.didTapNavigationItem = { [unowned self] (controller, barButtonItem) in
+                self.delegate.videoPlayerController(controller, didTapMenuNavigationItem: barButtonItem)
+            }
+        }
+    }
+    
+    private var controller: MGVideoPlayerListController!
 }
 
 extension MGVideoPlayer {
     
-    private var _listController: MGVideoPlayerListController {
-        guard let controller = _listViewController else { return MGVideoPlayerListController() }
+    private var _controller: MGVideoPlayerListController {
+        guard let controller = _storyboard.instantiateViewController(withIdentifier: listControllerIdentifier) as? MGVideoPlayerListController else { return MGVideoPlayerListController() }
         return controller
-    }
-    
-    private var _listViewController: MGVideoPlayerListController? {
-        return _storyboard.instantiateViewController(withIdentifier: listControllerIdentifier) as? MGVideoPlayerListController
-    }
-    
-    private var _controller: MGVideoPlayerController {
-        guard let controller = _viewController else { return MGVideoPlayerController() }
-        return controller
-    }
-    
-    private var _viewController: MGVideoPlayerController? {
-        return _storyboard.instantiateViewController(withIdentifier: controllerIdentifier) as? MGVideoPlayerController
     }
     
     private var _storyboard:UIStoryboard {
-        return UIStoryboard(name: _storyboardName, bundle: _storyboardBundle)
-    }
-    
-    private var _storyboardName:String {
-        return storyboardName
+        return UIStoryboard(name: storyboardName, bundle: _storyboardBundle)
     }
     
     private var _storyboardBundle:Bundle {
