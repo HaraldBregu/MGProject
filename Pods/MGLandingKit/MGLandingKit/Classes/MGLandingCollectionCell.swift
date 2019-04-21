@@ -33,12 +33,10 @@ class MGLandingCollectionCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
         containerCoverView.backgroundColor = .clear
         let gradient = CAGradientLayer()
         gradient.frame = CGRect(x: 0, y: 0, width: frame.width, height: frame.height)

@@ -25,60 +25,53 @@
 
 import Foundation
 
-public class MGLanding {
-    
-    public init(dataSource: MGLandingDataSource, delegate: MGLandingDelegate) {
-        self.dataSource = dataSource
-        self.delegate = delegate
-        
-        self.initialController = _navigationController
-    }
-    
-    public var initialController: UINavigationController!
-    private var dataSource: MGLandingDataSource!
-    private var delegate: MGLandingDelegate!
-    
+
+public struct MGLandingItemData {
+    public var title:String!
+    public var description:String!
+    public var thumbUrl:String!
+    public init() {}
 }
 
-extension MGLanding {
-    
-    private var _navigationController: UINavigationController {
-        let navigationController = UINavigationController(rootViewController: _controller)
-        
-        return navigationController
-    }
-
-    private var _controller: MGLandingController {
-        guard let controller = _storyboard.instantiateViewController(withIdentifier: controllerIdentifier) as? MGLandingController
-            else { return MGLandingController() }
-        
-        controller.data = dataSource.data
-        controller.items = dataSource.items
-        controller.layout = dataSource.layout
-        
-        controller.didTapMenuNavigationItem = { [unowned self] (landingController, barButtonItem) in
-            self.delegate.landingController(landingController, didTapMenuNavigationItem: barButtonItem)
-        }
-        
-        return controller
-    }
-    
-    private var _storyboard:UIStoryboard {
-        return UIStoryboard(name: storyboardName, bundle: _storyboardBundle)
-    }
-        
-    private var _storyboardBundle:Bundle {
-        let podBundle = Bundle(for: MGLanding.self)
-        let bundleURL = podBundle.url(forResource: resourceName, withExtension: resourceExtension)
-        let bundle = Bundle(url: bundleURL!)!
-        return bundle
-    }
-    
+public protocol MGLandingAsset {
+    var string: MGLandingString { get set }
+    var font: MGLandingFont { get set }
+    var image: MGLandingImage { get set }
+    var color: MGLandingColor { get set }
+    var data: MGLandingData { get set }
 }
 
-fileprivate let storyboardName = "MGLanding"
-fileprivate let controllerIdentifier = "MGLandingController"
-fileprivate let navigationControllerIdentifier = "MGLandingNavigationController"
-fileprivate let resourceName = "MGLandingKit"
-fileprivate let resourceExtension = "bundle"
+public protocol MGLandingString {
+    var navigationTitle: String { get set }
+    var title: String { get set }
+    var subTitle: String { get set }
+    var userName: String { get set }
+    var headline: String { get set }
+    var collectionTitle: String { get set }
+}
 
+public protocol MGLandingFont {
+    var title: UIFont { get set }
+    var subtitle: UIFont { get set }
+    var username: UIFont { get set }
+    var headline: UIFont { get set }
+    var collectionTitle: UIFont { get set }
+}
+
+public protocol MGLandingImage {
+    var heart: UIImage { get set }
+}
+
+public protocol MGLandingColor {
+    var primary: UIColor { get set }
+    var backgroundView: UIColor { get set }
+    var navigationBar: UIColor { get set }
+    var navigationBarTint: UIColor { get set }
+    var collectionTitle: UIColor { get set }
+    var collectionView: UIColor { get set }
+}
+
+public protocol MGLandingData {
+    var userImageUrl: URL { get set }
+    var collectionItems: [MGLandingItemData] { get set }
+}

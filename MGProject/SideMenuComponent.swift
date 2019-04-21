@@ -35,12 +35,11 @@ import MGFeedKit
 class SideMenuComponent: MGSideMenuDataSource, MGSideMenuDataDelegate {
     var menuController:MGMenuController!
 
-    var landing:MGLanding!
+    var landingController:MGLandingController!
     var audioPlayer:MGAudioPlayer!
     var landingComponent = LandingComponent()
     
     init() {
-        landing = MGLanding(dataSource: landingComponent, delegate: landingComponent)
         audioPlayer = MGAudioPlayer()
     }
     
@@ -181,13 +180,21 @@ class SideMenuComponent: MGSideMenuDataSource, MGSideMenuDataDelegate {
     func primaryCenterController(fromController controller: MGMenuController) -> UIViewController {
         menuController = controller
         landingComponent.menuController = controller
-        return landing.initialController
+        landingController = MGLandingController.instance
+        landingController.delegate = landingComponent
+        landingController.dataSource = landingComponent
+        landingController.assets = Assets.instance
+        return UINavigationController(rootViewController: landingController)
     }
     
     func centerController(item: MGSideMenuItem, forIndexPath indexPath: IndexPath, fromController controller: MGMenuController) -> UIViewController? {
         switch item.identifier {
         case "menu.home.identifier":
-            return landing.initialController
+            landingController = MGLandingController.instance
+            landingController.delegate = landingComponent
+            landingController.dataSource = landingComponent
+            landingController.assets = Assets.instance
+            return UINavigationController(rootViewController: landingController)
 //        case "menu.video.identifier":
 //            return videoPlayer.listController
         case "menu.audio.identifier":
@@ -196,19 +203,7 @@ class SideMenuComponent: MGSideMenuDataSource, MGSideMenuDataDelegate {
             let controller = MGBrowserController.controller
             controller.dataSource = self
             controller.delegate = self
-            let string = MGBrowserString()
-            string.title = "The Next Web"
-            string.navigationTitle = "The Next Web"
-            controller.string = string
-            let color = MGBrowserColor()
-            color.backgroundView = MGTemplate.View.backgroundColor
-            color.navigationBar = MGTemplate.NavigationBar.backgroundColor
-            color.navigationBarTint = .white
-            color.toolBar = MGTemplate.NavigationBar.backgroundColor
-            color.toolBarTint = .white
-            controller.color = color
-            let image = MGBrowserImage()
-            controller.image = image
+            controller.asset = Assets.instance
             let data = MGBrowser()
             data.url = "https://thenextweb.com/"
             controller.data = data
@@ -219,18 +214,7 @@ class SideMenuComponent: MGSideMenuDataSource, MGSideMenuDataDelegate {
             component.menuController = menuController
             controller.dataSource = component
             controller.delegate = component
-            let asset = MGMapKit.MGAsset()
-            let string = MGMapKit.MGString()
-            string.title = "My Location"
-            asset.string = string
-            let color = MGMapKit.MGColor()
-            color.backgroundView = MGTemplate.View.backgroundColor
-            color.navigationBar = MGTemplate.NavigationBar.backgroundColor
-            color.navigationBarTint = .white
-            color.toolBar = MGTemplate.NavigationBar.backgroundColor
-            color.toolBarTint = .white
-            asset.color = color
-            controller.asset = asset
+            controller.assets = Assets.instance
             return UINavigationController(rootViewController: controller)
         case "menu.theNextWeb.identifier":
             let controller = MGFeedController.instance
@@ -324,7 +308,6 @@ class SideMenuComponent: MGSideMenuDataSource, MGSideMenuDataDelegate {
     func menuController(_ controller: MGMenuController, canCloseMenuAtIndexPath indexPath: IndexPath) -> Bool {
         return true
     }
-    
     
     func closeMenu() {
         

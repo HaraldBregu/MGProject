@@ -32,12 +32,10 @@ public class MGBrowserController: UIViewController {
     
     public var delegate:MGBrowserControllerDelegate!
     public var dataSource:MGBrowserControllerDataSource?
-
-    public var string:MGBrowserString!
-    public var color:MGBrowserColor!
-    public var image:MGBrowserImage!
     public var data:MGBrowser!
+    public var asset:MGBrowserAsset!
 
+    
     var activityIndicatorView:UIActivityIndicatorView!
     var back:UIBarButtonItem!
     var forward:UIBarButtonItem!
@@ -47,12 +45,12 @@ public class MGBrowserController: UIViewController {
     override public func viewDidLoad() {
         super.viewDidLoad()
         
-        title = string.title
-        navigationItem.title = string.title
-
-        view.backgroundColor = color.backgroundView
-        navigationController?.navigationBar.tintColor = color.navigationBarTint
-        navigationController?.navigationBar.barTintColor = color.navigationBar
+        title = asset.string.title
+        navigationItem.title = asset.string.title
+        
+        view.backgroundColor = asset.color.backgroundView
+        navigationController?.navigationBar.tintColor = asset.color.navigationBarTint
+        navigationController?.navigationBar.barTintColor = asset.color.navigationBar
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.barStyle = .black
         navigationController?.navigationBar.prefersLargeTitles = false
@@ -63,7 +61,6 @@ public class MGBrowserController: UIViewController {
             navigationItem.leftBarButtonItems = items
         }
         
-    
         let goBack = #selector(goBack(barButtonItem:))
         let goForward = #selector(goForward(barButtonItem:))
         let reloadPage = #selector(reload(barButtonItem:))
@@ -99,8 +96,8 @@ public class MGBrowserController: UIViewController {
         
         toolbarItems = [back, spacer, reload, spacer, forward]
         navigationController?.setToolbarHidden(false, animated: false)
-        navigationController?.toolbar.tintColor = color.toolBarTint
-        navigationController?.toolbar.barTintColor = color.toolBar
+        navigationController?.toolbar.tintColor = asset.color.toolBarTint
+        navigationController?.toolbar.barTintColor = asset.color.toolBar
         navigationController?.toolbar.isTranslucent = false
         
         webView.navigationDelegate = self
@@ -173,6 +170,18 @@ extension MGBrowserController {
         return controller
     }
     
+    public static func controller(asset: MGBrowserAsset) -> MGBrowserController {
+        let podBundle = Bundle(for: MGBrowserController.self)
+        let bundleURL = podBundle.url(forResource: resourceName, withExtension: resourceExtension)
+        let bundle = Bundle(url: bundleURL!) ?? Bundle()
+        let storyboard = UIStoryboard(name: storyboardName, bundle: bundle)
+        guard let controller = storyboard.instantiateViewController(withIdentifier: controllerIdentifier) as? MGBrowserController else {
+            return MGBrowserController()
+        }
+        controller.asset = asset
+        return controller
+    }
+
 }
 
 fileprivate let storyboardName          = "MGBrowser"

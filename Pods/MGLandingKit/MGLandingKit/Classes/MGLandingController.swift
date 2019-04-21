@@ -37,96 +37,73 @@ public class MGLandingController: UIViewController {
     @IBOutlet var componentTitleLabel: UILabel!
     @IBOutlet var componentCollectionView: UICollectionView!
     
-    var data:MGLandingData!
-    var items:[MGLandingItemData] = []
-    var layout:MGLandingLayout!
-
-    var didTapMenuNavigationItem:((MGLandingController, UIBarButtonItem) -> ())!
+    public var delegate:MGLandingControllerDelegate!
+    public var dataSource:MGLandingControllerDataSource!
+    public var assets:MGLandingAsset?
 
     override public func viewDidLoad() {
         super.viewDidLoad()
                 
-        view.backgroundColor = layout.view.backgroundColor
+        view.backgroundColor = assets?.color.backgroundView
         navigationController?.navigationBar.isTranslucent = false
-        navigationController?.navigationBar.barTintColor = layout.navigationBar.backgroundColor
-        navigationController?.navigationBar.tintColor = layout.navigationBar.tintColor
+        navigationController?.navigationBar.barTintColor = assets?.color.navigationBar
+        navigationController?.navigationBar.tintColor = assets?.color.navigationBarTint
         navigationController?.navigationBar.barStyle = .black
         navigationController?.navigationBar.prefersLargeTitles = false
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.isTranslucent = true
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: layout.navigationItemMenu.image, style: .plain, target: self, action: #selector(navigationItemMenuAction(barButtonItem:)))
+        
+        if let items = dataSource?.leftBarButtonItems(self) {
+            items.forEach({ $0.target = self })
+            items.forEach({ $0.action = #selector(navigationItemMenuAction(barButtonItem:)) })
+            navigationItem.leftBarButtonItems = items
+        }
 
-        titleLabel.text = data.title
-        titleLabel.tintColor = layout.titleLabel.tintColor
-        titleLabel.font = layout.titleLabel.font
+        title = assets?.string.navigationTitle
+        navigationItem.title = assets?.string.navigationTitle
+        
+        titleLabel.text = assets?.string.title
+        titleLabel.tintColor = assets?.color.primary
+        titleLabel.font = assets?.font.title
 
-        descriptionLabel.text = data.subTitle
-        descriptionLabel.tintColor = layout.subTitleLabel.tintColor
-        descriptionLabel.font = layout.subTitleLabel.font
+        descriptionLabel.text = assets?.string.subTitle
+        descriptionLabel.tintColor = assets?.color.primary
+        descriptionLabel.font = assets?.font.subtitle
         
         userImageView.layer.cornerRadius = 3.0
         userImageView.sd_setShowActivityIndicatorView(true)
         userImageView.sd_setIndicatorStyle(.white)
-        userImageView.sd_setImage(with: data.userImageUrl)
+        userImageView.sd_setImage(with: assets?.data.userImageUrl)
        
-        usernameLabel.text = data.userName
-        usernameLabel.tintColor = layout.usernameLabel.tintColor
-        usernameLabel.font = layout.usernameLabel.font
-//
-        userSloganLabel.text = data.userHeadline
-        userSloganLabel.tintColor = layout.headlineLabel.tintColor
-        userSloganLabel.font = layout.headlineLabel.font
+        usernameLabel.text = assets?.string.userName
+        usernameLabel.tintColor = assets?.color.primary
+        usernameLabel.font = assets?.font.username
 
-//        let size = CGSize(width: 20, height: 20)
-//        let emptyHeart = UIImage(icon: FontAwesome.heartO, size: size).withRenderingMode(.alwaysTemplate)
-//        let fullHeart = UIImage(icon: FontAwesome.heart, size: size).withRenderingMode(.alwaysTemplate)
-//        userLikeButton.setImage(fullHeart.tint(with: .red), for: .normal)
+        userSloganLabel.text = assets?.string.headline
+        userSloganLabel.tintColor = assets?.color.primary
+        userSloganLabel.font = assets?.font.headline
+
+        userLikeButton.setImage(assets?.image.heart, for: .normal)
         userLikeButton.isSelected = true
         userLikeButton.backgroundColor = UIColor.black.withAlphaComponent(0.25)
-        userLikeButton.layer.cornerRadius = userLikeButton.frame.width/2
+        userLikeButton.layer.cornerRadius = userLikeButton.bounds.width/2
         userLikeButton.tintColor = .white
-        
-//        userLikeButton.addAction(for: .touchDown) { [unowned self] in
-//            self.userLikeButton.isSelected = !self.userLikeButton.isSelected
-//            if self.userLikeButton.isSelected {
-//                self.userLikeButton.setImage(fullHeart.tint(with: .red), for: .normal)
-//            } else {
-//                self.userLikeButton.setImage(emptyHeart.tint(with: .white), for: .normal)
-//            }
-//        }
-        
-        componentTitleLabel.text = data.collectionTitle
-        componentTitleLabel.textColor = layout.collectionTitleLabel.tintColor
-        componentTitleLabel.font = layout.collectionTitleLabel.font
+
+        componentTitleLabel.text = assets?.string.collectionTitle
+        componentTitleLabel.textColor = assets?.color.collectionTitle
+        componentTitleLabel.font = assets?.font.collectionTitle
         componentCollectionView.showsVerticalScrollIndicator = false
         componentCollectionView.showsHorizontalScrollIndicator = false
-        componentCollectionView.backgroundColor = layout.collectionView.backgroundColor
-        
+        componentCollectionView.backgroundColor = assets?.color.collectionView
     }
     
     public override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
     
-    override public func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    
-    override public func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-    
-    override public func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-    }
-    
-    override public func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-    }
-    
     @objc private func navigationItemMenuAction(barButtonItem: UIBarButtonItem) {
-        didTapMenuNavigationItem(self, barButtonItem)
+        self.delegate.landingController(self, didTapBarButtonItem: barButtonItem)
     }
 }
 
@@ -134,20 +111,20 @@ public class MGLandingController: UIViewController {
 extension MGLandingController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return items.count
+        return assets?.data.collectionItems.count ?? 0
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MGLandingCollectionCell", for: indexPath) as? MGLandingCollectionCell else {
             return UICollectionViewCell()
         }
-        let item = items[indexPath.item]
+        let item = assets?.data.collectionItems[indexPath.item]
 
-        cell.titleLabel.text = item.title
+        cell.titleLabel.text = item?.title
         cell.titleLabel.font = UIFont(name: "HelveticaNeue-Medium", size: 20)        
         cell.backgroundImageView.sd_setShowActivityIndicatorView(true)
         cell.backgroundImageView.sd_setIndicatorStyle(.white)
-        cell.backgroundImageView.sd_setImage(with: URL(string: item.thumbUrl))
+        cell.backgroundImageView.sd_setImage(with: URL(string: item?.thumbUrl ?? ""))
 
         return cell
     }
@@ -167,3 +144,24 @@ extension MGLandingController: UICollectionViewDelegate, UICollectionViewDataSou
     }
     
 }
+
+
+extension MGLandingController {
+    
+    public static var instance:MGLandingController {
+        let podBundle = Bundle(for: MGLandingController.self)
+        let bundleURL = podBundle.url(forResource: resourceName, withExtension: resourceExtension)
+        let bundle = Bundle(url: bundleURL!) ?? Bundle()
+        let storyboard = UIStoryboard(name: storyboardName, bundle: bundle)
+        guard let controller = storyboard.instantiateViewController(withIdentifier: controllerIdentifier) as? MGLandingController else {
+            return MGLandingController()
+        }
+        return controller
+    }
+    
+}
+
+fileprivate let storyboardName = "MGLanding"
+fileprivate let controllerIdentifier = "MGLandingController"
+fileprivate let resourceName = "MGLandingKit"
+fileprivate let resourceExtension = "bundle"

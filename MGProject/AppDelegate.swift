@@ -34,12 +34,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        window = UIWindow(frame: UIScreen.main.bounds)
+        
         MGTemplate.setup()
+        
         let sideMenu = MGSideMenu()
         sideMenu.dataSource = SideMenuComponent()
         sideMenu.delegate = SideMenuComponent()
         
-        window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = sideMenu.containerController
         window?.makeKeyAndVisible()
         return true

@@ -5,16 +5,16 @@ PODS:
   - GSImageViewerController (1.6.0)
   - MGAudioPlayerKit (0.1.0):
     - SDWebImage
-  - MGBrowserKit (0.1.3):
+  - MGBrowserKit (0.1.4):
     - SnapKit (~> 4.0.0)
   - MGFeedKit (0.1.2):
     - FeedKit (~> 8.0)
     - GSImageViewerController
     - SDWebImage (~> 4.0)
     - SwiftSoup
-  - MGLandingKit (0.0.5):
+  - MGLandingKit (0.1.5):
     - SDWebImage (~> 4.0)
-  - MGMapKit (0.1.3)
+  - MGMapKit (0.1.4)
   - MGSideMenuKit (0.2.0):
     - SideMenuSwift
   - MGTemplateKit (0.1.8):
@@ -76,16 +76,16 @@ CHECKOUT OPTIONS:
     :commit: b44a06091181b3f5fc6c08ab9f7e4652fcc53b19
     :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGAudioPlayerKit.git"
   MGBrowserKit:
-    :commit: e6e72556ba27f6bf2bc918f0103819f326d06432
+    :commit: d16ec113d81578e67db1ec9bbb86f1b5948d1155
     :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGBrowserKit.git"
   MGFeedKit:
     :commit: 2adb284d209a314e60a9fbce6b82b2efc8912ce7
     :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGFeedKit.git"
   MGLandingKit:
-    :commit: 73ee673ebe08d55304e4fcf6f022a04683d8d09d
+    :commit: 79658f97d70876a13869983c36dc25b53390551c
     :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGLandingKit.git"
   MGMapKit:
-    :commit: 3f8d3cb4780099eb8cba56ee68eb5c1de4751ab0
+    :commit: 5edfa99f227641208073a1f9270ed40f59599fde
     :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGMapKit.git"
   MGSideMenuKit:
     :commit: 4d8a5c434d4bd001b4b0b895c136b4419383a564
@@ -103,10 +103,10 @@ SPEC CHECKSUMS:
   FontBlaster: 127aa66419478d1c62926c7fdb39841633344a45
   GSImageViewerController: 397f8954afac8bd1c3a75c630e3c4ab4c4a4dfe3
   MGAudioPlayerKit: 821fa88bf5b477b330d7069ce963f563653a5d83
-  MGBrowserKit: f5615489a0336486dc409d01b80a573fcb7529ec
+  MGBrowserKit: 92fef4bfdbc6cb07198f9e312ad17c2d94fa1653
   MGFeedKit: dd974d5865901ef38a806369b2d516a8ffbbfce9
-  MGLandingKit: 2ee12518bb7d209e6dd6054b04dddbe3bda02d3c
-  MGMapKit: 85d320ebc2ff4dcc0e45a8d9fac8b036c84ccb69
+  MGLandingKit: bb7d52a31a81818f6e6a491b80fcbd613ca3952a
+  MGMapKit: a1709a921467d2075f7635687e03e6e14c6add5d
   MGSideMenuKit: d0cee17b30c08e8d813cefce3d034a19c7129051
   MGTemplateKit: 59eb00bb69ae7c313203351de312fab4894040d9
   MGVideoPlayerKit: f16fc3053821f1255866bcbfa5fbfcdc85702fee

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		89F5422F6EDABA53EA207C43 /* Pods_MGProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D40AF9E22E7E5E23B8051DE /* Pods_MGProject.framework */; };
+		A917C761226B335B00C1D1AF /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = A917C760226B335B00C1D1AF /* Assets.swift */; };
 		A91D4A2D224F94A9006134F1 /* LandingComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91D4A2C224F94A9006134F1 /* LandingComponent.swift */; };
 		A9960438224EAF5E001FA5EE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A9960437224EAF5E001FA5EE /* Localizable.strings */; };
 		A9A4C032224AC1E10093A7AE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A4C031224AC1E10093A7AE /* AppDelegate.swift */; };
@@ -21,6 +22,7 @@
 /* Begin PBXFileReference section */
 		2D40AF9E22E7E5E23B8051DE /* Pods_MGProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MGProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E8997604702BF6621E0707A /* Pods-MGProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MGProject.release.xcconfig"; path = "Target Support Files/Pods-MGProject/Pods-MGProject.release.xcconfig"; sourceTree = "<group>"; };
+		A917C760226B335B00C1D1AF /* Assets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		A91D4A2C224F94A9006134F1 /* LandingComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingComponent.swift; sourceTree = "<group>"; };
 		A9960437224EAF5E001FA5EE /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		A9A4C02E224AC1E10093A7AE /* MGProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MGProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -76,9 +78,10 @@
 			isa = PBXGroup;
 			children = (
 				A9A4C031224AC1E10093A7AE /* AppDelegate.swift */,
-				A9A4C043224AC8980093A7AE /* SideMenuComponent.swift */,
 				A91D4A2C224F94A9006134F1 /* LandingComponent.swift */,
+				A9A4C043224AC8980093A7AE /* SideMenuComponent.swift */,
 				A9F0F53822591C72004B2CD8 /* Data.swift */,
+				A917C760226B335B00C1D1AF /* Assets.swift */,
 				A9A4C035224AC1E10093A7AE /* Main.storyboard */,
 				A9A4C038224AC1E40093A7AE /* Assets.xcassets */,
 				A9960437224EAF5E001FA5EE /* Localizable.strings */,
@@ -253,6 +256,7 @@
 				A9F0F53922591C72004B2CD8 /* Data.swift in Sources */,
 				A91D4A2D224F94A9006134F1 /* LandingComponent.swift in Sources */,
 				A9A4C044224AC8980093A7AE /* SideMenuComponent.swift in Sources */,
+				A917C761226B335B00C1D1AF /* Assets.swift in Sources */,
 				A9A4C032224AC1E10093A7AE /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

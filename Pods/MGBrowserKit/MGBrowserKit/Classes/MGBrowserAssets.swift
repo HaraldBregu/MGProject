@@ -25,28 +25,31 @@
 
 import UIKit
 
-public class MGBrowserImage {
-    public var navigationItemMenu:UIImage = UIImage()
-    public init() {
-        
-    }
+
+public protocol MGBrowserAsset {
+    var string  :MGBrowserString    { get }
+    var font    :MGBrowserFont      { get }
+    var image   :MGBrowserImage     { get }
+    var color   :MGBrowserColor     { get }
 }
 
-public class MGBrowserColor {
-    public var backgroundView:UIColor!
-    public var navigationBar:UIColor!
-    public var navigationBarTint:UIColor!
-    public var toolBar:UIColor!
-    public var toolBarTint:UIColor!
-    public init() {
-        
-    }
+public protocol MGBrowserString {
+    var title               :String { get }
+    var navigationTitle     :String { get }
 }
 
-public class MGBrowserString {
-    public var title:String!
-    public var navigationTitle:String!
-    public init() {
-        
-    }
+public protocol MGBrowserFont {
+    var primaryFont         :UIFont { get }
+}
+
+public protocol MGBrowserImage {
+    var navigationItemMenu  :UIImage { get }
+}
+
+public protocol MGBrowserColor {
+    var backgroundView      :UIColor { get }
+    var navigationBar       :UIColor { get }
+    var navigationBarTint   :UIColor { get }
+    var toolBar             :UIColor { get }
+    var toolBarTint         :UIColor { get }
 }

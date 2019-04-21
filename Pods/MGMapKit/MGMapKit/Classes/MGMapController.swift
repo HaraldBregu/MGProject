@@ -27,22 +27,20 @@ import MapKit
 
 public class MGMapController: UIViewController {
     @IBOutlet var mapView: MKMapView!
-    
     public var delegate:MGMapControllerDelegate?
     public var dataSource:MGMapControllerDataSource?
-
-    public var asset:MGAsset!
+    public var assets:MGMapAsset!
     public var data:MGMap!
-
+    
     override public func viewDidLoad() {
         super.viewDidLoad()
         
-        title = asset.string.title
-        navigationItem.title = asset.string.title
+        title = assets.string.title
+        navigationItem.title = assets.string.title
 
-        view.backgroundColor = asset.color.backgroundView
-        navigationController?.navigationBar.tintColor = asset.color.navigationBarTint
-        navigationController?.navigationBar.barTintColor = asset.color.navigationBar
+        view.backgroundColor = assets.color.backgroundView
+        navigationController?.navigationBar.tintColor = assets.color.navigationBarTint
+        navigationController?.navigationBar.barTintColor = assets.color.navigationBar
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.barStyle = .black
         navigationController?.navigationBar.prefersLargeTitles = false

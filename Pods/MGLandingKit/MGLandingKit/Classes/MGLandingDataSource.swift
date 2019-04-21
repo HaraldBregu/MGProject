@@ -25,8 +25,6 @@
 
 import Foundation
 
-public protocol MGLandingDataSource {
-    var data:MGLandingData { get }
-    var layout:MGLandingLayout { get }
-    var items:[MGLandingItemData] { get }
+public protocol MGLandingControllerDataSource {
+    func leftBarButtonItems(_ controller:MGLandingController) -> [UIBarButtonItem]
 }
