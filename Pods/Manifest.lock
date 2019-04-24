@@ -7,7 +7,7 @@ PODS:
     - SDWebImage
   - MGBrowserKit (0.1.5):
     - SnapKit (~> 4.0.0)
-  - MGFeedKit (0.1.2):
+  - MGFeedKit (0.1.3):
     - FeedKit (~> 8.0)
     - GSImageViewerController
     - SDWebImage (~> 4.0)
@@ -79,7 +79,7 @@ CHECKOUT OPTIONS:
     :commit: 5324ed52e6cef352149a66d1bd748edd0a7c38a3
     :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGBrowserKit.git"
   MGFeedKit:
-    :commit: 2adb284d209a314e60a9fbce6b82b2efc8912ce7
+    :commit: 2ff679ecad35fcb45701010dba352c24aa97c577
     :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGFeedKit.git"
   MGLandingKit:
     :commit: 79658f97d70876a13869983c36dc25b53390551c
@@ -104,7 +104,7 @@ SPEC CHECKSUMS:
   GSImageViewerController: 397f8954afac8bd1c3a75c630e3c4ab4c4a4dfe3
   MGAudioPlayerKit: 821fa88bf5b477b330d7069ce963f563653a5d83
   MGBrowserKit: 77f2b64fd3676d55c701e463810679fb9f629a97
-  MGFeedKit: dd974d5865901ef38a806369b2d516a8ffbbfce9
+  MGFeedKit: b93704f88d951847ccb8312e862002a1839b06d6
   MGLandingKit: bb7d52a31a81818f6e6a491b80fcbd613ca3952a
   MGMapKit: 63cbaf1875a5e6857ac27139bf8d0aaee88ab010
   MGSideMenuKit: d0738274084a7a0375ac042211fc63436c6482ef

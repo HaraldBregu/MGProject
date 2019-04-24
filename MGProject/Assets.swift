@@ -29,6 +29,7 @@ import MGSideMenuKit
 import MGLandingKit
 import MGBrowserKit
 import MGMapKit
+import MGFeedKit
 
 class Assets {
     
@@ -311,7 +312,6 @@ struct LandingData: MGLandingData {
 
 // MARK - MGSideMenuAsset
 
-
 protocol SideMenuAssetsObject {
     static var instance:SideMenuAssets { get }
 }
@@ -481,4 +481,87 @@ struct SideMenuColor:MGSideMenuColor {
 
 struct SideMenuData:MGSideMenuData {
     var items: [MGSideMenuItem]
+}
+
+// MARK - THE NEXT WEB Asset
+
+extension Assets: FeedAssetsObject {}
+
+protocol FeedAssetsObject {
+    static var instance:FeedAsset { get }
+}
+
+extension FeedAssetsObject {
+    static var instance:FeedAsset {
+        return FeedAsset(
+            string: FeedString(
+                title: "",
+                navigationTitle: "",
+                searchBarPlaceholder: "Search"),
+            font: FeedFont(
+                navigationTitle: nil,
+                cellTitle: nil,
+                cellDate: nil,
+                cellDescription: nil),
+            image: FeedImage(
+                navigationItemMenu: UIImage(),
+                navigationItemShare: UIImage(icon: .fontAwesomeSolid(.share), size: CGSize(width: 36, height: 36), textColor: .black)),
+            color: FeedColor(
+                navigationBar: MGTemplate.NavigationBar.backgroundColor,
+                navigationBarTint: .white,
+                toolBar: MGTemplate.NavigationBar.backgroundColor,
+                toolBarTint: .white,
+                backgroundView: MGTemplate.View.backgroundColor,
+                backgroundTableView: MGTemplate.View.backgroundColor,
+                tableViewSeparator: MGTemplate.View.backgroundColor,
+                refreshTint: .white,
+                searchBarTint: .white,
+                backgroundViewCell: MGTemplate.View.backgroundColor,
+                cellTint: .white),
+            data: FeedData(url: ""))
+    }
+}
+
+struct FeedAsset: MGFeedAsset {
+    var string: MGFeedString
+    var font: MGFeedFont
+    var image: MGFeedImage
+    var color: MGFeedColor
+    var data: MGFeedData
+}
+
+struct FeedString: MGFeedString {
+    var title: String
+    var navigationTitle: String
+    var searchBarPlaceholder: String
+}
+
+struct FeedFont: MGFeedFont {
+    var navigationTitle: UIFont?
+    var cellTitle: UIFont?
+    var cellDate: UIFont?
+    var cellDescription: UIFont?
+}
+
+struct FeedImage: MGFeedImage {
+    var navigationItemMenu: UIImage
+    var navigationItemShare: UIImage
+}
+
+struct FeedColor: MGFeedColor {
+    var navigationBar: UIColor
+    var navigationBarTint: UIColor
+    var toolBar: UIColor
+    var toolBarTint: UIColor
+    var backgroundView: UIColor
+    var backgroundTableView: UIColor
+    var tableViewSeparator: UIColor
+    var refreshTint: UIColor
+    var searchBarTint: UIColor
+    var backgroundViewCell: UIColor
+    var cellTint: UIColor
+}
+
+struct FeedData: MGFeedData {
+    var url: String
 }

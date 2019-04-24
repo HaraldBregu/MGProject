@@ -117,86 +117,30 @@ extension AppDelegate:MGSideMenuControllerDataSource, MGSideMenuControllerDelega
             mapController.dataSource = self
             mapController.delegate = self
             return UINavigationController(rootViewController: mapController)
-//        case "menu.theNextWeb.identifier":
-//            let controller = MGFeedController.instance
-//            let data = MGFeed()
-//            data.url = "https://thenextweb.com/feed"
-//            controller.data = data
-//            let asset = MGFeedKit.MGAsset()
-//            let string = MGFeedKit.MGString()
-//            string.title = "The Next Web"
-//            asset.string = string
-//            let color = MGFeedKit.MGColor()
-//            color.backgroundView = MGTemplate.View.backgroundColor
-//            color.navigationBar = MGTemplate.NavigationBar.backgroundColor
-//            color.navigationBarTint = .white
-//            color.toolBar = MGTemplate.NavigationBar.backgroundColor
-//            color.toolBarTint = .white
-//            color.backgroundViewCell = .black
-//            color.cellTint = .white
-//            asset.color = color
-//            controller.assets = asset
-//            return UINavigationController(rootViewController: controller)
-//        case "menu.techCrunch.identifier":
-//            let controller = MGFeedController.instance
-//            let data = MGFeed()
-//            data.url = "https://techcrunch.com/feed"
-//            controller.data = data
-//            let asset = MGFeedKit.MGAsset()
-//            let string = MGFeedKit.MGString()
-//            string.title = "Tech Crunch"
-//            asset.string = string
-//            let color = MGFeedKit.MGColor()
-//            color.backgroundView = MGTemplate.View.backgroundColor
-//            color.navigationBar = MGTemplate.NavigationBar.backgroundColor
-//            color.navigationBarTint = .white
-//            color.toolBar = MGTemplate.NavigationBar.backgroundColor
-//            color.toolBarTint = .white
-//            color.backgroundViewCell = .black
-//            color.cellTint = .white
-//            asset.color = color
-//            controller.assets = asset
-//            return UINavigationController(rootViewController: controller)
-//        case "menu.theVerge.identifier":
-//            let controller = MGFeedController.instance
-//            let data = MGFeed()
-//            data.url = "https://www.theverge.com/rss/index.xml"
-//            controller.data = data
-//            let asset = MGFeedKit.MGAsset()
-//            let string = MGFeedKit.MGString()
-//            string.title = "The Verge"
-//            asset.string = string
-//            let color = MGFeedKit.MGColor()
-//            color.backgroundView = MGTemplate.View.backgroundColor
-//            color.navigationBar = MGTemplate.NavigationBar.backgroundColor
-//            color.navigationBarTint = .white
-//            color.toolBar = MGTemplate.NavigationBar.backgroundColor
-//            color.toolBarTint = .white
-//            color.backgroundViewCell = .black
-//            color.cellTint = .white
-//            asset.color = color
-//            controller.assets = asset
-//            return UINavigationController(rootViewController: controller)
-//        case "menu.digitalTrend.identifier":
-//            let controller = MGFeedController.instance
-//            let data = MGFeed()
-//            data.url = "https://www.digitaltrends.com/feed"
-//            controller.data = data
-//            let asset = MGFeedKit.MGAsset()
-//            let string = MGFeedKit.MGString()
-//            string.title = "Digital Trend"
-//            asset.string = string
-//            let color = MGFeedKit.MGColor()
-//            color.backgroundView = MGTemplate.View.backgroundColor
-//            color.navigationBar = MGTemplate.NavigationBar.backgroundColor
-//            color.navigationBarTint = .white
-//            color.toolBar = MGTemplate.NavigationBar.backgroundColor
-//            color.toolBarTint = .white
-//            color.backgroundViewCell = .black
-//            color.cellTint = .white
-//            asset.color = color
-//            controller.assets = asset
-//            return UINavigationController(rootViewController: controller)
+        case "menu.theNextWeb.identifier":
+            let controller = MGFeedController.instance
+            controller.assets = Assets.instance
+            controller.assets.string.title = "The Next Web"
+            controller.assets.data.url = "https://thenextweb.com/feed"
+            return UINavigationController(rootViewController: controller)
+        case "menu.techCrunch.identifier":
+            let controller = MGFeedController.instance
+            controller.assets = Assets.instance
+            controller.assets.string.title = "Tech Crunch"
+            controller.assets.data.url = "https://techcrunch.com/feed"
+            return UINavigationController(rootViewController: controller)
+        case "menu.theVerge.identifier":
+            let controller = MGFeedController.instance
+            controller.assets = Assets.instance
+            controller.assets.string.title = "The Verge"
+            controller.assets.data.url = "https://www.theverge.com/rss/index.xml"
+            return UINavigationController(rootViewController: controller)
+        case "menu.digitalTrend.identifier":
+            let controller = MGFeedController.instance
+            controller.assets = Assets.instance
+            controller.assets.string.title = "Digital Trends"
+            controller.assets.data.url = "https://www.digitaltrends.com/feed"
+            return UINavigationController(rootViewController: controller)
             //        case "menu.audio.identifier":
             //            return audioPlayer.listController
 
