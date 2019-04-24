@@ -25,12 +25,12 @@
 import UIKit
 import MapKit
 
+
 public class MGMapController: UIViewController {
     @IBOutlet var mapView: MKMapView!
     public var delegate:MGMapControllerDelegate?
     public var dataSource:MGMapControllerDataSource?
     public var assets:MGMapAsset!
-    public var data:MGMap!
     
     override public func viewDidLoad() {
         super.viewDidLoad()
@@ -51,17 +51,15 @@ public class MGMapController: UIViewController {
             navigationItem.leftBarButtonItems = items
         }
         
-        if let items = dataSource?.items {
-            var pointAnnotations:[MKPointAnnotation] = []
-            items.forEach { (item) in
-                let annotation = MKPointAnnotation()
-                annotation.title = item.location
-                annotation.coordinate = CLLocationCoordinate2D(latitude: item.latitude, longitude: item.longitude)
-                mapView.addAnnotation(annotation)
-                pointAnnotations.append(annotation)
-            }
-            mapView.showAnnotations(pointAnnotations, animated: true)
+        var pointAnnotations:[MKPointAnnotation] = []
+        assets.data.items.forEach { (item) in
+            let annotation = MKPointAnnotation()
+            annotation.title = item.location
+            annotation.coordinate = CLLocationCoordinate2D(latitude: item.latitude, longitude: item.longitude)
+            mapView.addAnnotation(annotation)
+            pointAnnotations.append(annotation)
         }
+        mapView.showAnnotations(pointAnnotations, animated: true)
     }
     
     @objc private func navigationItemMenuAction(barButtonItem: UIBarButtonItem) {
@@ -89,10 +87,9 @@ extension MGMapController: MKMapViewDelegate {
     
 }
 
-
 extension MGMapController {
     
-    public static var controller: MGMapController {
+    public static var instance: MGMapController {
         let podBundle = Bundle(for: MGMapController.self)
         let bundleURL = podBundle.url(forResource: resourceName, withExtension: resourceExtension)
         let bundle = Bundle(url: bundleURL!) ?? Bundle()

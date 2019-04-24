@@ -32,9 +32,7 @@ public class MGBrowserController: UIViewController {
     
     public var delegate:MGBrowserControllerDelegate!
     public var dataSource:MGBrowserControllerDataSource?
-    public var data:MGBrowser!
-    public var asset:MGBrowserAsset!
-
+    public var assets:MGBrowserAsset!
     
     var activityIndicatorView:UIActivityIndicatorView!
     var back:UIBarButtonItem!
@@ -45,12 +43,12 @@ public class MGBrowserController: UIViewController {
     override public func viewDidLoad() {
         super.viewDidLoad()
         
-        title = asset.string.title
-        navigationItem.title = asset.string.title
+        title = assets.string.title
+        navigationItem.title = assets.string.title
         
-        view.backgroundColor = asset.color.backgroundView
-        navigationController?.navigationBar.tintColor = asset.color.navigationBarTint
-        navigationController?.navigationBar.barTintColor = asset.color.navigationBar
+        view.backgroundColor = assets.color.backgroundView
+        navigationController?.navigationBar.tintColor = assets.color.navigationBarTint
+        navigationController?.navigationBar.barTintColor = assets.color.navigationBar
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.barStyle = .black
         navigationController?.navigationBar.prefersLargeTitles = false
@@ -96,13 +94,13 @@ public class MGBrowserController: UIViewController {
         
         toolbarItems = [back, spacer, reload, spacer, forward]
         navigationController?.setToolbarHidden(false, animated: false)
-        navigationController?.toolbar.tintColor = asset.color.toolBarTint
-        navigationController?.toolbar.barTintColor = asset.color.toolBar
+        navigationController?.toolbar.tintColor = assets.color.toolBarTint
+        navigationController?.toolbar.barTintColor = assets.color.toolBar
         navigationController?.toolbar.isTranslucent = false
         
         webView.navigationDelegate = self
         webView.allowsBackForwardNavigationGestures = true
-        let url = URL(string: data.url) ?? URL(string: "https://google.com/")!
+        let url = URL(string: assets.data.url) ?? URL(string: "https://google.com/")!
         let urlRequest = URLRequest(url: url)
         webView.load(urlRequest)
         
@@ -159,7 +157,7 @@ extension MGBrowserController: WKNavigationDelegate {
 
 extension MGBrowserController {
 
-    public static var controller: MGBrowserController {
+    public static var instance: MGBrowserController {
         let podBundle = Bundle(for: MGBrowserController.self)
         let bundleURL = podBundle.url(forResource: resourceName, withExtension: resourceExtension)
         let bundle = Bundle(url: bundleURL!) ?? Bundle()
@@ -167,18 +165,6 @@ extension MGBrowserController {
         guard let controller = storyboard.instantiateViewController(withIdentifier: controllerIdentifier) as? MGBrowserController else {
             return MGBrowserController()
         }
-        return controller
-    }
-    
-    public static func controller(asset: MGBrowserAsset) -> MGBrowserController {
-        let podBundle = Bundle(for: MGBrowserController.self)
-        let bundleURL = podBundle.url(forResource: resourceName, withExtension: resourceExtension)
-        let bundle = Bundle(url: bundleURL!) ?? Bundle()
-        let storyboard = UIStoryboard(name: storyboardName, bundle: bundle)
-        guard let controller = storyboard.instantiateViewController(withIdentifier: controllerIdentifier) as? MGBrowserController else {
-            return MGBrowserController()
-        }
-        controller.asset = asset
         return controller
     }
 

@@ -26,18 +26,13 @@
 import Foundation
 import MapKit
 
-public class MGMap {
-    public var location:String!
-    public var latitude: CLLocationDegrees!
-    public var longitude: CLLocationDegrees!
-    public init() {}
-}
 
 public protocol MGMapAsset {
     var string:MGMapString { get set }
     var font:MGMapFont { get set }
     var image:MGMapImage { get set }
     var color:MGMapColor { get set }
+    var data:MGMapData { get set }
 }
 
 public protocol MGMapString {
@@ -59,4 +54,15 @@ public protocol MGMapColor {
     var navigationBarTint:UIColor { get set }
     var toolBar:UIColor { get set }
     var toolBarTint:UIColor { get set }
+}
+
+public protocol MGMapData {
+    var items:[MGMapDataItem] { get set }
+}
+
+public struct MGMapDataItem {
+    public var location:String!
+    public var latitude: CLLocationDegrees!
+    public var longitude: CLLocationDegrees!
+    public init() {}
 }

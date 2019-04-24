@@ -27,22 +27,25 @@ import UIKit
 import MGSideMenuKit
 import MGTemplateKit
 import SideMenuSwift
+import MGLandingKit
+import MGVideoPlayerKit
+import MGAudioPlayerKit
+import MGBrowserKit
+import MGMapKit
+import MGFeedKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
     var window: UIWindow?
-
+    var sideMenuController: MGSideMenuController!
+    var landingController: MGLandingController!
+    var browserController: MGBrowserController!
+    var mapController: MGMapController!
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
-        
         MGTemplate.setup()
-        
-        let sideMenu = MGSideMenu()
-        sideMenu.dataSource = SideMenuComponent()
-        sideMenu.delegate = SideMenuComponent()
-        
-        window?.rootViewController = sideMenu.containerController
+        window?.rootViewController = rootViewController
         window?.makeKeyAndVisible()
         return true
     }
@@ -69,4 +72,216 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+}
+
+extension AppDelegate {
+    
+    var rootViewController:UIViewController {
+        sideMenuController = MGSideMenuController().instance
+        sideMenuController.assets = Assets.instance
+        sideMenuController.dataSource = self
+        sideMenuController.delegate = self
+        return sideMenuController
+    }
+    
+}
+
+
+extension AppDelegate:MGSideMenuControllerDataSource, MGSideMenuControllerDelegate {
+   
+    var centerController: UIViewController {
+        landingController = MGLandingController.instance
+        landingController.assets = Assets.instance
+        landingController.delegate = self
+        landingController.dataSource = self
+        return UINavigationController(rootViewController: landingController)
+    }
+    
+    func centerController(item: MGSideMenuItem, forIndexPath indexPath: IndexPath, fromController controller: MGMenuController) -> UIViewController? {
+        switch item.identifier {
+        case "menu.home.identifier":
+            landingController = MGLandingController.instance
+            landingController.assets = Assets.instance
+            landingController.delegate = self
+            landingController.dataSource = self
+            return UINavigationController(rootViewController: landingController)
+        case "menu.webBrowser.identifier":
+            browserController = MGBrowserController.instance
+            browserController.assets = Assets.instance
+            browserController.dataSource = self
+            browserController.delegate = self
+            return UINavigationController(rootViewController: browserController)
+        case "menu.maps.identifier":
+            mapController = MGMapController.instance
+            mapController.assets = Assets.instance
+            mapController.dataSource = self
+            mapController.delegate = self
+            return UINavigationController(rootViewController: mapController)
+//        case "menu.theNextWeb.identifier":
+//            let controller = MGFeedController.instance
+//            let data = MGFeed()
+//            data.url = "https://thenextweb.com/feed"
+//            controller.data = data
+//            let asset = MGFeedKit.MGAsset()
+//            let string = MGFeedKit.MGString()
+//            string.title = "The Next Web"
+//            asset.string = string
+//            let color = MGFeedKit.MGColor()
+//            color.backgroundView = MGTemplate.View.backgroundColor
+//            color.navigationBar = MGTemplate.NavigationBar.backgroundColor
+//            color.navigationBarTint = .white
+//            color.toolBar = MGTemplate.NavigationBar.backgroundColor
+//            color.toolBarTint = .white
+//            color.backgroundViewCell = .black
+//            color.cellTint = .white
+//            asset.color = color
+//            controller.assets = asset
+//            return UINavigationController(rootViewController: controller)
+//        case "menu.techCrunch.identifier":
+//            let controller = MGFeedController.instance
+//            let data = MGFeed()
+//            data.url = "https://techcrunch.com/feed"
+//            controller.data = data
+//            let asset = MGFeedKit.MGAsset()
+//            let string = MGFeedKit.MGString()
+//            string.title = "Tech Crunch"
+//            asset.string = string
+//            let color = MGFeedKit.MGColor()
+//            color.backgroundView = MGTemplate.View.backgroundColor
+//            color.navigationBar = MGTemplate.NavigationBar.backgroundColor
+//            color.navigationBarTint = .white
+//            color.toolBar = MGTemplate.NavigationBar.backgroundColor
+//            color.toolBarTint = .white
+//            color.backgroundViewCell = .black
+//            color.cellTint = .white
+//            asset.color = color
+//            controller.assets = asset
+//            return UINavigationController(rootViewController: controller)
+//        case "menu.theVerge.identifier":
+//            let controller = MGFeedController.instance
+//            let data = MGFeed()
+//            data.url = "https://www.theverge.com/rss/index.xml"
+//            controller.data = data
+//            let asset = MGFeedKit.MGAsset()
+//            let string = MGFeedKit.MGString()
+//            string.title = "The Verge"
+//            asset.string = string
+//            let color = MGFeedKit.MGColor()
+//            color.backgroundView = MGTemplate.View.backgroundColor
+//            color.navigationBar = MGTemplate.NavigationBar.backgroundColor
+//            color.navigationBarTint = .white
+//            color.toolBar = MGTemplate.NavigationBar.backgroundColor
+//            color.toolBarTint = .white
+//            color.backgroundViewCell = .black
+//            color.cellTint = .white
+//            asset.color = color
+//            controller.assets = asset
+//            return UINavigationController(rootViewController: controller)
+//        case "menu.digitalTrend.identifier":
+//            let controller = MGFeedController.instance
+//            let data = MGFeed()
+//            data.url = "https://www.digitaltrends.com/feed"
+//            controller.data = data
+//            let asset = MGFeedKit.MGAsset()
+//            let string = MGFeedKit.MGString()
+//            string.title = "Digital Trend"
+//            asset.string = string
+//            let color = MGFeedKit.MGColor()
+//            color.backgroundView = MGTemplate.View.backgroundColor
+//            color.navigationBar = MGTemplate.NavigationBar.backgroundColor
+//            color.navigationBarTint = .white
+//            color.toolBar = MGTemplate.NavigationBar.backgroundColor
+//            color.toolBarTint = .white
+//            color.backgroundViewCell = .black
+//            color.cellTint = .white
+//            asset.color = color
+//            controller.assets = asset
+//            return UINavigationController(rootViewController: controller)
+            //        case "menu.audio.identifier":
+            //            return audioPlayer.listController
+
+        default:
+            return nil
+        }
+    }
+    
+    func controller(_ controller: MGMenuController, didSelectItem item: MGSideMenuItem, atIndexPath indexPath: IndexPath) {
+        
+    }
+    
+    func controller(_ controller: MGMenuController, canCloseItem item: MGSideMenuItem, atIndexPath indexPath: IndexPath) -> Bool {
+        return true
+    }
+
+}
+
+extension AppDelegate: MGLandingControllerDataSource, MGLandingControllerDelegate {
+
+    func landingController(_ controller: MGLandingController, didTapBarButtonItem barButtonItem: UIBarButtonItem) {
+        print("Navigation item is: \(String(describing: barButtonItem.accessibilityIdentifier))")
+        sideMenuController.showMenu()
+    }
+    
+    func leftBarButtonItems(_ controller: MGLandingController) -> [UIBarButtonItem] {
+        let button1 = UIBarButtonItem()
+        button1.image = UIImage(icon: .fontAwesomeSolid(.bars), size: CGSize(width: 36, height: 36), textColor: .black)
+        button1.style = .plain
+        button1.accessibilityIdentifier = "MENU"
+        
+        return [button1]
+    }
+
+}
+
+extension AppDelegate: MGBrowserControllerDataSource, MGBrowserControllerDelegate {
+    
+    func leftBarButtonItems(_ controller: MGBrowserController) -> [UIBarButtonItem] {
+        let button1 = UIBarButtonItem()
+        button1.image = UIImage(icon: .fontAwesomeSolid(.bars), size: CGSize(width: 36, height: 36), textColor: .black)
+        button1.style = .plain
+        button1.accessibilityIdentifier = "First"
+        
+        return [button1]
+    }
+    
+    func toolBarButtonItems(_ controller: MGBrowserController) -> [UIBarButtonItem] {
+        let backButton = UIBarButtonItem()
+        backButton.image = UIImage(icon: .fontAwesomeSolid(.chevronLeft), size: CGSize(width: 30, height: 30), textColor: .white)
+        backButton.style = .plain
+        backButton.accessibilityIdentifier = "BACK"
+        
+        let forwardButton = UIBarButtonItem()
+        forwardButton.image = UIImage(icon: .fontAwesomeSolid(.chevronRight), size: CGSize(width: 30, height: 30), textColor: .white)
+        forwardButton.style = .plain
+        forwardButton.accessibilityIdentifier = "FORWARD"
+        
+        let reloadButton = UIBarButtonItem()
+        reloadButton.image = UIImage(icon: .fontAwesomeSolid(.redo), size: CGSize(width: 30, height: 30), textColor: .white)
+        reloadButton.style = .plain
+        reloadButton.accessibilityIdentifier = "RELOAD"
+        
+        return [backButton, forwardButton, reloadButton]
+    }
+    
+    func browserController(_ controller: MGBrowserController, didTapBarButtonItem barButtonItem: UIBarButtonItem) {
+        sideMenuController.showMenu()
+    }
+
+}
+
+extension AppDelegate: MGMapControllerDataSource, MGMapControllerDelegate {
+    
+    func leftBarButtonItems(_ controller: MGMapController) -> [UIBarButtonItem] {
+        let button1 = UIBarButtonItem()
+        button1.image = UIImage(icon: .fontAwesomeSolid(.bars), size: CGSize(width: 36, height: 36), textColor: .black)
+        button1.style = .plain
+        button1.accessibilityIdentifier = "First"
+        
+        return [button1]
+    }
+    
+    func controller(_ controller: MGMapController, didTapBarButtonItem barButtonItem: UIBarButtonItem) {
+        sideMenuController.showMenu()
+    }
+    
 }

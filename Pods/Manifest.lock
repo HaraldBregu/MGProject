@@ -5,7 +5,7 @@ PODS:
   - GSImageViewerController (1.6.0)
   - MGAudioPlayerKit (0.1.0):
     - SDWebImage
-  - MGBrowserKit (0.1.4):
+  - MGBrowserKit (0.1.5):
     - SnapKit (~> 4.0.0)
   - MGFeedKit (0.1.2):
     - FeedKit (~> 8.0)
@@ -14,8 +14,8 @@ PODS:
     - SwiftSoup
   - MGLandingKit (0.1.5):
     - SDWebImage (~> 4.0)
-  - MGMapKit (0.1.4)
-  - MGSideMenuKit (0.2.0):
+  - MGMapKit (0.1.5)
+  - MGSideMenuKit (0.2.2):
     - SideMenuSwift
   - MGTemplateKit (0.1.8):
     - FontBlaster
@@ -28,7 +28,7 @@ PODS:
   - SDWebImage/Core (4.4.6)
   - SideMenuSwift (2.0.0)
   - SnapKit (4.0.1)
-  - SwiftSoup (1.7.4)
+  - SwiftSoup (2.0.0)
   - UIColor_Hex_Swift (4.2.0)
 
 DEPENDENCIES:
@@ -76,7 +76,7 @@ CHECKOUT OPTIONS:
     :commit: b44a06091181b3f5fc6c08ab9f7e4652fcc53b19
     :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGAudioPlayerKit.git"
   MGBrowserKit:
-    :commit: d16ec113d81578e67db1ec9bbb86f1b5948d1155
+    :commit: 5324ed52e6cef352149a66d1bd748edd0a7c38a3
     :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGBrowserKit.git"
   MGFeedKit:
     :commit: 2adb284d209a314e60a9fbce6b82b2efc8912ce7
@@ -85,10 +85,10 @@ CHECKOUT OPTIONS:
     :commit: 79658f97d70876a13869983c36dc25b53390551c
     :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGLandingKit.git"
   MGMapKit:
-    :commit: 5edfa99f227641208073a1f9270ed40f59599fde
+    :commit: 251001ef8753487b85df8e77c01a4e5623f3bf5c
     :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGMapKit.git"
   MGSideMenuKit:
-    :commit: 4d8a5c434d4bd001b4b0b895c136b4419383a564
+    :commit: 966bb345b6e1d11d144df50693b9fd975145124b
     :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGSideMenuKit.git"
   MGTemplateKit:
     :commit: 714d770728041650e79f3dac73dca2699cd2cb6d
@@ -103,17 +103,17 @@ SPEC CHECKSUMS:
   FontBlaster: 127aa66419478d1c62926c7fdb39841633344a45
   GSImageViewerController: 397f8954afac8bd1c3a75c630e3c4ab4c4a4dfe3
   MGAudioPlayerKit: 821fa88bf5b477b330d7069ce963f563653a5d83
-  MGBrowserKit: 92fef4bfdbc6cb07198f9e312ad17c2d94fa1653
+  MGBrowserKit: 77f2b64fd3676d55c701e463810679fb9f629a97
   MGFeedKit: dd974d5865901ef38a806369b2d516a8ffbbfce9
   MGLandingKit: bb7d52a31a81818f6e6a491b80fcbd613ca3952a
-  MGMapKit: a1709a921467d2075f7635687e03e6e14c6add5d
-  MGSideMenuKit: d0cee17b30c08e8d813cefce3d034a19c7129051
+  MGMapKit: 63cbaf1875a5e6857ac27139bf8d0aaee88ab010
+  MGSideMenuKit: d0738274084a7a0375ac042211fc63436c6482ef
   MGTemplateKit: 59eb00bb69ae7c313203351de312fab4894040d9
   MGVideoPlayerKit: f16fc3053821f1255866bcbfa5fbfcdc85702fee
   SDWebImage: 3f3f0c02f09798048c47a5ed0a13f17b063572d8
   SideMenuSwift: 1bee5a0e54c6df7d8106f749b82567eae5c6d974
   SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
-  SwiftSoup: 92f5b348c131aed8af04f4326db1579ab19fa08c
+  SwiftSoup: 4fe21f65cdbfa3a40559047016b7962b88d29279
   UIColor_Hex_Swift: bc07fc197421ee896b9ed6dcfa2054b7fbf75145
 
 PODFILE CHECKSUM: 8e18c8b20efec65992dff8af74c7de3dabdf7014

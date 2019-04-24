@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C03B2DF9B1DBCE80FB474B2934B4FC00"
+               BlueprintIdentifier = "82AFE181144E405414CC9BEEE525618F"
                BuildableName = "MGSideMenuKit.framework"
                BlueprintName = "MGSideMenuKit"
                ReferencedContainer = "container:Pods.xcodeproj">

@@ -26,6 +26,5 @@
 import Foundation
 
 public protocol MGMapControllerDataSource {
-    var items:[MGMap] { get }
     func leftBarButtonItems(_ controller:MGMapController) -> [UIBarButtonItem]
 }

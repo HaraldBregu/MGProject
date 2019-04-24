@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D47B856A22F2F6E8D297504CF4E24585"
+               BlueprintIdentifier = "70C7F45971AD4917937F7FA5E6A4E42D"
                BuildableName = "MGBrowserKit.framework"
                BlueprintName = "MGBrowserKit"
                ReferencedContainer = "container:Pods.xcodeproj">

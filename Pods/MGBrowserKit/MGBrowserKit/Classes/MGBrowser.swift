@@ -25,7 +25,36 @@
 
 import Foundation
 
-public class MGBrowser {
-    public var url:String!
-    public init() { }
+
+public protocol MGBrowserAsset {
+    var string:MGBrowserString { get set }
+    var font:MGBrowserFont { get set }
+    var image:MGBrowserImage { get set }
+    var color:MGBrowserColor { get set }
+    var data:MGBrowserData { get set }
+}
+
+public protocol MGBrowserString {
+    var title:String { get set }
+    var navigationTitle:String { get set }
+}
+
+public protocol MGBrowserFont {
+    var primaryFont:UIFont { get set }
+}
+
+public protocol MGBrowserImage {
+    var navigationItemMenu:UIImage { get set }
+}
+
+public protocol MGBrowserColor {
+    var backgroundView:UIColor { get set }
+    var navigationBar:UIColor { get set }
+    var navigationBarTint:UIColor { get set }
+    var toolBar:UIColor { get set }
+    var toolBarTint:UIColor { get set }
+}
+
+public protocol MGBrowserData {
+    var url:String { get set }
 }
