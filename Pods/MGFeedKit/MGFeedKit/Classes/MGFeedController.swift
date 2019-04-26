@@ -66,12 +66,12 @@ public class MGFeedController: UIViewController {
         navigationItem.largeTitleDisplayMode = .automatic
         if let items = dataSource?.leftBarButtonItems(self) {
             items.forEach({ $0.target = self })
-            items.forEach({ $0.action = #selector(navigationLeftItemAction(barButtonItem:)) })
+            items.forEach({ $0.action = #selector(navigationItemAction(barButtonItem:)) })
             navigationItem.leftBarButtonItems = items
         }
         if let items = dataSource?.rightBarButtonItems(self) {
             items.forEach({ $0.target = self })
-            items.forEach({ $0.action = #selector(navigationLeftItemAction(barButtonItem:)) })
+            items.forEach({ $0.action = #selector(navigationItemAction(barButtonItem:)) })
             navigationItem.rightBarButtonItems = items
         }
 
@@ -86,14 +86,20 @@ public class MGFeedController: UIViewController {
         refreshControl.addTarget(self, action: #selector(reloadData(button:)), for: .valueChanged)
         tableView.refreshControl = refreshControl
 
-        activityIndicatorView = UIActivityIndicatorView(style: .white)
-        activityIndicatorView.center = tableView.center
+        activityIndicatorView = UIActivityIndicatorView()
+        activityIndicatorView.style = .white
         view.addSubview(activityIndicatorView)
 
         setFeed(assets.data)
     }
     
-    @objc private func navigationLeftItemAction(barButtonItem: UIBarButtonItem) {
+    public override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+
+        activityIndicatorView.center = CGPoint(x: (UIScreen.main.bounds.width / 2.0), y: (UIScreen.main.bounds.height / 2.0))
+    }
+    
+    @objc private func navigationItemAction(barButtonItem: UIBarButtonItem) {
         self.delegate?.controller(self, didTapBarButtonItem: barButtonItem)
     }
 
@@ -106,7 +112,7 @@ public class MGFeedController: UIViewController {
         guard let url = URL(string: data.url) else { return }
         activityIndicatorView.startAnimating()
         let parser = FeedParser(URL: url)
-        parser.parseAsync(queue: .global(qos: .userInitiated)) { [unowned self] (result) in
+        parser.parseAsync(queue: .global(qos: .userInitiated)) { (result) in
             switch result {
             case .atom(let feed):
                 self.atomFeed(feed)
@@ -114,8 +120,10 @@ public class MGFeedController: UIViewController {
             case .rss(let feed):
                 self.rssFeed(feed)
                 break
-            case .json: break
-            case .failure: break
+            case .json:
+                break
+            case .failure:
+                break
             }
             
             DispatchQueue.main.async {
@@ -133,9 +141,8 @@ public class MGFeedController: UIViewController {
             if let html = feedItem.content?.value {
                 do {
                     let doc: Document = try SwiftSoup.parse(html)
-                    let link: Element = try doc.select("img").first()!
-                    let linkHref: String = try link.attr("src")
-
+                    let link: Element? = try doc.select("img").first()
+                    let linkHref: String = try link?.attr("src") ?? ""
                     let item = MGFeedItem()
                     item.title = feedItem.title ?? ""
                     item.imageUrl = linkHref

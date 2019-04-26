@@ -26,145 +26,119 @@
 import UIKit
 import SDWebImage
 
+
 public class MGAudioPlayerListController: UIViewController {
     @IBOutlet var tableView: UITableView!
+    public var delegate: MGAudioPlayerControllerDelegate?
+    public var dataSource: MGAudioPlayerControllerDataSource?
+    public var assets: MGAudioPlayerAsset!
+
     var searchController:UISearchController!
-    var filteredAudios = [MGAudioPlayerData]()
-    var audios:[MGAudioPlayerData] {
-        return AudioData.items
-    }
-    var didTapMenu:((MGAudioPlayerListController) -> ()) = { _ in }
+    var filteredAudios = [MGAudioPlayerItem]()
 
     override public func viewDidLoad() {
         super.viewDidLoad()
         
-//        view.backgroundColor = MGGeneral.View.Theme.dark
+        title = assets.string.title
+        view.backgroundColor = assets.color.view
+        
         navigationController?.navigationBar.isTranslucent = false
-//        navigationController?.navigationBar.barTintColor = MGGeneral.NavBar.Theme.dark
-//        navigationController?.navigationBar.tintColor = MGGeneral.NavBar.Theme.light
+        navigationController?.navigationBar.barTintColor = assets.color.navigationBar
+        navigationController?.navigationBar.tintColor = assets.color.navigationBarContent
         navigationController?.navigationBar.barStyle = .black
         navigationController?.navigationBar.prefersLargeTitles = true
-        
-//        let icon: IoniconsType = IoniconsType.naviconRound
-//        let image = UIImage(icon: .ionicons(icon), size: CGSize(width: 34, height: 34), textColor: .white)
-//        navigationItem.leftBarButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(revealMenuViewcontroller))
-        
+        navigationController?.navigationBar.isTranslucent = false
+
+        definesPresentationContext = true
+        navigationItem.prompt = assets.string.navigationListPlayerPrompt
         searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
-//        searchController.searchBar.placeholder = "mg.audioplayerlist.nav.search.title".localized
-//        searchController.searchBar.tintColor = MGGeneral.NavBar.Theme.light
-        
-        definesPresentationContext = true
+        searchController.searchBar.placeholder = assets.string.searchBarPlaceholder
+        searchController.searchBar.tintColor = assets.color.searchBarContent
+        searchController.searchBar.keyboardAppearance = assets.data.darkKeyboard ? .dark : .light
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = true
         navigationItem.largeTitleDisplayMode = .automatic
+        navigationItem.title = assets.string.navigationBarTitle
+
+        if let items = dataSource?.leftBarButtonItems(self) {
+            items.forEach({ $0.target = self })
+            items.forEach({ $0.action = #selector(navigationItemAction(barButtonItem:)) })
+            navigationItem.leftBarButtonItems = items
+            navigationItem.leftItemsSupplementBackButton = true
+        }
+        
+        if let items = dataSource?.rightBarButtonItems(self) {
+            items.forEach({ $0.target = self })
+            items.forEach({ $0.action = #selector(navigationItemAction(barButtonItem:)) })
+            navigationItem.rightBarButtonItems = items
+        }
         
         tableView.tableHeaderView = UIView()
         tableView.tableFooterView = UIView()
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 40
-//        tableView.backgroundColor = MGGeneral.View.Theme.dark
-        tableView.separatorColor = #colorLiteral(red: 0.1254901961, green: 0.1294117647, blue: 0.1529411765, alpha: 1)
-        tableView.separatorStyle = .singleLine
+        tableView.separatorInset = UIEdgeInsets(top: 0, left: 112 + 25, bottom: 0, right: 0)
+        tableView.backgroundColor = assets.color.tableView
+        tableView.separatorColor = assets.color.tableViewSeparator
     }
-    
-    override public func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    
-    override public func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-    
-    override public func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-    }
-    
-    override public func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-    }
-    
-    override public var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
-    @objc private func revealMenuViewcontroller() {
-        didTapMenu(self)
+
+    @objc func navigationItemAction(barButtonItem: UIBarButtonItem) {
+        self.delegate?.controller(self, didTapBarButtonItem: barButtonItem)
     }
 
 }
 
-/// :nodoc:
-extension MGAudioPlayerListController: UISearchResultsUpdating {
-    
-    public func updateSearchResults(for searchController: UISearchController) {
-        filterContentForSearchText(searchController.searchBar.text!)
-    }
-    
-}
-
-/// :nodoc:
 extension MGAudioPlayerListController: UITableViewDelegate, UITableViewDataSource {
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return isFiltering ? filteredAudios.count : audios.count
+        let items = assets.data.items ?? []
+        return isFiltering ? filteredAudios.count : items.count
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "MGAudioPlayerListCell") as? MGAudioPlayerListCell else {
             return UITableViewCell()
         }
+        let items = assets.data.items ?? []
+        let audio = isFiltering ? filteredAudios[indexPath.row] : items[indexPath.row]
         
-        let audio = isFiltering ? filteredAudios[indexPath.row] : audios[indexPath.row]
-        
-//        cell.backgroundColor = MGGeneral.View.Theme.dark
-//        cell.contentView.backgroundColor = MGGeneral.View.Theme.dark
-        
-        cell.titleLabel.text = audio.title
-        cell.authorLabel.text = audio.author
-        
+        cell.backgroundColor = assets.color.tableViewCell
+        cell.contentView.backgroundColor = assets.color.tableViewCell
+
         cell.songImageView.sd_setShowActivityIndicatorView(true)
         cell.songImageView.sd_setIndicatorStyle(.white)
         cell.songImageView.sd_setImage(with: URL(string: audio.thumbUrlString))
+
+        cell.titleLabel.text = audio.title
+        cell.titleLabel.textColor = assets.color.tableViewCellContent
+        if let font = assets.font.tableViewCellTitle {
+            cell.titleLabel.font = font
+        }
         
-        cell.optionButton.setImage(optionImage, for: .normal)
-        cell.optionButton.setImage(optionImage, for: .highlighted)
-        cell.optionButton.setImage(optionImage, for: .selected)
+        cell.authorLabel.text = audio.author
+        cell.authorLabel.textColor = assets.color.tableViewCellContent
+        if let font = assets.font.tableViewCellSubtitle {
+            cell.authorLabel.font = font
+        }
         
-//        cell.optionButton.removeAction(for: .touchUpInside)
-//        cell.optionButton.addAction(for: .touchUpInside) { [unowned self] in
-//            let items = [audio.title!, audio.author!, audio.thumbUrlString!]
-//            let activityIndicator = UIActivityViewController(activityItems: items, applicationActivities: nil)
-//            self.present(activityIndicator, animated: true)
-//        }
+        cell.optionButton.setImage(assets.image.tableViewCellIcon, for: .normal)
+        cell.optionButton.setImage(assets.image.tableViewCellIcon, for: .highlighted)
+        cell.optionButton.setImage(assets.image.tableViewCellIcon, for: .selected)
         
         return cell
     }
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let controller = storyboard?.instantiateViewController(withIdentifier: "MGAudioPlayerController") as! MGAudioPlayerController
-        controller.currentAudio = isFiltering ? filteredAudios[indexPath.row] : audios[indexPath.row]
-        controller.audios = audios
+        let controller = _storyboard.instantiateViewController(withIdentifier: "MGAudioPlayerController") as! MGAudioPlayerController
+        let items = assets.data.items ?? []
+        let item = isFiltering ? filteredAudios[indexPath.row] : items[indexPath.row]
+        controller.item = item
+        controller.assets = assets
+        controller.delegate = delegate
+        controller.dataSource = dataSource
         navigationController?.pushViewController(controller, animated: true)
-    }
-    
-    public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let headerView = tableView.dequeueReusableCell(withIdentifier: "MGAudioPlayerListHeaderCell") as? MGAudioPlayerListHeaderCell else {
-            return UITableViewCell()
-        }
-        
-//        headerView.backgroundColor = MGGeneral.View.Theme.dark
-//        headerView.contentView.backgroundColor = MGGeneral.View.Theme.dark
-//        headerView.titleLabel.text = "mg.audioplayerlist.table.header.title".localized
-//        headerView.titleLabel.font = MGGeneral.Font.light(size: 15.0)
-//        headerView.titleLabel.textColor = MGGeneral.Label.Theme.light
-        
-        return headerView
-    }
-    
-    public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 40
     }
     
     public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -183,9 +157,35 @@ extension MGAudioPlayerListController: UITableViewDelegate, UITableViewDataSourc
     }
 }
 
-/// :nodoc:
+extension MGAudioPlayerListController: UISearchResultsUpdating {
+    
+    public func updateSearchResults(for searchController: UISearchController) {
+        filterContentForSearchText(searchController.searchBar.text!)
+    }
+    
+}
+
 extension MGAudioPlayerListController {
     
+    private var _storyboard: UIStoryboard {
+        let podBundle = Bundle(for: MGAudioPlayerListController.self)
+        let bundleURL = podBundle.url(forResource: resourceName, withExtension: resourceExtension)
+        let bundle = Bundle(url: bundleURL!) ?? Bundle()
+        let storyboard = UIStoryboard(name: storyboardName, bundle: bundle)
+        return storyboard
+    }
+    
+    public static var instance: MGAudioPlayerListController {
+        let podBundle = Bundle(for: MGAudioPlayerListController.self)
+        let bundleURL = podBundle.url(forResource: resourceName, withExtension: resourceExtension)
+        let bundle = Bundle(url: bundleURL!) ?? Bundle()
+        let storyboard = UIStoryboard(name: storyboardName, bundle: bundle)
+        guard let controller = storyboard.instantiateViewController(withIdentifier: controllerIdentifier) as? MGAudioPlayerListController else {
+            return MGAudioPlayerListController()
+        }
+        return controller
+    }
+
     private var isFiltering:Bool {
         return searchController.isActive && !searchBarIsEmpty
     }
@@ -195,27 +195,31 @@ extension MGAudioPlayerListController {
     }
     
     private func filterContentForSearchText(_ searchText: String) {
-        filteredAudios = audios.filter({( aud : MGAudioPlayerData) -> Bool in
-            return aud.title.lowercased().contains(searchText.lowercased())
+        let items = assets.data.items ?? []
+        filteredAudios = items.filter({( item : MGAudioPlayerItem) -> Bool in
+            return item.title.lowercased().contains(searchText.lowercased())
         })
         tableView.reloadData()
     }
     
-    private var optionSize:CGSize {
-        return CGSize(width: 100, height: 100)
-    }
-    
-    private var optionImage:UIImage {
-        return UIImage()
-    }
-//    private var optionImage:UIImage {
-////        let iconOption = IoniconsType.androidMoreVertical
-////        let type = FontType.ionicons(iconOption)
-//        return UIImage(icon: type, size: optionSize, textColor: #colorLiteral(red: 0.6666666667, green: 0.6470588235, blue: 0.7098039216, alpha: 1), backgroundColor: .clear)
-//    }
-    
-    private var secondaryColor:UIColor {
-        return UIColor.white
-    }
-    
 }
+
+class MGAudioPlayerListCell: UITableViewCell {
+    @IBOutlet var songImageView: UIImageView!
+    @IBOutlet var titleLabel: UILabel!
+    @IBOutlet var authorLabel: UILabel!
+    @IBOutlet var optionButton: UIButton!
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        songImageView.layer.cornerRadius = UIDevice.current.userInterfaceIdiom == .pad ? 7 : 1
+    }
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        
+    }
+}
+
+fileprivate let storyboardName = "MGAudioPlayer"
+fileprivate let controllerIdentifier = "MGAudioPlayerListController"
+fileprivate let resourceName = "MGAudioPlayerKit"
+fileprivate let resourceExtension = "bundle"

@@ -19,5 +19,85 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pods/MGFeedKit/MGFeedKit/Classes/MGFeedController.swift"
+            timestampString = "577987055.079612"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "163"
+            endingLineNumber = "163"
+            landmarkName = "rssFeed(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pods/MGFeedKit/MGFeedKit/Classes/MGFeedController.swift"
+            timestampString = "577987055.080377"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "160"
+            endingLineNumber = "160"
+            landmarkName = "rssFeed(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MGFeedKit.MGFeedController.(rssFeed in _74EA7847C0BA30905F40299ECA013B13)(FeedKit.RSSFeed) -&gt; ()"
+                  moduleName = "MGFeedKit"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/haraldbregu/Dropbox/MGProject/Pods/MGFeedKit/MGFeedKit/Classes/MGFeedController.swift"
+                  timestampString = "577986337.487808"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "159"
+                  endingLineNumber = "159"
+                  offsetFromSymbolStart = "95">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (FeedKit.RSSFeedItem) -&gt; () in MGFeedKit.MGFeedController.(rssFeed in _74EA7847C0BA30905F40299ECA013B13)(FeedKit.RSSFeed) -&gt; ()"
+                  moduleName = "MGFeedKit"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/haraldbregu/Dropbox/MGProject/Pods/MGFeedKit/MGFeedKit/Classes/MGFeedController.swift"
+                  timestampString = "577986337.491376"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "160"
+                  endingLineNumber = "160"
+                  offsetFromSymbolStart = "208">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pods/MGFeedKit/MGFeedKit/Classes/MGFeedController.swift"
+            timestampString = "577987055.0810291"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "161"
+            endingLineNumber = "161"
+            landmarkName = "rssFeed(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

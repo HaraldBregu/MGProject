@@ -25,55 +25,84 @@
 
 import Foundation
 
-public class MGVideoPlayer {
-    public var containerController: UINavigationController!
-    
-    public init() {
-        controller = _controller
-        containerController = UINavigationController(rootViewController: controller)
-    }
-    
-    public var dataSource: MGVideoPlayerDataSource! {
-        didSet {
-            controller.data = dataSource.data
-            controller.items = dataSource.items
-            controller.layout = dataSource.layout
-        }
-    }
-    
-    public var delegate: MGVideoPlayerDelegate! {
-        didSet {
-            controller.didTapNavigationItem = { [unowned self] (controller, barButtonItem) in
-                self.delegate.videoPlayerController(controller, didTapMenuNavigationItem: barButtonItem)
-            }
-        }
-    }
-    
-    private var controller: MGVideoPlayerListController!
+public protocol MGVideoPlayerAsset {
+    var string: MGVideoPlayerString { get set }
+    var font: MGVideoPlayerFont { get set }
+    var image: MGVideoPlayerImage { get set }
+    var color: MGVideoPlayerColor { get set }
+    var data: MGVideoPlayerData { get set }
 }
 
-extension MGVideoPlayer {
-    
-    private var _controller: MGVideoPlayerListController {
-        guard let controller = _storyboard.instantiateViewController(withIdentifier: listControllerIdentifier) as? MGVideoPlayerListController else { return MGVideoPlayerListController() }
-        return controller
-    }
-    
-    private var _storyboard:UIStoryboard {
-        return UIStoryboard(name: storyboardName, bundle: _storyboardBundle)
-    }
-    
-    private var _storyboardBundle:Bundle {
-        let podBundle = Bundle(for: MGVideoPlayer.self)
-        let bundleURL = podBundle.url(forResource: resourceName, withExtension: resourceExtension)
-        let bundle = Bundle(url: bundleURL!)!
-        return bundle
-    }
-    
+public protocol MGVideoPlayerString {
+    var title:String { get set }
+    var navigationBarTitle:String { get set }
+    var searchBarPlaceholder:String { get set }
+    var navigationListPlayerPrompt:String? { get set }
+    var navigationVideoPlayerPrompt:String? { get set }
 }
 
-fileprivate let storyboardName = "MGVideoPlayer"
-fileprivate let listControllerIdentifier = "MGVideoPlayerListController"
-fileprivate let controllerIdentifier = "MGVideoPlayerController"
-fileprivate let resourceName = "MGVideoPlayerKit"
-fileprivate let resourceExtension = "bundle"
+public protocol MGVideoPlayerFont {
+    var tableViewCellTitle: UIFont? { get set }
+    var tableViewCellDescription: UIFont? { get set }
+    var tableViewCellSubtitle: UIFont? { get set }
+    var tableViewCellRating: UIFont? { get set }
+    var detailTitle: UIFont? { get set }
+    var detailDescription: UIFont? { get set }
+    var detailSubtitle: UIFont? { get set }
+    var detailRating: UIFont? { get set }
+    var actorListFullname: UIFont? { get set }
+    var actorListRolename: UIFont? { get set }
+}
+
+public protocol MGVideoPlayerImage {
+    var likeNormal: UIImage { get set }
+    var likeSelected: UIImage { get set }
+    var likeHighlighted: UIImage { get set }
+    var shareNormal: UIImage { get set }
+}
+
+public protocol MGVideoPlayerColor {
+    var navigationBar: UIColor { get set }
+    var navigationBarContent: UIColor { get set }
+    var toolBar: UIColor { get set }
+    var toolBarContent: UIColor { get set }
+    var view: UIColor { get set }
+    var viewContent: UIColor { get set }
+    var tableView: UIColor { get set }
+    var tableViewSeparator: UIColor { get set }
+    var refresh: UIColor { get set }
+    var searchBarContent: UIColor { get set }
+    var tableViewCell: UIColor { get set }
+    var tableViewCellContent: UIColor { get set }
+    var collectionView: UIColor { get set }
+    var collectionViewContent: UIColor { get set }
+}
+
+public protocol MGVideoPlayerData {
+    var items: [MGVideoPlayerItem]? { get set }
+    var darkKeyboard: Bool { get set }
+}
+
+public class MGVideoPlayerItem {
+    public var title:String!
+    public var description:String!
+    public var pubYear:String!
+    public var category:String!
+    public var url: URL!
+    public var thumbUrl: URL!
+    public var starCount:Double!
+    public var reviewCount:Int!
+    public var actors:[MGVideoPlayerActorItem]!
+    public init() {}
+}
+
+public class MGVideoPlayerActorItem {
+    public var name:String!
+    public var roleName:String!
+    public var pictureUrl:String!
+    public init(name:String, roleName:String, pictureUrl:String) {
+        self.name = name
+        self.roleName = roleName
+        self.pictureUrl = pictureUrl
+    }
+}

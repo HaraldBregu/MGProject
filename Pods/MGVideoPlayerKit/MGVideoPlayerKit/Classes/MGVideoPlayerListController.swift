@@ -26,55 +26,70 @@
 import Foundation
 import AVKit
 import SDWebImage
+import Cosmos
 
 
 public class MGVideoPlayerListController:UIViewController {
     @IBOutlet var tableView: UITableView!
-    private var searchController:UISearchController!
-    
-    var data:MGVideoPlayerData!
-    var items:[MGVideoPlayerItem]!
-    var layout:MGVideoPlayerLayout!
-    
+    public var delegate: MGVideoPlayerControllerDelegate?
+    public var dataSource: MGVideoPlayerControllerDataSource?
+    public var assets: MGVideoPlayerAsset!
+
+    var searchController: UISearchController!
     var filteredItems = [MGVideoPlayerItem]()
-    
-    var didTapNavigationItem:((MGVideoPlayerListController, UIBarButtonItem) -> ())!
 
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = layout.view.backgroundColor
+        title = assets.string.title
+        view.backgroundColor = assets.color.view
+
         navigationController?.navigationBar.isTranslucent = false
-        navigationController?.navigationBar.barTintColor = layout.navigationBar.backgroundColor
-        navigationController?.navigationBar.tintColor = layout.navigationBar.tintColor
+        navigationController?.navigationBar.barTintColor = assets.color.navigationBar
+        navigationController?.navigationBar.tintColor = assets.color.navigationBarContent
         navigationController?.navigationBar.barStyle = .black
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.isTranslucent = false
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: layout.navigationItemMenu.image, style: .plain, target: self, action: #selector(navigationItemMenuAction(barButtonItem:)))
-        
-        title = data.title
-        navigationItem.title = data.title
 
+        definesPresentationContext = true
+        navigationItem.largeTitleDisplayMode = .always
+        navigationItem.prompt = assets.string.navigationListPlayerPrompt
         searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = data.searchBarPlaceholder
-        searchController.searchBar.tintColor = layout.searchBar.tintColor
-        
-        definesPresentationContext = true
+        searchController.searchBar.placeholder = assets.string.searchBarPlaceholder
+        searchController.searchBar.tintColor = assets.color.searchBarContent
+        searchController.searchBar.keyboardAppearance = assets.data.darkKeyboard ? .dark : .light
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = true
         navigationItem.largeTitleDisplayMode = .automatic
-        
+        navigationItem.title = assets.string.navigationBarTitle
+
+        if let items = dataSource?.leftBarButtonItems(self) {
+            items.forEach({ $0.target = self })
+            items.forEach({ $0.action = #selector(navigationItemAction(barButtonItem:)) })
+            navigationItem.leftBarButtonItems = items
+            navigationItem.leftItemsSupplementBackButton = true
+        }
+        if let items = dataSource?.rightBarButtonItems(self) {
+            items.forEach({ $0.target = self })
+            items.forEach({ $0.action = #selector(navigationItemAction(barButtonItem:)) })
+            navigationItem.rightBarButtonItems = items
+        }
+
         tableView.tableHeaderView = UIView()
         tableView.tableFooterView = UIView()
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 40
-        tableView.backgroundColor = layout.tableView.backgroundColor
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 112 + 25, bottom: 0, right: 0)
-        tableView.separatorColor = layout.tableView.separatorColor
+        tableView.backgroundColor = assets.color.tableView
+        tableView.separatorColor = assets.color.tableViewSeparator
     }
     
+    @objc func navigationItemAction(barButtonItem: UIBarButtonItem) {
+        self.delegate?.controller(self, didTapBarButtonItem: barButtonItem)
+    }
+
     override public var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -84,25 +99,66 @@ public class MGVideoPlayerListController:UIViewController {
         return refreshControl
     }
     
-    @objc private func navigationItemMenuAction(barButtonItem: UIBarButtonItem) {
-        didTapNavigationItem(self, barButtonItem)
-    }
+}
 
-    override public func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        tableView.reloadData()
+extension MGVideoPlayerListController: UITableViewDelegate, UITableViewDataSource {
+    
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let dataCount = assets.data.items?.count ?? 0
+        return isFiltering ? filteredItems.count : dataCount
     }
     
-    override public func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "MGVideoPlayerListCell") as? MGVideoPlayerListCell else {
+            return UITableViewCell()
+        }
+        let items = assets.data.items ?? []
+        let video = isFiltering ? filteredItems[indexPath.row] : items[indexPath.row]
+//        cell.isFeatured = video.isFeatured
+
+        cell.backgroundColor = assets.color.tableViewCell
+        cell.contentView.backgroundColor = assets.color.tableViewCell
+     
+        cell.thumbImageView.sd_setShowActivityIndicatorView(true)
+        cell.thumbImageView.sd_setIndicatorStyle(.white)
+        cell.thumbImageView.sd_setImage(with: video.thumbUrl)
+
+        cell.titleLabel.text = video.title
+        cell.titleLabel.textColor = assets.color.tableViewCellContent
+        if let font = assets.font.tableViewCellTitle {
+            cell.titleLabel.font = font
+        }
+        
+        cell.descriptionLabel.text = video.description
+        cell.descriptionLabel.textColor = assets.color.tableViewCellContent
+        if let font = assets.font.tableViewCellDescription {
+            cell.descriptionLabel.font = font
+        }
+
+        cell.yearCategory.text = video.pubYear + " - " + video.category
+        cell.yearCategory.textColor = assets.color.tableViewCellContent
+        if let font = assets.font.tableViewCellSubtitle {
+            cell.yearCategory.font = font
+        }
+
+        cell.ratingView.rating = video.starCount
+        cell.ratingView.text = String(video.reviewCount)
+        if let font = assets.font.tableViewCellRating {
+            cell.ratingView.settings.textFont = font
+        }
+        
+        return cell
     }
     
-    override public func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-    }
-    
-    override public func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let items = assets.data.items ?? []
+        let item = isFiltering ? filteredItems[indexPath.row] : items[indexPath.row]
+        guard let controller = _storyboard.instantiateViewController(withIdentifier: "MGVideoPlayerController") as? MGVideoPlayerController else { return }
+        controller.item = item
+        controller.assets = assets
+        controller.delegate = delegate
+        controller.dataSource = dataSource
+        navigationController?.pushViewController(controller, animated: true)
     }
     
 }
@@ -111,51 +167,6 @@ extension MGVideoPlayerListController: UISearchResultsUpdating {
     
     public func updateSearchResults(for searchController: UISearchController) {
         filterContentForSearchText(searchController.searchBar.text!)
-    }
-}
-
-extension MGVideoPlayerListController: UITableViewDelegate, UITableViewDataSource {
-    
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return isFiltering ? filteredItems.count : items.count
-    }
-    
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "MGVideoPlayerListCell") as? MGVideoPlayerListCell else {
-            return UITableViewCell()
-        }
-        
-        let video = isFiltering ? filteredItems[indexPath.row] : items[indexPath.row]
-
-        cell.backgroundColor = layout.tableViewCell.backgroundColor
-        cell.contentView.backgroundColor = layout.tableViewCell.backgroundColor
-//        cell.ratingView.settings.textFont = layout.tableViewCellRatingLabel.font
-        
-        cell.isFeatured = video.isFeatured
-        
-        cell.titleLabel.text = video.title
-        cell.descriptionLabel.text = video.description
-        
-        cell.thumbImageView.sd_setShowActivityIndicatorView(true)
-        cell.thumbImageView.sd_setIndicatorStyle(.white)
-        cell.thumbImageView.sd_setImage(with: video.thumbUrl)
-        
-        cell.titleLabel.textColor = layout.tableViewCellTitleLabel.tintColor
-        cell.descriptionLabel.textColor = layout.tableViewCellSubtitleLabel.tintColor
-        
-        cell.yearCategory.text  = video.pubYear + " - " + video.category
-        
-        cell.ratingView.rating = video.starCount
-        cell.ratingView.text = String(video.reviewCount)
-        
-        return cell
-    }
-    
-    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let item = isFiltering ? filteredItems[indexPath.row] : items[indexPath.row]
-        let controller = storyboard?.instantiateViewController(withIdentifier: "MGVideoPlayerController") as! MGVideoPlayerController
-        controller.item = item
-        navigationController?.pushViewController(controller, animated: true)
     }
     
 }
@@ -169,6 +180,25 @@ extension MGVideoPlayerListController: AVPlayerViewControllerDelegate {
 
 extension MGVideoPlayerListController {
     
+    private var _storyboard: UIStoryboard {
+        let podBundle = Bundle(for: MGVideoPlayerListController.self)
+        let bundleURL = podBundle.url(forResource: resourceName, withExtension: resourceExtension)
+        let bundle = Bundle(url: bundleURL!) ?? Bundle()
+        let storyboard = UIStoryboard(name: storyboardName, bundle: bundle)
+        return storyboard
+    }
+    
+    public static var instance: MGVideoPlayerListController {
+        let podBundle = Bundle(for: MGVideoPlayerListController.self)
+        let bundleURL = podBundle.url(forResource: resourceName, withExtension: resourceExtension)
+        let bundle = Bundle(url: bundleURL!) ?? Bundle()
+        let storyboard = UIStoryboard(name: storyboardName, bundle: bundle)
+        guard let controller = storyboard.instantiateViewController(withIdentifier: controllerIdentifier) as? MGVideoPlayerListController else {
+            return MGVideoPlayerListController()
+        }
+        return controller
+    }
+    
     private var isFiltering:Bool {
         return searchController.isActive && !searchBarIsEmpty
     }
@@ -178,6 +208,7 @@ extension MGVideoPlayerListController {
     }
     
     private func filterContentForSearchText(_ searchText: String) {
+        let items = assets.data.items ?? []
         filteredItems = items.filter({( video : MGVideoPlayerItem) -> Bool in
             return video.title.lowercased().contains(searchText.lowercased())
         })
@@ -185,3 +216,30 @@ extension MGVideoPlayerListController {
     }
     
 }
+
+class MGVideoPlayerListCell: UITableViewCell {
+    @IBOutlet var thumbImageView: UIImageView!
+    @IBOutlet var titleLabel: UILabel!
+    @IBOutlet var yearCategory: UILabel!
+    @IBOutlet var descriptionLabel: UILabel!
+    @IBOutlet var ratingView: CosmosView!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        ratingView.settings.updateOnTouch = false
+        ratingView.settings.starSize = 15
+        ratingView.settings.starMargin = 2
+        thumbImageView.layer.cornerRadius = 5
+        thumbImageView.clipsToBounds = true
+    }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+    }
+}
+
+fileprivate let storyboardName = "MGVideoPlayer"
+fileprivate let controllerIdentifier = "MGVideoPlayerListController"
+fileprivate let resourceName = "MGVideoPlayerKit"
+fileprivate let resourceExtension = "bundle"

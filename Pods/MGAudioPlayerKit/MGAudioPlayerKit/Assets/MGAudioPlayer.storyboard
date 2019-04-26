@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="3ul-ol-NxQ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="f5N-dH-MHr">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -72,8 +71,10 @@
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="jasonmomoa" translatesAutoresizingMaskIntoConstraints="NO" id="83v-rB-MxP">
                                                                     <rect key="frame" x="0.0" y="17.5" width="40" height="40"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="width" constant="40" id="Hn4-qs-pWW"/>
-                                                                        <constraint firstAttribute="height" constant="40" id="y5b-mG-chO"/>
+                                                                        <constraint firstAttribute="width" secondItem="83v-rB-MxP" secondAttribute="height" multiplier="1:1" id="qMa-aJ-pDW"/>
+                                                                        <constraint firstAttribute="height" constant="40" id="y5b-mG-chO">
+                                                                            <variation key="heightClass=regular-widthClass=regular" constant="100"/>
+                                                                        </constraint>
                                                                     </constraints>
                                                                 </imageView>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="RSq-0b-WBy">
@@ -253,7 +254,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="315" height="28"/>
                                                 <subviews>
                                                     <slider opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="40" minValue="0.0" maxValue="120" translatesAutoresizingMaskIntoConstraints="NO" id="lPH-ZT-Mi1">
-                                                        <rect key="frame" x="-2" y="0.0" width="319" height="5"/>
+                                                        <rect key="frame" x="-2" y="0.0" width="319" height="4.5"/>
                                                         <color key="maximumTrackTintColor" red="0.25098039220000001" green="0.27058823529999998" blue="0.35686274509999999" alpha="0.71504510310000002" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <color key="thumbTintColor" red="0.16078431369999999" green="0.69019607839999997" blue="0.75686274509999996" alpha="1" colorSpace="calibratedRGB"/>
                                                         <connections>
@@ -263,16 +264,16 @@
                                                         </connections>
                                                     </slider>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="asr-KD-SWc">
-                                                        <rect key="frame" x="0.0" y="14" width="315" height="14"/>
+                                                        <rect key="frame" x="0.0" y="13.5" width="315" height="14.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="acz-yc-lj0">
-                                                                <rect key="frame" x="0.0" y="0.0" width="30.5" height="14"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="30.5" height="14.5"/>
                                                                 <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="12"/>
                                                                 <color key="textColor" red="0.16078431369999999" green="0.69019607839999997" blue="0.75686274509999996" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G6e-Qe-9VY">
-                                                                <rect key="frame" x="284.5" y="0.0" width="30.5" height="14"/>
+                                                                <rect key="frame" x="284.5" y="0.0" width="30.5" height="14.5"/>
                                                                 <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="12"/>
                                                                 <color key="textColor" red="0.086274509799999996" green="0.59215686270000001" blue="0.6588235294" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -379,24 +380,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xUB-Nn-5uv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1718" y="105"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="C7b-hC-XTC">
-            <objects>
-                <navigationController storyboardIdentifier="AudioPlayerNavController" automaticallyAdjustsScrollViewInsets="NO" id="3ul-ol-NxQ" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="gJ3-eF-g2T">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="f5N-dH-MHr" kind="relationship" relationship="rootViewController" id="cAT-1F-soO"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="6z9-IB-j20" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="282" y="105"/>
         </scene>
     </scenes>
     <resources>

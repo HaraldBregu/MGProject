@@ -28,7 +28,7 @@ import AVFoundation
 import SDWebImage
 
 
-class MGAudioPlayerController: UIViewController {
+public class MGAudioPlayerController: UIViewController {
     @IBOutlet var currentTimeLabel: UILabel!
     @IBOutlet var totalTimeLabel: UILabel!
     @IBOutlet var titleLabel: UILabel!
@@ -44,150 +44,151 @@ class MGAudioPlayerController: UIViewController {
     @IBOutlet var optionButton: UIButton!
     @IBOutlet var shareButton: UIButton!
     @IBOutlet var slider: UISlider!
-    private var audioPlayer:AVAudioPlayer!
-    public var audios:[MGAudioPlayerData]!
-    public var currentAudio:MGAudioPlayerData!
-    private var isLiked:Bool = false
-    private var isRepeat:Bool = false
-    private var isShuffle:Bool = false
-    private var timer:Timer!
+    private var audioPlayer: AVAudioPlayer!
+    
+    private var isLiked: Bool = false
+    private var isRepeat: Bool = false
+    private var isShuffle: Bool = false
+    private var timer: Timer!
 
-    override func viewDidLoad() {
+    public var delegate: MGAudioPlayerControllerDelegate?
+    public var dataSource: MGAudioPlayerControllerDataSource?
+    public var assets: MGAudioPlayerAsset!
+    public var item: MGAudioPlayerItem!
+
+    override public func viewDidLoad() {
         super.viewDidLoad()
         
-//        title = "mg.audioplayer.nav.title".localized
-//        navigationItem.title = "mg.audioplayer.nav.title".localized
-//        view.backgroundColor = MGGeneral.View.Theme.dark
-        navigationController?.navigationBar.isTranslucent = false
-//        navigationController?.navigationBar.barTintColor = MGGeneral.NavBar.Theme.dark
-//        navigationController?.navigationBar.tintColor = MGGeneral.NavBar.Theme.light
-        navigationController?.navigationBar.barStyle = .black
-        navigationController?.navigationBar.shadowImage = UIImage()
+        title = assets.string.title
+        navigationItem.title = assets.string.navigationBarTitle
         
-        // ImageView
+        view.backgroundColor = assets.color.view
+        navigationController?.navigationBar.barTintColor = assets.color.navigationBar
+        navigationController?.navigationBar.tintColor = assets.color.navigationBarContent
+        navigationItem.largeTitleDisplayMode = .never
+
+        if let items = dataSource?.leftBarButtonItems(self) {
+            items.forEach({ $0.target = self })
+            items.forEach({ $0.action = #selector(navigationItemAction(barButtonItem:)) })
+            navigationItem.leftBarButtonItems = items
+            navigationItem.leftItemsSupplementBackButton = true
+        }
+        
+        if let items = dataSource?.rightBarButtonItems(self) {
+            items.forEach({ $0.target = self })
+            items.forEach({ $0.action = #selector(navigationItemAction(barButtonItem:)) })
+            navigationItem.rightBarButtonItems = items
+        }
+
         playerImageView.layer.cornerRadius = 8
         
-        // Start player
         startAudioPlayer()
         startAudioSession()
-        
-        // Timer
         startTimer()
-        
-        // Update view
         updateView()
         
-        // Slider
         slider.value = 0.0
         slider.minimumValue = 0.0
         slider.maximumValue = Float(audioPlayer.duration)
-//        slider.minimumTrackTintColor = primaryColor
-//        slider.setThumbImage(thumbImage, for: .normal)
-//        slider.setThumbImage(thumbImageSelected, for: .highlighted)
-//        slider.setThumbImage(thumbImageSelected, for: .selected)
-//
-//        // Title Author label
-//        titleLabel.textColor = secondaryColor
-//        authorLabel.textColor = primaryColor
-//
-//        // Duration label
-//        currentTimeLabel.textColor = primaryColor
-//        totalTimeLabel.textColor = primaryColor
-//        currentTimeLabel.text = audioTimeProgress
-//        totalTimeLabel.text = audioTimeRemain
-//
-//        // Play Pause button
-//        playPauseButton.setImage(audioPlayer.isPlaying ? pauseImage : playImage, for: .normal)
-//        playPauseButton.setImage(audioPlayer.isPlaying ? pauseImage : playImage, for: .highlighted)
-//        playPauseButton.setImage(audioPlayer.isPlaying ? pauseImage : playImage, for: .selected)
-//
-//        // Back button
-//        backwardButton.setImage(stepBackwardImage, for: .normal)
-//        backwardButton.setImage(stepBackwardImage, for: .highlighted)
-//        backwardButton.setImage(stepBackwardImage, for: .selected)
-//
-//        // Forward button
-//        forwardButton.setImage(stepForwardImage, for: .normal)
-//        forwardButton.setImage(stepForwardImage, for: .highlighted)
-//        forwardButton.setImage(stepForwardImage, for: .selected)
-//
-//        // Like button
-//        likeButton.setImage(isLiked ? heartImage : heart0Image, for: .normal)
-//        likeButton.setImage(isLiked ? heartImage : heart0Image, for: .highlighted)
-//        likeButton.setImage(isLiked ? heartImage : heart0Image, for: .selected)
-//
-//        // Share button
-//        shareButton.setImage(shareImage, for: .normal)
-//        shareButton.setImage(shareImage, for: .highlighted)
-//        shareButton.setImage(shareImage, for: .selected)
-//
-//        // Option button
-//        optionButton.setImage(optionImage, for: .normal)
-//        optionButton.setImage(optionImage, for: .highlighted)
-//        optionButton.setImage(optionImage, for: .selected)
-//
-//        // Repeat button
-//        repeatButton.setImage(repeatImageUnactive, for: .normal)
-//        repeatButton.setImage(repeatImageUnactive, for: .highlighted)
-//        repeatButton.setImage(repeatImageUnactive, for: .selected)
-//
-//        // Shuffle button
-//        shuffleButton.setImage(shuffleImageUnactive, for: .normal)
-//        shuffleButton.setImage(shuffleImageUnactive, for: .highlighted)
-//        shuffleButton.setImage(shuffleImageUnactive, for: .selected)
+        slider.minimumTrackTintColor = assets.color.sliderMinimumTrackColor
+        slider.setThumbImage(thumbImage, for: .normal)
+        slider.setThumbImage(thumbImageSelected, for: .highlighted)
+        slider.setThumbImage(thumbImageSelected, for: .selected)
+
+        titleLabel.textColor = assets.color.playerTitle
+        if let font = assets.font.playerTitle {
+            titleLabel.font = font
+        }
+        
+        authorLabel.textColor = assets.color.playerSubtitle
+        if let font = assets.font.playerSubtitle {
+            authorLabel.font = font
+        }
+        
+        yearLabel.textColor = assets.color.playerYearPub
+        if let font = assets.font.playerYearPub {
+            yearLabel.font = font
+        }
+        
+        currentTimeLabel.textColor = assets.color.timeProgress
+        totalTimeLabel.textColor = assets.color.timeProgress
+        
+        currentTimeLabel.text = audioTimeProgress
+        totalTimeLabel.text = audioTimeRemain
+
+        playPauseButton.setImage(audioPlayer.isPlaying ? pauseImage : playImage, for: .normal)
+        playPauseButton.setImage(audioPlayer.isPlaying ? pauseImage : playImage, for: .highlighted)
+        playPauseButton.setImage(audioPlayer.isPlaying ? pauseImage : playImage, for: .selected)
+
+        backwardButton.setImage(stepBackwardImage, for: .normal)
+        backwardButton.setImage(stepBackwardImage, for: .highlighted)
+        backwardButton.setImage(stepBackwardImage, for: .selected)
+
+        forwardButton.setImage(stepForwardImage, for: .normal)
+        forwardButton.setImage(stepForwardImage, for: .highlighted)
+        forwardButton.setImage(stepForwardImage, for: .selected)
+
+        likeButton.setImage(isLiked ? heartImage : heart0Image, for: .normal)
+        likeButton.setImage(isLiked ? heartImage : heart0Image, for: .highlighted)
+        likeButton.setImage(isLiked ? heartImage : heart0Image, for: .selected)
+
+        shareButton.setImage(shareImage, for: .normal)
+        shareButton.setImage(shareImage, for: .highlighted)
+        shareButton.setImage(shareImage, for: .selected)
+
+        optionButton.accessibilityIdentifier = "OPTION"
+        optionButton.setImage(optionImage, for: .normal)
+        optionButton.setImage(optionImage, for: .highlighted)
+        optionButton.setImage(optionImage, for: .selected)
+
+        repeatButton.setImage(repeatImageUnactive, for: .normal)
+        repeatButton.setImage(repeatImageUnactive, for: .highlighted)
+        repeatButton.setImage(repeatImageUnactive, for: .selected)
+
+        shuffleButton.setImage(shuffleImageUnactive, for: .normal)
+        shuffleButton.setImage(shuffleImageUnactive, for: .highlighted)
+        shuffleButton.setImage(shuffleImageUnactive, for: .selected)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.prefersLargeTitles = false
         navigationController?.navigationBar.shadowImage = UIImage()
         audioPlayer.play()
-//        playPauseButton.setImage(audioPlayer.isPlaying ? pauseImage : playImage, for: .normal)
-//        playPauseButton.setImage(audioPlayer.isPlaying ? pauseImage : playImage, for: .highlighted)
-//        playPauseButton.setImage(audioPlayer.isPlaying ? pauseImage : playImage, for: .selected)
+        playPauseButton.setImage(audioPlayer.isPlaying ? pauseImage : playImage, for: .normal)
+        playPauseButton.setImage(audioPlayer.isPlaying ? pauseImage : playImage, for: .highlighted)
+        playPauseButton.setImage(audioPlayer.isPlaying ? pauseImage : playImage, for: .selected)
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
+        
+    override public func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.shadowImage = nil
         audioPlayer.pause()
-//        playPauseButton.setImage(audioPlayer.isPlaying ? pauseImage : playImage, for: .normal)
-//        playPauseButton.setImage(audioPlayer.isPlaying ? pauseImage : playImage, for: .highlighted)
-//        playPauseButton.setImage(audioPlayer.isPlaying ? pauseImage : playImage, for: .selected)
+        playPauseButton.setImage(audioPlayer.isPlaying ? pauseImage : playImage, for: .normal)
+        playPauseButton.setImage(audioPlayer.isPlaying ? pauseImage : playImage, for: .highlighted)
+        playPauseButton.setImage(audioPlayer.isPlaying ? pauseImage : playImage, for: .selected)
     }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-    }
-    
-    // MARK - Funtions
     
     @IBAction func playPause(_ sender: UIButton) {
         if audioPlayer.isPlaying {
             audioPlayer.pause()
-//            playPauseButton.setImage(playImage, for: .normal)
-//            playPauseButton.setImage(playImage, for: .highlighted)
-//            playPauseButton.setImage(playImage, for: .selected)
+            playPauseButton.setImage(playImage, for: .normal)
+            playPauseButton.setImage(playImage, for: .highlighted)
+            playPauseButton.setImage(playImage, for: .selected)
         } else {
             audioPlayer.currentTime = TimeInterval(slider.value)
             audioPlayer.play()
             if timer.isValid == false {
                 startTimer()
             }
-//            playPauseButton.setImage(pauseImage, for: .normal)
-//            playPauseButton.setImage(pauseImage, for: .highlighted)
-//            playPauseButton.setImage(pauseImage, for: .selected)
+            playPauseButton.setImage(pauseImage, for: .normal)
+            playPauseButton.setImage(pauseImage, for: .highlighted)
+            playPauseButton.setImage(pauseImage, for: .selected)
         }
     }
     
     @IBAction func backward(_ sender: UIButton) {
         audioPlayer.stop()
-        currentAudio = prevAudio ?? currentAudio
+        item = prevAudio ?? item
         startAudioPlayer()
         audioPlayer.play()
         updateView()
@@ -195,7 +196,7 @@ class MGAudioPlayerController: UIViewController {
     
     @IBAction func forward(_ sender: UIButton) {
         audioPlayer.stop()
-        currentAudio = nextAudio ?? currentAudio
+        item = nextAudio ?? item
         startAudioPlayer()
         audioPlayer.play()
         updateView()
@@ -221,61 +222,51 @@ class MGAudioPlayerController: UIViewController {
     }
     
     @IBAction func share(_ sender: UIButton) {
-        let items = [currentAudio.title!, currentAudio.author!, currentAudio.thumbUrlString!]
+        let items = [item.title!, item.author!, item.thumbUrlString!]
         let activityIndicator = UIActivityViewController(activityItems: items, applicationActivities: nil)
         present(activityIndicator, animated: true)
+        if let popover = activityIndicator.popoverPresentationController {
+            popover.sourceView = view
+            popover.sourceRect = sender.bounds
+        }
     }
     
     @IBAction func like(_ sender: UIButton) {
         isLiked = !isLiked
-//        likeButton.setImage(isLiked ? heartImage : heart0Image, for: .normal)
-//        likeButton.setImage(isLiked ? heartImage : heart0Image, for: .highlighted)
-//        likeButton.setImage(isLiked ? heartImage : heart0Image, for: .selected)
+        likeButton.setImage(isLiked ? heartImage : heart0Image, for: .normal)
+        likeButton.setImage(isLiked ? heartImage : heart0Image, for: .highlighted)
+        likeButton.setImage(isLiked ? heartImage : heart0Image, for: .selected)
     }
     
     @IBAction func options(_ sender: UIButton) {
-        
-//        let alertController = UIAlertController(title: "mg.audioplayer.btm.option.sheet.title".localized, message: "mg.audioplayer.btm.option.sheet.description".localized, preferredStyle: .actionSheet)
-//
-//        alertController.addAction(UIAlertAction(title: "mg.audioplayer.btm.option.sheet.opton.one".localized, style: .default, handler: { (action) in
-//
-//        }))
-//
-//        alertController.addAction(UIAlertAction(title: "mg.audioplayer.btm.option.sheet.opton.two".localized, style: .default, handler: { (action) in
-//
-//        }))
-//
-//        alertController.addAction(UIAlertAction(title: "mg.audioplayer.btm.option.sheet.opton.three".localized, style: .default, handler: { (action) in
-//
-//        }))
-//
-//        alertController.addAction(UIAlertAction(title: "mg.audioplayer.btm.option.sheet.opton.cancel".localized, style: .cancel, handler: { (action) in
-//
-//        }))
-//
-//        present(alertController, animated: true) { }
+        delegate?.controller(self, didTapButton: sender)
     }
     
     @IBAction func `repeat`(_ sender: UIButton) {
         isRepeat = !isRepeat
-//        let image = isRepeat ? repeatImageActive :  repeatImageUnactive
-//        repeatButton.setImage(image, for: .normal)
-//        repeatButton.setImage(image, for: .highlighted)
-//        repeatButton.setImage(image, for: .selected)
+        let image = isRepeat ? repeatImageActive :  repeatImageUnactive
+        repeatButton.setImage(image, for: .normal)
+        repeatButton.setImage(image, for: .highlighted)
+        repeatButton.setImage(image, for: .selected)
     }
     
     @IBAction func shuffle(_ sender: UIButton) {
         isShuffle = !isShuffle
-//        let image = isShuffle ? shuffleImageActive :  shuffleImageUnactive
-//        shuffleButton.setImage(image, for: .normal)
-//        shuffleButton.setImage(image, for: .highlighted)
-//        shuffleButton.setImage(image, for: .selected)
+        let image = isShuffle ? shuffleImageActive :  shuffleImageUnactive
+        shuffleButton.setImage(image, for: .normal)
+        shuffleButton.setImage(image, for: .highlighted)
+        shuffleButton.setImage(image, for: .selected)
     }
     
+    @objc func navigationItemAction(barButtonItem: UIBarButtonItem) {
+        self.delegate?.controller(self, didTapBarButtonItem: barButtonItem)
+    }
+
 }
 
 extension MGAudioPlayerController: AVAudioPlayerDelegate {
-    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+   
+    public func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
         if isRepeat {
             audioPlayer.stop()
             startAudioPlayer()
@@ -283,19 +274,20 @@ extension MGAudioPlayerController: AVAudioPlayerDelegate {
             updateView()
         } else {
             audioPlayer.stop()
-            currentAudio = nextAudio ?? currentAudio
+            item = nextAudio ?? item
             startAudioPlayer()
             audioPlayer.play()
             updateView()
         }
     }
+    
 }
 
 extension MGAudioPlayerController {
     
     private func startAudioPlayer() {
-        let bundle = Bundle(for: MGAudioPlayer.self)
-        let path = bundle.path(forResource: currentAudio.filename, ofType: currentAudio.filetype)!
+        let bundle = assets.data.bundle
+        guard let path = bundle.path(forResource: item.filename, ofType: item.filetype) else { return }
         let url = URL(fileURLWithPath: path)
         do {
             audioPlayer = try AVAudioPlayer(contentsOf: url)
@@ -318,35 +310,39 @@ extension MGAudioPlayerController {
     private func updateView() {
         playerImageView.sd_setShowActivityIndicatorView(true)
         playerImageView.sd_setIndicatorStyle(.white)
-        playerImageView.sd_setImage(with: URL(string: currentAudio.thumbUrlString))
-        titleLabel.text = currentAudio.title
-        authorLabel.text = currentAudio.author
-        yearLabel.text = currentAudio.pubYear
+        playerImageView.sd_setImage(with: URL(string: item.thumbUrlString))
+        titleLabel.text = item.title
+        authorLabel.text = item.author
+        yearLabel.text = item.pubYear
         slider.maximumValue = Float(audioPlayer.duration)
     }
     
-    private var nextAudio:MGAudioPlayerData? {
-        let newAudios = isShuffle ? audios.shuffled() : audios
-        return newAudios?[nextAudioIndex] ?? audios.first
+    private var nextAudio:MGAudioPlayerItem? {
+        let items = assets.data.items
+        let newAudios = isShuffle ? items?.shuffled() : items
+        return newAudios?[nextAudioIndex] ?? items?.first
     }
     
-    private var prevAudio:MGAudioPlayerData? {
-        return audios?[prevAudioIndex] ?? audios.first
+    private var prevAudio:MGAudioPlayerItem? {
+        let items = assets.data.items
+        return items?[prevAudioIndex] ?? items?.first
     }
     
     private var currentAudioIndex:Int {
-        return audios.index(where: { $0 == currentAudio }) ?? 0
+        return assets.data.items?.index(where: { $0 == item }) ?? 0
     }
     
     private var nextAudioIndex:Int {
+        let items = assets.data.items ?? []
         let nextIdx = currentAudioIndex + 1
-        let indexIsValid = audios.indices.contains(nextIdx)
+        let indexIsValid = items.indices.contains(nextIdx)
         return indexIsValid ? nextIdx : 0
     }
     
     private var prevAudioIndex:Int {
+        let items = assets.data.items ?? []
         let nextIdx = currentAudioIndex - 1
-        let indexIsValid = audios.indices.contains(nextIdx)
+        let indexIsValid = items.indices.contains(nextIdx)
         return indexIsValid ? nextIdx : 0
     }
     
@@ -406,108 +402,60 @@ extension MGAudioPlayerController {
 
 extension MGAudioPlayerController {
     
-//    private var playImage:UIImage {
-//        let play = IoniconsType.play
-//        let icon = FontType.ionicons(play)
-//        return UIImage(icon: icon, size: playerSize, textColor: secondaryColor)
-//    }
-//
-//    private var pauseImage:UIImage {
-//        let iosPause = IoniconsType.pause
-//        let icon = FontType.ionicons(iosPause)
-//        return UIImage(icon: icon, size: playerSize, textColor: secondaryColor)
-//    }
-//
-//    private var stepBackwardImage:UIImage {
-//        let iosSkipbackward = IoniconsType.iosSkipbackward
-//        let icon = FontType.ionicons(iosSkipbackward)
-//        return UIImage(icon: icon, size: playerSize, textColor: secondaryColor)
-//    }
-//
-//    private var stepForwardImage:UIImage {
-//        let iosSkipforward = IoniconsType.iosSkipforward
-//        let icon = FontType.ionicons(iosSkipforward)
-//        return UIImage(icon: icon, size: playerSize, textColor: secondaryColor)
-//    }
-//
-//    private var shuffleImageUnactive:UIImage {
-//        let iosShuffle = IoniconsType.shuffle
-//        let icon = FontType.ionicons(iosShuffle)
-//        return UIImage(icon: icon, size: playerSize, textColor: secondaryColor.withAlphaComponent(0.4))
-//    }
-//
-//    private var shuffleImageActive:UIImage {
-//        let iosShuffle = IoniconsType.shuffle
-//        let icon = FontType.ionicons(iosShuffle)
-//        return UIImage(icon: icon, size: playerSize, textColor: secondaryColor)
-//    }
-//
-//    private var repeatImageUnactive:UIImage {
-//        let iosShuffle = IoniconsType.loop
-//        let icon = FontType.ionicons(iosShuffle)
-//        return UIImage(icon: icon, size: playerSize, textColor: secondaryColor.withAlphaComponent(0.4))
-//    }
-//
-//    private var repeatImageActive:UIImage {
-//        let iosShuffle = IoniconsType.loop
-//        let icon = FontType.ionicons(iosShuffle)
-//        return UIImage(icon: icon, size: playerSize, textColor: secondaryColor)
-//    }
-//
-//    private var heartImage:UIImage {
-//        let heartIcon = IoniconsType.iosHeart
-//        let icon = FontType.ionicons(heartIcon)
-//        return UIImage(icon: icon, size: playerSize, textColor: secondaryColor)
-//    }
-//
-//    private var heart0Image:UIImage {
-//        let heartIcon = IoniconsType.iosHeartOutline
-//        let icon = FontType.ionicons(heartIcon)
-//        return UIImage(icon: icon, size: playerSize, textColor: secondaryColor.withAlphaComponent(0.4))
-//    }
-//
-//    private var optionImage:UIImage {
-//        let moreIcon = IoniconsType.androidMoreHorizontal
-//        let icon = FontType.ionicons(moreIcon)
-//        return UIImage(icon: icon, size: playerSize, textColor: secondaryColor.withAlphaComponent(0.4), backgroundColor: .clear)
-//    }
-//
-//    private var shareImage:UIImage {
-//        let shareIcon = IoniconsType.androidShare
-//        let icon = FontType.ionicons(shareIcon)
-//        return UIImage(icon: icon, size: playerSize, textColor: secondaryColor.withAlphaComponent(0.4), backgroundColor: .clear)
-//    }
-//
-//    private var thumbImage:UIImage {
-//        let circleIcon = FASolidType.circle
-//        let icon = FontType.fontAwesomeSolid(circleIcon)
-//        return UIImage(icon: icon, size: thumbSizeNormal, textColor: primaryColor, backgroundColor: .clear)
-//    }
-//
-//    private var thumbImageSelected:UIImage {
-//        let circleIcon = FASolidType.circle
-//        let icon = FontType.fontAwesomeSolid(circleIcon)
-//        return UIImage(icon: icon, size: thumbSizeSelected, textColor: primaryColor, backgroundColor: .clear)
-//    }
-//
-    private var thumbSizeNormal: CGSize {
-        return CGSize(width: 10, height: 10)
+    private var thumbImage: UIImage {
+        return assets.image.thumbNormal
     }
     
-    private var thumbSizeSelected: CGSize {
-        return CGSize(width: 15, height: 15)
+    private var thumbImageSelected: UIImage {
+        return assets.image.thumbSelected
+    }
+
+    private var playImage: UIImage {
+        return assets.image.play
+    }
+
+    private var pauseImage: UIImage {
+        return assets.image.pause
     }
     
-    private var playerSize:CGSize {
-        return CGSize(width: 100, height: 100)
+    private var stepBackwardImage: UIImage {
+        return assets.image.stepBackward
     }
-//
-//    private var primaryColor:UIColor {
-//        return UIColor("#E21C3A")
-//    }
-    
-    private var secondaryColor:UIColor {
-        return UIColor.white
+
+    private var stepForwardImage: UIImage {
+        return assets.image.stepForward
+    }
+
+    private var shuffleImageUnactive: UIImage {
+        return assets.image.shuffleUnactive
+    }
+
+    private var shuffleImageActive: UIImage {
+        return assets.image.shuffleActive
+    }
+
+    private var repeatImageUnactive: UIImage {
+        return assets.image.repeatUnactive
+    }
+
+    private var repeatImageActive: UIImage {
+        return assets.image.repeatActive
+    }
+
+    private var heartImage: UIImage {
+        return assets.image.heartActive
+    }
+
+    private var heart0Image: UIImage {
+        return assets.image.heartUnactive
+    }
+
+    private var optionImage: UIImage {
+        return assets.image.option
+    }
+
+    private var shareImage: UIImage {
+        return assets.image.share
     }
     
 }

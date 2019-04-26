@@ -25,50 +25,93 @@
 
 import Foundation
 
-public class MGAudioPlayer {
-    
-    public init() {
-        listController = _listController
-    }
-    
-    public var listController:MGAudioPlayerListController!
-//    private var dataSource: MGLandingDataSource!
-//    private var delegate: MGLandingDelegate!
+
+public protocol MGAudioPlayerAsset {
+    var string: MGAudioPlayerString { get set }
+    var font: MGAudioPlayerFont { get set }
+    var image: MGAudioPlayerImage { get set }
+    var color: MGAudioPlayerColor { get set }
+    var data: MGAudioPlayerData { get set }
 }
 
-extension MGAudioPlayer {
-    
-    private var _listController: MGAudioPlayerListController {
-        guard let controller = _storyboard.instantiateViewController(withIdentifier: listControllerIdentifier) as? MGAudioPlayerListController
-            else { return MGAudioPlayerListController() }
-        return controller
-    }
-    
-    private var _controller: MGAudioPlayerController {
-        guard let controller = _storyboard.instantiateViewController(withIdentifier: controllerIdentifier) as? MGAudioPlayerController
-            else { return MGAudioPlayerController() }
-        return controller
-    }
-    
-    private var _storyboard:UIStoryboard {
-        return UIStoryboard(name: _storyboardName, bundle: _storyboardBundle)
-    }
-    
-    private var _storyboardName:String {
-        return storyboardName
-    }
-    
-    private var _storyboardBundle:Bundle {
-        let podBundle = Bundle(for: MGAudioPlayer.self)
-        let bundleURL = podBundle.url(forResource: resourceName, withExtension: resourceExtension)
-        let bundle = Bundle(url: bundleURL!)!
-        return bundle
-    }
-    
+public protocol MGAudioPlayerString {
+    var title:String { get set }
+    var navigationBarTitle:String { get set }
+    var searchBarPlaceholder:String { get set }
+    var navigationListPlayerPrompt:String? { get set }
+    var navigationAudioPlayerPrompt:String? { get set }
 }
 
-fileprivate let storyboardName = "MGAudioPlayer"
-fileprivate let listControllerIdentifier = "MGAudioPlayerListController"
-fileprivate let controllerIdentifier = "MGAudioPlayerController"
-fileprivate let resourceName = "MGAudioPlayerKit"
-fileprivate let resourceExtension = "bundle"
+public protocol MGAudioPlayerFont {
+    var tableViewCellTitle: UIFont? { get set }
+    var tableViewCellSubtitle: UIFont? { get set }
+    var playerTitle: UIFont? { get set }
+    var playerSubtitle: UIFont? { get set }
+    var playerYearPub: UIFont? { get set }
+}
+
+public protocol MGAudioPlayerImage {
+    var likeNormal: UIImage { get set }
+    var likeSelected: UIImage { get set }
+    var likeHighlighted: UIImage { get set }
+    var shareNormal: UIImage { get set }
+    var tableViewCellIcon: UIImage { get set }
+    var play: UIImage { get set }
+    var pause: UIImage { get set }
+    var thumbNormal: UIImage { get set }
+    var thumbSelected: UIImage { get set }
+    var stepBackward: UIImage { get set }
+    var stepForward: UIImage { get set }
+    var shuffleActive: UIImage { get set }
+    var shuffleUnactive: UIImage { get set }
+    var repeatActive: UIImage { get set }
+    var repeatUnactive: UIImage { get set }
+    var heartActive: UIImage { get set }
+    var heartUnactive: UIImage { get set }
+    var option: UIImage { get set }
+    var share: UIImage { get set }
+}
+
+public protocol MGAudioPlayerColor {
+    var navigationBar: UIColor { get set }
+    var navigationBarContent: UIColor { get set }
+    var toolBar: UIColor { get set }
+    var toolBarContent: UIColor { get set }
+    var view: UIColor { get set }
+    var viewContent: UIColor { get set }
+    var tableView: UIColor { get set }
+    var tableViewSeparator: UIColor { get set }
+    var refresh: UIColor { get set }
+    var searchBarContent: UIColor { get set }
+    var tableViewCell: UIColor { get set }
+    var tableViewCellContent: UIColor { get set }
+    var collectionView: UIColor { get set }
+    var collectionViewContent: UIColor { get set }
+    var sliderMinimumTrackColor: UIColor { get set }
+    var playerTitle: UIColor { get set }
+    var playerSubtitle: UIColor { get set }
+    var playerYearPub: UIColor { get set }
+    var timeProgress: UIColor { get set }
+}
+
+public protocol MGAudioPlayerData {
+    var items: [MGAudioPlayerItem]? { get set }
+    var darkKeyboard: Bool { get set }
+    var bundle: Bundle { get }
+}
+
+public class MGAudioPlayerItem {
+    public var title:String!
+    public var author:String!
+    public var pubYear:String!
+    public var thumbUrlString:String!
+    public var filename:String!
+    public var filetype:String!
+    public init() {}
+}
+
+extension MGAudioPlayerItem: Equatable {
+    public static func == (lhs: MGAudioPlayerItem, rhs: MGAudioPlayerItem) -> Bool {
+        return ObjectIdentifier(lhs) == ObjectIdentifier(rhs)
+    }
+}

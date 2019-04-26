@@ -34,6 +34,7 @@ import MGBrowserKit
 import MGMapKit
 import MGFeedKit
 
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
@@ -41,7 +42,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var landingController: MGLandingController!
     var browserController: MGBrowserController!
     var mapController: MGMapController!
-    
+    var feedController: MGFeedController!
+    var videoPlayerListController: MGVideoPlayerListController!
+    var audioPlayerListController: MGAudioPlayerListController!
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
         MGTemplate.setup()
@@ -87,7 +91,7 @@ extension AppDelegate {
 }
 
 
-extension AppDelegate:MGSideMenuControllerDataSource, MGSideMenuControllerDelegate {
+extension AppDelegate: MGSideMenuControllerDataSource, MGSideMenuControllerDelegate {
    
     var centerController: UIViewController {
         landingController = MGLandingController.instance
@@ -118,32 +122,49 @@ extension AppDelegate:MGSideMenuControllerDataSource, MGSideMenuControllerDelega
             mapController.delegate = self
             return UINavigationController(rootViewController: mapController)
         case "menu.theNextWeb.identifier":
-            let controller = MGFeedController.instance
-            controller.assets = Assets.instance
-            controller.assets.string.title = "The Next Web"
-            controller.assets.data.url = "https://thenextweb.com/feed"
-            return UINavigationController(rootViewController: controller)
+            feedController = MGFeedController.instance
+            feedController.assets = Assets.instance
+            feedController.assets.string.title = "The Next Web"
+            feedController.assets.data.url = "https://thenextweb.com/feed"
+            feedController.dataSource = self
+            feedController.delegate = self
+            return UINavigationController(rootViewController: feedController)
         case "menu.techCrunch.identifier":
-            let controller = MGFeedController.instance
-            controller.assets = Assets.instance
-            controller.assets.string.title = "Tech Crunch"
-            controller.assets.data.url = "https://techcrunch.com/feed"
-            return UINavigationController(rootViewController: controller)
+            feedController = MGFeedController.instance
+            feedController.assets = Assets.instance
+            feedController.assets.string.title = "Tech Crunch"
+            feedController.assets.data.url = "https://techcrunch.com/feed"
+            feedController.dataSource = self
+            feedController.delegate = self
+            return UINavigationController(rootViewController: feedController)
         case "menu.theVerge.identifier":
-            let controller = MGFeedController.instance
-            controller.assets = Assets.instance
-            controller.assets.string.title = "The Verge"
-            controller.assets.data.url = "https://www.theverge.com/rss/index.xml"
-            return UINavigationController(rootViewController: controller)
+            feedController = MGFeedController.instance
+            feedController.assets = Assets.instance
+            feedController.assets.string.title = "The Verge"
+            feedController.assets.data.url = "https://www.theverge.com/rss/index.xml"
+            feedController.dataSource = self
+            feedController.delegate = self
+            return UINavigationController(rootViewController: feedController)
         case "menu.digitalTrend.identifier":
-            let controller = MGFeedController.instance
-            controller.assets = Assets.instance
-            controller.assets.string.title = "Digital Trends"
-            controller.assets.data.url = "https://www.digitaltrends.com/feed"
-            return UINavigationController(rootViewController: controller)
-            //        case "menu.audio.identifier":
-            //            return audioPlayer.listController
-
+            feedController = MGFeedController.instance
+            feedController.assets = Assets.instance
+            feedController.assets.string.title = "Digital Trends"
+            feedController.assets.data.url = "https://www.digitaltrends.com/feed"
+            feedController.dataSource = self
+            feedController.delegate = self
+            return UINavigationController(rootViewController: feedController)
+        case "menu.video.identifier":
+            videoPlayerListController = MGVideoPlayerListController.instance
+            videoPlayerListController.assets = Assets.instance
+            videoPlayerListController.dataSource = self
+            videoPlayerListController.delegate = self
+            return UINavigationController(rootViewController: videoPlayerListController)
+        case "menu.audio.identifier":
+            audioPlayerListController = MGAudioPlayerListController.instance
+            audioPlayerListController.assets = Assets.instance
+            audioPlayerListController.delegate = self
+            audioPlayerListController.dataSource = self
+            return UINavigationController(rootViewController: audioPlayerListController)
         default:
             return nil
         }
@@ -161,18 +182,17 @@ extension AppDelegate:MGSideMenuControllerDataSource, MGSideMenuControllerDelega
 
 extension AppDelegate: MGLandingControllerDataSource, MGLandingControllerDelegate {
 
-    func landingController(_ controller: MGLandingController, didTapBarButtonItem barButtonItem: UIBarButtonItem) {
-        print("Navigation item is: \(String(describing: barButtonItem.accessibilityIdentifier))")
-        sideMenuController.showMenu()
+    func leftBarButtonItems(_ controller: MGLandingController) -> [UIBarButtonItem] {
+        let menuBarButton = UIBarButtonItem()
+        menuBarButton.image = UIImage(icon: .fontAwesomeSolid(.bars), size: CGSize(width: 36, height: 36), textColor: .black)
+        menuBarButton.style = .plain
+        menuBarButton.accessibilityIdentifier = "MENU"
+        
+        return [menuBarButton]
     }
     
-    func leftBarButtonItems(_ controller: MGLandingController) -> [UIBarButtonItem] {
-        let button1 = UIBarButtonItem()
-        button1.image = UIImage(icon: .fontAwesomeSolid(.bars), size: CGSize(width: 36, height: 36), textColor: .black)
-        button1.style = .plain
-        button1.accessibilityIdentifier = "MENU"
-        
-        return [button1]
+    func landingController(_ controller: MGLandingController, didTapBarButtonItem barButtonItem: UIBarButtonItem) {
+        sideMenuController.showMenu()
     }
 
 }
@@ -180,12 +200,12 @@ extension AppDelegate: MGLandingControllerDataSource, MGLandingControllerDelegat
 extension AppDelegate: MGBrowserControllerDataSource, MGBrowserControllerDelegate {
     
     func leftBarButtonItems(_ controller: MGBrowserController) -> [UIBarButtonItem] {
-        let button1 = UIBarButtonItem()
-        button1.image = UIImage(icon: .fontAwesomeSolid(.bars), size: CGSize(width: 36, height: 36), textColor: .black)
-        button1.style = .plain
-        button1.accessibilityIdentifier = "First"
+        let menuBarButton = UIBarButtonItem()
+        menuBarButton.image = UIImage(icon: .fontAwesomeSolid(.bars), size: CGSize(width: 36, height: 36), textColor: .black)
+        menuBarButton.style = .plain
+        menuBarButton.accessibilityIdentifier = "MENU"
         
-        return [button1]
+        return [menuBarButton]
     }
     
     func toolBarButtonItems(_ controller: MGBrowserController) -> [UIBarButtonItem] {
@@ -216,12 +236,12 @@ extension AppDelegate: MGBrowserControllerDataSource, MGBrowserControllerDelegat
 extension AppDelegate: MGMapControllerDataSource, MGMapControllerDelegate {
     
     func leftBarButtonItems(_ controller: MGMapController) -> [UIBarButtonItem] {
-        let button1 = UIBarButtonItem()
-        button1.image = UIImage(icon: .fontAwesomeSolid(.bars), size: CGSize(width: 36, height: 36), textColor: .black)
-        button1.style = .plain
-        button1.accessibilityIdentifier = "First"
+        let menuBarButton = UIBarButtonItem()
+        menuBarButton.image = UIImage(icon: .fontAwesomeSolid(.bars), size: CGSize(width: 36, height: 36), textColor: .black)
+        menuBarButton.style = .plain
+        menuBarButton.accessibilityIdentifier = "MENU"
         
-        return [button1]
+        return [menuBarButton]
     }
     
     func controller(_ controller: MGMapController, didTapBarButtonItem barButtonItem: UIBarButtonItem) {
@@ -229,3 +249,80 @@ extension AppDelegate: MGMapControllerDataSource, MGMapControllerDelegate {
     }
     
 }
+
+extension AppDelegate: MGFeedControllerDataSource, MGFeedControllerDelegate {
+    
+    func leftBarButtonItems(_ controller: MGFeedController) -> [UIBarButtonItem] {
+        let menuBarButton = UIBarButtonItem()
+        menuBarButton.image = UIImage(icon: .fontAwesomeSolid(.bars), size: CGSize(width: 36, height: 36), textColor: .black)
+        menuBarButton.style = .plain
+        menuBarButton.accessibilityIdentifier = "MENU"
+        
+        return [menuBarButton]
+    }
+    
+    func rightBarButtonItems(_ controller: MGFeedController) -> [UIBarButtonItem] {
+        return []
+    }
+    
+    func controller(_ controller: MGFeedController, didTapBarButtonItem barButtonItem: UIBarButtonItem) {
+        sideMenuController.showMenu()
+    }
+    
+}
+
+extension AppDelegate: MGVideoPlayerControllerDataSource, MGVideoPlayerControllerDelegate {
+    
+    func leftBarButtonItems(_ controller: UIViewController) -> [UIBarButtonItem] {
+        if controller is MGVideoPlayerListController {
+            let menuBarButton = UIBarButtonItem()
+            menuBarButton.image = UIImage(icon: .fontAwesomeSolid(.bars), size: CGSize(width: 36, height: 36), textColor: .black)
+            menuBarButton.style = .plain
+            menuBarButton.accessibilityIdentifier = "MENU"
+            
+            return [menuBarButton]
+        }
+
+        let menuBarButton = UIBarButtonItem()
+        menuBarButton.image = UIImage(icon: .fontAwesomeSolid(.bars), size: CGSize(width: 36, height: 36), textColor: .black)
+        menuBarButton.style = .plain
+        menuBarButton.accessibilityIdentifier = "MENU"
+        
+        return [menuBarButton]
+    }
+    
+    func rightBarButtonItems(_ controller: UIViewController) -> [UIBarButtonItem] {
+
+        return []
+    }
+
+    func controller(_ controller: UIViewController, didTapBarButtonItem barButtonItem: UIBarButtonItem) {
+        sideMenuController.showMenu()
+
+        //        let items = [item.title!, item.description!]
+        //        let activityIndicator = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        //        present(activityIndicator, animated: true)
+        //        if let popover = activityIndicator.popoverPresentationController {
+        //            popover.sourceView = self.view
+        //            popover.barButtonItem = barButtonItem
+        //        }
+        
+        //        //        let alertController = UIAlertController(title: "mg.audioplayer.btm.option.sheet.title".localized, message: "mg.audioplayer.btm.option.sheet.description".localized, preferredStyle: .actionSheet)
+        //        //        alertController.addAction(UIAlertAction(title: "mg.audioplayer.btm.option.sheet.opton.one".localized, style: .default, handler: { (action) in
+        //        //        }))
+        //        //        alertController.addAction(UIAlertAction(title: "mg.audioplayer.btm.option.sheet.opton.two".localized, style: .default, handler: { (action) in
+        //        //        }))
+        //        //        alertController.addAction(UIAlertAction(title: "mg.audioplayer.btm.option.sheet.opton.three".localized, style: .default, handler: { (action) in
+        //        //        }))
+        //        //        alertController.addAction(UIAlertAction(title: "mg.audioplayer.btm.option.sheet.opton.cancel".localized, style: .cancel, handler: { (action) in
+        //        //        }))
+        //        //        present(alertController, animated: true) { }
+
+    }
+    
+    func controller(_ controller: UIViewController, didTapButton button: UIButton) {
+    }
+
+}
+
+extension AppDelegate: MGAudioPlayerControllerDataSource, MGAudioPlayerControllerDelegate {}

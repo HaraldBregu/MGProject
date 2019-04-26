@@ -9,19 +9,37 @@
 /* Begin PBXBuildFile section */
 		89F5422F6EDABA53EA207C43 /* Pods_MGProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D40AF9E22E7E5E23B8051DE /* Pods_MGProject.framework */; };
 		A917C761226B335B00C1D1AF /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = A917C760226B335B00C1D1AF /* Assets.swift */; };
+		A91A35DC22735887003AD425 /* pinktry.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A91A35D222735881003AD425 /* pinktry.mp3 */; };
+		A91A35DD22735887003AD425 /* twentyonepilots.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A91A35D322735882003AD425 /* twentyonepilots.mp3 */; };
+		A91A35DE22735887003AD425 /* aviciilevels.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A91A35D422735882003AD425 /* aviciilevels.mp3 */; };
+		A91A35DF22735887003AD425 /* aviciiwakemeup.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A91A35D522735883003AD425 /* aviciiwakemeup.mp3 */; };
+		A91A35E022735887003AD425 /* therainsofcastamere.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A91A35D622735884003AD425 /* therainsofcastamere.mp3 */; };
+		A91A35E122735887003AD425 /* thunderstruck.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A91A35D722735884003AD425 /* thunderstruck.mp3 */; };
+		A91A35E222735887003AD425 /* zombiebadwolves.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A91A35D822735885003AD425 /* zombiebadwolves.mp3 */; };
+		A91A35E322735887003AD425 /* badliar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A91A35D922735886003AD425 /* badliar.mp3 */; };
+		A91A35E422735887003AD425 /* linkinparknumb.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A91A35DA22735886003AD425 /* linkinparknumb.mp3 */; };
+		A91A35E522735887003AD425 /* shoottothrill.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A91A35DB22735887003AD425 /* shoottothrill.mp3 */; };
 		A9960438224EAF5E001FA5EE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A9960437224EAF5E001FA5EE /* Localizable.strings */; };
 		A9A4C032224AC1E10093A7AE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A4C031224AC1E10093A7AE /* AppDelegate.swift */; };
 		A9A4C037224AC1E10093A7AE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9A4C035224AC1E10093A7AE /* Main.storyboard */; };
 		A9A4C039224AC1E40093A7AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9A4C038224AC1E40093A7AE /* Assets.xcassets */; };
 		A9A4C03C224AC1E40093A7AE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9A4C03A224AC1E40093A7AE /* LaunchScreen.storyboard */; };
-		A9A4C044224AC8980093A7AE /* SideMenuComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A4C043224AC8980093A7AE /* SideMenuComponent.swift */; };
-		A9F0F53922591C72004B2CD8 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F0F53822591C72004B2CD8 /* Data.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2D40AF9E22E7E5E23B8051DE /* Pods_MGProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MGProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E8997604702BF6621E0707A /* Pods-MGProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MGProject.release.xcconfig"; path = "Target Support Files/Pods-MGProject/Pods-MGProject.release.xcconfig"; sourceTree = "<group>"; };
 		A917C760226B335B00C1D1AF /* Assets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
+		A91A35D222735881003AD425 /* pinktry.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = pinktry.mp3; sourceTree = "<group>"; };
+		A91A35D322735882003AD425 /* twentyonepilots.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = twentyonepilots.mp3; sourceTree = "<group>"; };
+		A91A35D422735882003AD425 /* aviciilevels.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = aviciilevels.mp3; sourceTree = "<group>"; };
+		A91A35D522735883003AD425 /* aviciiwakemeup.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = aviciiwakemeup.mp3; sourceTree = "<group>"; };
+		A91A35D622735884003AD425 /* therainsofcastamere.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = therainsofcastamere.mp3; sourceTree = "<group>"; };
+		A91A35D722735884003AD425 /* thunderstruck.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = thunderstruck.mp3; sourceTree = "<group>"; };
+		A91A35D822735885003AD425 /* zombiebadwolves.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = zombiebadwolves.mp3; sourceTree = "<group>"; };
+		A91A35D922735886003AD425 /* badliar.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = badliar.mp3; sourceTree = "<group>"; };
+		A91A35DA22735886003AD425 /* linkinparknumb.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = linkinparknumb.mp3; sourceTree = "<group>"; };
+		A91A35DB22735887003AD425 /* shoottothrill.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = shoottothrill.mp3; sourceTree = "<group>"; };
 		A9960437224EAF5E001FA5EE /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		A9A4C02E224AC1E10093A7AE /* MGProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MGProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9A4C031224AC1E10093A7AE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -29,8 +47,6 @@
 		A9A4C038224AC1E40093A7AE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A9A4C03B224AC1E40093A7AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A9A4C03D224AC1E40093A7AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A9A4C043224AC8980093A7AE /* SideMenuComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuComponent.swift; sourceTree = "<group>"; };
-		A9F0F53822591C72004B2CD8 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		FEC423B49DFD4689C64449B9 /* Pods-MGProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MGProject.debug.xcconfig"; path = "Target Support Files/Pods-MGProject/Pods-MGProject.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -52,6 +68,23 @@
 				2D40AF9E22E7E5E23B8051DE /* Pods_MGProject.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A91A35D1227357C7003AD425 /* Files */ = {
+			isa = PBXGroup;
+			children = (
+				A91A35D422735882003AD425 /* aviciilevels.mp3 */,
+				A91A35D522735883003AD425 /* aviciiwakemeup.mp3 */,
+				A91A35D922735886003AD425 /* badliar.mp3 */,
+				A91A35DA22735886003AD425 /* linkinparknumb.mp3 */,
+				A91A35D222735881003AD425 /* pinktry.mp3 */,
+				A91A35DB22735887003AD425 /* shoottothrill.mp3 */,
+				A91A35D622735884003AD425 /* therainsofcastamere.mp3 */,
+				A91A35D722735884003AD425 /* thunderstruck.mp3 */,
+				A91A35D322735882003AD425 /* twentyonepilots.mp3 */,
+				A91A35D822735885003AD425 /* zombiebadwolves.mp3 */,
+			);
+			path = Files;
 			sourceTree = "<group>";
 		};
 		A9A4C025224AC1E10093A7AE = {
@@ -77,11 +110,10 @@
 			children = (
 				A9A4C031224AC1E10093A7AE /* AppDelegate.swift */,
 				A917C760226B335B00C1D1AF /* Assets.swift */,
-				A9A4C043224AC8980093A7AE /* SideMenuComponent.swift */,
-				A9F0F53822591C72004B2CD8 /* Data.swift */,
 				A9A4C035224AC1E10093A7AE /* Main.storyboard */,
 				A9A4C038224AC1E40093A7AE /* Assets.xcassets */,
 				A9960437224EAF5E001FA5EE /* Localizable.strings */,
+				A91A35D1227357C7003AD425 /* Files */,
 				A9A4C03A224AC1E40093A7AE /* LaunchScreen.storyboard */,
 				A9A4C03D224AC1E40093A7AE /* Info.plist */,
 			);
@@ -157,10 +189,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A91A35E422735887003AD425 /* linkinparknumb.mp3 in Resources */,
 				A9A4C03C224AC1E40093A7AE /* LaunchScreen.storyboard in Resources */,
+				A91A35E522735887003AD425 /* shoottothrill.mp3 in Resources */,
+				A91A35E022735887003AD425 /* therainsofcastamere.mp3 in Resources */,
+				A91A35E222735887003AD425 /* zombiebadwolves.mp3 in Resources */,
 				A9960438224EAF5E001FA5EE /* Localizable.strings in Resources */,
+				A91A35E322735887003AD425 /* badliar.mp3 in Resources */,
+				A91A35DC22735887003AD425 /* pinktry.mp3 in Resources */,
+				A91A35DD22735887003AD425 /* twentyonepilots.mp3 in Resources */,
+				A91A35DF22735887003AD425 /* aviciiwakemeup.mp3 in Resources */,
 				A9A4C039224AC1E40093A7AE /* Assets.xcassets in Resources */,
+				A91A35E122735887003AD425 /* thunderstruck.mp3 in Resources */,
 				A9A4C037224AC1E10093A7AE /* Main.storyboard in Resources */,
+				A91A35DE22735887003AD425 /* aviciilevels.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -250,8 +292,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A9F0F53922591C72004B2CD8 /* Data.swift in Sources */,
-				A9A4C044224AC8980093A7AE /* SideMenuComponent.swift in Sources */,
 				A917C761226B335B00C1D1AF /* Assets.swift in Sources */,
 				A9A4C032224AC1E10093A7AE /* AppDelegate.swift in Sources */,
 			);
