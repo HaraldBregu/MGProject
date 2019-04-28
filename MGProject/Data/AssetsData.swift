@@ -1,5 +1,5 @@
 // 
-//  MGAssetsData.swift
+//  AssetsData.swift
 //
 //  Created by harald bregu on 20/04/2019.
 //  Copyright © 2019 Dream Building Company. All rights reserved.
@@ -31,12 +31,12 @@ import MGBrowserKit
 import MGMapKit
 import MGFeedKit
 
-class MGAssetsData {}
+class AssetsData {}
 
-extension MGAssetsData: MGSideMenuAssetData {}
-extension MGAssetsData: MGLandingAssetData {}
-extension MGAssetsData: MGBrowserAssetData {}
-extension MGAssetsData: MGMapAssetData {}
-extension MGAssetsData: MGFeedAssetData {}
-extension MGAssetsData: MGAudioPlayerAssetData {}
-extension MGAssetsData: MGVideoPlayerAssetData {}
+extension AssetsData: SideMenuAssetData {}
+extension AssetsData: LandingAssetData {}
+extension AssetsData: BrowserAssetData {}
+extension AssetsData: MapAssetData {}
+extension AssetsData: FeedAssetData {}
+extension AssetsData: AudioPlayerAssetData {}
+extension AssetsData: VideoPlayerAssetData {}

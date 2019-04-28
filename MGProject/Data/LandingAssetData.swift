@@ -1,5 +1,5 @@
 // 
-//  MGLandingAssetData.swift
+//  LandingAssetData.swift
 //
 //  Created by harald bregu on 28/04/2019.
 //  Copyright © 2019 Dream Building Company. All rights reserved.
@@ -27,11 +27,11 @@ import Foundation
 import MGTemplateKit
 import MGLandingKit
 
-protocol MGLandingAssetData {
+protocol LandingAssetData {
     static var setup: LandingAssets { get }
 }
 
-extension MGLandingAssetData {
+extension LandingAssetData {
     static var setup: LandingAssets {
         
         let isiPad = UIDevice.current.userInterfaceIdiom == .pad

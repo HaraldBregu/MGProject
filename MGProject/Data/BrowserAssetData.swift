@@ -1,5 +1,5 @@
 // 
-//  MGBrowserAssetData.swift
+//  BrowserAssetData.swift
 //
 //  Created by harald bregu on 28/04/2019.
 //  Copyright © 2019 Dream Building Company. All rights reserved.
@@ -27,11 +27,11 @@ import Foundation
 import MGTemplateKit
 import MGBrowserKit
 
-protocol MGBrowserAssetData {
+protocol BrowserAssetData {
     static var setup: MGBrowserAsset { get }
 }
 
-extension MGBrowserAssetData {
+extension BrowserAssetData {
     
     static var setup: MGBrowserAsset {
         

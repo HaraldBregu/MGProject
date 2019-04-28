@@ -1,5 +1,5 @@
 // 
-//  MGFeedAssetData.swift
+//  FeedAssetData.swift
 //
 //  Created by harald bregu on 28/04/2019.
 //  Copyright © 2019 Dream Building Company. All rights reserved.
@@ -27,11 +27,11 @@ import Foundation
 import MGTemplateKit
 import MGFeedKit
 
-protocol MGFeedAssetData {
+protocol FeedAssetData {
     static var setup: FeedAsset { get }
 }
 
-extension MGFeedAssetData {
+extension FeedAssetData {
     
     static var setup: FeedAsset {
         

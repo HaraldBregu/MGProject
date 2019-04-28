@@ -1,5 +1,5 @@
 // 
-//  MGMapAssetData.swift
+//  MapAssetData.swift
 //
 //  Created by harald bregu on 28/04/2019.
 //  Copyright © 2019 Dream Building Company. All rights reserved.
@@ -27,11 +27,11 @@ import Foundation
 import MGTemplateKit
 import MGMapKit
 
-protocol MGMapAssetData {
+protocol MapAssetData {
     static var setup: MapAsset { get }
 }
 
-extension MGMapAssetData {
+extension MapAssetData {
     
     static var setup: MapAsset {
         

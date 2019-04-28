@@ -1,5 +1,5 @@
 // 
-//  MGAudioPlayerAssetData.swift
+//  AudioPlayerAssetData.swift
 //
 //  Created by harald bregu on 28/04/2019.
 //  Copyright © 2019 Dream Building Company. All rights reserved.
@@ -27,11 +27,11 @@ import Foundation
 import MGTemplateKit
 import MGAudioPlayerKit
 
-protocol MGAudioPlayerAssetData {
+protocol AudioPlayerAssetData {
     static var setup: FeedAsset { get }
 }
 
-extension MGAudioPlayerAssetData {
+extension AudioPlayerAssetData {
     
     static var setup: AudioPlayerAsset {
       

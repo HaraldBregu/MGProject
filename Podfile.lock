@@ -204,10 +204,10 @@ CHECKOUT OPTIONS:
     :commit: 146e80d88e05c2af9ad723b4c7b1814ec5018c16
     :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGMapKit.git"
   MGSideMenuKit:
-    :commit: 850201d4453b129bcbd40863101da6dad26ad33a
+    :commit: 1620daa87829fc64e9ae1aa315f9328c04ad9d51
     :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGSideMenuKit.git"
   MGTemplateKit:
-    :commit: 05ab6df2331808118c88bd59624bb1f11ed09412
+    :commit: e2bddd04d445bd37446072eff6a5a4d3da74845f
     :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGTemplateKit.git"
   MGVideoPlayerKit:
     :commit: b7eec7471018370b1859ec4a936c1c692ece2efb

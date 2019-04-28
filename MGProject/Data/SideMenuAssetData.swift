@@ -1,5 +1,5 @@
 // 
-//  MGSideMenuAssetData.swift
+//  SideMenuAssetData.swift
 //
 //  Created by harald bregu on 28/04/2019.
 //  Copyright © 2019 Dream Building Company. All rights reserved.
@@ -27,73 +27,72 @@ import Foundation
 import MGTemplateKit
 import MGSideMenuKit
 
-protocol MGSideMenuAssetData {
-    
+protocol SideMenuAssetData {
     static var setup:SideMenuAssets { get }
 }
 
-extension MGSideMenuAssetData {
+extension SideMenuAssetData {
     
     static var setup: SideMenuAssets {
         
         var newData = [MGSideMenuItem]()
         
         let homeItem = MGSideMenuItem()
-        homeItem.title = "Home".localized
+        homeItem.title = "Dashboard"
         homeItem.icon = #imageLiteral(resourceName: "landing-page")
         homeItem.identifier = "menu.home.identifier"
         newData.append(homeItem)
         
         let theNextWeb = MGSideMenuItem()
-        theNextWeb.title = "The Next Web".localized
+        theNextWeb.title = "The Next Web"
         theNextWeb.icon = #imageLiteral(resourceName: "tnw")
         theNextWeb.identifier = "menu.theNextWeb.identifier"
         newData.append(theNextWeb)
         
         let techCrunch = MGSideMenuItem()
-        techCrunch.title = "Tech Crunch".localized
+        techCrunch.title = "Tech Crunch"
         techCrunch.icon = #imageLiteral(resourceName: "techcrunch")
         techCrunch.identifier = "menu.techCrunch.identifier"
         newData.append(techCrunch)
         
         let theVerge = MGSideMenuItem()
-        theVerge.title = "The Verge".localized
+        theVerge.title = "The Verge"
         theVerge.icon = #imageLiteral(resourceName: "thv")
         theVerge.identifier = "menu.theVerge.identifier"
         newData.append(theVerge)
         
         let digitalTrend = MGSideMenuItem()
-        digitalTrend.title = "Digital Trend".localized
+        digitalTrend.title = "Digital Trend"
         digitalTrend.icon = #imageLiteral(resourceName: "digitaltrend")
         digitalTrend.identifier = "menu.digitalTrend.identifier"
         newData.append(digitalTrend)
         
         let webBrowser = MGSideMenuItem()
-        webBrowser.title = "menu.tableview.item.browser".localized
+        webBrowser.title = "Website Project"
         webBrowser.icon = #imageLiteral(resourceName: "browser")
         webBrowser.identifier = "menu.webBrowser.identifier"
         newData.append(webBrowser)
         
         let maps = MGSideMenuItem()
-        maps.title = "menu.tableview.item.map".localized
+        maps.title = "My Location"
         maps.icon = #imageLiteral(resourceName: "map")
         maps.identifier = "menu.maps.identifier"
         newData.append(maps)
         
         let videoItem = MGSideMenuItem()
-        videoItem.title = "Video".localized
+        videoItem.title = "Video Player"
         videoItem.icon = #imageLiteral(resourceName: "youtube-1")
         videoItem.identifier = "menu.video.identifier"
         newData.append(videoItem)
         
         let audioItem = MGSideMenuItem()
-        audioItem.title = "Audio".localized
+        audioItem.title = "Audio Player"
         audioItem.icon = #imageLiteral(resourceName: "music-player (1)")
         audioItem.identifier = "menu.audio.identifier"
         newData.append(audioItem)
         
         let shopify = MGSideMenuItem()
-        shopify.title = "menu.tableview.item.title.shopify".localized
+        shopify.title = "My Store"
         shopify.icon = #imageLiteral(resourceName: "shopify")
         shopify.identifier = "menu.shopify.identifier"
         newData.append(shopify)
@@ -105,72 +104,79 @@ extension MGSideMenuAssetData {
         newData.append(youtube)
         
         let facebook = MGSideMenuItem()
-        facebook.title = "menu.tableview.item.title.facebook".localized
+        facebook.title = "Facebook Page"
         facebook.icon = #imageLiteral(resourceName: "facebook")
         facebook.identifier = "menu.facebook.identifier"
         newData.append(facebook)
         
         let instagram = MGSideMenuItem()
-        instagram.title = "menu.tableview.item.title.instagram".localized
+        instagram.title = "Instagram Profile"
         instagram.icon = #imageLiteral(resourceName: "instagram")
         instagram.identifier = "menu.instagram.identifier"
         newData.append(instagram)
         
         let soundCloud = MGSideMenuItem()
-        soundCloud.title = "menu.tableview.item.title.soundCloud".localized
+        soundCloud.title = "Soundcloud"
         soundCloud.icon = #imageLiteral(resourceName: "soundcloud")
         soundCloud.identifier = "menu.soundCloud.identifier"
         newData.append(soundCloud)
         
         let tumblr = MGSideMenuItem()
-        tumblr.title = "menu.tableview.item.title.tumblr".localized
+        tumblr.title = "Tumblr"
         tumblr.icon = #imageLiteral(resourceName: "tumblr")
         tumblr.identifier = "menu.tumblr.identifier"
         newData.append(tumblr)
         
         let flick = MGSideMenuItem()
-        flick.title = "menu.tableview.item.title.flick".localized
+        flick.title = "Flickr"
         flick.icon = #imageLiteral(resourceName: "flickr")
         flick.identifier = "menu.flick.identifier"
         newData.append(flick)
         
         let twitter = MGSideMenuItem()
-        twitter.title = "menu.tableview.item.title.twitter".localized
+        twitter.title = "Twitter".localized
         twitter.icon = #imageLiteral(resourceName: "twitter")
         twitter.identifier = "menu.twitter.identifier"
         newData.append(twitter)
         
         let pinterest = MGSideMenuItem()
-        pinterest.title = "menu.tableview.item.title.pinterest".localized
+        pinterest.title = "Pinterest"
         pinterest.icon = #imageLiteral(resourceName: "pinterest")
         pinterest.identifier = "menu.pinterest.identifier"
         newData.append(pinterest)
         
         let settings = MGSideMenuItem()
-        settings.title = "menu.tableview.item.title.settings".localized
+        settings.title = "Settings"
         settings.icon = UIImage(icon: .ionicons(IoniconsType.settings), size: CGSize(width: 30, height: 30), textColor: .white)
         settings.identifier = "menu.settings.identifier"
         newData.append(settings)
-        
+
         return SideMenuAssets(
             string: SideMenuString(
-                title: "Megageneral Inc."),
+                tableViewHeaderTitle: "Megageneral",
+                tableViewHeaderSubtitle: "Multipurpose template"),
             font: SideMenuFont(
-                title: nil),
+                tableViewHeaderTitle: nil,
+                tableViewHeaderSubtitle: nil,
+                tableViewCellTitle: nil),
             image: SideMenuImage(
-                avatar: #imageLiteral(resourceName: "MGIconLight")),
+                tableViewHeaderImage: #imageLiteral(resourceName: "MGIconLight")),
             color: SideMenuColor(
-                backgroundView: MGTemplate.View.backgroundColor,
-                headerView: MGTemplate.View.backgroundColor,
-                cellView: MGTemplate.View.backgroundColor,
-                cellLabel: MGTemplate.View.tintColor),
+                view: MGTemplate.assets.color.sideBar,
+                backgroundView: MGTemplate.assets.color.sideBar,
+                tableView: MGTemplate.assets.color.sideBar,
+                tableViewSeparator: MGTemplate.assets.color.sideBar,
+                tableViewCell: MGTemplate.assets.color.sideBar,
+                tableViewHeader: MGTemplate.assets.color.sideBar,
+                tableViewCellContent: .white,
+                tableViewHeaderContent: .white),
             data: SideMenuData(
                 items: newData,
                 statusBarStyle: .lightContent))
     }
 }
 
-struct SideMenuAssets:MGSideMenuAsset {
+struct SideMenuAssets: MGSideMenuAsset {
     var string: MGSideMenuString
     var font: MGSideMenuFont
     var image: MGSideMenuImage
@@ -178,23 +184,30 @@ struct SideMenuAssets:MGSideMenuAsset {
     var data: MGSideMenuData
 }
 
-struct SideMenuString:MGSideMenuString {
-    var title: String
+struct SideMenuString: MGSideMenuString {
+    var tableViewHeaderTitle: String
+    var tableViewHeaderSubtitle: String
 }
 
-struct SideMenuFont:MGSideMenuFont {
-    var title: UIFont?
+struct SideMenuFont: MGSideMenuFont {
+    var tableViewHeaderTitle: UIFont?
+    var tableViewHeaderSubtitle: UIFont?
+    var tableViewCellTitle: UIFont?
 }
 
-struct SideMenuImage:MGSideMenuImage {
-    var avatar: UIImage?
+struct SideMenuImage: MGSideMenuImage {
+    var tableViewHeaderImage: UIImage?
 }
 
-struct SideMenuColor:MGSideMenuColor {
+struct SideMenuColor: MGSideMenuColor {
+    var view: UIColor
     var backgroundView: UIColor
-    var headerView: UIColor
-    var cellView: UIColor
-    var cellLabel: UIColor
+    var tableView: UIColor
+    var tableViewSeparator: UIColor
+    var tableViewCell: UIColor
+    var tableViewHeader: UIColor
+    var tableViewCellContent: UIColor
+    var tableViewHeaderContent: UIColor
 }
 
 struct SideMenuData:MGSideMenuData {
