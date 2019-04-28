@@ -25,14 +25,6 @@
 
 import Foundation
 
-
-public struct MGLandingItemData {
-    public var title:String!
-    public var description:String!
-    public var thumbUrl:String!
-    public init() {}
-}
-
 public protocol MGLandingAsset {
     var string: MGLandingString { get set }
     var font: MGLandingFont { get set }
@@ -74,4 +66,13 @@ public protocol MGLandingColor {
 public protocol MGLandingData {
     var userImageUrl: URL { get set }
     var collectionItems: [MGLandingItemData] { get set }
+    var enableAds:Bool { get set }
+    var adsUnitId:String { get set }
+}
+
+public struct MGLandingItemData {
+    public var title:String!
+    public var description:String!
+    public var thumbUrl:String!
+    public init() {}
 }

@@ -26,5 +26,5 @@
 import Foundation
 
 public protocol MGLandingControllerDelegate {
-    func landingController(_ controller:MGLandingController, didTapBarButtonItem barButtonItem:UIBarButtonItem)
+    func controller(_ controller: UIViewController, didTapBarButtonItem barButtonItem: UIBarButtonItem)
 }

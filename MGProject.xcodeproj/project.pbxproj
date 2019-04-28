@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		89F5422F6EDABA53EA207C43 /* Pods_MGProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D40AF9E22E7E5E23B8051DE /* Pods_MGProject.framework */; };
-		A917C761226B335B00C1D1AF /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = A917C760226B335B00C1D1AF /* Assets.swift */; };
 		A91A35DC22735887003AD425 /* pinktry.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A91A35D222735881003AD425 /* pinktry.mp3 */; };
 		A91A35DD22735887003AD425 /* twentyonepilots.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A91A35D322735882003AD425 /* twentyonepilots.mp3 */; };
 		A91A35DE22735887003AD425 /* aviciilevels.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A91A35D422735882003AD425 /* aviciilevels.mp3 */; };
@@ -19,6 +18,15 @@
 		A91A35E322735887003AD425 /* badliar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A91A35D922735886003AD425 /* badliar.mp3 */; };
 		A91A35E422735887003AD425 /* linkinparknumb.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A91A35DA22735886003AD425 /* linkinparknumb.mp3 */; };
 		A91A35E522735887003AD425 /* shoottothrill.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A91A35DB22735887003AD425 /* shoottothrill.mp3 */; };
+		A91A35E922737590003AD425 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A91A35E822737590003AD425 /* GoogleService-Info.plist */; };
+		A91B6CC822758FF0001C811E /* MGVideoPlayerAssetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91B6CC722758FEF001C811E /* MGVideoPlayerAssetData.swift */; };
+		A91B6CCA22759174001C811E /* MGAssetsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91B6CC922759174001C811E /* MGAssetsData.swift */; };
+		A91B6CCC227592E7001C811E /* MGAudioPlayerAssetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91B6CCB227592E7001C811E /* MGAudioPlayerAssetData.swift */; };
+		A91B6CCE22759704001C811E /* MGSideMenuAssetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91B6CCD22759704001C811E /* MGSideMenuAssetData.swift */; };
+		A91B6CD022759789001C811E /* MGLandingAssetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91B6CCF22759789001C811E /* MGLandingAssetData.swift */; };
+		A91B6CD2227597E6001C811E /* MGBrowserAssetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91B6CD1227597E6001C811E /* MGBrowserAssetData.swift */; };
+		A91B6CD42275984F001C811E /* MGMapAssetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91B6CD32275984F001C811E /* MGMapAssetData.swift */; };
+		A91B6CD6227598A8001C811E /* MGFeedAssetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91B6CD5227598A8001C811E /* MGFeedAssetData.swift */; };
 		A9960438224EAF5E001FA5EE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A9960437224EAF5E001FA5EE /* Localizable.strings */; };
 		A9A4C032224AC1E10093A7AE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A4C031224AC1E10093A7AE /* AppDelegate.swift */; };
 		A9A4C037224AC1E10093A7AE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9A4C035224AC1E10093A7AE /* Main.storyboard */; };
@@ -29,7 +37,6 @@
 /* Begin PBXFileReference section */
 		2D40AF9E22E7E5E23B8051DE /* Pods_MGProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MGProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E8997604702BF6621E0707A /* Pods-MGProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MGProject.release.xcconfig"; path = "Target Support Files/Pods-MGProject/Pods-MGProject.release.xcconfig"; sourceTree = "<group>"; };
-		A917C760226B335B00C1D1AF /* Assets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		A91A35D222735881003AD425 /* pinktry.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = pinktry.mp3; sourceTree = "<group>"; };
 		A91A35D322735882003AD425 /* twentyonepilots.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = twentyonepilots.mp3; sourceTree = "<group>"; };
 		A91A35D422735882003AD425 /* aviciilevels.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = aviciilevels.mp3; sourceTree = "<group>"; };
@@ -40,6 +47,15 @@
 		A91A35D922735886003AD425 /* badliar.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = badliar.mp3; sourceTree = "<group>"; };
 		A91A35DA22735886003AD425 /* linkinparknumb.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = linkinparknumb.mp3; sourceTree = "<group>"; };
 		A91A35DB22735887003AD425 /* shoottothrill.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = shoottothrill.mp3; sourceTree = "<group>"; };
+		A91A35E822737590003AD425 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A91B6CC722758FEF001C811E /* MGVideoPlayerAssetData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MGVideoPlayerAssetData.swift; sourceTree = "<group>"; };
+		A91B6CC922759174001C811E /* MGAssetsData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MGAssetsData.swift; sourceTree = "<group>"; };
+		A91B6CCB227592E7001C811E /* MGAudioPlayerAssetData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MGAudioPlayerAssetData.swift; sourceTree = "<group>"; };
+		A91B6CCD22759704001C811E /* MGSideMenuAssetData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MGSideMenuAssetData.swift; sourceTree = "<group>"; };
+		A91B6CCF22759789001C811E /* MGLandingAssetData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MGLandingAssetData.swift; sourceTree = "<group>"; };
+		A91B6CD1227597E6001C811E /* MGBrowserAssetData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MGBrowserAssetData.swift; sourceTree = "<group>"; };
+		A91B6CD32275984F001C811E /* MGMapAssetData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MGMapAssetData.swift; sourceTree = "<group>"; };
+		A91B6CD5227598A8001C811E /* MGFeedAssetData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MGFeedAssetData.swift; sourceTree = "<group>"; };
 		A9960437224EAF5E001FA5EE /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		A9A4C02E224AC1E10093A7AE /* MGProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MGProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9A4C031224AC1E10093A7AE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -47,6 +63,7 @@
 		A9A4C038224AC1E40093A7AE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A9A4C03B224AC1E40093A7AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A9A4C03D224AC1E40093A7AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A9D715F022742CA5005A7B20 /* MGProject.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MGProject.entitlements; sourceTree = "<group>"; };
 		FEC423B49DFD4689C64449B9 /* Pods-MGProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MGProject.debug.xcconfig"; path = "Target Support Files/Pods-MGProject/Pods-MGProject.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -87,6 +104,21 @@
 			path = Files;
 			sourceTree = "<group>";
 		};
+		A91B6CC622758FC8001C811E /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				A91B6CC922759174001C811E /* MGAssetsData.swift */,
+				A91B6CCF22759789001C811E /* MGLandingAssetData.swift */,
+				A91B6CD1227597E6001C811E /* MGBrowserAssetData.swift */,
+				A91B6CD32275984F001C811E /* MGMapAssetData.swift */,
+				A91B6CD5227598A8001C811E /* MGFeedAssetData.swift */,
+				A91B6CC722758FEF001C811E /* MGVideoPlayerAssetData.swift */,
+				A91B6CCD22759704001C811E /* MGSideMenuAssetData.swift */,
+				A91B6CCB227592E7001C811E /* MGAudioPlayerAssetData.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		A9A4C025224AC1E10093A7AE = {
 			isa = PBXGroup;
 			children = (
@@ -109,13 +141,15 @@
 			isa = PBXGroup;
 			children = (
 				A9A4C031224AC1E10093A7AE /* AppDelegate.swift */,
-				A917C760226B335B00C1D1AF /* Assets.swift */,
+				A91B6CC622758FC8001C811E /* Data */,
+				A9A4C03D224AC1E40093A7AE /* Info.plist */,
+				A9D715F022742CA5005A7B20 /* MGProject.entitlements */,
+				A91A35E822737590003AD425 /* GoogleService-Info.plist */,
 				A9A4C035224AC1E10093A7AE /* Main.storyboard */,
+				A9A4C03A224AC1E40093A7AE /* LaunchScreen.storyboard */,
 				A9A4C038224AC1E40093A7AE /* Assets.xcassets */,
 				A9960437224EAF5E001FA5EE /* Localizable.strings */,
 				A91A35D1227357C7003AD425 /* Files */,
-				A9A4C03A224AC1E40093A7AE /* LaunchScreen.storyboard */,
-				A9A4C03D224AC1E40093A7AE /* Info.plist */,
 			);
 			path = MGProject;
 			sourceTree = "<group>";
@@ -141,6 +175,7 @@
 				A9A4C02B224AC1E10093A7AE /* Frameworks */,
 				A9A4C02C224AC1E10093A7AE /* Resources */,
 				A7E148BBE511A5FA18067EB0 /* [CP] Embed Pods Frameworks */,
+				F9C8A5C62E8F15B39621DEC7 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -163,6 +198,14 @@
 				TargetAttributes = {
 					A9A4C02D224AC1E10093A7AE = {
 						CreatedOnToolsVersion = 10.1;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -191,6 +234,7 @@
 			files = (
 				A91A35E422735887003AD425 /* linkinparknumb.mp3 in Resources */,
 				A9A4C03C224AC1E40093A7AE /* LaunchScreen.storyboard in Resources */,
+				A91A35E922737590003AD425 /* GoogleService-Info.plist in Resources */,
 				A91A35E522735887003AD425 /* shoottothrill.mp3 in Resources */,
 				A91A35E022735887003AD425 /* therainsofcastamere.mp3 in Resources */,
 				A91A35E222735887003AD425 /* zombiebadwolves.mp3 in Resources */,
@@ -222,19 +266,16 @@
 				"${BUILT_PRODUCTS_DIR}/FeedKit/FeedKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FontBlaster/FontBlaster.framework",
 				"${BUILT_PRODUCTS_DIR}/GSImageViewerController/GSImageViewerController.framework",
-				"${BUILT_PRODUCTS_DIR}/MGAudioPlayerKit/MGAudioPlayerKit.framework",
-				"${BUILT_PRODUCTS_DIR}/MGBrowserKit/MGBrowserKit.framework",
-				"${BUILT_PRODUCTS_DIR}/MGFeedKit/MGFeedKit.framework",
-				"${BUILT_PRODUCTS_DIR}/MGLandingKit/MGLandingKit.framework",
-				"${BUILT_PRODUCTS_DIR}/MGMapKit/MGMapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/MGSideMenuKit/MGSideMenuKit.framework",
 				"${BUILT_PRODUCTS_DIR}/MGTemplateKit/MGTemplateKit.framework",
-				"${BUILT_PRODUCTS_DIR}/MGVideoPlayerKit/MGVideoPlayerKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SideMenuSwift/SideMenuSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftSoup/SwiftSoup.framework",
 				"${BUILT_PRODUCTS_DIR}/UIColor_Hex_Swift/UIColor_Hex_Swift.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
@@ -244,19 +285,16 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FeedKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FontBlaster.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GSImageViewerController.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MGAudioPlayerKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MGBrowserKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MGFeedKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MGLandingKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MGMapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MGSideMenuKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MGTemplateKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MGVideoPlayerKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenuSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftSoup.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIColor_Hex_Swift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -285,6 +323,38 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		F9C8A5C62E8F15B39621DEC7 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MGProject/Pods-MGProject-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/MGAudioPlayerKit/MGAudioPlayerKit.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/MGBrowserKit/MGBrowserKit.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/MGFeedKit/MGFeedKit.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/MGLandingKit/MGLandingKit.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/MGMapKit/MGMapKit.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/MGVideoPlayerKit/MGVideoPlayerKit.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MGAudioPlayerKit.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MGBrowserKit.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MGFeedKit.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MGLandingKit.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MGMapKit.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MGVideoPlayerKit.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MGProject/Pods-MGProject-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -292,8 +362,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A917C761226B335B00C1D1AF /* Assets.swift in Sources */,
+				A91B6CD6227598A8001C811E /* MGFeedAssetData.swift in Sources */,
+				A91B6CCC227592E7001C811E /* MGAudioPlayerAssetData.swift in Sources */,
+				A91B6CCA22759174001C811E /* MGAssetsData.swift in Sources */,
+				A91B6CC822758FF0001C811E /* MGVideoPlayerAssetData.swift in Sources */,
+				A91B6CD42275984F001C811E /* MGMapAssetData.swift in Sources */,
+				A91B6CCE22759704001C811E /* MGSideMenuAssetData.swift in Sources */,
+				A91B6CD022759789001C811E /* MGLandingAssetData.swift in Sources */,
 				A9A4C032224AC1E10093A7AE /* AppDelegate.swift in Sources */,
+				A91B6CD2227597E6001C811E /* MGBrowserAssetData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -440,6 +517,7 @@
 			baseConfigurationReference = FEC423B49DFD4689C64449B9 /* Pods-MGProject.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MGProject/MGProject.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GCF6L5J37K;
 				INFOPLIST_FILE = MGProject/Info.plist;
@@ -448,7 +526,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.dreambuildingteam.MGProject;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dreambuildingteam.MegaGeneral;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -460,6 +538,7 @@
 			baseConfigurationReference = 6E8997604702BF6621E0707A /* Pods-MGProject.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MGProject/MGProject.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GCF6L5J37K;
 				INFOPLIST_FILE = MGProject/Info.plist;
@@ -468,7 +547,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.dreambuildingteam.MGProject;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dreambuildingteam.MegaGeneral;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";

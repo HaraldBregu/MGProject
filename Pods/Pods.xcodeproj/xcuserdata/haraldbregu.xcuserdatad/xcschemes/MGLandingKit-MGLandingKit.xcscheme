@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CF0704DF888A633DD17B483FA88ED989"
+               BlueprintIdentifier = "D58867CD986534C4FD5718050FA6F244"
                BuildableName = "MGLandingKit.bundle"
                BlueprintName = "MGLandingKit-MGLandingKit"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CF0704DF888A633DD17B483FA88ED989"
+            BlueprintIdentifier = "D58867CD986534C4FD5718050FA6F244"
             BuildableName = "MGLandingKit.bundle"
             BlueprintName = "MGLandingKit-MGLandingKit"
             ReferencedContainer = "container:Pods.xcodeproj">

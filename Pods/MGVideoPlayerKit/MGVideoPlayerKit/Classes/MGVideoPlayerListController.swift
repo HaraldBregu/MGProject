@@ -27,9 +27,12 @@ import Foundation
 import AVKit
 import SDWebImage
 import Cosmos
+import SnapKit
+import FirebaseCore
+import GoogleMobileAds
 
 
-public class MGVideoPlayerListController:UIViewController {
+public class MGVideoPlayerListController: UIViewController {
     @IBOutlet var tableView: UITableView!
     public var delegate: MGVideoPlayerControllerDelegate?
     public var dataSource: MGVideoPlayerControllerDataSource?
@@ -37,6 +40,7 @@ public class MGVideoPlayerListController:UIViewController {
 
     var searchController: UISearchController!
     var filteredItems = [MGVideoPlayerItem]()
+    var bannerView: GADBannerView!
 
     public override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,14 +56,13 @@ public class MGVideoPlayerListController:UIViewController {
         navigationController?.navigationBar.isTranslucent = false
 
         definesPresentationContext = true
-        navigationItem.largeTitleDisplayMode = .always
         navigationItem.prompt = assets.string.navigationListPlayerPrompt
         searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = assets.string.searchBarPlaceholder
         searchController.searchBar.tintColor = assets.color.searchBarContent
-        searchController.searchBar.keyboardAppearance = assets.data.darkKeyboard ? .dark : .light
+        searchController.searchBar.keyboardAppearance = assets.data.keyboardAppearance
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = true
         navigationItem.largeTitleDisplayMode = .automatic
@@ -84,21 +87,30 @@ public class MGVideoPlayerListController:UIViewController {
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 112 + 25, bottom: 0, right: 0)
         tableView.backgroundColor = assets.color.tableView
         tableView.separatorColor = assets.color.tableViewSeparator
+        
+        if let assets = assets, assets.data.enableAds == true, assets.data.adsUnitId.count > 0 {
+            bannerView = GADBannerView(adSize: kGADAdSizeBanner)
+            view.addSubview(bannerView)
+            bannerView.snp.makeConstraints { make in
+                make.bottom.equalTo(self.view)
+                make.leading.equalTo(self.view)
+                make.trailing.equalTo(self.view)
+            }
+            bannerView.adUnitID = assets.data.adsUnitId
+            bannerView.rootViewController = self
+            bannerView.load(GADRequest())
+            bannerView.delegate = self
+        }
+
     }
     
     @objc func navigationItemAction(barButtonItem: UIBarButtonItem) {
         self.delegate?.controller(self, didTapBarButtonItem: barButtonItem)
     }
-
-    override public var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
     
-    private var refreshControl:UIRefreshControl {
-        let refreshControl = UIRefreshControl()
-        return refreshControl
+    public override var preferredStatusBarStyle: UIStatusBarStyle {
+        return assets.data.statusBarStyle
     }
-    
 }
 
 extension MGVideoPlayerListController: UITableViewDelegate, UITableViewDataSource {
@@ -112,9 +124,9 @@ extension MGVideoPlayerListController: UITableViewDelegate, UITableViewDataSourc
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "MGVideoPlayerListCell") as? MGVideoPlayerListCell else {
             return UITableViewCell()
         }
+        
         let items = assets.data.items ?? []
         let video = isFiltering ? filteredItems[indexPath.row] : items[indexPath.row]
-//        cell.isFeatured = video.isFeatured
 
         cell.backgroundColor = assets.color.tableViewCell
         cell.contentView.backgroundColor = assets.color.tableViewCell
@@ -124,29 +136,34 @@ extension MGVideoPlayerListController: UITableViewDelegate, UITableViewDataSourc
         cell.thumbImageView.sd_setImage(with: video.thumbUrl)
 
         cell.titleLabel.text = video.title
-        cell.titleLabel.textColor = assets.color.tableViewCellContent
+        cell.titleLabel.textColor = assets.color.tableViewCellTitle
         if let font = assets.font.tableViewCellTitle {
             cell.titleLabel.font = font
         }
         
         cell.descriptionLabel.text = video.description
-        cell.descriptionLabel.textColor = assets.color.tableViewCellContent
+        cell.descriptionLabel.textColor = assets.color.tableViewCellDescription
         if let font = assets.font.tableViewCellDescription {
             cell.descriptionLabel.font = font
         }
 
         cell.yearCategory.text = video.pubYear + " - " + video.category
-        cell.yearCategory.textColor = assets.color.tableViewCellContent
+        cell.yearCategory.textColor = assets.color.tableViewCellSubtitle
         if let font = assets.font.tableViewCellSubtitle {
             cell.yearCategory.font = font
         }
 
         cell.ratingView.rating = video.starCount
-        cell.ratingView.text = String(video.reviewCount)
+        cell.ratingView.text = "(\(String(video.reviewCount)))"
+        cell.ratingView.settings.starSize = assets.data.listRatingStarSize
+        cell.ratingView.settings.starMargin = 2
+        cell.ratingView.settings.textColor = assets.color.tableViewCellRating
         if let font = assets.font.tableViewCellRating {
             cell.ratingView.settings.textFont = font
         }
-        
+
+        cell.layoutIfNeeded()
+
         return cell
     }
     
@@ -228,8 +245,6 @@ class MGVideoPlayerListCell: UITableViewCell {
         super.awakeFromNib()
         
         ratingView.settings.updateOnTouch = false
-        ratingView.settings.starSize = 15
-        ratingView.settings.starMargin = 2
         thumbImageView.layer.cornerRadius = 5
         thumbImageView.clipsToBounds = true
     }
@@ -243,3 +258,39 @@ fileprivate let storyboardName = "MGVideoPlayer"
 fileprivate let controllerIdentifier = "MGVideoPlayerListController"
 fileprivate let resourceName = "MGVideoPlayerKit"
 fileprivate let resourceExtension = "bundle"
+
+extension MGVideoPlayerListController: GADBannerViewDelegate {
+    
+    /// Tells the delegate an ad request loaded an ad.
+    public func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+        //print("adViewDidReceiveAd")
+    }
+    
+    /// Tells the delegate an ad request failed.
+    public func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
+        //print("adView:didFailToReceiveAdWithError: \(error.localizedDescription)")
+    }
+    
+    /// Tells the delegate that a full-screen view will be presented in response
+    /// to the user clicking on an ad.
+    public func adViewWillPresentScreen(_ bannerView: GADBannerView) {
+        //print("adViewWillPresentScreen")
+    }
+    
+    /// Tells the delegate that the full-screen view will be dismissed.
+    public func adViewWillDismissScreen(_ bannerView: GADBannerView) {
+        //print("adViewWillDismissScreen")
+    }
+    
+    /// Tells the delegate that the full-screen view has been dismissed.
+    public func adViewDidDismissScreen(_ bannerView: GADBannerView) {
+        //print("adViewDidDismissScreen")
+    }
+    
+    /// Tells the delegate that a user click will open another app (such as
+    /// the App Store), backgrounding the current app.
+    public func adViewWillLeaveApplication(_ bannerView: GADBannerView) {
+        //print("adViewWillLeaveApplication")
+    }
+    
+}

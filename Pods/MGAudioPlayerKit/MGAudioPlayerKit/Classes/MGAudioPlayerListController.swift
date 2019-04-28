@@ -25,6 +25,9 @@
 
 import UIKit
 import SDWebImage
+import SnapKit
+import FirebaseCore
+import GoogleMobileAds
 
 
 public class MGAudioPlayerListController: UIViewController {
@@ -35,6 +38,7 @@ public class MGAudioPlayerListController: UIViewController {
 
     var searchController:UISearchController!
     var filteredAudios = [MGAudioPlayerItem]()
+    var bannerView: GADBannerView!
 
     override public func viewDidLoad() {
         super.viewDidLoad()
@@ -82,6 +86,20 @@ public class MGAudioPlayerListController: UIViewController {
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 112 + 25, bottom: 0, right: 0)
         tableView.backgroundColor = assets.color.tableView
         tableView.separatorColor = assets.color.tableViewSeparator
+        
+        if let assets = assets, assets.data.enableAds == true, assets.data.adsUnitId.count > 0 {
+            bannerView = GADBannerView(adSize: kGADAdSizeBanner)
+            view.addSubview(bannerView)
+            bannerView.snp.makeConstraints { make in
+                make.bottom.equalTo(self.view)
+                make.leading.equalTo(self.view)
+                make.trailing.equalTo(self.view)
+            }
+            bannerView.adUnitID = assets.data.adsUnitId
+            bannerView.rootViewController = self
+            bannerView.load(GADRequest())
+            bannerView.delegate = self
+        }
     }
 
     @objc func navigationItemAction(barButtonItem: UIBarButtonItem) {
@@ -223,3 +241,39 @@ fileprivate let storyboardName = "MGAudioPlayer"
 fileprivate let controllerIdentifier = "MGAudioPlayerListController"
 fileprivate let resourceName = "MGAudioPlayerKit"
 fileprivate let resourceExtension = "bundle"
+
+extension MGAudioPlayerListController: GADBannerViewDelegate {
+    
+    /// Tells the delegate an ad request loaded an ad.
+    public func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+        //print("adViewDidReceiveAd")
+    }
+    
+    /// Tells the delegate an ad request failed.
+    public func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
+        //print("adView:didFailToReceiveAdWithError: \(error.localizedDescription)")
+    }
+    
+    /// Tells the delegate that a full-screen view will be presented in response
+    /// to the user clicking on an ad.
+    public func adViewWillPresentScreen(_ bannerView: GADBannerView) {
+        //print("adViewWillPresentScreen")
+    }
+    
+    /// Tells the delegate that the full-screen view will be dismissed.
+    public func adViewWillDismissScreen(_ bannerView: GADBannerView) {
+        //print("adViewWillDismissScreen")
+    }
+    
+    /// Tells the delegate that the full-screen view has been dismissed.
+    public func adViewDidDismissScreen(_ bannerView: GADBannerView) {
+        //print("adViewDidDismissScreen")
+    }
+    
+    /// Tells the delegate that a user click will open another app (such as
+    /// the App Store), backgrounding the current app.
+    public func adViewWillLeaveApplication(_ bannerView: GADBannerView) {
+        //print("adViewWillLeaveApplication")
+    }
+    
+}

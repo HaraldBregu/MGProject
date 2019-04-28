@@ -26,18 +26,17 @@
 import Foundation
 import MapKit
 
-
 public protocol MGMapAsset {
-    var string:MGMapString { get set }
-    var font:MGMapFont { get set }
-    var image:MGMapImage { get set }
-    var color:MGMapColor { get set }
-    var data:MGMapData { get set }
+    var string: MGMapString { get set }
+    var font: MGMapFont { get set }
+    var image: MGMapImage { get set }
+    var color: MGMapColor { get set }
+    var data: MGMapData { get set }
 }
 
 public protocol MGMapString {
-    var title:String { get set }
-    var navigationTitle:String { get set }
+    var title: String { get set }
+    var navigationTitle: String { get set }
 }
 
 public protocol MGMapFont {
@@ -49,19 +48,21 @@ public protocol MGMapImage {
 }
 
 public protocol MGMapColor {
-    var backgroundView:UIColor { get set }
-    var navigationBar:UIColor { get set }
-    var navigationBarTint:UIColor { get set }
-    var toolBar:UIColor { get set }
-    var toolBarTint:UIColor { get set }
+    var backgroundView: UIColor { get set }
+    var navigationBar: UIColor { get set }
+    var navigationBarTint: UIColor { get set }
+    var toolBar: UIColor { get set }
+    var toolBarTint: UIColor { get set }
 }
 
 public protocol MGMapData {
-    var items:[MGMapDataItem] { get set }
+    var items: [MGMapDataItem] { get set }
+    var enableAds: Bool { get set }
+    var adsUnitId: String { get set }
 }
 
 public struct MGMapDataItem {
-    public var location:String!
+    public var location: String!
     public var latitude: CLLocationDegrees!
     public var longitude: CLLocationDegrees!
     public init() {}

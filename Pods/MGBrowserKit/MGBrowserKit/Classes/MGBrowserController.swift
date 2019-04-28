@@ -25,6 +25,9 @@
 
 import Foundation
 import WebKit
+import SnapKit
+import FirebaseCore
+import GoogleMobileAds
 
 
 public class MGBrowserController: UIViewController {
@@ -39,6 +42,7 @@ public class MGBrowserController: UIViewController {
     var forward:UIBarButtonItem!
     var reload:UIBarButtonItem!
     var spacer:UIBarButtonItem!
+    var bannerView: GADBannerView!
 
     override public func viewDidLoad() {
         super.viewDidLoad()
@@ -111,10 +115,24 @@ public class MGBrowserController: UIViewController {
         
         back.isEnabled = webView.canGoBack
         forward.isEnabled = webView.canGoForward
+        
+        bannerView = GADBannerView(adSize: kGADAdSizeBanner)
+        view.addSubview(bannerView)
+        if let assets = assets, assets.data.enableAds == true, assets.data.adsUnitId.count > 0 {
+            bannerView.snp.makeConstraints { make in
+                make.bottom.equalTo(self.view)
+                make.leading.equalTo(self.view)
+                make.trailing.equalTo(self.view)
+            }
+            bannerView.adUnitID = assets.data.adsUnitId
+            bannerView.rootViewController = self
+            bannerView.load(GADRequest())
+            bannerView.delegate = self
+        }
     }
     
     @objc private func navigationItemMenuAction(barButtonItem: UIBarButtonItem) {
-        self.delegate.browserController(self, didTapBarButtonItem: barButtonItem)
+        self.delegate.controller(self, didTapBarButtonItem: barButtonItem)
     }
     
     @objc private func goBack(barButtonItem: UIBarButtonItem) {
@@ -154,7 +172,6 @@ extension MGBrowserController: WKNavigationDelegate {
     
 }
 
-
 extension MGBrowserController {
 
     public static var instance: MGBrowserController {
@@ -174,3 +191,39 @@ fileprivate let storyboardName          = "MGBrowser"
 fileprivate let controllerIdentifier    = "MGBrowserController"
 fileprivate let resourceName            = "MGBrowserKit"
 fileprivate let resourceExtension       = "bundle"
+
+extension MGBrowserController: GADBannerViewDelegate {
+    
+    /// Tells the delegate an ad request loaded an ad.
+    public func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+        //print("adViewDidReceiveAd")
+    }
+    
+    /// Tells the delegate an ad request failed.
+    public func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
+        //print("adView:didFailToReceiveAdWithError: \(error.localizedDescription)")
+    }
+    
+    /// Tells the delegate that a full-screen view will be presented in response
+    /// to the user clicking on an ad.
+    public func adViewWillPresentScreen(_ bannerView: GADBannerView) {
+        //print("adViewWillPresentScreen")
+    }
+    
+    /// Tells the delegate that the full-screen view will be dismissed.
+    public func adViewWillDismissScreen(_ bannerView: GADBannerView) {
+        //print("adViewWillDismissScreen")
+    }
+    
+    /// Tells the delegate that the full-screen view has been dismissed.
+    public func adViewDidDismissScreen(_ bannerView: GADBannerView) {
+        //print("adViewDidDismissScreen")
+    }
+    
+    /// Tells the delegate that a user click will open another app (such as
+    /// the App Store), backgrounding the current app.
+    public func adViewWillLeaveApplication(_ bannerView: GADBannerView) {
+        //print("adViewWillLeaveApplication")
+    }
+    
+}

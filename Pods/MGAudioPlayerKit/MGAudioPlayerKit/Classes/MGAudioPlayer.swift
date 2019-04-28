@@ -25,7 +25,6 @@
 
 import Foundation
 
-
 public protocol MGAudioPlayerAsset {
     var string: MGAudioPlayerString { get set }
     var font: MGAudioPlayerFont { get set }
@@ -35,11 +34,11 @@ public protocol MGAudioPlayerAsset {
 }
 
 public protocol MGAudioPlayerString {
-    var title:String { get set }
-    var navigationBarTitle:String { get set }
-    var searchBarPlaceholder:String { get set }
-    var navigationListPlayerPrompt:String? { get set }
-    var navigationAudioPlayerPrompt:String? { get set }
+    var title: String { get set }
+    var navigationBarTitle: String { get set }
+    var searchBarPlaceholder: String { get set }
+    var navigationListPlayerPrompt: String? { get set }
+    var navigationAudioPlayerPrompt: String? { get set }
 }
 
 public protocol MGAudioPlayerFont {
@@ -98,15 +97,17 @@ public protocol MGAudioPlayerData {
     var items: [MGAudioPlayerItem]? { get set }
     var darkKeyboard: Bool { get set }
     var bundle: Bundle { get }
+    var enableAds: Bool { get set }
+    var adsUnitId: String { get set }
 }
 
 public class MGAudioPlayerItem {
-    public var title:String!
-    public var author:String!
-    public var pubYear:String!
-    public var thumbUrlString:String!
-    public var filename:String!
-    public var filetype:String!
+    public var title: String!
+    public var author: String!
+    public var pubYear: String!
+    public var thumbUrlString: String!
+    public var filename: String!
+    public var filetype: String!
     public init() {}
 }
 

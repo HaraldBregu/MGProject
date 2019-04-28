@@ -26,7 +26,7 @@
 import UIKit
 
 public protocol MGBrowserControllerDelegate {
-    func browserController(_ controller:MGBrowserController, didTapBarButtonItem barButtonItem:UIBarButtonItem)
+    func controller(_ controller: UIViewController, didTapBarButtonItem barButtonItem: UIBarButtonItem)
 }
 
 

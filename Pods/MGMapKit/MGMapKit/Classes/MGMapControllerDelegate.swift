@@ -26,5 +26,5 @@
 import Foundation
 
 public protocol MGMapControllerDelegate {
-    func controller(_ controller:MGMapController, didTapBarButtonItem barButtonItem:UIBarButtonItem)
+    func controller(_ controller: UIViewController, didTapBarButtonItem barButtonItem: UIBarButtonItem)
 }

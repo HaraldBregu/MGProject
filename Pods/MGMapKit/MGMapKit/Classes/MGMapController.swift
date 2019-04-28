@@ -24,14 +24,20 @@
 
 import UIKit
 import MapKit
+import SnapKit
+import FirebaseCore
+import GoogleMobileAds
 
 
 public class MGMapController: UIViewController {
     @IBOutlet var mapView: MKMapView!
-    public var delegate:MGMapControllerDelegate?
-    public var dataSource:MGMapControllerDataSource?
-    public var assets:MGMapAsset!
     
+    public var delegate: MGMapControllerDelegate?
+    public var dataSource: MGMapControllerDataSource?
+    public var assets: MGMapAsset!
+    
+    var bannerView: GADBannerView!
+
     override public func viewDidLoad() {
         super.viewDidLoad()
         
@@ -60,6 +66,20 @@ public class MGMapController: UIViewController {
             pointAnnotations.append(annotation)
         }
         mapView.showAnnotations(pointAnnotations, animated: true)
+        
+        if let assets = assets, assets.data.enableAds == true, assets.data.adsUnitId.count > 0 {
+            bannerView = GADBannerView(adSize: kGADAdSizeBanner)
+            view.addSubview(bannerView)
+            bannerView.snp.makeConstraints { make in
+                make.bottom.equalTo(self.view)
+                make.leading.equalTo(self.view)
+                make.trailing.equalTo(self.view)
+            }
+            bannerView.adUnitID = assets.data.adsUnitId
+            bannerView.rootViewController = self
+            bannerView.load(GADRequest())
+            bannerView.delegate = self
+        }
     }
     
     @objc private func navigationItemMenuAction(barButtonItem: UIBarButtonItem) {
@@ -106,3 +126,39 @@ fileprivate let storyboardName          = "MGMap"
 fileprivate let controllerIdentifier    = "MGMapController"
 fileprivate let resourceName            = "MGMapKit"
 fileprivate let resourceExtension       = "bundle"
+
+extension MGMapController: GADBannerViewDelegate {
+
+    /// Tells the delegate an ad request loaded an ad.
+    public func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+        //print("adViewDidReceiveAd")
+    }
+
+    /// Tells the delegate an ad request failed.
+    public func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
+        //print("adView:didFailToReceiveAdWithError: \(error.localizedDescription)")
+    }
+
+    /// Tells the delegate that a full-screen view will be presented in response
+    /// to the user clicking on an ad.
+    public func adViewWillPresentScreen(_ bannerView: GADBannerView) {
+        //print("adViewWillPresentScreen")
+    }
+
+    /// Tells the delegate that the full-screen view will be dismissed.
+    public func adViewWillDismissScreen(_ bannerView: GADBannerView) {
+        //print("adViewWillDismissScreen")
+    }
+
+    /// Tells the delegate that the full-screen view has been dismissed.
+    public func adViewDidDismissScreen(_ bannerView: GADBannerView) {
+        //print("adViewDidDismissScreen")
+    }
+
+    /// Tells the delegate that a user click will open another app (such as
+    /// the App Store), backgrounding the current app.
+    public func adViewWillLeaveApplication(_ bannerView: GADBannerView) {
+        //print("adViewWillLeaveApplication")
+    }
+
+}

@@ -24,6 +24,7 @@
 //
 
 import UIKit
+import UserNotifications
 import MGSideMenuKit
 import MGTemplateKit
 import SideMenuSwift
@@ -33,6 +34,9 @@ import MGAudioPlayerKit
 import MGBrowserKit
 import MGMapKit
 import MGFeedKit
+import Firebase
+import FirebaseMessaging
+import GoogleMobileAds
 
 
 @UIApplicationMain
@@ -46,9 +50,44 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var videoPlayerListController: MGVideoPlayerListController!
     var audioPlayerListController: MGAudioPlayerListController!
 
+    private var remoteConfig = RemoteConfig.remoteConfig()
+//    var interstitial: GADInterstitial!
+    let gcmMessageIDKey = "gcm.message_id"
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
         MGTemplate.setup()
+        FirebaseApp.configure()
+
+        UNUserNotificationCenter.current().delegate = self
+        let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+        UNUserNotificationCenter.current().requestAuthorization(options: authOptions, completionHandler: {_, _ in })
+        Messaging.messaging().delegate = self
+        application.registerForRemoteNotifications()
+
+        GADMobileAds.sharedInstance().start { (status) in
+            print("Status GADMobileAds: \(status)")
+        }
+
+        remoteConfig.configSettings = RemoteConfigSettings(developerModeEnabled: true)
+        remoteConfig.fetch(withExpirationDuration: TimeInterval(6.0)) { (status, error) -> Void in
+            if status == .success {
+                self.remoteConfig.activateFetched()
+            } else {
+                print("Error: \(error?.localizedDescription ?? "No error available.")")
+            }
+        }
+        
+        // Interstitial banner
+//        interstitial = GADInterstitial(adUnitID: "ca-app-pub-3940256099942544/4411468910")
+//        let request = GADRequest()
+//        interstitial.load(request)
+        //interstitial.delegate = self
+
+        // Rewarded banner
+//        GADRewardBasedVideoAd.sharedInstance().delegate = self
+//        GADRewardBasedVideoAd.sharedInstance().load(GADRequest(), withAdUnitID: "ca-app-pub-3940256099942544/1712485313")
+
         window?.rootViewController = rootViewController
         window?.makeKeyAndVisible()
         return true
@@ -75,14 +114,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
+    
 }
 
 extension AppDelegate {
     
     var rootViewController:UIViewController {
         sideMenuController = MGSideMenuController().instance
-        sideMenuController.assets = Assets.instance
+        sideMenuController.assets = MGAssetsData.setup
         sideMenuController.dataSource = self
         sideMenuController.delegate = self
         return sideMenuController
@@ -90,199 +129,70 @@ extension AppDelegate {
     
 }
 
-
-extension AppDelegate: MGSideMenuControllerDataSource, MGSideMenuControllerDelegate {
-   
-    var centerController: UIViewController {
-        landingController = MGLandingController.instance
-        landingController.assets = Assets.instance
-        landingController.delegate = self
-        landingController.dataSource = self
-        return UINavigationController(rootViewController: landingController)
+extension AppDelegate: MessagingDelegate {
+    
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
+        print("Firebase registration token: \(fcmToken)")
+        
+        let dataDict:[String: String] = ["token": fcmToken]
+        NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
+        // TODO: If necessary send token to application server.
+        // Note: This callback is fired at each app startup and whenever a new token is generated.
     }
     
-    func centerController(item: MGSideMenuItem, forIndexPath indexPath: IndexPath, fromController controller: MGMenuController) -> UIViewController? {
-        switch item.identifier {
-        case "menu.home.identifier":
-            landingController = MGLandingController.instance
-            landingController.assets = Assets.instance
-            landingController.delegate = self
-            landingController.dataSource = self
-            return UINavigationController(rootViewController: landingController)
-        case "menu.webBrowser.identifier":
-            browserController = MGBrowserController.instance
-            browserController.assets = Assets.instance
-            browserController.dataSource = self
-            browserController.delegate = self
-            return UINavigationController(rootViewController: browserController)
-        case "menu.maps.identifier":
-            mapController = MGMapController.instance
-            mapController.assets = Assets.instance
-            mapController.dataSource = self
-            mapController.delegate = self
-            return UINavigationController(rootViewController: mapController)
-        case "menu.theNextWeb.identifier":
-            feedController = MGFeedController.instance
-            feedController.assets = Assets.instance
-            feedController.assets.string.title = "The Next Web"
-            feedController.assets.data.url = "https://thenextweb.com/feed"
-            feedController.dataSource = self
-            feedController.delegate = self
-            return UINavigationController(rootViewController: feedController)
-        case "menu.techCrunch.identifier":
-            feedController = MGFeedController.instance
-            feedController.assets = Assets.instance
-            feedController.assets.string.title = "Tech Crunch"
-            feedController.assets.data.url = "https://techcrunch.com/feed"
-            feedController.dataSource = self
-            feedController.delegate = self
-            return UINavigationController(rootViewController: feedController)
-        case "menu.theVerge.identifier":
-            feedController = MGFeedController.instance
-            feedController.assets = Assets.instance
-            feedController.assets.string.title = "The Verge"
-            feedController.assets.data.url = "https://www.theverge.com/rss/index.xml"
-            feedController.dataSource = self
-            feedController.delegate = self
-            return UINavigationController(rootViewController: feedController)
-        case "menu.digitalTrend.identifier":
-            feedController = MGFeedController.instance
-            feedController.assets = Assets.instance
-            feedController.assets.string.title = "Digital Trends"
-            feedController.assets.data.url = "https://www.digitaltrends.com/feed"
-            feedController.dataSource = self
-            feedController.delegate = self
-            return UINavigationController(rootViewController: feedController)
-        case "menu.video.identifier":
-            videoPlayerListController = MGVideoPlayerListController.instance
-            videoPlayerListController.assets = Assets.instance
-            videoPlayerListController.dataSource = self
-            videoPlayerListController.delegate = self
-            return UINavigationController(rootViewController: videoPlayerListController)
-        case "menu.audio.identifier":
-            audioPlayerListController = MGAudioPlayerListController.instance
-            audioPlayerListController.assets = Assets.instance
-            audioPlayerListController.delegate = self
-            audioPlayerListController.dataSource = self
-            return UINavigationController(rootViewController: audioPlayerListController)
-        default:
-            return nil
+    func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
+        print("didReceive remoteMessage: \(remoteMessage.appData)")
+    }
+}
+
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    
+    // Receive displayed notifications for iOS 10 devices.
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+     
+        let userInfo = notification.request.content.userInfo
+        
+        // With swizzling disabled you must let Messaging know about the message, for Analytics
+        // Messaging.messaging().appDidReceiveMessage(userInfo)
+        
+        // Print message ID.
+        if let messageID = userInfo[gcmMessageIDKey] {
+            print("Message ID: \(messageID)")
         }
-    }
-    
-    func controller(_ controller: MGMenuController, didSelectItem item: MGSideMenuItem, atIndexPath indexPath: IndexPath) {
         
+        // Print full message.
+        print(userInfo)
+        
+        // Change this to your preferred presentation option
+        completionHandler([])
     }
     
-    func controller(_ controller: MGMenuController, canCloseItem item: MGSideMenuItem, atIndexPath indexPath: IndexPath) -> Bool {
-        return true
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        
+        let userInfo = response.notification.request.content.userInfo
+        // Print message ID.
+        if let messageID = userInfo[gcmMessageIDKey] {
+            print("Message ID: \(messageID)")
+        }
+        
+        // Print full message.
+        print(userInfo)
+        
+        completionHandler()
     }
-
 }
 
-extension AppDelegate: MGLandingControllerDataSource, MGLandingControllerDelegate {
+extension AppDelegate: MGSideMenuControllerDataSource, MGSideMenuControllerDelegate {}
+extension AppDelegate: MGLandingControllerDataSource, MGLandingControllerDelegate {}
+extension AppDelegate: MGMapControllerDataSource, MGMapControllerDelegate {}
+extension AppDelegate: MGAudioPlayerControllerDataSource, MGAudioPlayerControllerDelegate {}
+extension AppDelegate: MGVideoPlayerControllerDataSource, MGVideoPlayerControllerDelegate {}
+extension AppDelegate: MGBrowserControllerDelegate, MGBrowserControllerDataSource {}
+extension AppDelegate: MGFeedControllerDataSource, MGFeedControllerDelegate {}
 
-    func leftBarButtonItems(_ controller: MGLandingController) -> [UIBarButtonItem] {
-        let menuBarButton = UIBarButtonItem()
-        menuBarButton.image = UIImage(icon: .fontAwesomeSolid(.bars), size: CGSize(width: 36, height: 36), textColor: .black)
-        menuBarButton.style = .plain
-        menuBarButton.accessibilityIdentifier = "MENU"
-        
-        return [menuBarButton]
-    }
-    
-    func landingController(_ controller: MGLandingController, didTapBarButtonItem barButtonItem: UIBarButtonItem) {
-        sideMenuController.showMenu()
-    }
-
-}
-
-extension AppDelegate: MGBrowserControllerDataSource, MGBrowserControllerDelegate {
-    
-    func leftBarButtonItems(_ controller: MGBrowserController) -> [UIBarButtonItem] {
-        let menuBarButton = UIBarButtonItem()
-        menuBarButton.image = UIImage(icon: .fontAwesomeSolid(.bars), size: CGSize(width: 36, height: 36), textColor: .black)
-        menuBarButton.style = .plain
-        menuBarButton.accessibilityIdentifier = "MENU"
-        
-        return [menuBarButton]
-    }
-    
-    func toolBarButtonItems(_ controller: MGBrowserController) -> [UIBarButtonItem] {
-        let backButton = UIBarButtonItem()
-        backButton.image = UIImage(icon: .fontAwesomeSolid(.chevronLeft), size: CGSize(width: 30, height: 30), textColor: .white)
-        backButton.style = .plain
-        backButton.accessibilityIdentifier = "BACK"
-        
-        let forwardButton = UIBarButtonItem()
-        forwardButton.image = UIImage(icon: .fontAwesomeSolid(.chevronRight), size: CGSize(width: 30, height: 30), textColor: .white)
-        forwardButton.style = .plain
-        forwardButton.accessibilityIdentifier = "FORWARD"
-        
-        let reloadButton = UIBarButtonItem()
-        reloadButton.image = UIImage(icon: .fontAwesomeSolid(.redo), size: CGSize(width: 30, height: 30), textColor: .white)
-        reloadButton.style = .plain
-        reloadButton.accessibilityIdentifier = "RELOAD"
-        
-        return [backButton, forwardButton, reloadButton]
-    }
-    
-    func browserController(_ controller: MGBrowserController, didTapBarButtonItem barButtonItem: UIBarButtonItem) {
-        sideMenuController.showMenu()
-    }
-
-}
-
-extension AppDelegate: MGMapControllerDataSource, MGMapControllerDelegate {
-    
-    func leftBarButtonItems(_ controller: MGMapController) -> [UIBarButtonItem] {
-        let menuBarButton = UIBarButtonItem()
-        menuBarButton.image = UIImage(icon: .fontAwesomeSolid(.bars), size: CGSize(width: 36, height: 36), textColor: .black)
-        menuBarButton.style = .plain
-        menuBarButton.accessibilityIdentifier = "MENU"
-        
-        return [menuBarButton]
-    }
-    
-    func controller(_ controller: MGMapController, didTapBarButtonItem barButtonItem: UIBarButtonItem) {
-        sideMenuController.showMenu()
-    }
-    
-}
-
-extension AppDelegate: MGFeedControllerDataSource, MGFeedControllerDelegate {
-    
-    func leftBarButtonItems(_ controller: MGFeedController) -> [UIBarButtonItem] {
-        let menuBarButton = UIBarButtonItem()
-        menuBarButton.image = UIImage(icon: .fontAwesomeSolid(.bars), size: CGSize(width: 36, height: 36), textColor: .black)
-        menuBarButton.style = .plain
-        menuBarButton.accessibilityIdentifier = "MENU"
-        
-        return [menuBarButton]
-    }
-    
-    func rightBarButtonItems(_ controller: MGFeedController) -> [UIBarButtonItem] {
-        return []
-    }
-    
-    func controller(_ controller: MGFeedController, didTapBarButtonItem barButtonItem: UIBarButtonItem) {
-        sideMenuController.showMenu()
-    }
-    
-}
-
-extension AppDelegate: MGVideoPlayerControllerDataSource, MGVideoPlayerControllerDelegate {
+extension AppDelegate {
     
     func leftBarButtonItems(_ controller: UIViewController) -> [UIBarButtonItem] {
-        if controller is MGVideoPlayerListController {
-            let menuBarButton = UIBarButtonItem()
-            menuBarButton.image = UIImage(icon: .fontAwesomeSolid(.bars), size: CGSize(width: 36, height: 36), textColor: .black)
-            menuBarButton.style = .plain
-            menuBarButton.accessibilityIdentifier = "MENU"
-            
-            return [menuBarButton]
-        }
-
         let menuBarButton = UIBarButtonItem()
         menuBarButton.image = UIImage(icon: .fontAwesomeSolid(.bars), size: CGSize(width: 36, height: 36), textColor: .black)
         menuBarButton.style = .plain
@@ -292,13 +202,45 @@ extension AppDelegate: MGVideoPlayerControllerDataSource, MGVideoPlayerControlle
     }
     
     func rightBarButtonItems(_ controller: UIViewController) -> [UIBarButtonItem] {
-
-        return []
+        let menuBarButton = UIBarButtonItem()
+        menuBarButton.image = UIImage(icon: .fontAwesomeSolid(.addressBook), size: CGSize(width: 36, height: 36), textColor: .black)
+        menuBarButton.style = .plain
+        menuBarButton.accessibilityIdentifier = "OPTION"
+        
+        return [menuBarButton]
     }
-
+    
+    func toolBarButtonItems(_ controller: UIViewController) -> [UIBarButtonItem] {
+        let backBarButton = UIBarButtonItem()
+        backBarButton.image = UIImage(icon: .fontAwesomeSolid(.backward), size: CGSize(width: 36, height: 36), textColor: .black)
+        backBarButton.style = .plain
+        backBarButton.accessibilityIdentifier = "BACK"
+        
+        let forwardBarButton = UIBarButtonItem()
+        forwardBarButton.image = UIImage(icon: .fontAwesomeSolid(.forward), size: CGSize(width: 36, height: 36), textColor: .black)
+        forwardBarButton.style = .plain
+        forwardBarButton.accessibilityIdentifier = "FORWARD"
+        
+        let reloadBarButton = UIBarButtonItem()
+        reloadBarButton.image = UIImage(icon: .fontAwesomeSolid(.recycle), size: CGSize(width: 36, height: 36), textColor: .black)
+        reloadBarButton.style = .plain
+        reloadBarButton.accessibilityIdentifier = "RELOAD"
+        
+        return [reloadBarButton, backBarButton, forwardBarButton]
+    }
+    
     func controller(_ controller: UIViewController, didTapBarButtonItem barButtonItem: UIBarButtonItem) {
+        //        if interstitial.isReady {
+        //            interstitial.present(fromRootViewController: controller)
+        //        } else {
+        //            print("Ad wasn't ready")
+        //        }
+        if GADRewardBasedVideoAd.sharedInstance().isReady == true {
+            GADRewardBasedVideoAd.sharedInstance().present(fromRootViewController: controller)
+        }
         sideMenuController.showMenu()
-
+        
+        
         //        let items = [item.title!, item.description!]
         //        let activityIndicator = UIActivityViewController(activityItems: items, applicationActivities: nil)
         //        present(activityIndicator, animated: true)
@@ -317,12 +259,99 @@ extension AppDelegate: MGVideoPlayerControllerDataSource, MGVideoPlayerControlle
         //        //        alertController.addAction(UIAlertAction(title: "mg.audioplayer.btm.option.sheet.opton.cancel".localized, style: .cancel, handler: { (action) in
         //        //        }))
         //        //        present(alertController, animated: true) { }
-
+        
     }
     
     func controller(_ controller: UIViewController, didTapButton button: UIButton) {
+    
+    }
+    
+    func controller(_ parentController: UIViewController) -> UIViewController {
+        landingController = MGLandingController.instance
+        landingController.assets = MGAssetsData.setup
+        landingController.delegate = self
+        landingController.dataSource = self
+        return UINavigationController(rootViewController: landingController)
+    }
+    
+    func controller(_ parentController: UIViewController, forIndexPath indexPath: IndexPath, withItem item: AnyObject) -> UIViewController? {
+        
+        let object = item as? MGSideMenuItem
+        switch object?.identifier {
+        case "menu.home.identifier":
+            landingController = MGLandingController.instance
+            landingController.assets = MGAssetsData.setup
+            landingController.delegate = self
+            landingController.dataSource = self
+            return UINavigationController(rootViewController: landingController)
+        case "menu.webBrowser.identifier":
+            browserController = MGBrowserController.instance
+            browserController.assets = MGAssetsData.setup
+            browserController.dataSource = self
+            browserController.delegate = self
+            return UINavigationController(rootViewController: browserController)
+        case "menu.maps.identifier":
+            mapController = MGMapController.instance
+            mapController.assets = MGAssetsData.setup
+            mapController.dataSource = self
+            mapController.delegate = self
+            return UINavigationController(rootViewController: mapController)
+        case "menu.theNextWeb.identifier":
+            feedController = MGFeedController.instance
+            feedController.assets = MGAssetsData.setup
+            feedController.assets.string.title = "The Next Web"
+            feedController.assets.data.url = "https://thenextweb.com/feed"
+            feedController.dataSource = self
+            feedController.delegate = self
+            return UINavigationController(rootViewController: feedController)
+        case "menu.techCrunch.identifier":
+            feedController = MGFeedController.instance
+            feedController.assets = MGAssetsData.setup
+            feedController.assets.string.title = "Tech Crunch"
+            feedController.assets.data.url = "https://techcrunch.com/feed"
+            feedController.dataSource = self
+            feedController.delegate = self
+            return UINavigationController(rootViewController: feedController)
+        case "menu.theVerge.identifier":
+            feedController = MGFeedController.instance
+            feedController.assets = MGAssetsData.setup
+            feedController.assets.string.title = "The Verge"
+            feedController.assets.data.url = "https://www.theverge.com/rss/index.xml"
+            feedController.dataSource = self
+            feedController.delegate = self
+            return UINavigationController(rootViewController: feedController)
+        case "menu.digitalTrend.identifier":
+            feedController = MGFeedController.instance
+            feedController.assets = MGAssetsData.setup
+            feedController.assets.string.title = "Digital Trends"
+            feedController.assets.data.url = "https://www.digitaltrends.com/feed"
+            feedController.dataSource = self
+            feedController.delegate = self
+            return UINavigationController(rootViewController: feedController)
+        case "menu.video.identifier":
+            videoPlayerListController = MGVideoPlayerListController.instance
+            videoPlayerListController.assets = MGAssetsData.setup
+            videoPlayerListController.dataSource = self
+            videoPlayerListController.delegate = self
+            return UINavigationController(rootViewController: videoPlayerListController)
+        case "menu.audio.identifier":
+            audioPlayerListController = MGAudioPlayerListController.instance
+            audioPlayerListController.assets = MGAssetsData.setup
+            audioPlayerListController.delegate = self
+            audioPlayerListController.dataSource = self
+            return UINavigationController(rootViewController: audioPlayerListController)
+        default:
+            return nil
+        }
+        
+    }
+    
+    func controller(_ controller: UIViewController, didSelectItem item: AnyObject, atIndexPath indexPath: IndexPath) {
+        
+    }
+    
+    func controller(_ controller: UIViewController, canSelectItem item: AnyObject, atIndexPath indexPath: IndexPath) -> Bool {
+        return true
     }
 
 }
-
-extension AppDelegate: MGAudioPlayerControllerDataSource, MGAudioPlayerControllerDelegate {}

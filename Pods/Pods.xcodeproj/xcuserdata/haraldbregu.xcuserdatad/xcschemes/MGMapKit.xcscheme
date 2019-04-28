@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "FAE3DD637CED926193C4CF6D640C9ABD"
+               BlueprintIdentifier = "00FA19F74B12327AD2E82BD36BC76196"
                BuildableName = "MGMapKit.framework"
                BlueprintName = "MGMapKit"
                ReferencedContainer = "container:Pods.xcodeproj">

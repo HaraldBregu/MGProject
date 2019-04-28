@@ -35,21 +35,25 @@ public protocol MGVideoPlayerAsset {
 
 public protocol MGVideoPlayerString {
     var title:String { get set }
-    var navigationBarTitle:String { get set }
-    var searchBarPlaceholder:String { get set }
-    var navigationListPlayerPrompt:String? { get set }
-    var navigationVideoPlayerPrompt:String? { get set }
+    var navigationBarTitle: String { get set }
+    var detailTitle: String { get set }
+    var detailNavigationBarTitle: String { get set }
+    var searchBarPlaceholder: String { get set }
+    var navigationListPlayerPrompt: String? { get set }
+    var navigationVideoPlayerPrompt: String? { get set }
+    var detailTopCastTitle: String { get set }
 }
 
 public protocol MGVideoPlayerFont {
     var tableViewCellTitle: UIFont? { get set }
-    var tableViewCellDescription: UIFont? { get set }
     var tableViewCellSubtitle: UIFont? { get set }
     var tableViewCellRating: UIFont? { get set }
+    var tableViewCellDescription: UIFont? { get set }
     var detailTitle: UIFont? { get set }
-    var detailDescription: UIFont? { get set }
     var detailSubtitle: UIFont? { get set }
     var detailRating: UIFont? { get set }
+    var detailDescription: UIFont? { get set }
+    var detailTopCastTitle: UIFont? { get set }
     var actorListFullname: UIFont? { get set }
     var actorListRolename: UIFont? { get set }
 }
@@ -58,7 +62,6 @@ public protocol MGVideoPlayerImage {
     var likeNormal: UIImage { get set }
     var likeSelected: UIImage { get set }
     var likeHighlighted: UIImage { get set }
-    var shareNormal: UIImage { get set }
 }
 
 public protocol MGVideoPlayerColor {
@@ -76,31 +79,41 @@ public protocol MGVideoPlayerColor {
     var tableViewCellContent: UIColor { get set }
     var collectionView: UIColor { get set }
     var collectionViewContent: UIColor { get set }
+    var tableViewCellTitle: UIColor { get set }
+    var tableViewCellSubtitle: UIColor { get set }
+    var tableViewCellRating: UIColor { get set }
+    var tableViewCellDescription: UIColor { get set }
+    var detailTopCastTitle: UIColor { get set }
 }
 
 public protocol MGVideoPlayerData {
     var items: [MGVideoPlayerItem]? { get set }
-    var darkKeyboard: Bool { get set }
+    var keyboardAppearance: UIKeyboardAppearance { get set }
+    var statusBarStyle: UIStatusBarStyle { get set }
+    var enableAds: Bool { get set }
+    var adsUnitId: String { get set }
+    var listRatingStarSize: Double { get set }
+    var playerRatingStarSize: Double { get set }
 }
 
 public class MGVideoPlayerItem {
-    public var title:String!
-    public var description:String!
-    public var pubYear:String!
-    public var category:String!
+    public var title: String!
+    public var description: String!
+    public var pubYear: String!
+    public var category: String!
     public var url: URL!
     public var thumbUrl: URL!
-    public var starCount:Double!
-    public var reviewCount:Int!
-    public var actors:[MGVideoPlayerActorItem]!
+    public var starCount: Double!
+    public var reviewCount: Int!
+    public var actors: [MGVideoPlayerActorItem]!
     public init() {}
 }
 
 public class MGVideoPlayerActorItem {
-    public var name:String!
-    public var roleName:String!
-    public var pictureUrl:String!
-    public init(name:String, roleName:String, pictureUrl:String) {
+    public var name: String!
+    public var roleName: String!
+    public var pictureUrl: String!
+    public init(name: String, roleName: String, pictureUrl: String) {
         self.name = name
         self.roleName = roleName
         self.pictureUrl = pictureUrl

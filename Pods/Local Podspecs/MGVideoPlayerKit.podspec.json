@@ -18,7 +18,6 @@
   "platforms": {
     "ios": "12.0"
   },
-  "swift_version": "4.2",
   "source_files": "MGVideoPlayerKit/Classes/**/*",
   "resource_bundles": {
     "MGVideoPlayerKit": [
@@ -31,6 +30,17 @@
     ],
     "SDWebImage": [
       "~> 4.0"
+    ],
+    "SnapKit": [
+      "~> 4.0.0"
+    ],
+    "Firebase/Core": [
+
+    ],
+    "Firebase/AdMob": [
+
     ]
-  }
+  },
+  "static_framework": true,
+  "swift_version": "4.2"
 }
