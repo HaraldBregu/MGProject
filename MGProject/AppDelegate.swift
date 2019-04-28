@@ -196,7 +196,7 @@ extension AppDelegate {
     
     func leftBarButtonItems(_ controller: UIViewController) -> [UIBarButtonItem] {
         let menuBarButton = UIBarButtonItem()
-        menuBarButton.image = UIImage(icon: .fontAwesomeSolid(.bars), size: CGSize(width: 36, height: 36), textColor: .black)
+        menuBarButton.image = UIImage(icon: .fontAwesomeSolid(.bars), size: CGSize(width: 30, height: 30), textColor: .black)
         menuBarButton.style = .plain
         menuBarButton.accessibilityIdentifier = "MENU"
         

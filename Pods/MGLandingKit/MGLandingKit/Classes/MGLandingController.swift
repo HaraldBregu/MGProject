@@ -49,11 +49,14 @@ public class MGLandingController: UIViewController {
 
     override public func viewDidLoad() {
         super.viewDidLoad()
-                
-        view.backgroundColor = assets?.color.backgroundView
+        
+        title = assets?.string.title
+        navigationItem.title = assets?.string.navigationTitle
+        
+        view.backgroundColor = assets?.color.view
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.barTintColor = assets?.color.navigationBar
-        navigationController?.navigationBar.tintColor = assets?.color.navigationBarTint
+        navigationController?.navigationBar.tintColor = assets?.color.navigationBarContent
         navigationController?.navigationBar.barStyle = .black
         navigationController?.navigationBar.prefersLargeTitles = false
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
@@ -62,50 +65,63 @@ public class MGLandingController: UIViewController {
         
         if let items = dataSource?.leftBarButtonItems(self) {
             items.forEach({ $0.target = self })
-            items.forEach({ $0.action = #selector(navigationItemMenuAction(barButtonItem:)) })
+            items.forEach({ $0.action = #selector(navigationItemAction(barButtonItem:)) })
             navigationItem.leftBarButtonItems = items
+            navigationItem.leftItemsSupplementBackButton = true
+        }
+        
+        if let items = dataSource?.rightBarButtonItems(self) {
+            items.forEach({ $0.target = self })
+            items.forEach({ $0.action = #selector(navigationItemAction(barButtonItem:)) })
+            navigationItem.rightBarButtonItems = items
+        }
+        
+        titleLabel.text = assets?.string.contentTitle
+        titleLabel.textColor = assets?.color.viewContent
+        if let font = assets?.font.contentTitle {
+            titleLabel.font = font
         }
 
-        title = assets?.string.navigationTitle
-        navigationItem.title = assets?.string.navigationTitle
-        
-        titleLabel.text = assets?.string.title
-        titleLabel.tintColor = assets?.color.primary
-        titleLabel.font = assets?.font.title
-
-        descriptionLabel.text = assets?.string.subTitle
-        descriptionLabel.tintColor = assets?.color.primary
-        descriptionLabel.font = assets?.font.subtitle
+        descriptionLabel.text = assets?.string.contentSubtitle
+        descriptionLabel.textColor = assets?.color.viewContent
+        if let font = assets?.font.contentSubtitle {
+            descriptionLabel.font = font
+        }
         
         userImageView.layer.cornerRadius = 3.0
         userImageView.sd_setShowActivityIndicatorView(true)
-        userImageView.sd_setIndicatorStyle(.white)
+        userImageView.sd_setIndicatorStyle(assets?.data.imageViewIndicatorStyle ?? .gray)
         userImageView.sd_setImage(with: assets?.data.userImageUrl)
        
-        usernameLabel.text = assets?.string.userName
-        usernameLabel.tintColor = assets?.color.primary
-        usernameLabel.font = assets?.font.username
+        usernameLabel.text = assets?.string.contentUsername
+        usernameLabel.textColor = assets?.color.viewContent
+        if let font = assets?.font.contentUsername {
+            usernameLabel.font = font
+        }
 
-        userSloganLabel.text = assets?.string.headline
-        userSloganLabel.tintColor = assets?.color.primary
-        userSloganLabel.font = assets?.font.headline
-
-        userLikeButton.setImage(assets?.image.heart, for: .normal)
+        userSloganLabel.text = assets?.string.contentHeadline
+        userSloganLabel.textColor = assets?.color.viewContent
+        if let font = assets?.font.contentHeadline {
+            userSloganLabel.font = font
+        }
+        
+        userLikeButton.setImage(assets?.image.userRightImage, for: .normal)
         userLikeButton.isSelected = true
         userLikeButton.backgroundColor = UIColor.black.withAlphaComponent(0.25)
-        userLikeButton.layer.cornerRadius = userLikeButton.bounds.width/2
         userLikeButton.tintColor = .white
 
-        componentTitleLabel.text = assets?.string.collectionTitle
-        componentTitleLabel.textColor = assets?.color.collectionTitle
-        componentTitleLabel.font = assets?.font.collectionTitle
+        componentTitleLabel.text = assets?.string.contentCollectionTitle
+        componentTitleLabel.textColor = assets?.color.viewContent
+        if let font = assets?.font.collectionViewCellTitle {
+            componentTitleLabel.font = font
+        }
         componentCollectionView.showsVerticalScrollIndicator = false
         componentCollectionView.showsHorizontalScrollIndicator = false
         componentCollectionView.backgroundColor = assets?.color.collectionView
         
-        bannerView = GADBannerView(adSize: kGADAdSizeBanner)
-        view.addSubview(bannerView)
         if let assets = assets, assets.data.enableAds == true, assets.data.adsUnitId.count > 0 {
+            bannerView = GADBannerView(adSize: kGADAdSizeBanner)
+            view.addSubview(bannerView)
             bannerView.snp.makeConstraints { make in
                 make.bottom.equalTo(self.view)
                 make.leading.equalTo(self.view)
@@ -119,10 +135,24 @@ public class MGLandingController: UIViewController {
         
     }
     
-    public override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
+    public override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        userLikeButton.layer.cornerRadius = userLikeButton.bounds.width/2
     }
     
+    public override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        userLikeButton.layer.cornerRadius = userLikeButton.bounds.width/2
+    }
+    
+    @objc func navigationItemAction(barButtonItem: UIBarButtonItem) {
+        self.delegate?.controller(self, didTapBarButtonItem: barButtonItem)
+    }
+    
+    public override var preferredStatusBarStyle: UIStatusBarStyle {
+        return assets?.data.statusBarStyle ?? .default
+    }
+
     @objc private func navigationItemMenuAction(barButtonItem: UIBarButtonItem) {
         self.delegate.controller(self, didTapBarButtonItem: barButtonItem)
     }
@@ -144,42 +174,6 @@ extension MGLandingController {
     
 }
 
-extension MGLandingController: GADBannerViewDelegate {
-    
-    /// Tells the delegate an ad request loaded an ad.
-    public func adViewDidReceiveAd(_ bannerView: GADBannerView) {
-        //print("adViewDidReceiveAd")
-    }
-    
-    /// Tells the delegate an ad request failed.
-    public func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
-        //print("adView:didFailToReceiveAdWithError: \(error.localizedDescription)")
-    }
-    
-    /// Tells the delegate that a full-screen view will be presented in response
-    /// to the user clicking on an ad.
-    public func adViewWillPresentScreen(_ bannerView: GADBannerView) {
-        //print("adViewWillPresentScreen")
-    }
-    
-    /// Tells the delegate that the full-screen view will be dismissed.
-    public func adViewWillDismissScreen(_ bannerView: GADBannerView) {
-        //print("adViewWillDismissScreen")
-    }
-    
-    /// Tells the delegate that the full-screen view has been dismissed.
-    public func adViewDidDismissScreen(_ bannerView: GADBannerView) {
-        //print("adViewDidDismissScreen")
-    }
-    
-    /// Tells the delegate that a user click will open another app (such as
-    /// the App Store), backgrounding the current app.
-    public func adViewWillLeaveApplication(_ bannerView: GADBannerView) {
-        //print("adViewWillLeaveApplication")
-    }
-
-}
-
 extension MGLandingController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -193,9 +187,12 @@ extension MGLandingController: UICollectionViewDelegate, UICollectionViewDataSou
         let item = assets?.data.collectionItems[indexPath.item]
 
         cell.titleLabel.text = item?.title
-        cell.titleLabel.font = UIFont(name: "HelveticaNeue-Medium", size: 20)        
+        cell.titleLabel.textColor = assets?.color.collectionViewCellTitle
+        if let font = assets?.font.collectionViewCellTitle {
+            cell.titleLabel.font = font
+        }
         cell.backgroundImageView.sd_setShowActivityIndicatorView(true)
-        cell.backgroundImageView.sd_setIndicatorStyle(.white)
+        cell.backgroundImageView.sd_setIndicatorStyle(assets?.data.imageViewIndicatorStyle ?? .gray)
         cell.backgroundImageView.sd_setImage(with: URL(string: item?.thumbUrl ?? ""))
 
         return cell
@@ -255,3 +252,39 @@ fileprivate let storyboardName = "MGLanding"
 fileprivate let controllerIdentifier = "MGLandingController"
 fileprivate let resourceName = "MGLandingKit"
 fileprivate let resourceExtension = "bundle"
+
+extension MGLandingController: GADBannerViewDelegate {
+    
+    /// Tells the delegate an ad request loaded an ad.
+    public func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+        //print("adViewDidReceiveAd")
+    }
+    
+    /// Tells the delegate an ad request failed.
+    public func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
+        //print("adView:didFailToReceiveAdWithError: \(error.localizedDescription)")
+    }
+    
+    /// Tells the delegate that a full-screen view will be presented in response
+    /// to the user clicking on an ad.
+    public func adViewWillPresentScreen(_ bannerView: GADBannerView) {
+        //print("adViewWillPresentScreen")
+    }
+    
+    /// Tells the delegate that the full-screen view will be dismissed.
+    public func adViewWillDismissScreen(_ bannerView: GADBannerView) {
+        //print("adViewWillDismissScreen")
+    }
+    
+    /// Tells the delegate that the full-screen view has been dismissed.
+    public func adViewDidDismissScreen(_ bannerView: GADBannerView) {
+        //print("adViewDidDismissScreen")
+    }
+    
+    /// Tells the delegate that a user click will open another app (such as
+    /// the App Store), backgrounding the current app.
+    public func adViewWillLeaveApplication(_ bannerView: GADBannerView) {
+        //print("adViewWillLeaveApplication")
+    }
+    
+}

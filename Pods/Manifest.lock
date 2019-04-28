@@ -198,7 +198,7 @@ CHECKOUT OPTIONS:
     :commit: ee06e6b2a44999cb61aafc63e77893616f670926
     :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGFeedKit.git"
   MGLandingKit:
-    :commit: ba35f90c63aa0f6a4fda0e60ede3315d219b311a
+    :commit: 8b78c3ea948c51919c2ebd864d514d17c6300c4f
     :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGLandingKit.git"
   MGMapKit:
     :commit: 146e80d88e05c2af9ad723b4c7b1814ec5018c16

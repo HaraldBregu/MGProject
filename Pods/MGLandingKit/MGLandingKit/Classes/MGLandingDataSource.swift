@@ -27,4 +27,5 @@ import Foundation
 
 public protocol MGLandingControllerDataSource {
     func leftBarButtonItems(_ controller: UIViewController) -> [UIBarButtonItem]
+    func rightBarButtonItems(_ controller: UIViewController) -> [UIBarButtonItem]
 }

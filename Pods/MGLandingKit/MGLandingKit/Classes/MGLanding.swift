@@ -34,45 +34,53 @@ public protocol MGLandingAsset {
 }
 
 public protocol MGLandingString {
-    var navigationTitle: String { get set }
     var title: String { get set }
-    var subTitle: String { get set }
-    var userName: String { get set }
-    var headline: String { get set }
-    var collectionTitle: String { get set }
+    var navigationTitle: String { get set }
+    var contentTitle: String { get set }
+    var contentSubtitle: String { get set }
+    var contentUsername: String { get set }
+    var contentHeadline: String { get set }
+    var contentCollectionTitle: String { get set }
 }
 
 public protocol MGLandingFont {
-    var title: UIFont { get set }
-    var subtitle: UIFont { get set }
-    var username: UIFont { get set }
-    var headline: UIFont { get set }
-    var collectionTitle: UIFont { get set }
+    var contentTitle: UIFont? { get set }
+    var contentSubtitle: UIFont? { get set }
+    var contentUsername: UIFont? { get set }
+    var contentHeadline: UIFont? { get set }
+    var contentCollectionTitle: UIFont? { get set }
+    var collectionViewCellTitle: UIFont? { get set }
 }
 
 public protocol MGLandingImage {
-    var heart: UIImage { get set }
+    var userRightImage: UIImage { get set }
 }
 
 public protocol MGLandingColor {
-    var primary: UIColor { get set }
-    var backgroundView: UIColor { get set }
     var navigationBar: UIColor { get set }
-    var navigationBarTint: UIColor { get set }
-    var collectionTitle: UIColor { get set }
+    var navigationBarContent: UIColor { get set }
+    var toolBar: UIColor { get set }
+    var toolBarContent: UIColor { get set }
+    var view: UIColor { get set }
+    var viewContent: UIColor { get set }
     var collectionView: UIColor { get set }
+    var collectionViewCell: UIColor { get set }
+    var collectionViewCellContent: UIColor { get set }
+    var collectionViewCellTitle: UIColor { get set }
 }
 
 public protocol MGLandingData {
     var userImageUrl: URL { get set }
     var collectionItems: [MGLandingItemData] { get set }
-    var enableAds:Bool { get set }
-    var adsUnitId:String { get set }
+    var enableAds: Bool { get set }
+    var adsUnitId: String { get set }
+    var statusBarStyle: UIStatusBarStyle { get set }
+    var imageViewIndicatorStyle: UIActivityIndicatorView.Style { get set }
 }
 
 public struct MGLandingItemData {
-    public var title:String!
-    public var description:String!
-    public var thumbUrl:String!
+    public var title: String!
+    public var description: String!
+    public var thumbUrl: String!
     public init() {}
 }
