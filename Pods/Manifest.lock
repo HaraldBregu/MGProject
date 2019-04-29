@@ -195,7 +195,7 @@ CHECKOUT OPTIONS:
     :commit: 750598b504a20c99ade7322f972582e9f8a6de6a
     :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGBrowserKit.git"
   MGFeedKit:
-    :commit: ee06e6b2a44999cb61aafc63e77893616f670926
+    :commit: e9016c565d71288e004ba252f414e929cafd877b
     :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGFeedKit.git"
   MGLandingKit:
     :commit: 8b78c3ea948c51919c2ebd864d514d17c6300c4f
@@ -207,7 +207,7 @@ CHECKOUT OPTIONS:
     :commit: 1620daa87829fc64e9ae1aa315f9328c04ad9d51
     :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGSideMenuKit.git"
   MGTemplateKit:
-    :commit: e2bddd04d445bd37446072eff6a5a4d3da74845f
+    :commit: f6691193cb5382ba26aa1cfaf22f08c7a190318a
     :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGTemplateKit.git"
   MGVideoPlayerKit:
     :commit: b7eec7471018370b1859ec4a936c1c692ece2efb

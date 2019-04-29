@@ -31,6 +31,9 @@
 		A91B6CDD2276044B001C811E /* DefaultTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91B6CDC2276044B001C811E /* DefaultTemplate.swift */; };
 		A91B6CDF2276062B001C811E /* LightTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91B6CDE2276062B001C811E /* LightTemplate.swift */; };
 		A91B6CE122760659001C811E /* DarkTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91B6CE022760659001C811E /* DarkTemplate.swift */; };
+		A989A5B2227791FE00A36CBD /* AppDelegate+Messaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = A989A5B1227791FE00A36CBD /* AppDelegate+Messaging.swift */; };
+		A989A5B42277922C00A36CBD /* AppDelegate+UserNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = A989A5B32277922C00A36CBD /* AppDelegate+UserNotification.swift */; };
+		A989A5B62277948D00A36CBD /* AppDelegate+Modules.swift in Sources */ = {isa = PBXBuildFile; fileRef = A989A5B52277948D00A36CBD /* AppDelegate+Modules.swift */; };
 		A9960438224EAF5E001FA5EE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A9960437224EAF5E001FA5EE /* Localizable.strings */; };
 		A9A4C032224AC1E10093A7AE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A4C031224AC1E10093A7AE /* AppDelegate.swift */; };
 		A9A4C037224AC1E10093A7AE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9A4C035224AC1E10093A7AE /* Main.storyboard */; };
@@ -64,6 +67,9 @@
 		A91B6CDC2276044B001C811E /* DefaultTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultTemplate.swift; sourceTree = "<group>"; };
 		A91B6CDE2276062B001C811E /* LightTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightTemplate.swift; sourceTree = "<group>"; };
 		A91B6CE022760659001C811E /* DarkTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkTemplate.swift; sourceTree = "<group>"; };
+		A989A5B1227791FE00A36CBD /* AppDelegate+Messaging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Messaging.swift"; sourceTree = "<group>"; };
+		A989A5B32277922C00A36CBD /* AppDelegate+UserNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+UserNotification.swift"; sourceTree = "<group>"; };
+		A989A5B52277948D00A36CBD /* AppDelegate+Modules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Modules.swift"; sourceTree = "<group>"; };
 		A9960437224EAF5E001FA5EE /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		A9A4C02E224AC1E10093A7AE /* MGProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MGProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9A4C031224AC1E10093A7AE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -118,10 +124,10 @@
 				A91B6CC922759174001C811E /* AssetsData.swift */,
 				A91B6CCD22759704001C811E /* SideMenuAssetData.swift */,
 				A91B6CC722758FEF001C811E /* VideoPlayerAssetData.swift */,
+				A91B6CD5227598A8001C811E /* FeedAssetData.swift */,
 				A91B6CCF22759789001C811E /* LandingAssetData.swift */,
 				A91B6CD1227597E6001C811E /* BrowserAssetData.swift */,
 				A91B6CD32275984F001C811E /* MapAssetData.swift */,
-				A91B6CD5227598A8001C811E /* FeedAssetData.swift */,
 				A91B6CCB227592E7001C811E /* AudioPlayerAssetData.swift */,
 			);
 			path = Data;
@@ -160,6 +166,9 @@
 			isa = PBXGroup;
 			children = (
 				A9A4C031224AC1E10093A7AE /* AppDelegate.swift */,
+				A989A5B1227791FE00A36CBD /* AppDelegate+Messaging.swift */,
+				A989A5B32277922C00A36CBD /* AppDelegate+UserNotification.swift */,
+				A989A5B52277948D00A36CBD /* AppDelegate+Modules.swift */,
 				A91B6CDB22760432001C811E /* Template */,
 				A91B6CC622758FC8001C811E /* Data */,
 				A9A4C03D224AC1E40093A7AE /* Info.plist */,
@@ -386,9 +395,12 @@
 				A91B6CCC227592E7001C811E /* AudioPlayerAssetData.swift in Sources */,
 				A91B6CDD2276044B001C811E /* DefaultTemplate.swift in Sources */,
 				A91B6CCA22759174001C811E /* AssetsData.swift in Sources */,
+				A989A5B62277948D00A36CBD /* AppDelegate+Modules.swift in Sources */,
 				A91B6CC822758FF0001C811E /* VideoPlayerAssetData.swift in Sources */,
 				A91B6CD42275984F001C811E /* MapAssetData.swift in Sources */,
+				A989A5B42277922C00A36CBD /* AppDelegate+UserNotification.swift in Sources */,
 				A91B6CDA2275F54A001C811E /* Template.swift in Sources */,
+				A989A5B2227791FE00A36CBD /* AppDelegate+Messaging.swift in Sources */,
 				A91B6CCE22759704001C811E /* SideMenuAssetData.swift in Sources */,
 				A91B6CD022759789001C811E /* LandingAssetData.swift in Sources */,
 				A9A4C032224AC1E10093A7AE /* AppDelegate.swift in Sources */,

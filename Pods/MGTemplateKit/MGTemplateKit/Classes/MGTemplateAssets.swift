@@ -35,6 +35,7 @@ public protocol MGTemplateColor {
     var navigationBar: UIColor { get set }
     var toolBar: UIColor { get set }
     var sideBar: UIColor { get set }
+    var searchBar: UIColor { get set }
     var scrollView: UIColor { get set }
     var tableView: UIColor { get set }
     var tableViewCell: UIColor { get set }

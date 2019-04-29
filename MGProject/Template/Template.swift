@@ -46,6 +46,7 @@ struct TemplateColor: MGTemplateColor {
     var navigationBar: UIColor
     var toolBar: UIColor
     var sideBar: UIColor
+    var searchBar: UIColor
     var scrollView: UIColor
     var tableView: UIColor
     var tableViewCell: UIColor

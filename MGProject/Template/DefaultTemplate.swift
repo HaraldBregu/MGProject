@@ -36,6 +36,7 @@ extension Template {
                 navigationBar: #colorLiteral(red: 0.1032132573, green: 0.09788694507, blue: 0.1543604942, alpha: 1),
                 toolBar: #colorLiteral(red: 0.1032132573, green: 0.09788694507, blue: 0.1543604942, alpha: 1),
                 sideBar: #colorLiteral(red: 0.07309625613, green: 0.06932412941, blue: 0.1093190402, alpha: 1),
+                searchBar: #colorLiteral(red: 0.1032132573, green: 0.09788694507, blue: 0.1543604942, alpha: 1),
                 scrollView: #colorLiteral(red: 0.1032132573, green: 0.09788694507, blue: 0.1543604942, alpha: 1),
                 tableView: #colorLiteral(red: 0.1032132573, green: 0.09788694507, blue: 0.1543604942, alpha: 1),
                 tableViewCell: #colorLiteral(red: 0.1032132573, green: 0.09788694507, blue: 0.1543604942, alpha: 1),

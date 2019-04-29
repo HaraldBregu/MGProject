@@ -41,30 +41,39 @@ extension FeedAssetData {
                 navigationTitle: "",
                 searchBarPlaceholder: "Search"),
             font: FeedFont(
-                navigationTitle: nil,
-                cellTitle: nil,
-                cellDate: nil,
-                cellDescription: nil),
-            image: FeedImage(
-                navigationItemMenu: UIImage(),
-                navigationItemShare: UIImage(icon: .fontAwesomeSolid(.share), size: CGSize(width: 36, height: 36), textColor: .black)),
+                tableViewCellTitle: nil,
+                tableViewCellSubtitle: nil,
+                tableViewCellDescription: nil,
+                detailViewTitle: nil,
+                detailViewSubtitle: nil,
+                detailViewDescription: nil),
+            image: FeedImage(),
             color: FeedColor(
-                navigationBar: MGTemplate.NavigationBar.backgroundColor,
-                navigationBarTint: .white,
-                toolBar: MGTemplate.NavigationBar.backgroundColor,
-                toolBarTint: .white,
-                backgroundView: MGTemplate.View.backgroundColor,
-                backgroundTableView: MGTemplate.View.backgroundColor,
-                tableViewSeparator: MGTemplate.View.backgroundColor,
-                refreshTint: .white,
-                searchBarTint: .white,
-                backgroundViewCell: MGTemplate.View.backgroundColor,
-                cellTint: .white),
+                navigationBar: MGTemplate.assets.color.navigationBar,
+                navigationBarContent: MGTemplate.assets.color.text.primary,
+                refreshControl: MGTemplate.assets.color.text.primary,
+                searchBar: MGTemplate.assets.color.searchBar,
+                searchBarContent: MGTemplate.assets.color.text.primary,
+                toolBar: MGTemplate.assets.color.toolBar,
+                toolBarContent: MGTemplate.assets.color.text.primary,
+                view: MGTemplate.assets.color.view,
+                viewContent: MGTemplate.assets.color.text.primary,
+                tableView: MGTemplate.assets.color.tableView,
+                tableViewContent: MGTemplate.assets.color.text.primary,
+                tableViewSeparator: MGTemplate.assets.color.tableViewSeparator,
+                tableViewCell: MGTemplate.assets.color.tableViewCell,
+                tableViewCellContent: MGTemplate.assets.color.text.primary,
+                collectionView: MGTemplate.assets.color.collectionView,
+                collectionViewContent: MGTemplate.assets.color.text.primary,
+                tableViewCellTitle: MGTemplate.assets.color.text.primary,
+                tableViewCellSubtitle: MGTemplate.assets.color.text.secondary,
+                tableViewCellDescription: MGTemplate.assets.color.text.primary),
             data: FeedData(
                 url: "",
-                enableAds: true,
+                enableAds: false,
                 adsUnitId: "ca-app-pub-3940256099942544/2934735716",
-                darkKeyboard: true))
+                keyboardAppearance: .dark,
+                activityIndicatorStyle: .white))
     }
 }
 
@@ -83,35 +92,43 @@ struct FeedString: MGFeedString {
 }
 
 struct FeedFont: MGFeedFont {
-    var navigationTitle: UIFont?
-    var cellTitle: UIFont?
-    var cellDate: UIFont?
-    var cellDescription: UIFont?
+    var tableViewCellTitle: UIFont?
+    var tableViewCellSubtitle: UIFont?
+    var tableViewCellDescription: UIFont?
+    var detailViewTitle: UIFont?
+    var detailViewSubtitle: UIFont?
+    var detailViewDescription: UIFont?
 }
 
 struct FeedImage: MGFeedImage {
-    var navigationItemMenu: UIImage
-    var navigationItemShare: UIImage
 }
 
 struct FeedColor: MGFeedColor {
     var navigationBar: UIColor
-    var navigationBarTint: UIColor
+    var navigationBarContent: UIColor
+    var refreshControl: UIColor
+    var searchBar: UIColor
+    var searchBarContent: UIColor
     var toolBar: UIColor
-    var toolBarTint: UIColor
-    var backgroundView: UIColor
-    var backgroundTableView: UIColor
+    var toolBarContent: UIColor
+    var view: UIColor
+    var viewContent: UIColor
+    var tableView: UIColor
+    var tableViewContent: UIColor
     var tableViewSeparator: UIColor
-    var refreshTint: UIColor
-    var searchBarTint: UIColor
-    var backgroundViewCell: UIColor
-    var cellTint: UIColor
+    var tableViewCell: UIColor
+    var tableViewCellContent: UIColor
+    var collectionView: UIColor
+    var collectionViewContent: UIColor
+    var tableViewCellTitle: UIColor
+    var tableViewCellSubtitle: UIColor
+    var tableViewCellDescription: UIColor
 }
 
 struct FeedData: MGFeedData {
     var url: String
     var enableAds: Bool
     var adsUnitId: String
-    var darkKeyboard: Bool
+    var keyboardAppearance: UIKeyboardAppearance
+    var activityIndicatorStyle: UIActivityIndicatorView.Style
 }
-
