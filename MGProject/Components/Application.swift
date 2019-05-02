@@ -1,7 +1,7 @@
 // 
-//  MGBrowserControllerDataSource.swift
+//  Component.swift
 //
-//  Created by harald bregu on 14/04/2019.
+//  Created by harald bregu on 20/04/2019.
 //  Copyright © 2019 Dream Building Company. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -23,10 +23,20 @@
 //  THE SOFTWARE.
 //
 
-import UIKit
+import Foundation
+import MGTemplateKit
+import MGSideMenuKit
+import MGLandingKit
+import MGBrowserKit
+import MGMapKit
+import MGFeedKit
 
-public protocol MGBrowserControllerDataSource {
-    func leftBarButtonItems(_ controller: UIViewController) -> [UIBarButtonItem]
-    func rightBarButtonItems(_ controller: UIViewController) -> [UIBarButtonItem]
-    func toolBarButtonItems(_ controller: UIViewController) -> [UIBarButtonItem]
-}
+class Component {}
+
+extension Component: SideMenuComponent {}
+extension Component: LandingComponent {}
+extension Component: BrowserComponent {}
+extension Component: MapComponent {}
+extension Component: FeedComponent {}
+extension Component: AudioPlayerComponent {}
+extension Component: VideoPlayerComponent {}

@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A9742F4DAA151F7A89A777CE50A6A357"
+               BlueprintIdentifier = "387D2A2A70A5866678C955080D3D118F"
                BuildableName = "MGTemplateKit.framework"
                BlueprintName = "MGTemplateKit"
                ReferencedContainer = "container:Pods.xcodeproj">

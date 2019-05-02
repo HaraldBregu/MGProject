@@ -1,5 +1,5 @@
 // 
-//  LandingAssetData.swift
+//  LandingComponent.swift
 //
 //  Created by harald bregu on 28/04/2019.
 //  Copyright © 2019 Dream Building Company. All rights reserved.
@@ -27,14 +27,13 @@ import Foundation
 import MGTemplateKit
 import MGLandingKit
 
-protocol LandingAssetData {
-    static var setup: LandingAssets { get }
+protocol LandingComponent {
+    static var data: Landingasset { get }
 }
 
-extension LandingAssetData {
-    static var setup: LandingAssets {
-        
-        let isiPad = UIDevice.current.userInterfaceIdiom == .pad
+extension LandingComponent {
+    
+    static var data: Landingasset {
         
         var megaitems = [MGLandingItemData]()
         var itemFeed = MGLandingItemData()
@@ -59,7 +58,7 @@ extension LandingAssetData {
         
         var itemone = MGLandingItemData()
         itemone.title = "Map View"
-        itemone.thumbUrl = "https://snazzy-maps-cdn.azureedge.net/assets/37-lunar-landscape.png?v=20170626074350"
+        itemone.thumbUrl = "https://snazzy-maps-cdn.azureedge.net/asset/37-lunar-landscape.png?v=20170626074350"
         megaitems.append(itemone)
         
         var itemSett = MGLandingItemData()
@@ -67,46 +66,46 @@ extension LandingAssetData {
         itemSett.thumbUrl = "https://cdn.redmondpie.com/wp-content/uploads/2017/12/ios-12-dark-mode.png"
         megaitems.append(itemSett)
         
-        return LandingAssets(
+        return Landingasset(
             string: LandingString(
                 title: "",
                 navigationTitle: "",
                 contentTitle: "Multipurpose Universal iOS Template Framework",
                 contentSubtitle: "MegaGeneral is a scalable multipurpose component based iOS framework. You can start develop many awesome apps from MegaGeneral framework. You can use a big sets of icons, fonts, and change dark theme with your personal custom theme.",
-                contentUsername: "MegaTeamBuilder",
+                contentUsername: "MegaGeneral Team",
                 contentHeadline: "Think fast, do the right.",
                 contentCollectionTitle: "Integrated kits"),
             font: LandingFont(
-                contentTitle: (isiPad ? MGTemplate.Font(size: 65).medium : MGTemplate.Font(size: 35).medium),
-                contentSubtitle: (isiPad ? MGTemplate.Font(size: 32).light : MGTemplate.Font(size: 20).light),
-                contentUsername: (isiPad ? MGTemplate.Font(size: 28).medium : MGTemplate.Font(size: 18).medium),
-                contentHeadline: (isiPad ? MGTemplate.Font(size: 22).regular : MGTemplate.Font(size: 16).regular),
-                contentCollectionTitle: (isiPad ? MGTemplate.Font(size: 22).regular : MGTemplate.Font(size: 16).regular),
-                collectionViewCellTitle: (isiPad ? MGTemplate.Font(size: 32).light : MGTemplate.Font(size: 20).light)),
+                contentTitle: MGTemplate.font.largeTitle,
+                contentSubtitle: MGTemplate.font.callout,
+                contentUsername: MGTemplate.font.headline,
+                contentHeadline: MGTemplate.font.footnote,
+                contentCollectionTitle: MGTemplate.font.title3,
+                collectionViewCellTitle: MGTemplate.font.caption1),
             image: LandingImage(
                 userRightImage: UIImage(icon: .fontAwesomeSolid(.heart), size: CGSize(width: 36, height: 36), textColor: .black)),
             color: LandingColor(
-                navigationBar: MGTemplate.assets.color.navigationBar,
-                navigationBarContent: MGTemplate.assets.color.text.navigationBar,
-                toolBar: MGTemplate.assets.color.toolBar,
-                toolBarContent: MGTemplate.assets.color.text.toolBar,
-                view: MGTemplate.assets.color.view,
-                viewContent: MGTemplate.assets.color.text.primary,
-                collectionView: MGTemplate.assets.color.collectionView,
-                collectionViewCell: MGTemplate.assets.color.collectionViewCell,
-                collectionViewCellContent: MGTemplate.assets.color.text.primary,
-                collectionViewCellTitle: MGTemplate.assets.color.text.primary),
+                navigationBar: MGTemplate.color.navigationBar,
+                navigationBarContent: MGTemplate.color.text.navigationBar,
+                toolBar: MGTemplate.color.toolBar,
+                toolBarContent: MGTemplate.color.text.toolBar,
+                view: MGTemplate.color.view,
+                viewContent: MGTemplate.color.text.primary,
+                collectionView: MGTemplate.color.collectionView,
+                collectionViewCell: MGTemplate.color.collectionViewCell,
+                collectionViewCellContent: MGTemplate.color.text.primary,
+                collectionViewCellTitle: MGTemplate.color.text.primary),
             data: LandingData(
                 userImageUrl: URL(string:"https://firebasestorage.googleapis.com/v0/b/megageneral-8d8a3.appspot.com/o/MGIconLight.png?alt=media&token=b8bb255f-7ede-4b54-a8c0-b3a63ad661f6")!,
                 collectionItems: megaitems,
-                enableAds: true,
+                enableAds: false,
                 adsUnitId: "ca-app-pub-3940256099942544/2934735716",
                 statusBarStyle: .default,
                 imageViewIndicatorStyle: .white))
     }
 }
 
-struct LandingAssets:MGLandingAsset {
+struct Landingasset: MGLandingAsset {
     var string: MGLandingString
     var font: MGLandingFont
     var image: MGLandingImage
@@ -114,7 +113,7 @@ struct LandingAssets:MGLandingAsset {
     var data: MGLandingData
 }
 
-struct LandingString:MGLandingString {
+struct LandingString: MGLandingString {
     var title: String
     var navigationTitle: String
     var contentTitle: String
@@ -124,7 +123,7 @@ struct LandingString:MGLandingString {
     var contentCollectionTitle: String
 }
 
-struct LandingFont:MGLandingFont {
+struct LandingFont: MGLandingFont {
     var contentTitle: UIFont?
     var contentSubtitle: UIFont?
     var contentUsername: UIFont?
@@ -133,11 +132,11 @@ struct LandingFont:MGLandingFont {
     var collectionViewCellTitle: UIFont?
 }
 
-struct LandingImage:MGLandingImage {
+struct LandingImage: MGLandingImage {
     var userRightImage: UIImage
 }
 
-struct LandingColor:MGLandingColor {
+struct LandingColor: MGLandingColor {
     var navigationBar: UIColor
     var navigationBarContent: UIColor
     var toolBar: UIColor
@@ -150,7 +149,7 @@ struct LandingColor:MGLandingColor {
     var collectionViewCellTitle: UIColor
 }
 
-struct LandingData:MGLandingData {
+struct LandingData: MGLandingData {
     var userImageUrl: URL
     var collectionItems: [MGLandingItemData]
     var enableAds: Bool

@@ -101,10 +101,7 @@ PODS:
     - Firebase/Core
     - SDWebImage (~> 4.0)
     - SnapKit (~> 4.0.0)
-  - MGMapKit (0.1.6):
-    - Firebase/AdMob
-    - Firebase/Core
-    - SnapKit (~> 4.0.0)
+  - MGMapKit (0.1.6)
   - MGSideMenuKit (0.2.3):
     - SideMenuSwift
   - MGTemplateKit (0.2.0):
@@ -192,22 +189,22 @@ CHECKOUT OPTIONS:
     :commit: 67f210393008114951acf97b785543faa10f7d19
     :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGAudioPlayerKit.git"
   MGBrowserKit:
-    :commit: 750598b504a20c99ade7322f972582e9f8a6de6a
+    :commit: fa78133a3781ae19962926ba718de6b5ef783f17
     :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGBrowserKit.git"
   MGFeedKit:
-    :commit: e9016c565d71288e004ba252f414e929cafd877b
+    :commit: eb5e1ba05f4e8b8b66b2f23554f0bb77b99abb88
     :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGFeedKit.git"
   MGLandingKit:
-    :commit: 8b78c3ea948c51919c2ebd864d514d17c6300c4f
+    :commit: a7f64dd57fd2f6c046e8c20f106f38996a74c267
     :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGLandingKit.git"
   MGMapKit:
-    :commit: 146e80d88e05c2af9ad723b4c7b1814ec5018c16
+    :commit: d4819f4bcb87624c8edeac012341d607a27d277b
     :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGMapKit.git"
   MGSideMenuKit:
-    :commit: 1620daa87829fc64e9ae1aa315f9328c04ad9d51
+    :commit: 3ca821423c78f912903d70274c105235a7730a74
     :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGSideMenuKit.git"
   MGTemplateKit:
-    :commit: f6691193cb5382ba26aa1cfaf22f08c7a190318a
+    :commit: f47404df4d8b6c1ab8b5d73e5a11afd66fddad6c
     :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGTemplateKit.git"
   MGVideoPlayerKit:
     :commit: b7eec7471018370b1859ec4a936c1c692ece2efb
@@ -233,9 +230,9 @@ SPEC CHECKSUMS:
   MGBrowserKit: 8a9f887e4ff95b8acbaa60686e728005b35e8a0e
   MGFeedKit: ba8a69bef1c717574008562002c80a44a570503c
   MGLandingKit: 617fad5b7dedadeaf2b6f02736638be15e8929f8
-  MGMapKit: 3ab6bbfd9a342036a5d0835e0b156cb415815f4d
+  MGMapKit: 0a85840e9facb0ee3d1faf8291280989356af13e
   MGSideMenuKit: eaa3571037129161f7e0a6716b3964e07fa04043
-  MGTemplateKit: 42b5c6d3356add2ed830003a2343020a4618b016
+  MGTemplateKit: 4936ddc393c785a2986d04aa0eff09d66833ed37
   MGVideoPlayerKit: 56c5d19205ff09efd314cad78d39df1c7c52d167
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   Protobuf: 7a877b7f3e5964e3fce995e2eb323dbc6831bb5a

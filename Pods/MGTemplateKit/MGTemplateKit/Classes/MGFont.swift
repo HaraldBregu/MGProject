@@ -1,7 +1,7 @@
 // 
-//  MGBrowserControllerDataSource.swift
+//  MGFont.swift
 //
-//  Created by harald bregu on 14/04/2019.
+//  Created by harald bregu on 30/04/2019.
 //  Copyright © 2019 Dream Building Company. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -23,10 +23,24 @@
 //  THE SOFTWARE.
 //
 
-import UIKit
+import Foundation
 
-public protocol MGBrowserControllerDataSource {
-    func leftBarButtonItems(_ controller: UIViewController) -> [UIBarButtonItem]
-    func rightBarButtonItems(_ controller: UIViewController) -> [UIBarButtonItem]
-    func toolBarButtonItems(_ controller: UIViewController) -> [UIBarButtonItem]
+public enum MGFont {
+    public enum Roboto: String {
+        case thin = "Roboto-Thin"
+        case thinItalic = "Roboto-ThinItalic"
+        case light = "Roboto-Light"
+        case lightItalic = "Roboto-LightItalic"
+        case regular = "Roboto-Regular"
+        case regularItalic = "Roboto-Italic"
+        case medium = "Roboto-Medium"
+        case mediumItalic = "Roboto-MediumItalic"
+        case bold = "Roboto-Bold"
+        case boldItalic = "Roboto-BoldItalic"
+        case black = "Roboto-Black"
+        case blackItalic = "Roboto-BlackItalic"
+        public func size(_ size: CGFloat) -> UIFont? {
+            return UIFont(name: self.rawValue, size: size)
+        }
+    }
 }

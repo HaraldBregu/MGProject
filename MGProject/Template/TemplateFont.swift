@@ -1,7 +1,7 @@
 // 
-//  AssetsData.swift
+//  TemplateFont.swift
 //
-//  Created by harald bregu on 20/04/2019.
+//  Created by harald bregu on 02/05/2019.
 //  Copyright © 2019 Dream Building Company. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -25,18 +25,41 @@
 
 import Foundation
 import MGTemplateKit
-import MGSideMenuKit
-import MGLandingKit
-import MGBrowserKit
-import MGMapKit
-import MGFeedKit
 
-class AssetsData {}
+class TemplateFont {}
+extension TemplateFont: TemplateFontOptions {}
 
-extension AssetsData: SideMenuAssetData {}
-extension AssetsData: LandingAssetData {}
-extension AssetsData: BrowserAssetData {}
-extension AssetsData: MapAssetData {}
-extension AssetsData: FeedAssetData {}
-extension AssetsData: AudioPlayerAssetData {}
-extension AssetsData: VideoPlayerAssetData {}
+protocol TemplateFontOptions {
+    static var `default`: TFont { get }
+}
+
+extension TemplateFontOptions {
+    static var `default`: TFont {
+        return TFont(
+            largeTitle: MGFont.Roboto.regular.size(34),
+            title1: MGFont.Roboto.regular.size(28),
+            title2: MGFont.Roboto.regular.size(22),
+            title3: MGFont.Roboto.regular.size(20),
+            headline: MGFont.Roboto.medium.size(17),
+            body: MGFont.Roboto.regular.size(17),
+            callout: MGFont.Roboto.regular.size(16),
+            subhead: MGFont.Roboto.regular.size(15),
+            footnote: MGFont.Roboto.regular.size(13),
+            caption1: MGFont.Roboto.regular.size(12),
+            caption2: MGFont.Roboto.regular.size(11))
+    }
+}
+
+struct TFont: MGTemplateFont {
+    var largeTitle: UIFont?
+    var title1: UIFont?
+    var title2: UIFont?
+    var title3: UIFont?
+    var headline: UIFont?
+    var body: UIFont?
+    var callout: UIFont?
+    var subhead: UIFont?
+    var footnote: UIFont?
+    var caption1: UIFont?
+    var caption2: UIFont?
+}

@@ -26,49 +26,51 @@
 import Foundation
 import MGTemplateKit
 
-extension Template {
+//extension Template {
+//    static var light: TemplateAssets {
+//       
+//        return TemplateAssets(
+//            color: TemplateColor(
+//                view: #colorLiteral(red: 0.168627451, green: 0.1607843137, blue: 0.2509803922, alpha: 1),
+//                navigationBar: #colorLiteral(red: 0.168627451, green: 0.1607843137, blue: 0.2509803922, alpha: 1),
+//                toolBar: #colorLiteral(red: 0.168627451, green: 0.1607843137, blue: 0.2509803922, alpha: 1),
+//                sideBar: #colorLiteral(red: 0.07309625613, green: 0.06932412941, blue: 0.1093190402, alpha: 1),
+//                searchBar: #colorLiteral(red: 0.168627451, green: 0.1607843137, blue: 0.2509803922, alpha: 1),
+//                scrollView: #colorLiteral(red: 0.168627451, green: 0.1607843137, blue: 0.2509803922, alpha: 1),
+//                tableView: #colorLiteral(red: 0.168627451, green: 0.1607843137, blue: 0.2509803922, alpha: 1),
+//                tableViewCell: #colorLiteral(red: 0.168627451, green: 0.1607843137, blue: 0.2509803922, alpha: 1),
+//                tableViewSeparator: #colorLiteral(red: 0.168627451, green: 0.1607843137, blue: 0.2509803922, alpha: 1),
+//                tableViewHeader: #colorLiteral(red: 0.168627451, green: 0.1607843137, blue: 0.2509803922, alpha: 1),
+//                tableViewFooter: #colorLiteral(red: 0.168627451, green: 0.1607843137, blue: 0.2509803922, alpha: 1),
+//                tableViewHeaderSection: #colorLiteral(red: 0.168627451, green: 0.1607843137, blue: 0.2509803922, alpha: 1),
+//                tableViewFooterSection: #colorLiteral(red: 0.168627451, green: 0.1607843137, blue: 0.2509803922, alpha: 1),
+//                collectionView: #colorLiteral(red: 0.168627451, green: 0.1607843137, blue: 0.2509803922, alpha: 1),
+//                collectionViewCell: #colorLiteral(red: 0.168627451, green: 0.1607843137, blue: 0.2509803922, alpha: 1),
+//                collectionViewHeader: #colorLiteral(red: 0.168627451, green: 0.1607843137, blue: 0.2509803922, alpha: 1),
+//                collectionViewFooter: #colorLiteral(red: 0.168627451, green: 0.1607843137, blue: 0.2509803922, alpha: 1),
+//                collectionViewHeaderSection: #colorLiteral(red: 0.168627451, green: 0.1607843137, blue: 0.2509803922, alpha: 1),
+//                collectionViewFooterSection: #colorLiteral(red: 0.168627451, green: 0.1607843137, blue: 0.2509803922, alpha: 1),
+//                activityIndicator: .white,
+//                text: TemplateColorText(
+//                    navigationBar: .white,
+//                    toolBar: .white,
+//                    primary: .white,
+//                    secondary: .white,
+//                    placeholder: .white,
+//                    disabled: .white,
+//                    error: .white)),
+//            font: TemplateFont(
+//                largeTitle: MGFont.Roboto.regular.size(34),
+//                title1: MGFont.Roboto.regular.size(28),
+//                title2: MGFont.Roboto.regular.size(22),
+//                title3: MGFont.Roboto.regular.size(20),
+//                headline: MGFont.Roboto.medium.size(17),
+//                body: MGFont.Roboto.regular.size(17),
+//                callout: MGFont.Roboto.regular.size(16),
+//                subhead: MGFont.Roboto.regular.size(15),
+//                footnote: MGFont.Roboto.regular.size(13),
+//                caption1: MGFont.Roboto.regular.size(12),
+//                caption2: MGFont.Roboto.regular.size(11)))
+//    }
     
-    static var light: TemplateAssets {
-       
-        return TemplateAssets(
-            color: TemplateColor(
-                view: #colorLiteral(red: 0.168627451, green: 0.1607843137, blue: 0.2509803922, alpha: 1),
-                navigationBar: #colorLiteral(red: 0.168627451, green: 0.1607843137, blue: 0.2509803922, alpha: 1),
-                toolBar: #colorLiteral(red: 0.168627451, green: 0.1607843137, blue: 0.2509803922, alpha: 1),
-                sideBar: #colorLiteral(red: 0.07309625613, green: 0.06932412941, blue: 0.1093190402, alpha: 1),
-                searchBar: #colorLiteral(red: 0.168627451, green: 0.1607843137, blue: 0.2509803922, alpha: 1),
-                scrollView: #colorLiteral(red: 0.168627451, green: 0.1607843137, blue: 0.2509803922, alpha: 1),
-                tableView: #colorLiteral(red: 0.168627451, green: 0.1607843137, blue: 0.2509803922, alpha: 1),
-                tableViewCell: #colorLiteral(red: 0.168627451, green: 0.1607843137, blue: 0.2509803922, alpha: 1),
-                tableViewSeparator: #colorLiteral(red: 0.168627451, green: 0.1607843137, blue: 0.2509803922, alpha: 1),
-                tableViewHeader: #colorLiteral(red: 0.168627451, green: 0.1607843137, blue: 0.2509803922, alpha: 1),
-                tableViewFooter: #colorLiteral(red: 0.168627451, green: 0.1607843137, blue: 0.2509803922, alpha: 1),
-                tableViewHeaderSection: #colorLiteral(red: 0.168627451, green: 0.1607843137, blue: 0.2509803922, alpha: 1),
-                tableViewFooterSection: #colorLiteral(red: 0.168627451, green: 0.1607843137, blue: 0.2509803922, alpha: 1),
-                collectionView: #colorLiteral(red: 0.168627451, green: 0.1607843137, blue: 0.2509803922, alpha: 1),
-                collectionViewCell: #colorLiteral(red: 0.168627451, green: 0.1607843137, blue: 0.2509803922, alpha: 1),
-                collectionViewHeader: #colorLiteral(red: 0.168627451, green: 0.1607843137, blue: 0.2509803922, alpha: 1),
-                collectionViewFooter: #colorLiteral(red: 0.168627451, green: 0.1607843137, blue: 0.2509803922, alpha: 1),
-                collectionViewHeaderSection: #colorLiteral(red: 0.168627451, green: 0.1607843137, blue: 0.2509803922, alpha: 1),
-                collectionViewFooterSection: #colorLiteral(red: 0.168627451, green: 0.1607843137, blue: 0.2509803922, alpha: 1),
-                activityIndicator: .white,
-                text: TemplateColorText(
-                    navigationBar: .white,
-                    toolBar: .white,
-                    primary: .white,
-                    secondary: .white,
-                    placeholder: .white,
-                    disabled: .white,
-                    error: .white)),
-            font: TemplateFont(
-                navigationBar: UIFont(),
-                toolBar: UIFont(),
-                primary: UIFont(),
-                secondary: UIFont(),
-                placeholder: UIFont(),
-                disabled: UIFont(),
-                error: UIFont()))
-
-    }
-    
-}
+//}

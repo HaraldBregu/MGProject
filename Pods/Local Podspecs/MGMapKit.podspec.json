@@ -24,17 +24,5 @@
       "MGMapKit/Assets/*.{png,lproj,storyboard}"
     ]
   },
-  "dependencies": {
-    "SnapKit": [
-      "~> 4.0.0"
-    ],
-    "Firebase/Core": [
-
-    ],
-    "Firebase/AdMob": [
-
-    ]
-  },
-  "static_framework": true,
   "swift_version": "4.2"
 }

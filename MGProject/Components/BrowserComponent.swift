@@ -1,5 +1,5 @@
 // 
-//  BrowserAssetData.swift
+//  BrowserComponent.swift
 //
 //  Created by harald bregu on 28/04/2019.
 //  Copyright © 2019 Dream Building Company. All rights reserved.
@@ -27,13 +27,13 @@ import Foundation
 import MGTemplateKit
 import MGBrowserKit
 
-protocol BrowserAssetData {
-    static var setup: MGBrowserAsset { get }
+protocol BrowserComponent {
+    static var data: MGBrowserAsset { get }
 }
 
-extension BrowserAssetData {
+extension BrowserComponent {
     
-    static var setup: MGBrowserAsset {
+    static var data: MGBrowserAsset {
         
         return BrowserAsset(
             string: BrowserString(
@@ -42,11 +42,12 @@ extension BrowserAssetData {
             font: BrowserFont(),
             image: BrowserImage(),
             color: BrowserColor(
-                backgroundView: MGTemplate.View.backgroundColor,
-                navigationBar: MGTemplate.NavigationBar.backgroundColor,
-                navigationBarTint: .white,
-                toolBar: MGTemplate.NavigationBar.backgroundColor,
-                toolBarTint: .white),
+                navigationBar: MGTemplate.color.navigationBar,
+                navigationBarContent: MGTemplate.color.text.primary,
+                toolBar: MGTemplate.color.toolBar,
+                toolBarContent: MGTemplate.color.text.primary,
+                view: MGTemplate.color.view,
+                viewContent: MGTemplate.color.text.primary),
             data: BrowserData(
                 url: "https://thenextweb.com/",
                 enableAds: true,
@@ -63,20 +64,17 @@ struct BrowserAsset: MGBrowserAsset {
     var data: MGBrowserData
 }
 
-struct BrowserFont: MGBrowserFont {
-    
-}
+struct BrowserFont: MGBrowserFont {}
 
-struct BrowserImage: MGBrowserImage {
-    
-}
+struct BrowserImage: MGBrowserImage {}
 
 struct BrowserColor: MGBrowserColor {
-    var backgroundView: UIColor
     var navigationBar: UIColor
-    var navigationBarTint: UIColor
+    var navigationBarContent: UIColor
     var toolBar: UIColor
-    var toolBarTint: UIColor
+    var toolBarContent: UIColor
+    var view: UIColor
+    var viewContent: UIColor
 }
 
 struct BrowserString: MGBrowserString {

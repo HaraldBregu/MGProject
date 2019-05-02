@@ -1,5 +1,5 @@
 // 
-//  AudioPlayerAssetData.swift
+//  AudioPlayerComponent.swift
 //
 //  Created by harald bregu on 28/04/2019.
 //  Copyright © 2019 Dream Building Company. All rights reserved.
@@ -27,16 +27,17 @@ import Foundation
 import MGTemplateKit
 import MGAudioPlayerKit
 
-protocol AudioPlayerAssetData {
-    static var setup: FeedAsset { get }
+
+protocol AudioPlayerComponent {
+    static var data: AudioPlayerAsset { get }
 }
 
-extension AudioPlayerAssetData {
+extension AudioPlayerComponent {
     
-    static var setup: AudioPlayerAsset {
-      
+    static var data: AudioPlayerAsset {
+        
         var audios = [MGAudioPlayerItem]()
-
+        
         let audio4 = MGAudioPlayerItem()
         audio4.title = "Shoot To Trill"
         audio4.author = "AC/DC"
@@ -126,6 +127,11 @@ extension AudioPlayerAssetData {
         audio8.filename = "linkinparknumb"
         audio8.filetype = "mp3"
         audios.append(audio8)
+        
+        let ipad = UIDevice.current.userInterfaceIdiom == .pad
+        let heartSize = (ipad ? CGSize(width: 60, height: 60) : CGSize(width: 30, height: 30))
+        let heart0 = UIImage(icon: .ionicons(IoniconsType.iosHeart), size: heartSize, textColor: .white, backgroundColor: .clear)
+        let heart = UIImage(icon: .ionicons(IoniconsType.iosHeartOutline), size: heartSize, textColor: .white, backgroundColor: .clear)
 
         return AudioPlayerAsset(
             string: AudioPlayerString(
@@ -135,54 +141,46 @@ extension AudioPlayerAssetData {
                 navigationListPlayerPrompt: nil,
                 navigationAudioPlayerPrompt: nil),
             font: AudioPlayerFont(
-                tableViewCellTitle: nil,
-                tableViewCellDescription: nil,
-                tableViewCellSubtitle: nil,
-                tableViewCellRating: nil,
-                detailTitle: nil,
-                detailDescription: nil,
-                detailSubtitle: nil,
-                detailRating: nil,
-                actorListFullname: nil,
-                actorListRolename: nil,
-                playerTitle: nil,
-                playerSubtitle: nil,
-                playerYearPub: nil),
+                tableViewCellTitle: MGTemplate.font.subhead,
+                tableViewCellSubtitle: MGTemplate.font.caption1,
+                playerTitle: MGTemplate.font.subhead,
+                playerSubtitle: MGTemplate.font.subhead,
+                playerYearPub: MGTemplate.font.subhead),
             image: AudioPlayerImage(
-                likeNormal: #imageLiteral(resourceName: "youtube"),
-                likeSelected: #imageLiteral(resourceName: "youtube"),
-                likeHighlighted: #imageLiteral(resourceName: "youtube"),
-                shareNormal: #imageLiteral(resourceName: "youtube"),
-                tableViewCellIcon: #imageLiteral(resourceName: "youtube"),
-                play: #imageLiteral(resourceName: "youtube"),
-                pause: #imageLiteral(resourceName: "youtube"),
-                thumbNormal: #imageLiteral(resourceName: "youtube"),
-                thumbSelected: #imageLiteral(resourceName: "youtube"),
-                stepForward: #imageLiteral(resourceName: "youtube"),
-                stepBackward: #imageLiteral(resourceName: "youtube"),
-                shuffleActive: #imageLiteral(resourceName: "youtube"),
-                shuffleUnactive: #imageLiteral(resourceName: "youtube"),
-                repeatActive: #imageLiteral(resourceName: "youtube"),
-                repeatUnactive: #imageLiteral(resourceName: "youtube"),
-                heartActive: #imageLiteral(resourceName: "youtube"),
-                heartUnactive: #imageLiteral(resourceName: "youtube"),
-                option: #imageLiteral(resourceName: "youtube"),
-                share: #imageLiteral(resourceName: "youtube")),
+                likeNormal: heart0,
+                likeSelected: heart,
+                likeHighlighted: heart,
+                shareNormal: UIImage(icon: .openIconic(.chevronRight), size: CGSize(width: 20, height: 20), textColor: .white),
+                tableViewCellIcon: UIImage(icon: .openIconic(.chevronRight), size: CGSize(width: 20, height: 20), textColor: .white),
+                play: UIImage(icon: .openIconic(.mediaPlay), size: CGSize(width: 50, height: 50), textColor: .white),
+                pause: UIImage(icon: .openIconic(.mediaPause), size: CGSize(width: 50, height: 50), textColor: .white),
+                thumbNormal: UIImage(icon: .openIconic(.thumbUp), size: CGSize(width: 20, height: 20), textColor: .white),
+                thumbSelected: UIImage(icon: .openIconic(.thumbUp), size: CGSize(width: 20, height: 20), textColor: .white),
+                stepForward: UIImage(icon: .openIconic(.mediaSkipForward), size: CGSize(width: 20, height: 20), textColor: .white),
+                stepBackward: UIImage(icon: .openIconic(.mediaSkipBackward), size: CGSize(width: 20, height: 20), textColor: .white),
+                shuffleActive: UIImage(icon: .openIconic(.random), size: CGSize(width: 20, height: 20), textColor: .white),
+                shuffleUnactive: UIImage(icon: .openIconic(.random), size: CGSize(width: 20, height: 20), textColor: .white),
+                repeatActive: UIImage(icon: .openIconic(.reload), size: CGSize(width: 20, height: 20), textColor: .white),
+                repeatUnactive: UIImage(icon: .openIconic(.reload), size: CGSize(width: 20, height: 20), textColor: .white),
+                heartActive: UIImage(icon: .openIconic(.heart), size: CGSize(width: 20, height: 20), textColor: .white),
+                heartUnactive: UIImage(icon: .openIconic(.heart), size: CGSize(width: 20, height: 20), textColor: .white),
+                option: UIImage(icon: .openIconic(.document), size: CGSize(width: 20, height: 20), textColor: .white),
+                share: UIImage(icon: .openIconic(.share), size: CGSize(width: 20, height: 20), textColor: .white)),
             color: AudioPlayerColor(
-                navigationBar: .black,
-                navigationBarContent: .white,
-                toolBar: .black,
-                toolBarContent: .white,
-                view: .black,
-                viewContent: .white,
-                tableView: .black,
-                tableViewSeparator: .white,
-                refresh: .white,
-                searchBarContent: .white,
-                tableViewCell: .black,
-                tableViewCellContent: .white,
-                collectionView: .black,
-                collectionViewContent: .white,
+                navigationBar: MGTemplate.color.navigationBar,
+                navigationBarContent: MGTemplate.color.text.primary,
+                toolBar: MGTemplate.color.toolBar,
+                toolBarContent: MGTemplate.color.text.primary,
+                view: MGTemplate.color.view,
+                viewContent: MGTemplate.color.text.primary,
+                tableView: MGTemplate.color.tableView,
+                tableViewSeparator: MGTemplate.color.tableViewSeparator,
+                refresh: MGTemplate.color.text.primary,
+                searchBarContent: MGTemplate.color.text.primary,
+                tableViewCell: MGTemplate.color.tableViewCell,
+                tableViewCellContent: MGTemplate.color.text.primary,
+                collectionView: MGTemplate.color.collectionView,
+                collectionViewContent: MGTemplate.color.text.primary,
                 sliderMinimumTrackColor: .red,
                 playerTitle: .red,
                 playerSubtitle: .red,
@@ -216,15 +214,7 @@ struct AudioPlayerString: MGAudioPlayerString {
 
 struct AudioPlayerFont: MGAudioPlayerFont {
     var tableViewCellTitle: UIFont?
-    var tableViewCellDescription: UIFont?
     var tableViewCellSubtitle: UIFont?
-    var tableViewCellRating: UIFont?
-    var detailTitle: UIFont?
-    var detailDescription: UIFont?
-    var detailSubtitle: UIFont?
-    var detailRating: UIFont?
-    var actorListFullname: UIFont?
-    var actorListRolename: UIFont?
     var playerTitle: UIFont?
     var playerSubtitle: UIFont?
     var playerYearPub: UIFont?

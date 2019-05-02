@@ -56,8 +56,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
         
-        MGTemplate.setup(assets: Template.default)
-        
+        MGTemplate.configure()
+        MGTemplate.use(color: TemplateColor.default)
+        let template = (UIDevice.current.userInterfaceIdiom == .pad) ? TemplateFont.default : TemplateFont.default
+        MGTemplate.use(font: template)
+
         FirebaseApp.configure()
 
         UNUserNotificationCenter.current().delegate = self
@@ -122,7 +125,7 @@ extension AppDelegate {
     
     var rootViewController:UIViewController {
         sideMenuController = MGSideMenuController().instance
-        sideMenuController.assets = AssetsData.setup
+        sideMenuController.assets = Component.data
         sideMenuController.dataSource = self
         sideMenuController.delegate = self
         return sideMenuController

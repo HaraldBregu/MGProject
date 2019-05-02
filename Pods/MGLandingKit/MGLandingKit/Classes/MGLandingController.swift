@@ -112,7 +112,7 @@ public class MGLandingController: UIViewController {
 
         componentTitleLabel.text = assets?.string.contentCollectionTitle
         componentTitleLabel.textColor = assets?.color.viewContent
-        if let font = assets?.font.collectionViewCellTitle {
+        if let font = assets?.font.contentCollectionTitle {
             componentTitleLabel.font = font
         }
         componentCollectionView.showsVerticalScrollIndicator = false
@@ -130,7 +130,6 @@ public class MGLandingController: UIViewController {
             bannerView.adUnitID = assets.data.adsUnitId
             bannerView.rootViewController = self
             bannerView.load(GADRequest())
-            bannerView.delegate = self
         }
         
     }
@@ -252,39 +251,3 @@ fileprivate let storyboardName = "MGLanding"
 fileprivate let controllerIdentifier = "MGLandingController"
 fileprivate let resourceName = "MGLandingKit"
 fileprivate let resourceExtension = "bundle"
-
-extension MGLandingController: GADBannerViewDelegate {
-    
-    /// Tells the delegate an ad request loaded an ad.
-    public func adViewDidReceiveAd(_ bannerView: GADBannerView) {
-        //print("adViewDidReceiveAd")
-    }
-    
-    /// Tells the delegate an ad request failed.
-    public func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
-        //print("adView:didFailToReceiveAdWithError: \(error.localizedDescription)")
-    }
-    
-    /// Tells the delegate that a full-screen view will be presented in response
-    /// to the user clicking on an ad.
-    public func adViewWillPresentScreen(_ bannerView: GADBannerView) {
-        //print("adViewWillPresentScreen")
-    }
-    
-    /// Tells the delegate that the full-screen view will be dismissed.
-    public func adViewWillDismissScreen(_ bannerView: GADBannerView) {
-        //print("adViewWillDismissScreen")
-    }
-    
-    /// Tells the delegate that the full-screen view has been dismissed.
-    public func adViewDidDismissScreen(_ bannerView: GADBannerView) {
-        //print("adViewDidDismissScreen")
-    }
-    
-    /// Tells the delegate that a user click will open another app (such as
-    /// the App Store), backgrounding the current app.
-    public func adViewWillLeaveApplication(_ bannerView: GADBannerView) {
-        //print("adViewWillLeaveApplication")
-    }
-    
-}

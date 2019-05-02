@@ -1,5 +1,5 @@
 // 
-//  FeedAssetData.swift
+//  FeedComponent.swift
 //
 //  Created by harald bregu on 28/04/2019.
 //  Copyright © 2019 Dream Building Company. All rights reserved.
@@ -27,13 +27,13 @@ import Foundation
 import MGTemplateKit
 import MGFeedKit
 
-protocol FeedAssetData {
-    static var setup: FeedAsset { get }
+protocol FeedComponent {
+    static var data: FeedAsset { get }
 }
 
-extension FeedAssetData {
+extension FeedComponent {
     
-    static var setup: FeedAsset {
+    static var data: FeedAsset {
         
         return FeedAsset(
             string: FeedString(
@@ -41,33 +41,30 @@ extension FeedAssetData {
                 navigationTitle: "",
                 searchBarPlaceholder: "Search"),
             font: FeedFont(
-                tableViewCellTitle: nil,
-                tableViewCellSubtitle: nil,
-                tableViewCellDescription: nil,
-                detailViewTitle: nil,
-                detailViewSubtitle: nil,
-                detailViewDescription: nil),
+                tableViewCellTitle: MGTemplate.font.title3,
+                tableViewCellSubtitle: MGTemplate.font.caption1,
+                tableViewCellDescription: MGTemplate.font.subhead),
             image: FeedImage(),
             color: FeedColor(
-                navigationBar: MGTemplate.assets.color.navigationBar,
-                navigationBarContent: MGTemplate.assets.color.text.primary,
-                refreshControl: MGTemplate.assets.color.text.primary,
-                searchBar: MGTemplate.assets.color.searchBar,
-                searchBarContent: MGTemplate.assets.color.text.primary,
-                toolBar: MGTemplate.assets.color.toolBar,
-                toolBarContent: MGTemplate.assets.color.text.primary,
-                view: MGTemplate.assets.color.view,
-                viewContent: MGTemplate.assets.color.text.primary,
-                tableView: MGTemplate.assets.color.tableView,
-                tableViewContent: MGTemplate.assets.color.text.primary,
-                tableViewSeparator: MGTemplate.assets.color.tableViewSeparator,
-                tableViewCell: MGTemplate.assets.color.tableViewCell,
-                tableViewCellContent: MGTemplate.assets.color.text.primary,
-                collectionView: MGTemplate.assets.color.collectionView,
-                collectionViewContent: MGTemplate.assets.color.text.primary,
-                tableViewCellTitle: MGTemplate.assets.color.text.primary,
-                tableViewCellSubtitle: MGTemplate.assets.color.text.secondary,
-                tableViewCellDescription: MGTemplate.assets.color.text.primary),
+                navigationBar: MGTemplate.color.navigationBar,
+                navigationBarContent: MGTemplate.color.text.primary,
+                refreshControl: MGTemplate.color.text.primary,
+                searchBar: MGTemplate.color.searchBar,
+                searchBarContent: MGTemplate.color.text.primary,
+                toolBar: MGTemplate.color.toolBar,
+                toolBarContent: MGTemplate.color.text.primary,
+                view: MGTemplate.color.view,
+                viewContent: MGTemplate.color.text.primary,
+                tableView: MGTemplate.color.tableView,
+                tableViewContent: MGTemplate.color.text.primary,
+                tableViewSeparator: MGTemplate.color.tableViewSeparator,
+                tableViewCell: MGTemplate.color.tableViewCell,
+                tableViewCellContent: MGTemplate.color.text.primary,
+                collectionView: MGTemplate.color.collectionView,
+                collectionViewContent: MGTemplate.color.text.primary,
+                tableViewCellTitle: MGTemplate.color.text.primary,
+                tableViewCellSubtitle: MGTemplate.color.text.secondary,
+                tableViewCellDescription: MGTemplate.color.text.primary),
             data: FeedData(
                 url: "",
                 enableAds: false,
@@ -95,9 +92,6 @@ struct FeedFont: MGFeedFont {
     var tableViewCellTitle: UIFont?
     var tableViewCellSubtitle: UIFont?
     var tableViewCellDescription: UIFont?
-    var detailViewTitle: UIFont?
-    var detailViewSubtitle: UIFont?
-    var detailViewDescription: UIFont?
 }
 
 struct FeedImage: MGFeedImage {

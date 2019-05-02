@@ -1,5 +1,5 @@
 // 
-//  MapAssetData.swift
+//  MapComponent.swift
 //
 //  Created by harald bregu on 28/04/2019.
 //  Copyright © 2019 Dream Building Company. All rights reserved.
@@ -27,13 +27,13 @@ import Foundation
 import MGTemplateKit
 import MGMapKit
 
-protocol MapAssetData {
-    static var setup: MapAsset { get }
+protocol MapComponent {
+    static var data: MapAsset { get }
 }
 
-extension MapAssetData {
+extension MapComponent {
     
-    static var setup: MapAsset {
+    static var data: MapAsset {
         
         var items:[MGMapDataItem] = []
         
@@ -80,15 +80,16 @@ extension MapAssetData {
             font: MapFont(),
             image: MapImage(),
             color: MapColor(
-                backgroundView: MGTemplate.View.backgroundColor,
-                navigationBar: MGTemplate.NavigationBar.backgroundColor,
-                navigationBarTint: .white,
-                toolBar: MGTemplate.NavigationBar.backgroundColor,
-                toolBarTint: .white),
+                navigationBar: MGTemplate.color.navigationBar,
+                navigationBarContent: MGTemplate.color.text.primary,
+                searchBar: MGTemplate.color.searchBar,
+                searchBarContent: MGTemplate.color.text.primary,
+                toolBar: MGTemplate.color.searchBar,
+                toolBarContent: MGTemplate.color.text.primary,
+                view: MGTemplate.color.view,
+                viewContent: MGTemplate.color.text.primary),
             data: MapData(
-                items: items,
-                enableAds: true,
-                adsUnitId: "ca-app-pub-3940256099942544/2934735716"))
+                items: items))
     }
 }
 
@@ -105,25 +106,21 @@ struct MapString: MGMapString {
     var navigationTitle:String
 }
 
-struct MapFont: MGMapFont {
-    
-}
+struct MapFont: MGMapFont {}
 
-struct MapImage: MGMapImage {
-    
-}
+struct MapImage: MGMapImage {}
 
 struct MapColor: MGMapColor {
-    var backgroundView: UIColor
     var navigationBar: UIColor
-    var navigationBarTint: UIColor
+    var navigationBarContent: UIColor
+    var searchBar: UIColor
+    var searchBarContent: UIColor
     var toolBar: UIColor
-    var toolBarTint: UIColor
+    var toolBarContent: UIColor
+    var view: UIColor
+    var viewContent: UIColor
 }
 
 struct MapData: MGMapData {
     var items: [MGMapDataItem]
-    var enableAds: Bool
-    var adsUnitId: String
 }
-

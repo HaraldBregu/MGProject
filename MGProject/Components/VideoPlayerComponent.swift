@@ -1,5 +1,5 @@
 // 
-//  VideoPlayerAssetData.swift
+//  VideoPlayerComponent.swift
 //
 //  Created by harald bregu on 28/04/2019.
 //  Copyright © 2019 Dream Building Company. All rights reserved.
@@ -27,27 +27,16 @@ import Foundation
 import MGTemplateKit
 import MGVideoPlayerKit
 
-protocol VideoPlayerAssetData {
-    static var setup: MGVideoPlayerAsset { get }
+
+protocol VideoPlayerComponent {
+    static var data: MGVideoPlayerAsset { get }
 }
 
-extension VideoPlayerAssetData {
+extension VideoPlayerComponent {
     
-    static var setup: MGVideoPlayerAsset {
-
-        let ipad = UIDevice.current.userInterfaceIdiom == .pad
+    static var data: MGVideoPlayerAsset {
         
-        let tableViewCellTitleFont = ipad ? UIFont(name: "HelveticaNeue-Medium", size: 34) : UIFont(name: "HelveticaNeue-Medium", size: 22)
-        let tableViewCellSubtitle = ipad ? UIFont(name: "HelveticaNeue", size: 18) : UIFont(name: "HelveticaNeue", size: 12)
-        let tableViewCellRating = ipad ? UIFont(name: "HelveticaNeue", size: 16) : UIFont(name: "HelveticaNeue", size: 14)
-        let tableViewCellDescription = ipad ? UIFont(name: "HelveticaNeue", size: 20) : UIFont(name: "HelveticaNeue", size: 13)
-        let detailTitle = ipad ? UIFont(name: "HelveticaNeue-Medium", size: 34) : UIFont(name: "HelveticaNeue-Medium", size: 22)
-        let detailSubtitle = ipad ? UIFont(name: "HelveticaNeue", size: 18) : UIFont(name: "HelveticaNeue", size: 12)
-        let detailRating = ipad ? UIFont(name: "HelveticaNeue", size: 16) : UIFont(name: "HelveticaNeue", size: 14)
-        let detailDescription = ipad ? UIFont(name: "HelveticaNeue", size: 20) : UIFont(name: "HelveticaNeue", size: 13)
-        let detailTopCasts = ipad ? UIFont(name: "HelveticaNeue-Medium", size: 21) : UIFont(name: "HelveticaNeue-Medium", size: 15)
-        let detailCastsFullname = ipad ? UIFont(name: "HelveticaNeue-Medium", size: 16) : UIFont(name: "HelveticaNeue-Medium", size: 11)
-        let detailCastsRolename = ipad ? UIFont(name: "HelveticaNeue-Medium", size: 13) : UIFont(name: "HelveticaNeue-Medium", size: 8)
+        let ipad = UIDevice.current.userInterfaceIdiom == .pad
         
         let heartSize = (ipad ? CGSize(width: 60, height: 60) : CGSize(width: 30, height: 30))
         let heart0 = UIImage(icon: .ionicons(IoniconsType.iosHeart), size: heartSize, textColor: .white, backgroundColor: .clear)
@@ -64,41 +53,41 @@ extension VideoPlayerAssetData {
                 navigationVideoPlayerPrompt: nil,
                 detailTopCastTitle: "Top Casts"),
             font: VideoPlayerFont(
-                tableViewCellTitle: tableViewCellTitleFont,
-                tableViewCellSubtitle: tableViewCellSubtitle,
-                tableViewCellRating: tableViewCellRating,
-                tableViewCellDescription: tableViewCellDescription,
-                detailTitle: detailTitle,
-                detailSubtitle: detailSubtitle,
-                detailRating: detailRating,
-                detailDescription: detailDescription,
-                detailTopCastTitle: detailTopCasts,
-                actorListFullname: detailCastsFullname,
-                actorListRolename: detailCastsRolename),
+                tableViewCellTitle: MGTemplate.font.title2,
+                tableViewCellSubtitle: MGTemplate.font.caption1,
+                tableViewCellRating: MGTemplate.font.subhead,
+                tableViewCellDescription: MGTemplate.font.footnote,
+                detailTitle: MGTemplate.font.title2,
+                detailSubtitle: MGTemplate.font.caption1,
+                detailRating: MGTemplate.font.subhead,
+                detailDescription: MGTemplate.font.footnote,
+                detailTopCastTitle: MGTemplate.font.subhead,
+                actorListFullname: MGTemplate.font.caption2,
+                actorListRolename: MGTemplate.font.caption2),
             image: VideoPlayerImage(
                 likeNormal: heart,
                 likeSelected: heart0,
                 likeHighlighted: heart0),
             color: VideoPlayerColor(
-                navigationBar: MGTemplate.assets.color.navigationBar,
-                navigationBarContent: MGTemplate.assets.color.text.navigationBar,
-                toolBar: MGTemplate.assets.color.toolBar,
-                toolBarContent: MGTemplate.assets.color.text.toolBar,
-                view: MGTemplate.assets.color.view,
-                viewContent: MGTemplate.assets.color.text.primary,
-                tableView: MGTemplate.assets.color.tableView,
-                tableViewSeparator: MGTemplate.assets.color.tableViewSeparator,
-                refresh: MGTemplate.assets.color.activityIndicator,
-                searchBarContent: MGTemplate.assets.color.text.primary,
-                tableViewCell: MGTemplate.assets.color.tableViewCell,
-                tableViewCellContent: MGTemplate.assets.color.text.primary,
-                collectionView: MGTemplate.assets.color.collectionView,
-                collectionViewContent: MGTemplate.assets.color.text.primary,
-                tableViewCellTitle: MGTemplate.assets.color.text.primary,
-                tableViewCellSubtitle: MGTemplate.assets.color.text.secondary,
-                tableViewCellRating: MGTemplate.assets.color.text.secondary,
-                tableViewCellDescription: MGTemplate.assets.color.text.primary,
-                detailTopCastTitle: MGTemplate.assets.color.text.primary),
+                navigationBar: MGTemplate.color.navigationBar,
+                navigationBarContent: MGTemplate.color.text.navigationBar,
+                toolBar: MGTemplate.color.toolBar,
+                toolBarContent: MGTemplate.color.text.toolBar,
+                view: MGTemplate.color.view,
+                viewContent: MGTemplate.color.text.primary,
+                tableView: MGTemplate.color.tableView,
+                tableViewSeparator: MGTemplate.color.tableViewSeparator,
+                refresh: MGTemplate.color.activityIndicator,
+                searchBarContent: MGTemplate.color.text.primary,
+                tableViewCell: MGTemplate.color.tableViewCell,
+                tableViewCellContent: MGTemplate.color.text.primary,
+                collectionView: MGTemplate.color.collectionView,
+                collectionViewContent: MGTemplate.color.text.primary,
+                tableViewCellTitle: MGTemplate.color.text.primary,
+                tableViewCellSubtitle: MGTemplate.color.text.secondary,
+                tableViewCellRating: MGTemplate.color.text.secondary,
+                tableViewCellDescription: MGTemplate.color.text.primary,
+                detailTopCastTitle: MGTemplate.color.text.primary),
             data: VideoPlayerData(
                 items: list,
                 keyboardAppearance: .dark,
@@ -343,6 +332,6 @@ fileprivate var list: [MGVideoPlayerItem] {
     thePrincipleTrailer.url = URL(string: "https://github.com/HaraldBregu/General/blob/master/thprinciple.mp4?raw=true")
     thePrincipleTrailer.thumbUrl = URL(string: "https://inohment.com/wp-content/uploads/2015/11/thePrinciple_G-.jpg")
     trailerList.append(thePrincipleTrailer)
-
+    
     return trailerList
 }

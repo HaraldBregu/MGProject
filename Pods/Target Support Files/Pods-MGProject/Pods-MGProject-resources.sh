@@ -101,7 +101,6 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "${PODS_CONFIGURATION_BUILD_DIR}/MGBrowserKit/MGBrowserKit.bundle"
   install_resource "${PODS_CONFIGURATION_BUILD_DIR}/MGFeedKit/MGFeedKit.bundle"
   install_resource "${PODS_CONFIGURATION_BUILD_DIR}/MGLandingKit/MGLandingKit.bundle"
-  install_resource "${PODS_CONFIGURATION_BUILD_DIR}/MGMapKit/MGMapKit.bundle"
   install_resource "${PODS_CONFIGURATION_BUILD_DIR}/MGVideoPlayerKit/MGVideoPlayerKit.bundle"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
@@ -109,7 +108,6 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "${PODS_CONFIGURATION_BUILD_DIR}/MGBrowserKit/MGBrowserKit.bundle"
   install_resource "${PODS_CONFIGURATION_BUILD_DIR}/MGFeedKit/MGFeedKit.bundle"
   install_resource "${PODS_CONFIGURATION_BUILD_DIR}/MGLandingKit/MGLandingKit.bundle"
-  install_resource "${PODS_CONFIGURATION_BUILD_DIR}/MGMapKit/MGMapKit.bundle"
   install_resource "${PODS_CONFIGURATION_BUILD_DIR}/MGVideoPlayerKit/MGVideoPlayerKit.bundle"
 fi
 

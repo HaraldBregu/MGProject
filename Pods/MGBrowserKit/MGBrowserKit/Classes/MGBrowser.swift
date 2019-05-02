@@ -47,11 +47,12 @@ public protocol MGBrowserImage {
 }
 
 public protocol MGBrowserColor {
-    var backgroundView: UIColor { get set }
     var navigationBar: UIColor { get set }
-    var navigationBarTint: UIColor { get set }
+    var navigationBarContent: UIColor { get set }
     var toolBar: UIColor { get set }
-    var toolBarTint: UIColor { get set }
+    var toolBarContent: UIColor { get set }
+    var view: UIColor { get set }
+    var viewContent: UIColor { get set }
 }
 
 public protocol MGBrowserData {

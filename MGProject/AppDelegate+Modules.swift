@@ -48,7 +48,7 @@ extension AppDelegate {
         let menuBarButton = UIBarButtonItem()
         menuBarButton.image = UIImage(icon: .fontAwesomeSolid(.bars), size: CGSize(width: 30, height: 30), textColor: .black)
         menuBarButton.style = .plain
-        menuBarButton.accessibilityIdentifier = "MENU"
+        menuBarButton.accessibilityIdentifier = "LEFT_SIDE_MENU"
         
         return [menuBarButton]
     }
@@ -82,7 +82,9 @@ extension AppDelegate {
     }
     
     func controller(_ controller: UIViewController, didTapBarButtonItem barButtonItem: UIBarButtonItem) {
-        sideMenuController.showMenu()
+        if barButtonItem.accessibilityIdentifier == "LEFT_SIDE_MENU" {
+            sideMenuController.showMenu()
+        }
         
         //        if interstitial.isReady {
         //            interstitial.present(fromRootViewController: controller)
@@ -120,16 +122,23 @@ extension AppDelegate {
     }
     
     func controller(_ parentController: UIViewController) -> UIViewController {
-        //        landingController = MGLandingController.instance
-        //        landingController.assets = MGAssetsData.setup
-        //        landingController.delegate = self
-        //        landingController.dataSource = self
-        //        return UINavigationController(rootViewController: landingController)
-        videoPlayerListController = MGVideoPlayerListController.instance
-        videoPlayerListController.assets = AssetsData.setup
-        videoPlayerListController.dataSource = self
-        videoPlayerListController.delegate = self
-        return UINavigationController(rootViewController: videoPlayerListController)
+        landingController = MGLandingController.instance
+        landingController.assets = Component.data
+        landingController.delegate = self
+        landingController.dataSource = self
+        return UINavigationController(rootViewController: landingController)
+
+//        videoPlayerListController = MGVideoPlayerListController.instance
+//        videoPlayerListController.assets = AssetsData.setup
+//        videoPlayerListController.dataSource = self
+//        videoPlayerListController.delegate = self
+//        return UINavigationController(rootViewController: videoPlayerListController)
+        
+//        audioPlayerListController = MGAudioPlayerListController.instance
+//        audioPlayerListController.assets = AssetsData.setup
+//        audioPlayerListController.delegate = self
+//        audioPlayerListController.dataSource = self
+//        return UINavigationController(rootViewController: audioPlayerListController)
         
     }
     
@@ -139,25 +148,25 @@ extension AppDelegate {
         switch object?.identifier {
         case "menu.home.identifier":
             landingController = MGLandingController.instance
-            landingController.assets = AssetsData.setup
+            landingController.assets = Component.data
             landingController.delegate = self
             landingController.dataSource = self
             return UINavigationController(rootViewController: landingController)
         case "menu.webBrowser.identifier":
             browserController = MGBrowserController.instance
-            browserController.assets = AssetsData.setup
+            browserController.assets = Component.data
             browserController.dataSource = self
             browserController.delegate = self
             return UINavigationController(rootViewController: browserController)
         case "menu.maps.identifier":
             mapController = MGMapController.instance
-            mapController.assets = AssetsData.setup
+            mapController.assets = Component.data
             mapController.dataSource = self
             mapController.delegate = self
             return UINavigationController(rootViewController: mapController)
         case "menu.theNextWeb.identifier":
             feedController = MGFeedController.instance
-            feedController.assets = AssetsData.setup
+            feedController.assets = Component.data
             feedController.assets.string.title = "The Next Web"
             feedController.assets.data.url = "https://thenextweb.com/feed"
             feedController.dataSource = self
@@ -165,7 +174,7 @@ extension AppDelegate {
             return UINavigationController(rootViewController: feedController)
         case "menu.techCrunch.identifier":
             feedController = MGFeedController.instance
-            feedController.assets = AssetsData.setup
+            feedController.assets = Component.data
             feedController.assets.string.title = "Tech Crunch"
             feedController.assets.data.url = "https://techcrunch.com/feed"
             feedController.dataSource = self
@@ -173,7 +182,7 @@ extension AppDelegate {
             return UINavigationController(rootViewController: feedController)
         case "menu.theVerge.identifier":
             feedController = MGFeedController.instance
-            feedController.assets = AssetsData.setup
+            feedController.assets = Component.data
             feedController.assets.string.title = "The Verge"
             feedController.assets.data.url = "https://www.theverge.com/rss/index.xml"
             feedController.dataSource = self
@@ -181,21 +190,37 @@ extension AppDelegate {
             return UINavigationController(rootViewController: feedController)
         case "menu.digitalTrend.identifier":
             feedController = MGFeedController.instance
-            feedController.assets = AssetsData.setup
+            feedController.assets = Component.data
             feedController.assets.string.title = "Digital Trends"
             feedController.assets.data.url = "https://www.digitaltrends.com/feed"
             feedController.dataSource = self
             feedController.delegate = self
             return UINavigationController(rootViewController: feedController)
+        case "menu.cnet.identifier":
+            feedController = MGFeedController.instance
+            feedController.assets = Component.data
+            feedController.assets.string.title = "CNET"
+            feedController.assets.data.url = "https://www.cnet.com/rss/news/"
+            feedController.dataSource = self
+            feedController.delegate = self
+            return UINavigationController(rootViewController: feedController)
+        case "menu.weworewhat.identifier":
+            feedController = MGFeedController.instance
+            feedController.assets = Component.data
+            feedController.assets.string.title = "We Wore What"
+            feedController.assets.data.url = "https://weworewhat.com/feed/"
+            feedController.dataSource = self
+            feedController.delegate = self
+            return UINavigationController(rootViewController: feedController)
         case "menu.video.identifier":
             videoPlayerListController = MGVideoPlayerListController.instance
-            videoPlayerListController.assets = AssetsData.setup
+            videoPlayerListController.assets = Component.data
             videoPlayerListController.dataSource = self
             videoPlayerListController.delegate = self
             return UINavigationController(rootViewController: videoPlayerListController)
         case "menu.audio.identifier":
             audioPlayerListController = MGAudioPlayerListController.instance
-            audioPlayerListController.assets = AssetsData.setup
+            audioPlayerListController.assets = Component.data
             audioPlayerListController.delegate = self
             audioPlayerListController.dataSource = self
             return UINavigationController(rootViewController: audioPlayerListController)

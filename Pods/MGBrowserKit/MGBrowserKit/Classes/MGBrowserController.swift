@@ -33,36 +33,43 @@ import GoogleMobileAds
 public class MGBrowserController: UIViewController {
     @IBOutlet var webView: WKWebView!
     
-    public var delegate:MGBrowserControllerDelegate!
-    public var dataSource:MGBrowserControllerDataSource?
-    public var assets:MGBrowserAsset!
+    public var delegate: MGBrowserControllerDelegate!
+    public var dataSource: MGBrowserControllerDataSource?
+    public var assets: MGBrowserAsset!
     
-    var activityIndicatorView:UIActivityIndicatorView!
-    var back:UIBarButtonItem!
-    var forward:UIBarButtonItem!
-    var reload:UIBarButtonItem!
-    var spacer:UIBarButtonItem!
+    var activityIndicatorView: UIActivityIndicatorView!
+    var back: UIBarButtonItem!
+    var forward: UIBarButtonItem!
+    var reload: UIBarButtonItem!
+    var spacer: UIBarButtonItem!
     var bannerView: GADBannerView!
 
     override public func viewDidLoad() {
         super.viewDidLoad()
         
         title = assets.string.title
-        navigationItem.title = assets.string.title
+        navigationItem.title = assets.string.navigationTitle
         
-        view.backgroundColor = assets.color.backgroundView
-        navigationController?.navigationBar.tintColor = assets.color.navigationBarTint
+        view.backgroundColor = assets.color.view
         navigationController?.navigationBar.barTintColor = assets.color.navigationBar
+        navigationController?.navigationBar.tintColor = assets.color.navigationBarContent
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.barStyle = .black
         navigationController?.navigationBar.prefersLargeTitles = false
         
         if let items = dataSource?.leftBarButtonItems(self) {
             items.forEach({ $0.target = self })
-            items.forEach({ $0.action = #selector(navigationItemMenuAction(barButtonItem:)) })
+            items.forEach({ $0.action = #selector(navigationItemAction(barButtonItem:)) })
             navigationItem.leftBarButtonItems = items
+            navigationItem.leftItemsSupplementBackButton = true
         }
         
+        if let items = dataSource?.rightBarButtonItems(self) {
+            items.forEach({ $0.target = self })
+            items.forEach({ $0.action = #selector(navigationItemAction(barButtonItem:)) })
+            navigationItem.rightBarButtonItems = items
+        }
+
         let goBack = #selector(goBack(barButtonItem:))
         let goForward = #selector(goForward(barButtonItem:))
         let reloadPage = #selector(reload(barButtonItem:))
@@ -73,6 +80,8 @@ public class MGBrowserController: UIViewController {
         reload = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: reloadPage)
         
         if let items = dataSource?.toolBarButtonItems(self) {
+            items.forEach({ $0.target = self })
+            items.forEach({ $0.action = #selector(navigationItemAction(barButtonItem:)) })
             items.forEach { item in
                 switch item.accessibilityIdentifier {
                 case "BACK":
@@ -98,8 +107,8 @@ public class MGBrowserController: UIViewController {
         
         toolbarItems = [back, spacer, reload, spacer, forward]
         navigationController?.setToolbarHidden(false, animated: false)
-        navigationController?.toolbar.tintColor = assets.color.toolBarTint
         navigationController?.toolbar.barTintColor = assets.color.toolBar
+        navigationController?.toolbar.tintColor = assets.color.toolBarContent
         navigationController?.toolbar.isTranslucent = false
         
         webView.navigationDelegate = self
@@ -131,10 +140,10 @@ public class MGBrowserController: UIViewController {
         }
     }
     
-    @objc private func navigationItemMenuAction(barButtonItem: UIBarButtonItem) {
-        self.delegate.controller(self, didTapBarButtonItem: barButtonItem)
+    @objc private func navigationItemAction(barButtonItem: UIBarButtonItem) {
+        self.delegate?.controller(self, didTapBarButtonItem: barButtonItem)
     }
-    
+
     @objc private func goBack(barButtonItem: UIBarButtonItem) {
         back.isEnabled = webView.canGoBack
         webView.goBack()

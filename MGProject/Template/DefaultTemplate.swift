@@ -26,49 +26,53 @@
 import Foundation
 import MGTemplateKit
 
-extension Template {
-    
-    static var `default`: TemplateAssets {
-        
-        return TemplateAssets(
-            color: TemplateColor(
-                view: #colorLiteral(red: 0.1032132573, green: 0.09788694507, blue: 0.1543604942, alpha: 1),
-                navigationBar: #colorLiteral(red: 0.1032132573, green: 0.09788694507, blue: 0.1543604942, alpha: 1),
-                toolBar: #colorLiteral(red: 0.1032132573, green: 0.09788694507, blue: 0.1543604942, alpha: 1),
-                sideBar: #colorLiteral(red: 0.07309625613, green: 0.06932412941, blue: 0.1093190402, alpha: 1),
-                searchBar: #colorLiteral(red: 0.1032132573, green: 0.09788694507, blue: 0.1543604942, alpha: 1),
-                scrollView: #colorLiteral(red: 0.1032132573, green: 0.09788694507, blue: 0.1543604942, alpha: 1),
-                tableView: #colorLiteral(red: 0.1032132573, green: 0.09788694507, blue: 0.1543604942, alpha: 1),
-                tableViewCell: #colorLiteral(red: 0.1032132573, green: 0.09788694507, blue: 0.1543604942, alpha: 1),
-                tableViewSeparator: #colorLiteral(red: 0.1032132573, green: 0.09788694507, blue: 0.1543604942, alpha: 1),
-                tableViewHeader: #colorLiteral(red: 0.1032132573, green: 0.09788694507, blue: 0.1543604942, alpha: 1),
-                tableViewFooter: #colorLiteral(red: 0.1032132573, green: 0.09788694507, blue: 0.1543604942, alpha: 1),
-                tableViewHeaderSection: #colorLiteral(red: 0.1032132573, green: 0.09788694507, blue: 0.1543604942, alpha: 1),
-                tableViewFooterSection: #colorLiteral(red: 0.1032132573, green: 0.09788694507, blue: 0.1543604942, alpha: 1),
-                collectionView: #colorLiteral(red: 0.1032132573, green: 0.09788694507, blue: 0.1543604942, alpha: 1),
-                collectionViewCell: #colorLiteral(red: 0.1032132573, green: 0.09788694507, blue: 0.1543604942, alpha: 1),
-                collectionViewHeader: #colorLiteral(red: 0.1032132573, green: 0.09788694507, blue: 0.1543604942, alpha: 1),
-                collectionViewFooter: #colorLiteral(red: 0.1032132573, green: 0.09788694507, blue: 0.1543604942, alpha: 1),
-                collectionViewHeaderSection: #colorLiteral(red: 0.1032132573, green: 0.09788694507, blue: 0.1543604942, alpha: 1),
-                collectionViewFooterSection: #colorLiteral(red: 0.1032132573, green: 0.09788694507, blue: 0.1543604942, alpha: 1),
-                activityIndicator: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1),
-                text: TemplateColorText(
-                    navigationBar: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1),
-                    toolBar: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1),
-                    primary: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1),
-                    secondary: #colorLiteral(red: 0.9529411765, green: 0.968627451, blue: 0.9725490196, alpha: 0.7065681379),
-                    placeholder: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1),
-                    disabled: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1),
-                    error: #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1))),
-            font: TemplateFont(
-                navigationBar: UIFont(),
-                toolBar: UIFont(),
-                primary: UIFont(),
-                secondary: UIFont(),
-                placeholder: UIFont(),
-                disabled: UIFont(),
-                error: UIFont()))
-        
-    }
-    
-}
+
+//extension Template {
+//    
+//    static var `default`: TemplateAssets {
+//        
+//        return TemplateAssets(
+//            color: TemplateColor(
+//                view: #colorLiteral(red: 0.1032132573, green: 0.09788694507, blue: 0.1543604942, alpha: 1),
+//                navigationBar: #colorLiteral(red: 0.1032132573, green: 0.09788694507, blue: 0.1543604942, alpha: 1),
+//                toolBar: #colorLiteral(red: 0.1032132573, green: 0.09788694507, blue: 0.1543604942, alpha: 1),
+//                sideBar: #colorLiteral(red: 0.07309625613, green: 0.06932412941, blue: 0.1093190402, alpha: 1),
+//                searchBar: #colorLiteral(red: 0.1032132573, green: 0.09788694507, blue: 0.1543604942, alpha: 1),
+//                scrollView: #colorLiteral(red: 0.1032132573, green: 0.09788694507, blue: 0.1543604942, alpha: 1),
+//                tableView: #colorLiteral(red: 0.1032132573, green: 0.09788694507, blue: 0.1543604942, alpha: 1),
+//                tableViewCell: #colorLiteral(red: 0.1032132573, green: 0.09788694507, blue: 0.1543604942, alpha: 1),
+//                tableViewSeparator: #colorLiteral(red: 0.1032132573, green: 0.09788694507, blue: 0.1543604942, alpha: 1),
+//                tableViewHeader: #colorLiteral(red: 0.1032132573, green: 0.09788694507, blue: 0.1543604942, alpha: 1),
+//                tableViewFooter: #colorLiteral(red: 0.1032132573, green: 0.09788694507, blue: 0.1543604942, alpha: 1),
+//                tableViewHeaderSection: #colorLiteral(red: 0.1032132573, green: 0.09788694507, blue: 0.1543604942, alpha: 1),
+//                tableViewFooterSection: #colorLiteral(red: 0.1032132573, green: 0.09788694507, blue: 0.1543604942, alpha: 1),
+//                collectionView: #colorLiteral(red: 0.1032132573, green: 0.09788694507, blue: 0.1543604942, alpha: 1),
+//                collectionViewCell: #colorLiteral(red: 0.1032132573, green: 0.09788694507, blue: 0.1543604942, alpha: 1),
+//                collectionViewHeader: #colorLiteral(red: 0.1032132573, green: 0.09788694507, blue: 0.1543604942, alpha: 1),
+//                collectionViewFooter: #colorLiteral(red: 0.1032132573, green: 0.09788694507, blue: 0.1543604942, alpha: 1),
+//                collectionViewHeaderSection: #colorLiteral(red: 0.1032132573, green: 0.09788694507, blue: 0.1543604942, alpha: 1),
+//                collectionViewFooterSection: #colorLiteral(red: 0.1032132573, green: 0.09788694507, blue: 0.1543604942, alpha: 1),
+//                activityIndicator: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1),
+//                text: TemplateColorText(
+//                    navigationBar: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1),
+//                    toolBar: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1),
+//                    primary: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1),
+//                    secondary: #colorLiteral(red: 0.9529411765, green: 0.968627451, blue: 0.9725490196, alpha: 0.7065681379),
+//                    placeholder: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1),
+//                    disabled: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1),
+//                    error: #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1))),
+//            font: TemplateFont(
+//                largeTitle: MGFont.Roboto.regular.size(34),
+//                title1: MGFont.Roboto.regular.size(28),
+//                title2: MGFont.Roboto.regular.size(22),
+//                title3: MGFont.Roboto.regular.size(20),
+//                headline: MGFont.Roboto.medium.size(17),
+//                body: MGFont.Roboto.regular.size(17),
+//                callout: MGFont.Roboto.regular.size(16),
+//                subhead: MGFont.Roboto.regular.size(15),
+//                footnote: MGFont.Roboto.regular.size(13),
+//                caption1: MGFont.Roboto.regular.size(12),
+//                caption2: MGFont.Roboto.regular.size(11)))
+//    }
+//    
+//}
