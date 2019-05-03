@@ -25,6 +25,7 @@
 
 import UIKit
 import UserNotifications
+import OneSignal
 import MGSideMenuKit
 import MGTemplateKit
 import MGLandingKit
@@ -58,16 +59,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         MGTemplate.configure()
         MGTemplate.use(color: TemplateColor.default)
-        let template = (UIDevice.current.userInterfaceIdiom == .pad) ? TemplateFont.default : TemplateFont.default
+        let template = (UIDevice.current.userInterfaceIdiom == .pad) ? TemplateFont.xLarge : TemplateFont.large
         MGTemplate.use(font: template)
 
         FirebaseApp.configure()
 
+        let oneSignalAppId = "408ed798-2b3d-4327-8f5f-02c45724b088"
+        let onesignalInitSettings = [kOSSettingsKeyAutoPrompt: false]
+        OneSignal.initWithLaunchOptions(launchOptions, appId: oneSignalAppId, handleNotificationAction: nil, settings: onesignalInitSettings)
+        OneSignal.inFocusDisplayType = OSNotificationDisplayType.notification;
+        OneSignal.promptForPushNotifications(userResponse: { accepted in
+            print("User accepted notifications: \(accepted)")
+        })
+
         UNUserNotificationCenter.current().delegate = self
-        let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
-        UNUserNotificationCenter.current().requestAuthorization(options: authOptions, completionHandler: {_, _ in })
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound], completionHandler: {(granted: Bool, error: Error?) in
+            DispatchQueue.main.async { UIApplication.shared.registerForRemoteNotifications() }
+        })
         Messaging.messaging().delegate = self
-        application.registerForRemoteNotifications()
 
         GADMobileAds.sharedInstance().start { (status) in
             print("Status GADMobileAds: \(status)")
@@ -119,9 +128,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
-}
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
+        // If you are receiving a notification message while your app is in the background,
+        // this callback will not be fired till the user taps on the notification launching the application.
+        // TODO: Handle data of notification
+        // With swizzling disabled you must let Messaging know about the message, for Analytics
+        // Messaging.messaging().appDidReceiveMessage(userInfo)
+        // Print message ID.
+        if let messageID = userInfo[gcmMessageIDKey] {
 
-extension AppDelegate {
+        }
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+
+        let theSilentPushContent = UNMutableNotificationContent()
+        theSilentPushContent.userInfo = userInfo
+        let theSilentPushRequest = UNNotificationRequest(identifier:UUID().uuidString, content: theSilentPushContent, trigger: nil)
+        completionHandler(.newData)
+    }
+    
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+
+    }
     
     var rootViewController:UIViewController {
         sideMenuController = MGSideMenuController().instance
@@ -130,6 +163,5 @@ extension AppDelegate {
         sideMenuController.delegate = self
         return sideMenuController
     }
-    
 }
 

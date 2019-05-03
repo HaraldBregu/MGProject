@@ -30,11 +30,59 @@ class TemplateFont {}
 extension TemplateFont: TemplateFontOptions {}
 
 protocol TemplateFontOptions {
-    static var `default`: TFont { get }
+    static var xSmall: TFont { get }
+    static var small: TFont { get }
+    static var medium: TFont { get }
+    static var large: TFont { get }
+    static var xLarge: TFont { get }
+    static var xxLarge: TFont { get }
+    static var xxxLarge: TFont { get }
 }
 
 extension TemplateFontOptions {
-    static var `default`: TFont {
+    static var xSmall: TFont {
+        return TFont(
+            largeTitle: MGFont.Roboto.regular.size(31),
+            title1: MGFont.Roboto.regular.size(25),
+            title2: MGFont.Roboto.regular.size(19),
+            title3: MGFont.Roboto.regular.size(17),
+            headline: MGFont.Roboto.medium.size(14),
+            body: MGFont.Roboto.regular.size(14),
+            callout: MGFont.Roboto.regular.size(13),
+            subhead: MGFont.Roboto.regular.size(12),
+            footnote: MGFont.Roboto.regular.size(12),
+            caption1: MGFont.Roboto.regular.size(11),
+            caption2: MGFont.Roboto.regular.size(11))
+    }
+    static var small: TFont {
+        return TFont(
+            largeTitle: MGFont.Roboto.regular.size(32),
+            title1: MGFont.Roboto.regular.size(26),
+            title2: MGFont.Roboto.regular.size(20),
+            title3: MGFont.Roboto.regular.size(18),
+            headline: MGFont.Roboto.medium.size(15),
+            body: MGFont.Roboto.regular.size(15),
+            callout: MGFont.Roboto.regular.size(14),
+            subhead: MGFont.Roboto.regular.size(13),
+            footnote: MGFont.Roboto.regular.size(12),
+            caption1: MGFont.Roboto.regular.size(11),
+            caption2: MGFont.Roboto.regular.size(11))
+    }
+    static var medium: TFont {
+        return TFont(
+            largeTitle: MGFont.Roboto.regular.size(33),
+            title1: MGFont.Roboto.regular.size(27),
+            title2: MGFont.Roboto.regular.size(21),
+            title3: MGFont.Roboto.regular.size(19),
+            headline: MGFont.Roboto.medium.size(16),
+            body: MGFont.Roboto.regular.size(16),
+            callout: MGFont.Roboto.regular.size(15),
+            subhead: MGFont.Roboto.regular.size(14),
+            footnote: MGFont.Roboto.regular.size(12),
+            caption1: MGFont.Roboto.regular.size(11),
+            caption2: MGFont.Roboto.regular.size(11))
+    }
+    static var large: TFont {
         return TFont(
             largeTitle: MGFont.Roboto.regular.size(34),
             title1: MGFont.Roboto.regular.size(28),
@@ -47,6 +95,48 @@ extension TemplateFontOptions {
             footnote: MGFont.Roboto.regular.size(13),
             caption1: MGFont.Roboto.regular.size(12),
             caption2: MGFont.Roboto.regular.size(11))
+    }
+    static var xLarge: TFont {
+        return TFont(
+            largeTitle: MGFont.Roboto.regular.size(36),
+            title1: MGFont.Roboto.regular.size(30),
+            title2: MGFont.Roboto.regular.size(24),
+            title3: MGFont.Roboto.regular.size(22),
+            headline: MGFont.Roboto.medium.size(19),
+            body: MGFont.Roboto.regular.size(19),
+            callout: MGFont.Roboto.regular.size(18),
+            subhead: MGFont.Roboto.regular.size(17),
+            footnote: MGFont.Roboto.regular.size(15),
+            caption1: MGFont.Roboto.regular.size(14),
+            caption2: MGFont.Roboto.regular.size(13))
+    }
+    static var xxLarge: TFont {
+        return TFont(
+            largeTitle: MGFont.Roboto.regular.size(38),
+            title1: MGFont.Roboto.regular.size(32),
+            title2: MGFont.Roboto.regular.size(26),
+            title3: MGFont.Roboto.regular.size(24),
+            headline: MGFont.Roboto.medium.size(21),
+            body: MGFont.Roboto.regular.size(21),
+            callout: MGFont.Roboto.regular.size(20),
+            subhead: MGFont.Roboto.regular.size(19),
+            footnote: MGFont.Roboto.regular.size(17),
+            caption1: MGFont.Roboto.regular.size(16),
+            caption2: MGFont.Roboto.regular.size(15))
+    }
+    static var xxxLarge: TFont {
+        return TFont(
+            largeTitle: MGFont.Roboto.regular.size(40),
+            title1: MGFont.Roboto.regular.size(34),
+            title2: MGFont.Roboto.regular.size(28),
+            title3: MGFont.Roboto.regular.size(26),
+            headline: MGFont.Roboto.medium.size(23),
+            body: MGFont.Roboto.regular.size(23),
+            callout: MGFont.Roboto.regular.size(22),
+            subhead: MGFont.Roboto.regular.size(21),
+            footnote: MGFont.Roboto.regular.size(19),
+            caption1: MGFont.Roboto.regular.size(18),
+            caption2: MGFont.Roboto.regular.size(17))
     }
 }
 

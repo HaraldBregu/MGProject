@@ -141,8 +141,8 @@ extension AudioPlayerComponent {
                 navigationListPlayerPrompt: nil,
                 navigationAudioPlayerPrompt: nil),
             font: AudioPlayerFont(
-                tableViewCellTitle: MGTemplate.font.subhead,
-                tableViewCellSubtitle: MGTemplate.font.caption1,
+                tableViewCellTitle: MGTemplate.font.title3,
+                tableViewCellSubtitle: MGTemplate.font.body,
                 playerTitle: MGTemplate.font.subhead,
                 playerSubtitle: MGTemplate.font.subhead,
                 playerYearPub: MGTemplate.font.subhead),

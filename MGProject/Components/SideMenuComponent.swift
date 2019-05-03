@@ -114,8 +114,8 @@ extension SideMenuComponent {
                 tableViewHeaderTitle: "Megageneral",
                 tableViewHeaderSubtitle: "Multipurpose template"),
             font: SideMenuFont(
-                tableViewHeaderTitle: MGTemplate.font.title3,
-                tableViewHeaderSubtitle: MGTemplate.font.caption1,
+                tableViewHeaderTitle: MGTemplate.font.headline,
+                tableViewHeaderSubtitle: MGTemplate.font.caption2,
                 tableViewCellTitle: MGTemplate.font.body),
             image: SideMenuImage(
                 tableViewHeaderImage: #imageLiteral(resourceName: "MGIconLight")),

@@ -102,6 +102,7 @@ PODS:
     - SDWebImage (~> 4.0)
     - SnapKit (~> 4.0.0)
   - MGMapKit (0.1.6)
+  - MGSettingsKit (0.1.1)
   - MGSideMenuKit (0.2.3):
     - SideMenuSwift
   - MGTemplateKit (0.2.0):
@@ -118,6 +119,7 @@ PODS:
     - nanopb/encode (= 0.3.901)
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
+  - OneSignal (2.10.0)
   - Protobuf (3.7.0)
   - SDWebImage (4.4.6):
     - SDWebImage/Core (= 4.4.6)
@@ -137,9 +139,11 @@ DEPENDENCIES:
   - "MGFeedKit (from `https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGFeedKit.git`)"
   - "MGLandingKit (from `https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGLandingKit.git`)"
   - "MGMapKit (from `https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGMapKit.git`)"
+  - "MGSettingsKit (from `https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGSettingsKit.git`)"
   - "MGSideMenuKit (from `https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGSideMenuKit.git`)"
   - "MGTemplateKit (from `https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGTemplateKit.git`)"
   - "MGVideoPlayerKit (from `https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGVideoPlayerKit.git`)"
+  - OneSignal (< 3.0, >= 2.6.2)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -159,6 +163,7 @@ SPEC REPOS:
     - GoogleUtilities
     - GSImageViewerController
     - nanopb
+    - OneSignal
     - Protobuf
     - SDWebImage
     - SideMenuSwift
@@ -177,6 +182,8 @@ EXTERNAL SOURCES:
     :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGLandingKit.git"
   MGMapKit:
     :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGMapKit.git"
+  MGSettingsKit:
+    :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGSettingsKit.git"
   MGSideMenuKit:
     :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGSideMenuKit.git"
   MGTemplateKit:
@@ -195,11 +202,14 @@ CHECKOUT OPTIONS:
     :commit: eb5e1ba05f4e8b8b66b2f23554f0bb77b99abb88
     :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGFeedKit.git"
   MGLandingKit:
-    :commit: a7f64dd57fd2f6c046e8c20f106f38996a74c267
+    :commit: cd5d6e90d49321a774f2d2f78e2b6c82432deb3b
     :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGLandingKit.git"
   MGMapKit:
     :commit: d4819f4bcb87624c8edeac012341d607a27d277b
     :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGMapKit.git"
+  MGSettingsKit:
+    :commit: dfa443251b62db20c85331ac1b88d254c3a0768d
+    :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGSettingsKit.git"
   MGSideMenuKit:
     :commit: 3ca821423c78f912903d70274c105235a7730a74
     :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGSideMenuKit.git"
@@ -231,10 +241,12 @@ SPEC CHECKSUMS:
   MGFeedKit: ba8a69bef1c717574008562002c80a44a570503c
   MGLandingKit: 617fad5b7dedadeaf2b6f02736638be15e8929f8
   MGMapKit: 0a85840e9facb0ee3d1faf8291280989356af13e
+  MGSettingsKit: 4e027f3cfd7b57afbc0a0ba6a8a28a4cccc3d9b7
   MGSideMenuKit: eaa3571037129161f7e0a6716b3964e07fa04043
   MGTemplateKit: 4936ddc393c785a2986d04aa0eff09d66833ed37
   MGVideoPlayerKit: 56c5d19205ff09efd314cad78d39df1c7c52d167
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
+  OneSignal: 0f5ff711d9f25da54885e4ab06ef0abc221a46ef
   Protobuf: 7a877b7f3e5964e3fce995e2eb323dbc6831bb5a
   SDWebImage: 3f3f0c02f09798048c47a5ed0a13f17b063572d8
   SideMenuSwift: 1bee5a0e54c6df7d8106f749b82567eae5c6d974
@@ -242,6 +254,6 @@ SPEC CHECKSUMS:
   SwiftSoup: 4fe21f65cdbfa3a40559047016b7962b88d29279
   UIColor_Hex_Swift: bc07fc197421ee896b9ed6dcfa2054b7fbf75145
 
-PODFILE CHECKSUM: 66c2d1af34c1331b430ebe5dcabd5fe123053a3e
+PODFILE CHECKSUM: bb9c502e5d405cad346a1aaa87023355d7bc903f
 
 COCOAPODS: 1.6.1

@@ -31,7 +31,6 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     
     // Receive displayed notifications for iOS 10 devices.
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        
         let userInfo = notification.request.content.userInfo
         
         // With swizzling disabled you must let Messaging know about the message, for Analytics
@@ -46,12 +45,27 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         print(userInfo)
         
         // Change this to your preferred presentation option
-        completionHandler([])
+        completionHandler([.alert, .sound])
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        
         let userInfo = response.notification.request.content.userInfo
+        
+//        let notification = UNMutableNotificationContent()
+//        notification.title = "AXA registrazione"
+//        notification.subtitle = "Conferma la registrazione"
+//        notification.body = "Per completare la registrazione su AXA verifica la tua email clickando su questo link"
+//        notification.categoryIdentifier = "TEST_IDENTIFIER_LOCAL_NOTIFICATION"
+//        notification.userInfo["email_verify_token"] = userResponse?.token
+//        notification.userInfo["user_id"] = textfieldEmail.text
+//        notification.userInfo["person_id"] = userResponse?.personId
+//        let notificationTrigger = UNTimeIntervalNotificationTrigger(timeInterval: 4, repeats: false)
+//        let identifier = "TEST_IDENTIFIER"
+//        let request = UNNotificationRequest(identifier: identifier, content: notification, trigger: notificationTrigger)
+//        UNUserNotificationCenter.current().add(request, withCompletionHandler: { error in
+//            print("Message ID: \(error)")
+//        })
+
         // Print message ID.
         if let messageID = userInfo[gcmMessageIDKey] {
             print("Message ID: \(messageID)")

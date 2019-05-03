@@ -43,7 +43,7 @@ extension FeedComponent {
             font: FeedFont(
                 tableViewCellTitle: MGTemplate.font.title3,
                 tableViewCellSubtitle: MGTemplate.font.caption1,
-                tableViewCellDescription: MGTemplate.font.subhead),
+                tableViewCellDescription: MGTemplate.font.body),
             image: FeedImage(),
             color: FeedColor(
                 navigationBar: MGTemplate.color.navigationBar,

@@ -8,6 +8,7 @@ target 'MGProject' do
   pod 'Firebase/AdMob'
   pod 'Firebase/RemoteConfig'
   pod 'Firebase/Messaging'
+  pod 'OneSignal', '>= 2.6.2', '< 3.0'
 
   pod 'MGTemplateKit',    :git => 'https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGTemplateKit.git'
   pod 'MGSideMenuKit',    :git => 'https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGSideMenuKit.git'
@@ -17,5 +18,11 @@ target 'MGProject' do
   pod 'MGBrowserKit',     :git => 'https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGBrowserKit.git'
   pod 'MGMapKit',         :git => 'https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGMapKit.git'
   pod 'MGFeedKit',        :git => 'https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGFeedKit.git'
+  pod 'MGSettingsKit',    :git => 'https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGSettingsKit.git'
+end
 
+target 'NotificationServiceExtension' do
+  use_frameworks!
+
+  pod 'OneSignal', '>= 2.6.2', '< 3.0'
 end

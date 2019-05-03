@@ -127,19 +127,6 @@ extension AppDelegate {
         landingController.delegate = self
         landingController.dataSource = self
         return UINavigationController(rootViewController: landingController)
-
-//        videoPlayerListController = MGVideoPlayerListController.instance
-//        videoPlayerListController.assets = AssetsData.setup
-//        videoPlayerListController.dataSource = self
-//        videoPlayerListController.delegate = self
-//        return UINavigationController(rootViewController: videoPlayerListController)
-        
-//        audioPlayerListController = MGAudioPlayerListController.instance
-//        audioPlayerListController.assets = AssetsData.setup
-//        audioPlayerListController.delegate = self
-//        audioPlayerListController.dataSource = self
-//        return UINavigationController(rootViewController: audioPlayerListController)
-        
     }
     
     func controller(_ parentController: UIViewController, forIndexPath indexPath: IndexPath, withItem item: AnyObject) -> UIViewController? {
