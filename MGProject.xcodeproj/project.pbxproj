@@ -32,6 +32,7 @@
 		A91BBBB2227B7FF300A5D626 /* SettingsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91BBBB1227B7FF300A5D626 /* SettingsComponent.swift */; };
 		A92017FD227CE0C1004A42B1 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92017FC227CE0C1004A42B1 /* NotificationService.swift */; };
 		A9201801227CE0C1004A42B1 /* NotificationServiceExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = A92017FA227CE0C0004A42B1 /* NotificationServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		A9398078227D870C005E2736 /* AppDelegate+AdMob.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9398077227D870C005E2736 /* AppDelegate+AdMob.swift */; };
 		A989A5B2227791FE00A36CBD /* AppDelegate+Messaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = A989A5B1227791FE00A36CBD /* AppDelegate+Messaging.swift */; };
 		A989A5B42277922C00A36CBD /* AppDelegate+UserNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = A989A5B32277922C00A36CBD /* AppDelegate+UserNotification.swift */; };
 		A989A5B62277948D00A36CBD /* AppDelegate+Modules.swift in Sources */ = {isa = PBXBuildFile; fileRef = A989A5B52277948D00A36CBD /* AppDelegate+Modules.swift */; };
@@ -97,6 +98,7 @@
 		A92017FA227CE0C0004A42B1 /* NotificationServiceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotificationServiceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		A92017FC227CE0C1004A42B1 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		A92017FE227CE0C1004A42B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A9398077227D870C005E2736 /* AppDelegate+AdMob.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+AdMob.swift"; sourceTree = "<group>"; };
 		A989A5B1227791FE00A36CBD /* AppDelegate+Messaging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Messaging.swift"; sourceTree = "<group>"; };
 		A989A5B32277922C00A36CBD /* AppDelegate+UserNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+UserNotification.swift"; sourceTree = "<group>"; };
 		A989A5B52277948D00A36CBD /* AppDelegate+Modules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Modules.swift"; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 				A989A5B52277948D00A36CBD /* AppDelegate+Modules.swift */,
 				A989A5B1227791FE00A36CBD /* AppDelegate+Messaging.swift */,
 				A989A5B32277922C00A36CBD /* AppDelegate+UserNotification.swift */,
+				A9398077227D870C005E2736 /* AppDelegate+AdMob.swift */,
 			);
 			name = Application;
 			sourceTree = "<group>";
@@ -526,6 +529,7 @@
 				A989A5B2227791FE00A36CBD /* AppDelegate+Messaging.swift in Sources */,
 				A91B6CCE22759704001C811E /* SideMenuComponent.swift in Sources */,
 				A91B6CD022759789001C811E /* LandingComponent.swift in Sources */,
+				A9398078227D870C005E2736 /* AppDelegate+AdMob.swift in Sources */,
 				A9A4C032224AC1E10093A7AE /* AppDelegate.swift in Sources */,
 				A91BBBAD227B58A600A5D626 /* TemplateColor.swift in Sources */,
 				A91B6CD2227597E6001C811E /* BrowserComponent.swift in Sources */,

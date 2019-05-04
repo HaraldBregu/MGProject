@@ -24,6 +24,7 @@
 //
 
 import Foundation
+import FirebaseRemoteConfig
 import MGTemplateKit
 import MGFeedKit
 
@@ -34,7 +35,6 @@ protocol FeedComponent {
 extension FeedComponent {
     
     static var data: FeedAsset {
-        
         return FeedAsset(
             string: FeedString(
                 title: "",
@@ -67,7 +67,7 @@ extension FeedComponent {
                 tableViewCellDescription: MGTemplate.color.text.primary),
             data: FeedData(
                 url: "",
-                enableAds: false,
+                enableAds: RemoteConfig.remoteConfig()["enable_admob_banner"].boolValue,
                 adsUnitId: "ca-app-pub-3940256099942544/2934735716",
                 keyboardAppearance: .dark,
                 activityIndicatorStyle: .white))

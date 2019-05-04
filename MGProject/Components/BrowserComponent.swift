@@ -24,6 +24,7 @@
 //
 
 import Foundation
+import FirebaseRemoteConfig
 import MGTemplateKit
 import MGBrowserKit
 
@@ -50,7 +51,7 @@ extension BrowserComponent {
                 viewContent: MGTemplate.color.text.primary),
             data: BrowserData(
                 url: "https://thenextweb.com/",
-                enableAds: true,
+                enableAds: RemoteConfig.remoteConfig()["enable_admob_banner"].boolValue,
                 adsUnitId: "ca-app-pub-3940256099942544/2934735716"))
     }
     

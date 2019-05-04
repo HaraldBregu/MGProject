@@ -24,8 +24,10 @@
 //
 
 import Foundation
+import FirebaseRemoteConfig
 import MGTemplateKit
 import MGSideMenuKit
+
 
 protocol SideMenuComponent {
     static var data: SideMenuAsset { get }

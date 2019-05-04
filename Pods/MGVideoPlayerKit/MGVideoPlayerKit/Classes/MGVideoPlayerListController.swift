@@ -46,8 +46,9 @@ public class MGVideoPlayerListController: UIViewController {
         super.viewDidLoad()
         
         title = assets.string.title
+        navigationItem.title = assets.string.navigationBarTitle
+        
         view.backgroundColor = assets.color.view
-
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.barTintColor = assets.color.navigationBar
         navigationController?.navigationBar.tintColor = assets.color.navigationBarContent
@@ -74,6 +75,7 @@ public class MGVideoPlayerListController: UIViewController {
             navigationItem.leftBarButtonItems = items
             navigationItem.leftItemsSupplementBackButton = true
         }
+        
         if let items = dataSource?.rightBarButtonItems(self) {
             items.forEach({ $0.target = self })
             items.forEach({ $0.action = #selector(navigationItemAction(barButtonItem:)) })
@@ -99,11 +101,27 @@ public class MGVideoPlayerListController: UIViewController {
             bannerView.adUnitID = assets.data.adsUnitId
             bannerView.rootViewController = self
             bannerView.load(GADRequest())
-            bannerView.delegate = self
         }
 
     }
     
+    public override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        
+        if let items = dataSource?.leftBarButtonItems(self) {
+            items.forEach({ $0.target = self })
+            items.forEach({ $0.action = #selector(navigationItemAction(barButtonItem:)) })
+            navigationItem.leftBarButtonItems = items
+            navigationItem.leftItemsSupplementBackButton = true
+        }
+        
+        if let items = dataSource?.rightBarButtonItems(self) {
+            items.forEach({ $0.target = self })
+            items.forEach({ $0.action = #selector(navigationItemAction(barButtonItem:)) })
+            navigationItem.rightBarButtonItems = items
+        }
+    }
+
     @objc func navigationItemAction(barButtonItem: UIBarButtonItem) {
         self.delegate?.controller(self, didTapBarButtonItem: barButtonItem)
     }
@@ -258,39 +276,3 @@ fileprivate let storyboardName = "MGVideoPlayer"
 fileprivate let controllerIdentifier = "MGVideoPlayerListController"
 fileprivate let resourceName = "MGVideoPlayerKit"
 fileprivate let resourceExtension = "bundle"
-
-extension MGVideoPlayerListController: GADBannerViewDelegate {
-    
-    /// Tells the delegate an ad request loaded an ad.
-    public func adViewDidReceiveAd(_ bannerView: GADBannerView) {
-        //print("adViewDidReceiveAd")
-    }
-    
-    /// Tells the delegate an ad request failed.
-    public func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
-        //print("adView:didFailToReceiveAdWithError: \(error.localizedDescription)")
-    }
-    
-    /// Tells the delegate that a full-screen view will be presented in response
-    /// to the user clicking on an ad.
-    public func adViewWillPresentScreen(_ bannerView: GADBannerView) {
-        //print("adViewWillPresentScreen")
-    }
-    
-    /// Tells the delegate that the full-screen view will be dismissed.
-    public func adViewWillDismissScreen(_ bannerView: GADBannerView) {
-        //print("adViewWillDismissScreen")
-    }
-    
-    /// Tells the delegate that the full-screen view has been dismissed.
-    public func adViewDidDismissScreen(_ bannerView: GADBannerView) {
-        //print("adViewDidDismissScreen")
-    }
-    
-    /// Tells the delegate that a user click will open another app (such as
-    /// the App Store), backgrounding the current app.
-    public func adViewWillLeaveApplication(_ bannerView: GADBannerView) {
-        //print("adViewWillLeaveApplication")
-    }
-    
-}

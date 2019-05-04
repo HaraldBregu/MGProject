@@ -26,7 +26,6 @@
 import Foundation
 import UserNotifications
 
-
 extension AppDelegate: UNUserNotificationCenterDelegate {
     
     // Receive displayed notifications for iOS 10 devices.

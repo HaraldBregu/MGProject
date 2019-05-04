@@ -24,6 +24,7 @@
 //
 
 import Foundation
+import FirebaseRemoteConfig
 import MGTemplateKit
 import MGVideoPlayerKit
 
@@ -75,9 +76,10 @@ extension VideoPlayerComponent {
                 toolBarContent: MGTemplate.color.text.toolBar,
                 view: MGTemplate.color.view,
                 viewContent: MGTemplate.color.text.primary,
+                refreshControl: MGTemplate.color.activityIndicator,
+                activityIndicator: MGTemplate.color.activityIndicator,
                 tableView: MGTemplate.color.tableView,
                 tableViewSeparator: MGTemplate.color.tableViewSeparator,
-                refresh: MGTemplate.color.activityIndicator,
                 searchBarContent: MGTemplate.color.text.primary,
                 tableViewCell: MGTemplate.color.tableViewCell,
                 tableViewCellContent: MGTemplate.color.text.primary,
@@ -92,7 +94,7 @@ extension VideoPlayerComponent {
                 items: list,
                 keyboardAppearance: .dark,
                 statusBarStyle: .default,
-                enableAds: false,
+                enableAds: RemoteConfig.remoteConfig()["enable_admob_banner"].boolValue,
                 adsUnitId: "ca-app-pub-3940256099942544/2934735716",
                 listRatingStarSize: (ipad ? 24 : 15),
                 playerRatingStarSize: ipad ? 24 : 15))
@@ -145,9 +147,10 @@ struct VideoPlayerColor: MGVideoPlayerColor {
     var toolBarContent: UIColor
     var view: UIColor
     var viewContent: UIColor
+    var refreshControl: UIColor
+    var activityIndicator: UIColor
     var tableView: UIColor
     var tableViewSeparator: UIColor
-    var refresh: UIColor
     var searchBarContent: UIColor
     var tableViewCell: UIColor
     var tableViewCellContent: UIColor

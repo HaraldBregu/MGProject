@@ -193,19 +193,19 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   MGAudioPlayerKit:
-    :commit: 67f210393008114951acf97b785543faa10f7d19
+    :commit: 08b94d897adc5ef2f027e3deeae277dc66b681af
     :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGAudioPlayerKit.git"
   MGBrowserKit:
-    :commit: fa78133a3781ae19962926ba718de6b5ef783f17
+    :commit: 3278db73395c68dd7e8477babb54a529f5dc3925
     :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGBrowserKit.git"
   MGFeedKit:
-    :commit: eb5e1ba05f4e8b8b66b2f23554f0bb77b99abb88
+    :commit: 1df072acdaa5af7daa0d3e29367f6b218f1aa8ef
     :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGFeedKit.git"
   MGLandingKit:
-    :commit: cd5d6e90d49321a774f2d2f78e2b6c82432deb3b
+    :commit: 0486a9c6795f2d884fb161b32bda8a6e680ec272
     :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGLandingKit.git"
   MGMapKit:
-    :commit: d4819f4bcb87624c8edeac012341d607a27d277b
+    :commit: 2684b268a837525555efb18142721e6dbc01d3d4
     :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGMapKit.git"
   MGSettingsKit:
     :commit: dfa443251b62db20c85331ac1b88d254c3a0768d
@@ -217,7 +217,7 @@ CHECKOUT OPTIONS:
     :commit: f47404df4d8b6c1ab8b5d73e5a11afd66fddad6c
     :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGTemplateKit.git"
   MGVideoPlayerKit:
-    :commit: b7eec7471018370b1859ec4a936c1c692ece2efb
+    :commit: 3dceb086edda74254d3bce7b140b636ad71d3dfc
     :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGVideoPlayerKit.git"
 
 SPEC CHECKSUMS:

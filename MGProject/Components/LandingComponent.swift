@@ -24,6 +24,7 @@
 //
 
 import Foundation
+import FirebaseRemoteConfig
 import MGTemplateKit
 import MGLandingKit
 
@@ -98,7 +99,7 @@ extension LandingComponent {
             data: LandingData(
                 userImageUrl: URL(string:"https://firebasestorage.googleapis.com/v0/b/megageneral-8d8a3.appspot.com/o/MGIconLight.png?alt=media&token=b8bb255f-7ede-4b54-a8c0-b3a63ad661f6")!,
                 collectionItems: megaitems,
-                enableAds: false,
+                enableAds: RemoteConfig.remoteConfig()["enable_admob_banner"].boolValue,
                 adsUnitId: "ca-app-pub-3940256099942544/2934735716",
                 statusBarStyle: .default,
                 imageViewIndicatorStyle: .white))

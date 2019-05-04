@@ -1,7 +1,7 @@
 // 
-//  AppDelegate+Messaging.swift
+//  AppDelegate+AdMob.swift
 //
-//  Created by harald bregu on 29/04/2019.
+//  Created by harald bregu on 04/05/2019.
 //  Copyright © 2019 Dream Building Company. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -24,19 +24,16 @@
 //
 
 import Foundation
-import FirebaseMessaging
+import Firebase
 
-extension AppDelegate: MessagingDelegate {
-
-    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
-        print("Firebase registration token: \(fcmToken)")
-        let dataDict:[String: String] = ["token": fcmToken]
-        NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
-        // TODO: If necessary send token to application server.
-        // Note: This callback is fired at each app startup and whenever a new token is generated.
+extension AppDelegate: GADRewardBasedVideoAdDelegate {
+    
+    func rewardBasedVideoAd(_ rewardBasedVideoAd: GADRewardBasedVideoAd, didRewardUserWith reward: GADAdReward) {
+        
     }
     
-    func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
-        print("didReceive remoteMessage: \(remoteMessage.appData)")
-    }
+}
+
+extension AppDelegate: GADInterstitialDelegate {
+    
 }

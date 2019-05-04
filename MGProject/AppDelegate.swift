@@ -50,10 +50,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var videoPlayerListController: MGVideoPlayerListController!
     var audioPlayerListController: MGAudioPlayerListController!
 
-    private var remoteConfig = RemoteConfig.remoteConfig()
-//    var interstitial: GADInterstitial!
+    var remoteConfig = RemoteConfig.remoteConfig()
+    var interstitial: GADInterstitial!
     let gcmMessageIDKey = "gcm.message_id"
-    
+    var enableInterstitial: Bool = false
+    var enableRewarderBasedVideo: Bool = false
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
         
@@ -63,14 +65,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         MGTemplate.use(font: template)
 
         FirebaseApp.configure()
+        remoteConfig.configSettings = RemoteConfigSettings(developerModeEnabled: true)
+        remoteConfig.fetch(withExpirationDuration: TimeInterval(6.0)) { (status, error) -> Void in
+            if status == .success {
+                self.remoteConfig.activateFetched()
+            }
+        }
 
         let oneSignalAppId = "408ed798-2b3d-4327-8f5f-02c45724b088"
         let onesignalInitSettings = [kOSSettingsKeyAutoPrompt: false]
         OneSignal.initWithLaunchOptions(launchOptions, appId: oneSignalAppId, handleNotificationAction: nil, settings: onesignalInitSettings)
         OneSignal.inFocusDisplayType = OSNotificationDisplayType.notification;
-        OneSignal.promptForPushNotifications(userResponse: { accepted in
-            print("User accepted notifications: \(accepted)")
-        })
+        OneSignal.promptForPushNotifications(userResponse: { print("User accepted notifications: \($0)") })
 
         UNUserNotificationCenter.current().delegate = self
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound], completionHandler: {(granted: Bool, error: Error?) in
@@ -78,29 +84,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         })
         Messaging.messaging().delegate = self
 
-        GADMobileAds.sharedInstance().start { (status) in
-            print("Status GADMobileAds: \(status)")
-        }
-
-        remoteConfig.configSettings = RemoteConfigSettings(developerModeEnabled: true)
-        remoteConfig.fetch(withExpirationDuration: TimeInterval(6.0)) { (status, error) -> Void in
-            if status == .success {
-                self.remoteConfig.activateFetched()
-            } else {
-                print("Error: \(error?.localizedDescription ?? "No error available.")")
-            }
-        }
+        GADMobileAds.sharedInstance().start { print("Status GADMobileAds: \($0)") }
         
-        // Interstitial banner
-//        interstitial = GADInterstitial(adUnitID: "ca-app-pub-3940256099942544/4411468910")
-//        let request = GADRequest()
-//        interstitial.load(request)
-        //interstitial.delegate = self
-
-        // Rewarded banner
-//        GADRewardBasedVideoAd.sharedInstance().delegate = self
-//        GADRewardBasedVideoAd.sharedInstance().load(GADRequest(), withAdUnitID: "ca-app-pub-3940256099942544/1712485313")
-
+        enableInterstitial = remoteConfig["enable_admob_interstitial"].boolValue
+        enableRewarderBasedVideo = remoteConfig["enable_admob_rewarderbasedvideo"].boolValue
+        
+        if enableInterstitial { setupInterstitialAd(withUnitId: "ca-app-pub-3940256099942544/4411468910") }
+        if enableRewarderBasedVideo { setupRewardBasedVideoAd(withUnitId: "ca-app-pub-3940256099942544/1712485313") }
+        
         window?.rootViewController = rootViewController
         window?.makeKeyAndVisible()
         return true
@@ -139,22 +130,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // With swizzling disabled you must let Messaging know about the message, for Analytics
         // Messaging.messaging().appDidReceiveMessage(userInfo)
         // Print message ID.
-        if let messageID = userInfo[gcmMessageIDKey] {
-
-        }
+        //if let messageID = userInfo[gcmMessageIDKey] {
+        //
+        //}
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
 
-        let theSilentPushContent = UNMutableNotificationContent()
-        theSilentPushContent.userInfo = userInfo
-        let theSilentPushRequest = UNNotificationRequest(identifier:UUID().uuidString, content: theSilentPushContent, trigger: nil)
+//        let theSilentPushContent = UNMutableNotificationContent()
+//        theSilentPushContent.userInfo = userInfo
+//        let theSilentPushRequest = UNNotificationRequest(identifier:UUID().uuidString, content: theSilentPushContent, trigger: nil)
         completionHandler(.newData)
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
 
     }
+    
+}
+
+extension AppDelegate {
     
     var rootViewController:UIViewController {
         sideMenuController = MGSideMenuController().instance
@@ -163,5 +158,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         sideMenuController.delegate = self
         return sideMenuController
     }
-}
 
+    func setupInterstitialAd(withUnitId id: String) {
+        interstitial = GADInterstitial(adUnitID: id)
+        let request = GADRequest()
+        interstitial.load(request)
+        interstitial.delegate = self
+    }
+    
+    func setupRewardBasedVideoAd(withUnitId id: String)  {
+        GADRewardBasedVideoAd.sharedInstance().delegate = self
+        GADRewardBasedVideoAd.sharedInstance().load(GADRequest(), withAdUnitID: id)
+    }
+    
+}

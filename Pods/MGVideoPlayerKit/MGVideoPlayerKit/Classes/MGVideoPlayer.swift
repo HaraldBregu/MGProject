@@ -71,9 +71,10 @@ public protocol MGVideoPlayerColor {
     var toolBarContent: UIColor { get set }
     var view: UIColor { get set }
     var viewContent: UIColor { get set }
+    var refreshControl: UIColor { get set }
+    var activityIndicator: UIColor { get set }
     var tableView: UIColor { get set }
     var tableViewSeparator: UIColor { get set }
-    var refresh: UIColor { get set }
     var searchBarContent: UIColor { get set }
     var tableViewCell: UIColor { get set }
     var tableViewCellContent: UIColor { get set }

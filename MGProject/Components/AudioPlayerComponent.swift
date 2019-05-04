@@ -24,6 +24,7 @@
 //
 
 import Foundation
+import FirebaseRemoteConfig
 import MGTemplateKit
 import MGAudioPlayerKit
 
@@ -190,7 +191,7 @@ extension AudioPlayerComponent {
                 items: audios,
                 darkKeyboard: true,
                 bundle: .main,
-                enableAds: true,
+                enableAds: RemoteConfig.remoteConfig()["enable_admob_banner"].boolValue,
                 adsUnitId: ""))
     }
     

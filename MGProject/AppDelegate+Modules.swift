@@ -24,6 +24,7 @@
 //
 
 import Foundation
+import Firebase
 import MGSideMenuKit
 import MGTemplateKit
 import MGLandingKit
@@ -32,7 +33,6 @@ import MGAudioPlayerKit
 import MGBrowserKit
 import MGMapKit
 import MGFeedKit
-
 
 extension AppDelegate: MGSideMenuControllerDataSource, MGSideMenuControllerDelegate {}
 extension AppDelegate: MGLandingControllerDataSource, MGLandingControllerDelegate {}
@@ -45,6 +45,9 @@ extension AppDelegate: MGFeedControllerDataSource, MGFeedControllerDelegate {}
 extension AppDelegate {
     
     func leftBarButtonItems(_ controller: UIViewController) -> [UIBarButtonItem] {
+        if (UIDevice.current.orientation == .landscapeLeft || UIDevice.current.orientation == .landscapeRight) && (UIDevice.current.userInterfaceIdiom == .pad) {
+            return []
+        }
         let menuBarButton = UIBarButtonItem()
         menuBarButton.image = UIImage(icon: .fontAwesomeSolid(.bars), size: CGSize(width: 30, height: 30), textColor: .black)
         menuBarButton.style = .plain
@@ -54,31 +57,40 @@ extension AppDelegate {
     }
     
     func rightBarButtonItems(_ controller: UIViewController) -> [UIBarButtonItem] {
-        let menuBarButton = UIBarButtonItem()
-        menuBarButton.image = UIImage(icon: .fontAwesomeSolid(.addressBook), size: CGSize(width: 36, height: 36), textColor: .black)
-        menuBarButton.style = .plain
-        menuBarButton.accessibilityIdentifier = "OPTION"
+        if controller is MGLandingController {
+            let menuBarButton = UIBarButtonItem()
+            menuBarButton.image = UIImage(icon: .fontAwesomeSolid(.addressBook), size: CGSize(width: 36, height: 36), textColor: .black)
+            menuBarButton.style = .plain
+            menuBarButton.accessibilityIdentifier = "OPTION"
+            
+            return [menuBarButton]
+        }
         
-        return [menuBarButton]
+        return []
     }
     
     func toolBarButtonItems(_ controller: UIViewController) -> [UIBarButtonItem] {
-        let backBarButton = UIBarButtonItem()
-        backBarButton.image = UIImage(icon: .fontAwesomeSolid(.backward), size: CGSize(width: 36, height: 36), textColor: .black)
-        backBarButton.style = .plain
-        backBarButton.accessibilityIdentifier = "BACK"
+        if controller is MGBrowserController {
+            
+            let backBarButton = UIBarButtonItem()
+            backBarButton.image = UIImage(icon: .fontAwesomeSolid(.backward), size: CGSize(width: 36, height: 36), textColor: .black)
+            backBarButton.style = .plain
+            backBarButton.accessibilityIdentifier = "BACK"
+            
+            let forwardBarButton = UIBarButtonItem()
+            forwardBarButton.image = UIImage(icon: .fontAwesomeSolid(.forward), size: CGSize(width: 36, height: 36), textColor: .black)
+            forwardBarButton.style = .plain
+            forwardBarButton.accessibilityIdentifier = "FORWARD"
+            
+            let reloadBarButton = UIBarButtonItem()
+            reloadBarButton.image = UIImage(icon: .fontAwesomeSolid(.recycle), size: CGSize(width: 36, height: 36), textColor: .black)
+            reloadBarButton.style = .plain
+            reloadBarButton.accessibilityIdentifier = "RELOAD"
+            
+            return [reloadBarButton, backBarButton, forwardBarButton]
+        }
         
-        let forwardBarButton = UIBarButtonItem()
-        forwardBarButton.image = UIImage(icon: .fontAwesomeSolid(.forward), size: CGSize(width: 36, height: 36), textColor: .black)
-        forwardBarButton.style = .plain
-        forwardBarButton.accessibilityIdentifier = "FORWARD"
-        
-        let reloadBarButton = UIBarButtonItem()
-        reloadBarButton.image = UIImage(icon: .fontAwesomeSolid(.recycle), size: CGSize(width: 36, height: 36), textColor: .black)
-        reloadBarButton.style = .plain
-        reloadBarButton.accessibilityIdentifier = "RELOAD"
-        
-        return [reloadBarButton, backBarButton, forwardBarButton]
+        return []
     }
     
     func controller(_ controller: UIViewController, didTapBarButtonItem barButtonItem: UIBarButtonItem) {
@@ -86,15 +98,17 @@ extension AppDelegate {
             sideMenuController.showMenu()
         }
         
-        //        if interstitial.isReady {
-        //            interstitial.present(fromRootViewController: controller)
-        //        } else {
-        //            print("Ad wasn't ready")
-        //        }
-//        if GADRewardBasedVideoAd.sharedInstance().isReady == true {
-//            GADRewardBasedVideoAd.sharedInstance().present(fromRootViewController: controller)
-//        }
+        if enableInterstitial {
+            if interstitial.isReady {
+                interstitial.present(fromRootViewController: controller)
+            }
+        }
         
+        if enableRewarderBasedVideo {
+            if GADRewardBasedVideoAd.sharedInstance().isReady == true {
+                GADRewardBasedVideoAd.sharedInstance().present(fromRootViewController: controller)
+            }
+        }
         
         //        let items = [item.title!, item.description!]
         //        let activityIndicator = UIActivityViewController(activityItems: items, applicationActivities: nil)
