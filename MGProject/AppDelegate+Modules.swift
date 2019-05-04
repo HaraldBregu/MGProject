@@ -24,6 +24,7 @@
 //
 
 import Foundation
+import MessageUI
 import Firebase
 import MGSideMenuKit
 import MGTemplateKit
@@ -48,24 +49,27 @@ extension AppDelegate {
         if (UIDevice.current.orientation == .landscapeLeft || UIDevice.current.orientation == .landscapeRight) && (UIDevice.current.userInterfaceIdiom == .pad) {
             return []
         }
-        let menuBarButton = UIBarButtonItem()
-        menuBarButton.image = UIImage(icon: .fontAwesomeSolid(.bars), size: CGSize(width: 30, height: 30), textColor: .black)
-        menuBarButton.style = .plain
-        menuBarButton.accessibilityIdentifier = "LEFT_SIDE_MENU"
         
-        return [menuBarButton]
-    }
-    
-    func rightBarButtonItems(_ controller: UIViewController) -> [UIBarButtonItem] {
-        if controller is MGLandingController {
+        if controller is MGLandingController || controller is MGBrowserController || controller is MGMapController || controller is MGFeedController || controller is MGAudioPlayerListController || controller is MGVideoPlayerListController {
             let menuBarButton = UIBarButtonItem()
-            menuBarButton.image = UIImage(icon: .fontAwesomeSolid(.addressBook), size: CGSize(width: 36, height: 36), textColor: .black)
+            menuBarButton.image = UIImage(icon: .fontAwesomeSolid(.bars), size: CGSize(width: 30, height: 30), textColor: .black)
             menuBarButton.style = .plain
-            menuBarButton.accessibilityIdentifier = "OPTION"
+            menuBarButton.accessibilityIdentifier = "LEFT_SIDE_MENU"
             
             return [menuBarButton]
         }
-        
+        return []
+    }
+    
+    func rightBarButtonItems(_ controller: UIViewController) -> [UIBarButtonItem] {
+        if controller is MGLandingController || controller is MGBrowserController || controller is MGMapController || controller is MGFeedController || controller is MGAudioPlayerListController || controller is MGVideoPlayerListController {
+            let menuBarButton = UIBarButtonItem()
+            menuBarButton.image = UIImage(icon: .openIconic(.share) , size: CGSize(width: 36, height: 36), textColor: .black)
+            menuBarButton.style = .plain
+            menuBarButton.accessibilityIdentifier = "SHARE_OPTION"
+            
+            return [menuBarButton]
+        }
         return []
     }
     
@@ -73,17 +77,17 @@ extension AppDelegate {
         if controller is MGBrowserController {
             
             let backBarButton = UIBarButtonItem()
-            backBarButton.image = UIImage(icon: .fontAwesomeSolid(.backward), size: CGSize(width: 36, height: 36), textColor: .black)
+            backBarButton.image = UIImage(icon: .openIconic(.chevronLeft), size: CGSize(width: 36, height: 36), textColor: .black)
             backBarButton.style = .plain
             backBarButton.accessibilityIdentifier = "BACK"
             
             let forwardBarButton = UIBarButtonItem()
-            forwardBarButton.image = UIImage(icon: .fontAwesomeSolid(.forward), size: CGSize(width: 36, height: 36), textColor: .black)
+            forwardBarButton.image = UIImage(icon: .openIconic(.chevronRight), size: CGSize(width: 36, height: 36), textColor: .black)
             forwardBarButton.style = .plain
             forwardBarButton.accessibilityIdentifier = "FORWARD"
             
             let reloadBarButton = UIBarButtonItem()
-            reloadBarButton.image = UIImage(icon: .fontAwesomeSolid(.recycle), size: CGSize(width: 36, height: 36), textColor: .black)
+            reloadBarButton.image = UIImage(icon: .openIconic(.reload), size: CGSize(width: 36, height: 36), textColor: .black)
             reloadBarButton.style = .plain
             reloadBarButton.accessibilityIdentifier = "RELOAD"
             
@@ -94,8 +98,19 @@ extension AppDelegate {
     }
     
     func controller(_ controller: UIViewController, didTapBarButtonItem barButtonItem: UIBarButtonItem) {
+       
         if barButtonItem.accessibilityIdentifier == "LEFT_SIDE_MENU" {
             sideMenuController.showMenu()
+        }
+        
+        if barButtonItem.accessibilityIdentifier == "SHARE_OPTION" {
+            let items = ["MegaGeneral"]
+            let activityIndicator = UIActivityViewController(activityItems: items, applicationActivities: nil)
+            controller.present(activityIndicator, animated: true)
+            if let popover = activityIndicator.popoverPresentationController {
+                popover.sourceView = controller.view
+                popover.barButtonItem = barButtonItem
+            }
         }
         
         if enableInterstitial {
@@ -110,24 +125,16 @@ extension AppDelegate {
             }
         }
         
-        //        let items = [item.title!, item.description!]
-        //        let activityIndicator = UIActivityViewController(activityItems: items, applicationActivities: nil)
-        //        present(activityIndicator, animated: true)
-        //        if let popover = activityIndicator.popoverPresentationController {
-        //            popover.sourceView = self.view
-        //            popover.barButtonItem = barButtonItem
-        //        }
-        
-        //        //        let alertController = UIAlertController(title: "mg.audioplayer.btm.option.sheet.title".localized, message: "mg.audioplayer.btm.option.sheet.description".localized, preferredStyle: .actionSheet)
-        //        //        alertController.addAction(UIAlertAction(title: "mg.audioplayer.btm.option.sheet.opton.one".localized, style: .default, handler: { (action) in
-        //        //        }))
-        //        //        alertController.addAction(UIAlertAction(title: "mg.audioplayer.btm.option.sheet.opton.two".localized, style: .default, handler: { (action) in
-        //        //        }))
-        //        //        alertController.addAction(UIAlertAction(title: "mg.audioplayer.btm.option.sheet.opton.three".localized, style: .default, handler: { (action) in
-        //        //        }))
-        //        //        alertController.addAction(UIAlertAction(title: "mg.audioplayer.btm.option.sheet.opton.cancel".localized, style: .cancel, handler: { (action) in
-        //        //        }))
-        //        //        present(alertController, animated: true) { }
+                //        let alertController = UIAlertController(title: "mg.audioplayer.btm.option.sheet.title".localized, message: "mg.audioplayer.btm.option.sheet.description".localized, preferredStyle: .actionSheet)
+                //        alertController.addAction(UIAlertAction(title: "mg.audioplayer.btm.option.sheet.opton.one".localized, style: .default, handler: { (action) in
+                //        }))
+                //        alertController.addAction(UIAlertAction(title: "mg.audioplayer.btm.option.sheet.opton.two".localized, style: .default, handler: { (action) in
+                //        }))
+                //        alertController.addAction(UIAlertAction(title: "mg.audioplayer.btm.option.sheet.opton.three".localized, style: .default, handler: { (action) in
+                //        }))
+                //        alertController.addAction(UIAlertAction(title: "mg.audioplayer.btm.option.sheet.opton.cancel".localized, style: .cancel, handler: { (action) in
+                //        }))
+                //        present(alertController, animated: true) { }
         
     }
     

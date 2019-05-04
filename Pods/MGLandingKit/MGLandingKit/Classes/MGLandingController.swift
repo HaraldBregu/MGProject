@@ -32,6 +32,7 @@ import GoogleMobileAds
 
 public class MGLandingController: UIViewController {
     @IBOutlet var titleLabel: UILabel!
+    @IBOutlet var subTitleLabel: UILabel!
     @IBOutlet var descriptionLabel: UILabel!
     @IBOutlet var dividerLineView: UIView!
     @IBOutlet var userImageView: UIImageView!
@@ -77,14 +78,20 @@ public class MGLandingController: UIViewController {
         }
         
         titleLabel.text = assets?.string.contentTitle
-        titleLabel.textColor = assets?.color.viewContent
+        titleLabel.textColor = assets?.color.title
         if let font = assets?.font.contentTitle {
             titleLabel.font = font
         }
 
-        descriptionLabel.text = assets?.string.contentSubtitle
-        descriptionLabel.textColor = assets?.color.viewContent
+        subTitleLabel.text = assets?.string.contentSubtitle
+        subTitleLabel.textColor = assets?.color.subtitle
         if let font = assets?.font.contentSubtitle {
+            subTitleLabel.font = font
+        }
+
+        descriptionLabel.text = assets?.string.contentDescription
+        descriptionLabel.textColor = assets?.color.description
+        if let font = assets?.font.contentDescription {
             descriptionLabel.font = font
         }
         

@@ -30,25 +30,25 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     
     // Receive displayed notifications for iOS 10 devices.
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        let userInfo = notification.request.content.userInfo
+//        let userInfo = notification.request.content.userInfo
         
         // With swizzling disabled you must let Messaging know about the message, for Analytics
         // Messaging.messaging().appDidReceiveMessage(userInfo)
         
         // Print message ID.
-        if let messageID = userInfo[gcmMessageIDKey] {
-            print("Message ID: \(messageID)")
-        }
+//        if let messageID = userInfo[gcmMessageIDKey] {
+//            print("Message ID: \(messageID)")
+//        }
         
         // Print full message.
-        print(userInfo)
+//        print(userInfo)
         
         // Change this to your preferred presentation option
         completionHandler([.alert, .sound])
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        let userInfo = response.notification.request.content.userInfo
+//        let userInfo = response.notification.request.content.userInfo
         
 //        let notification = UNMutableNotificationContent()
 //        notification.title = "AXA registrazione"
@@ -66,12 +66,12 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
 //        })
 
         // Print message ID.
-        if let messageID = userInfo[gcmMessageIDKey] {
-            print("Message ID: \(messageID)")
-        }
+//        if let messageID = userInfo[gcmMessageIDKey] {
+//            print("Message ID: \(messageID)")
+//        }
         
         // Print full message.
-        print(userInfo)
+//        print(userInfo)
         
         completionHandler()
     }

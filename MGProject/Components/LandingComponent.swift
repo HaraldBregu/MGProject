@@ -67,24 +67,29 @@ extension LandingComponent {
         itemSett.thumbUrl = "https://cdn.redmondpie.com/wp-content/uploads/2017/12/ios-12-dark-mode.png"
         megaitems.append(itemSett)
         
+        let ipad = (UIDevice.current.userInterfaceIdiom == .pad)
+        let heartSize = ipad ? CGSize(width: 36, height: 36) : CGSize(width: 20, height: 20)
+        
         return Landingasset(
             string: LandingString(
                 title: "",
                 navigationTitle: "",
                 contentTitle: "Multipurpose Universal iOS Template Framework",
-                contentSubtitle: "MegaGeneral is a scalable multipurpose component based iOS framework. You can start develop many awesome apps from MegaGeneral framework. You can use a big sets of icons, fonts, and change dark theme with your personal custom theme.",
+                contentSubtitle: "A scalable multipurpose component based iOS framework.",
+                contentDescription: "MegaGeneral is a scalable multipurpose component based iOS framework. You can start develop many awesome apps from MegaGeneral framework. You can use a big sets of icons, fonts, and change dark theme with your personal custom theme.",
                 contentUsername: "MegaGeneral Team",
                 contentHeadline: "Think fast, do the right.",
                 contentCollectionTitle: "Integrated kits"),
             font: LandingFont(
                 contentTitle: MGTemplate.font.largeTitle,
                 contentSubtitle: MGTemplate.font.callout,
+                contentDescription: MGTemplate.font.body,
                 contentUsername: MGTemplate.font.headline,
                 contentHeadline: MGTemplate.font.footnote,
                 contentCollectionTitle: MGTemplate.font.title3,
                 collectionViewCellTitle: MGTemplate.font.caption1),
             image: LandingImage(
-                userRightImage: UIImage(icon: .fontAwesomeSolid(.heart), size: CGSize(width: 36, height: 36), textColor: .black)),
+                userRightImage: UIImage(icon: .fontAwesomeSolid(.heart), size: heartSize, textColor: .red)),
             color: LandingColor(
                 navigationBar: MGTemplate.color.navigationBar,
                 navigationBarContent: MGTemplate.color.text.navigationBar,
@@ -92,6 +97,9 @@ extension LandingComponent {
                 toolBarContent: MGTemplate.color.text.toolBar,
                 view: MGTemplate.color.view,
                 viewContent: MGTemplate.color.text.primary,
+                title: MGTemplate.color.text.primary,
+                subtitle: MGTemplate.color.text.primary,
+                description: MGTemplate.color.text.primary,
                 collectionView: MGTemplate.color.collectionView,
                 collectionViewCell: MGTemplate.color.collectionViewCell,
                 collectionViewCellContent: MGTemplate.color.text.primary,
@@ -119,6 +127,7 @@ struct LandingString: MGLandingString {
     var navigationTitle: String
     var contentTitle: String
     var contentSubtitle: String
+    var contentDescription: String
     var contentUsername: String
     var contentHeadline: String
     var contentCollectionTitle: String
@@ -127,6 +136,7 @@ struct LandingString: MGLandingString {
 struct LandingFont: MGLandingFont {
     var contentTitle: UIFont?
     var contentSubtitle: UIFont?
+    var contentDescription: UIFont?
     var contentUsername: UIFont?
     var contentHeadline: UIFont?
     var contentCollectionTitle: UIFont?
@@ -144,6 +154,9 @@ struct LandingColor: MGLandingColor {
     var toolBarContent: UIColor
     var view: UIColor
     var viewContent: UIColor
+    var title: UIColor
+    var subtitle: UIColor
+    var description: UIColor
     var collectionView: UIColor
     var collectionViewCell: UIColor
     var collectionViewCellContent: UIColor

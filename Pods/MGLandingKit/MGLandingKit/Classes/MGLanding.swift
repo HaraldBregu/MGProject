@@ -38,6 +38,7 @@ public protocol MGLandingString {
     var navigationTitle: String { get set }
     var contentTitle: String { get set }
     var contentSubtitle: String { get set }
+    var contentDescription: String { get set }
     var contentUsername: String { get set }
     var contentHeadline: String { get set }
     var contentCollectionTitle: String { get set }
@@ -46,6 +47,7 @@ public protocol MGLandingString {
 public protocol MGLandingFont {
     var contentTitle: UIFont? { get set }
     var contentSubtitle: UIFont? { get set }
+    var contentDescription: UIFont? { get set }
     var contentUsername: UIFont? { get set }
     var contentHeadline: UIFont? { get set }
     var contentCollectionTitle: UIFont? { get set }
@@ -63,6 +65,9 @@ public protocol MGLandingColor {
     var toolBarContent: UIColor { get set }
     var view: UIColor { get set }
     var viewContent: UIColor { get set }
+    var title: UIColor { get set }
+    var subtitle: UIColor { get set }
+    var description: UIColor { get set }
     var collectionView: UIColor { get set }
     var collectionViewCell: UIColor { get set }
     var collectionViewCellContent: UIColor { get set }

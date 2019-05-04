@@ -38,8 +38,8 @@ extension BrowserComponent {
         
         return BrowserAsset(
             string: BrowserString(
-                title: "The Next Web",
-                navigationTitle: "The Next Web"),
+                title: "My Website",
+                navigationTitle: "My Website"),
             font: BrowserFont(),
             image: BrowserImage(),
             color: BrowserColor(

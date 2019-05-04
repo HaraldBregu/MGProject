@@ -41,10 +41,34 @@ extension SideMenuComponent {
         
         let homeItem = MGSideMenuItem()
         homeItem.title = "Dashboard"
-        homeItem.icon = #imageLiteral(resourceName: "landing-page")
+        homeItem.icon = UIImage(icon: .openIconic(.home), size: CGSize(width: 24, height: 24), textColor: .white)
         homeItem.identifier = "menu.home.identifier"
         newData.append(homeItem)
         
+        let webBrowser = MGSideMenuItem()
+        webBrowser.title = "My Website"
+        webBrowser.icon = UIImage(icon: .openIconic(.browser), size: CGSize(width: 24, height: 24), textColor: .white)
+        webBrowser.identifier = "menu.webBrowser.identifier"
+        newData.append(webBrowser)
+
+        let maps = MGSideMenuItem()
+        maps.title = "My Location"
+        maps.icon = UIImage(icon: .openIconic(.mapMarker), size: CGSize(width: 24, height: 24), textColor: .white)
+        maps.identifier = "menu.maps.identifier"
+        newData.append(maps)
+        
+        let videoItem = MGSideMenuItem()
+        videoItem.title = "Video Player"
+        videoItem.icon = UIImage(icon: .ionicons(IoniconsType.videocamera), size: CGSize(width: 24, height: 24), textColor: .white, backgroundColor: .clear)
+        videoItem.identifier = "menu.video.identifier"
+        newData.append(videoItem)
+        
+        let audioItem = MGSideMenuItem()
+        audioItem.title = "Audio Player"
+        audioItem.icon = UIImage(icon: .ionicons(IoniconsType.musicNote), size: CGSize(width: 24, height: 24), textColor: .white, backgroundColor: .clear)
+        audioItem.identifier = "menu.audio.identifier"
+        newData.append(audioItem)
+
         let theNextWeb = MGSideMenuItem()
         theNextWeb.title = "The Next Web"
         theNextWeb.icon = #imageLiteral(resourceName: "tnw")
@@ -81,35 +105,11 @@ extension SideMenuComponent {
         digitalTrend.identifier = "menu.digitalTrend.identifier"
         newData.append(digitalTrend)
         
-        let webBrowser = MGSideMenuItem()
-        webBrowser.title = "Website Project"
-        webBrowser.icon = #imageLiteral(resourceName: "browser")
-        webBrowser.identifier = "menu.webBrowser.identifier"
-        newData.append(webBrowser)
-        
-        let maps = MGSideMenuItem()
-        maps.title = "My Location"
-        maps.icon = #imageLiteral(resourceName: "map")
-        maps.identifier = "menu.maps.identifier"
-        newData.append(maps)
-        
-        let videoItem = MGSideMenuItem()
-        videoItem.title = "Video Player"
-        videoItem.icon = #imageLiteral(resourceName: "youtube-1")
-        videoItem.identifier = "menu.video.identifier"
-        newData.append(videoItem)
-       
-        let audioItem = MGSideMenuItem()
-        audioItem.title = "Audio Player"
-        audioItem.icon = #imageLiteral(resourceName: "music-player (1)")
-        audioItem.identifier = "menu.audio.identifier"
-        newData.append(audioItem)
-        
-        let settings = MGSideMenuItem()
-        settings.title = "Settings"
-        settings.icon = UIImage(icon: .ionicons(IoniconsType.settings), size: CGSize(width: 30, height: 30), textColor: .white)
-        settings.identifier = "menu.settings.identifier"
-        newData.append(settings)
+//        let settings = MGSideMenuItem()
+//        settings.title = "Settings"
+//        settings.icon = UIImage(icon: .ionicons(IoniconsType.androidSettings), size: CGSize(width: 24, height: 24), textColor: .white)
+//        settings.identifier = "menu.settings.identifier"
+//        newData.append(settings)
 
         return SideMenuAsset(
             string: SideMenuString(

@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="amm-X0-tcr">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="921.66666666666663"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="917.66666666666663"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BzW-Rh-ezj">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="487.66666666666669"/>
@@ -34,9 +34,16 @@
                                                                 <rect key="frame" x="20" y="20" width="295" height="447.66666666666669"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scalable multipurpose component based iOS framework" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sOl-Os-D2s">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="292.33333333333331" height="325"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="292.33333333333331" height="202.33333333333334"/>
                                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
                                                                         <color key="textColor" red="0.95294117649999999" green="0.96862745100000003" blue="0.97254901959999995" alpha="0.89831668809999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c4A-U4-FIY">
+                                                                        <rect key="frame" x="0.0" y="217.33333333333334" width="279.33333333333331" height="107.66666666666666"/>
+                                                                        <string key="text">Developers can't start always from scratch developing apps. With MegaGeneral developers can get almost all tools and softwares they need to pubblish an app.</string>
+                                                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
+                                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CUf-5E-kaw">
@@ -78,13 +85,13 @@
                                 </constraints>
                             </scrollView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="dAP-BD-dud">
-                                <rect key="frame" x="0.0" y="921.66666666666663" width="375" height="290.33333333333337"/>
+                                <rect key="frame" x="0.0" y="917.66666666666663" width="375" height="294.33333333333337"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="77p-ed-u86">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="61"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="65"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="PeY-un-lhP">
-                                                <rect key="frame" x="20" y="0.0" width="335" height="61"/>
+                                                <rect key="frame" x="20" y="0.0" width="335" height="65"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fAv-VX-OPx">
                                                         <rect key="frame" x="0.0" y="0.0" width="335" height="1"/>
@@ -94,7 +101,7 @@
                                                         </constraints>
                                                     </view>
                                                     <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" alignment="top" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="9L4-Vy-Z8b">
-                                                        <rect key="frame" x="0.0" y="21" width="335" height="40"/>
+                                                        <rect key="frame" x="0.0" y="21" width="335" height="44"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="PfX-4L-s5e">
                                                                 <rect key="frame" x="0.0" y="0.0" width="287" height="28.666666666666668"/>
@@ -105,7 +112,7 @@
                                                                             <constraint firstAttribute="width" secondItem="rtq-bk-VeW" secondAttribute="height" multiplier="1:1" id="H9Y-M0-ZWW"/>
                                                                         </constraints>
                                                                     </imageView>
-                                                                    <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" axis="vertical" distribution="fillProportionally" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="U4y-t3-CtS">
+                                                                    <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" axis="vertical" distribution="fillProportionally" alignment="top" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="U4y-t3-CtS">
                                                                         <rect key="frame" x="36.666666666666671" y="0.0" width="250.33333333333331" height="28.666666666666668"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Dream Building Team" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6MT-dz-Tg3">
@@ -115,7 +122,7 @@
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Boost your developement" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N8J-RM-PU7">
-                                                                                <rect key="frame" x="0.0" y="21" width="123.33333333333333" height="7.6666666666666679"/>
+                                                                                <rect key="frame" x="0.0" y="20" width="123.33333333333333" height="8.6666666666666643"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <nil key="highlightedColor"/>
@@ -139,8 +146,8 @@
                                                     </stackView>
                                                 </subviews>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="61" id="3mz-GW-ZXw">
-                                                        <variation key="heightClass=regular-widthClass=regular" constant="91"/>
+                                                    <constraint firstAttribute="height" constant="65" id="3mz-GW-ZXw">
+                                                        <variation key="heightClass=regular-widthClass=regular" constant="75"/>
                                                     </constraint>
                                                 </constraints>
                                             </stackView>
@@ -154,14 +161,14 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cUF-cF-ILw">
-                                        <rect key="frame" x="0.0" y="76.000000000000014" width="375" height="214.33333333333337"/>
+                                        <rect key="frame" x="0.0" y="80.000000000000014" width="375" height="214.33333333333337"/>
                                         <subviews>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="wRW-W6-XnE">
                                                 <rect key="frame" x="0.0" y="114.33333333333337" width="375" height="70"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="70" id="RSA-8t-rYm">
-                                                        <variation key="heightClass=regular-widthClass=regular" constant="120"/>
+                                                        <variation key="heightClass=regular-widthClass=regular" constant="90"/>
                                                     </constraint>
                                                 </constraints>
                                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="g1E-HY-dZN">
@@ -273,6 +280,7 @@
                         <outlet property="componentTitleLabel" destination="fpi-az-p8b" id="ZYu-cm-bX2"/>
                         <outlet property="descriptionLabel" destination="CUf-5E-kaw" id="K5M-HA-64g"/>
                         <outlet property="dividerLineView" destination="fAv-VX-OPx" id="SUd-zH-Vvf"/>
+                        <outlet property="subTitleLabel" destination="c4A-U4-FIY" id="1DA-yz-qj3"/>
                         <outlet property="titleLabel" destination="sOl-Os-D2s" id="6Fn-m0-gdI"/>
                         <outlet property="userImageView" destination="rtq-bk-VeW" id="s7D-Dp-3KX"/>
                         <outlet property="userLikeButton" destination="NZ2-sv-JIR" id="cko-px-PcV"/>
