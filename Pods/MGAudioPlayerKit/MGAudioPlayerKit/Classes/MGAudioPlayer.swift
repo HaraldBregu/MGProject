@@ -53,7 +53,6 @@ public protocol MGAudioPlayerImage {
     var likeNormal: UIImage { get set }
     var likeSelected: UIImage { get set }
     var likeHighlighted: UIImage { get set }
-    var shareNormal: UIImage { get set }
     var tableViewCellIcon: UIImage { get set }
     var play: UIImage { get set }
     var pause: UIImage { get set }

@@ -24,6 +24,7 @@
 //
 
 import Foundation
+import MediaPlayer
 import MessageUI
 import Firebase
 import MGSideMenuKit
@@ -34,6 +35,7 @@ import MGAudioPlayerKit
 import MGBrowserKit
 import MGMapKit
 import MGFeedKit
+import MGSettingsKit
 
 extension AppDelegate: MGSideMenuControllerDataSource, MGSideMenuControllerDelegate {}
 extension AppDelegate: MGLandingControllerDataSource, MGLandingControllerDelegate {}
@@ -42,6 +44,7 @@ extension AppDelegate: MGAudioPlayerControllerDataSource, MGAudioPlayerControlle
 extension AppDelegate: MGVideoPlayerControllerDataSource, MGVideoPlayerControllerDelegate {}
 extension AppDelegate: MGBrowserControllerDelegate, MGBrowserControllerDataSource {}
 extension AppDelegate: MGFeedControllerDataSource, MGFeedControllerDelegate {}
+extension AppDelegate: MGSettingsControllerDataSource, MGSettingsControllerDelegate {}
 
 extension AppDelegate {
     
@@ -50,7 +53,7 @@ extension AppDelegate {
             return []
         }
         
-        if controller is MGLandingController || controller is MGBrowserController || controller is MGMapController || controller is MGFeedController || controller is MGAudioPlayerListController || controller is MGVideoPlayerListController {
+        if controller is MGLandingController || controller is MGBrowserController || controller is MGMapController || controller is MGFeedController || controller is MGAudioPlayerListController || controller is MGVideoPlayerListController || controller is MGSettingsController{
             let menuBarButton = UIBarButtonItem()
             menuBarButton.image = UIImage(icon: .fontAwesomeSolid(.bars), size: CGSize(width: 30, height: 30), textColor: .black)
             menuBarButton.style = .plain
@@ -62,7 +65,7 @@ extension AppDelegate {
     }
     
     func rightBarButtonItems(_ controller: UIViewController) -> [UIBarButtonItem] {
-        if controller is MGLandingController || controller is MGBrowserController || controller is MGMapController || controller is MGFeedController || controller is MGAudioPlayerListController || controller is MGVideoPlayerListController {
+        if controller is MGLandingController || controller is MGBrowserController || controller is MGMapController || controller is MGFeedController || controller is MGAudioPlayerListController || controller is MGVideoPlayerListController || controller is MGSettingsController {
             let menuBarButton = UIBarButtonItem()
             menuBarButton.image = UIImage(icon: .openIconic(.share) , size: CGSize(width: 36, height: 36), textColor: .black)
             menuBarButton.style = .plain
@@ -123,19 +126,7 @@ extension AppDelegate {
             if GADRewardBasedVideoAd.sharedInstance().isReady == true {
                 GADRewardBasedVideoAd.sharedInstance().present(fromRootViewController: controller)
             }
-        }
-        
-                //        let alertController = UIAlertController(title: "mg.audioplayer.btm.option.sheet.title".localized, message: "mg.audioplayer.btm.option.sheet.description".localized, preferredStyle: .actionSheet)
-                //        alertController.addAction(UIAlertAction(title: "mg.audioplayer.btm.option.sheet.opton.one".localized, style: .default, handler: { (action) in
-                //        }))
-                //        alertController.addAction(UIAlertAction(title: "mg.audioplayer.btm.option.sheet.opton.two".localized, style: .default, handler: { (action) in
-                //        }))
-                //        alertController.addAction(UIAlertAction(title: "mg.audioplayer.btm.option.sheet.opton.three".localized, style: .default, handler: { (action) in
-                //        }))
-                //        alertController.addAction(UIAlertAction(title: "mg.audioplayer.btm.option.sheet.opton.cancel".localized, style: .cancel, handler: { (action) in
-                //        }))
-                //        present(alertController, animated: true) { }
-        
+        }        
     }
     
     func controller(_ controller: UIViewController, didTapButton button: UIButton) {
@@ -151,7 +142,6 @@ extension AppDelegate {
     }
     
     func controller(_ parentController: UIViewController, forIndexPath indexPath: IndexPath, withItem item: AnyObject) -> UIViewController? {
-        
         let object = item as? MGSideMenuItem
         switch object?.identifier {
         case "menu.home.identifier":
@@ -232,6 +222,12 @@ extension AppDelegate {
             audioPlayerListController.delegate = self
             audioPlayerListController.dataSource = self
             return UINavigationController(rootViewController: audioPlayerListController)
+        case "menu.settings.identifier":
+            settingsController = MGSettingsController.instance
+            settingsController.assets =  Component.data
+            settingsController.delegate = self
+            settingsController.dataSource = self
+            return UINavigationController(rootViewController: settingsController)
         default:
             return nil
         }
@@ -246,4 +242,15 @@ extension AppDelegate {
         return true
     }
     
+    func controller(_ controller: UIViewController, didSelectItem item: MGSettingsItem) {
+        print("item title: \(String(describing: item.title))")
+        print("item slider value: \(String(describing: item.slider?.value))")
+        print("item switch value: \(String(describing: item.switch?.state))")
+        if item.title == "Light", let value = item.slider?.value {
+            UIScreen.main.brightness = CGFloat(value)
+        } else if item.title == "Sound", let value = item.slider?.value {
+            MPVolumeView.setVolume(value)
+        }
+    }
+
 }

@@ -35,51 +35,54 @@ protocol LandingComponent {
 extension LandingComponent {
     
     static var data: Landingasset {
-        
         var megaitems = [MGLandingItemData]()
-        var itemFeed = MGLandingItemData()
-        itemFeed.title = "Feed Parser"
-        itemFeed.thumbUrl = "https://firebasestorage.googleapis.com/v0/b/megageneral-8d8a3.appspot.com/o/Latest-News.jpg?alt=media&token=fb163c62-cc01-4826-8482-b240877df839"
-        megaitems.append(itemFeed)
         
-        var item2 = MGLandingItemData()
-        item2.title = "Video Player"
-        item2.thumbUrl = "https://myfacemood.com/wp-content/uploads/2016/12/BitTorrent-Video-Streaming-per-iPhone.png"
-        megaitems.append(item2)
+        // Here you can add any other item
         
-        var item4 = MGLandingItemData()
-        item4.title = "Audio Player"
-        item4.thumbUrl = "https://www.apple.com/v/apple-music/i/images/shared/og_image.png"
-        megaitems.append(item4)
+        var myItem = MGLandingItemData()
+        myItem.title = "My item title"
+        myItem.thumbUrl = "https://firebasestorage.googleapis.com/v0/b/megageneral-8d8a3.appspot.com/o/feed-component.jpg?alt=media&token=7e30b35c-6c66-4518-89ca-3c278efef637"
+        megaitems.append(myItem)
         
-        var itemWeb = MGLandingItemData()
-        itemWeb.title = "Browser Web"
-        itemWeb.thumbUrl = "https://clarivate.com/wp-content/uploads/2017/05/antifraud-darkweb-and-cyber-intelligence-560x320.jpg"
-        megaitems.append(itemWeb)
+        var videoPlayerItem = MGLandingItemData()
+        videoPlayerItem.title = "Video player"
+        videoPlayerItem.thumbUrl = "https://myfacemood.com/wp-content/uploads/2016/12/BitTorrent-Video-Streaming-per-iPhone.png"
+        megaitems.append(videoPlayerItem)
         
-        var itemone = MGLandingItemData()
-        itemone.title = "Map View"
-        itemone.thumbUrl = "https://snazzy-maps-cdn.azureedge.net/asset/37-lunar-landscape.png?v=20170626074350"
-        megaitems.append(itemone)
+        var audioPlayerItem = MGLandingItemData()
+        audioPlayerItem.title = "Audio player"
+        audioPlayerItem.thumbUrl = "https://www.apple.com/v/apple-music/i/images/shared/og_image.png"
+        megaitems.append(audioPlayerItem)
         
-        var itemSett = MGLandingItemData()
-        itemSett.title = "Settings"
-        itemSett.thumbUrl = "https://cdn.redmondpie.com/wp-content/uploads/2017/12/ios-12-dark-mode.png"
-        megaitems.append(itemSett)
+        var browserItem = MGLandingItemData()
+        browserItem.title = "Browser"
+        browserItem.thumbUrl = "https://clarivate.com/wp-content/uploads/2017/05/antifraud-darkweb-and-cyber-intelligence-560x320.jpg"
+        megaitems.append(browserItem)
+        
+        var mapViewItem = MGLandingItemData()
+        mapViewItem.title = "Map view"
+        mapViewItem.thumbUrl =  "https://firebasestorage.googleapis.com/v0/b/megageneral-8d8a3.appspot.com/o/map-component.png?alt=media&token=3dc8ee73-1136-4032-80c0-68261950b552"
+        megaitems.append(mapViewItem)
+        
+        var settingsItem = MGLandingItemData()
+        settingsItem.title = "Settings"
+        settingsItem.thumbUrl = "https://cdn.redmondpie.com/wp-content/uploads/2017/12/ios-12-dark-mode.png"
+        megaitems.append(settingsItem)
+        
         
         let ipad = (UIDevice.current.userInterfaceIdiom == .pad)
         let heartSize = ipad ? CGSize(width: 36, height: 36) : CGSize(width: 20, height: 20)
         
         return Landingasset(
             string: LandingString(
-                title: "",
-                navigationTitle: "",
-                contentTitle: "Multipurpose Universal iOS Template Framework",
-                contentSubtitle: "A scalable multipurpose component based iOS framework.",
-                contentDescription: "MegaGeneral is a scalable multipurpose component based iOS framework. You can start develop many awesome apps from MegaGeneral framework. You can use a big sets of icons, fonts, and change dark theme with your personal custom theme.",
+                title: "MegaGeneral",
+                navigationTitle: "MegaGeneral",
+                contentTitle: "Multipurpose iOS Template",
+                contentSubtitle: "Some subtitle",
+                contentDescription: "MegaGeneral is a scalable multipurpose framework for building iOS applications. You can start develop many awesome apps from MegaGeneral framework. You can use a big sets of icons, fonts, and change dark theme with your personal custom theme.",
                 contentUsername: "MegaGeneral Team",
-                contentHeadline: "Think fast, do the right.",
-                contentCollectionTitle: "Integrated kits"),
+                contentHeadline: "Think fast",
+                contentCollectionTitle: "My items"),
             font: LandingFont(
                 contentTitle: MGTemplate.font.largeTitle,
                 contentSubtitle: MGTemplate.font.callout,

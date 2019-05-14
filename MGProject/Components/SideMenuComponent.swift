@@ -30,12 +30,12 @@ import MGSideMenuKit
 
 
 protocol SideMenuComponent {
-    static var data: SideMenuAsset { get }
+    static var data: SideMenuAssets { get }
 }
 
 extension SideMenuComponent {
     
-    static var data: SideMenuAsset {
+    static var data: SideMenuAssets {
         
         var newData = [MGSideMenuItem]()
         
@@ -105,20 +105,22 @@ extension SideMenuComponent {
         digitalTrend.identifier = "menu.digitalTrend.identifier"
         newData.append(digitalTrend)
         
-//        let settings = MGSideMenuItem()
-//        settings.title = "Settings"
-//        settings.icon = UIImage(icon: .ionicons(IoniconsType.androidSettings), size: CGSize(width: 24, height: 24), textColor: .white)
-//        settings.identifier = "menu.settings.identifier"
-//        newData.append(settings)
+        let settings = MGSideMenuItem()
+        settings.title = "Settings"
+        settings.icon = UIImage(icon: .fontAwesomeSolid(.cog), size: CGSize(width: 40, height: 40), textColor: .white)
+        settings.identifier = "menu.settings.identifier"
+        newData.append(settings)
 
-        return SideMenuAsset(
+        return SideMenuAssets(
             string: SideMenuString(
                 tableViewHeaderTitle: "Megageneral",
-                tableViewHeaderSubtitle: "Multipurpose template"),
+                tableViewHeaderSubtitle: "Multipurpose template",
+                tableViewFooterTitle: "Copywright all rights reserved"),
             font: SideMenuFont(
                 tableViewHeaderTitle: MGTemplate.font.headline,
                 tableViewHeaderSubtitle: MGTemplate.font.caption2,
-                tableViewCellTitle: MGTemplate.font.body),
+                tableViewCellTitle: MGTemplate.font.body,
+                tableViewFooterTitle: MGTemplate.font.footnote),
             image: SideMenuImage(
                 tableViewHeaderImage: #imageLiteral(resourceName: "MGIconLight")),
             color: SideMenuColor(
@@ -129,14 +131,16 @@ extension SideMenuComponent {
                 tableViewCell: MGTemplate.color.sideBar,
                 tableViewHeader: MGTemplate.color.sideBar,
                 tableViewCellContent: .white,
-                tableViewHeaderContent: .white),
+                tableViewHeaderContent: .white,
+                tableViewFooter: MGTemplate.color.sideBar,
+                tableViewFooterContent: .white),
             data: SideMenuData(
                 items: newData,
                 statusBarStyle: .lightContent))
     }
 }
 
-struct SideMenuAsset: MGSideMenuAsset {
+struct SideMenuAssets: MGSideMenuAsset {
     var string: MGSideMenuString
     var font: MGSideMenuFont
     var image: MGSideMenuImage
@@ -147,12 +151,14 @@ struct SideMenuAsset: MGSideMenuAsset {
 struct SideMenuString: MGSideMenuString {
     var tableViewHeaderTitle: String
     var tableViewHeaderSubtitle: String
+    var tableViewFooterTitle: String
 }
 
 struct SideMenuFont: MGSideMenuFont {
     var tableViewHeaderTitle: UIFont?
     var tableViewHeaderSubtitle: UIFont?
     var tableViewCellTitle: UIFont?
+    var tableViewFooterTitle: UIFont?
 }
 
 struct SideMenuImage: MGSideMenuImage {
@@ -168,9 +174,12 @@ struct SideMenuColor: MGSideMenuColor {
     var tableViewHeader: UIColor
     var tableViewCellContent: UIColor
     var tableViewHeaderContent: UIColor
+    var tableViewFooter: UIColor
+    var tableViewFooterContent: UIColor
 }
 
-struct SideMenuData: MGSideMenuData {
+struct SideMenuData:MGSideMenuData {
     var items: [MGSideMenuItem]
     var statusBarStyle: UIStatusBarStyle
 }
+

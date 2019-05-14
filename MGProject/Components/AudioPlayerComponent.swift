@@ -129,11 +129,6 @@ extension AudioPlayerComponent {
         audio8.filetype = "mp3"
         audios.append(audio8)
         
-        let ipad = UIDevice.current.userInterfaceIdiom == .pad
-        let heartSize = (ipad ? CGSize(width: 60, height: 60) : CGSize(width: 30, height: 30))
-        let heart0 = UIImage(icon: .ionicons(IoniconsType.iosHeart), size: heartSize, textColor: .white, backgroundColor: .clear)
-        let heart = UIImage(icon: .ionicons(IoniconsType.iosHeartOutline), size: heartSize, textColor: .white, backgroundColor: .clear)
-
         return AudioPlayerAsset(
             string: AudioPlayerString(
                 title: "Audio Player",
@@ -148,25 +143,24 @@ extension AudioPlayerComponent {
                 playerSubtitle: MGTemplate.font.subhead,
                 playerYearPub: MGTemplate.font.subhead),
             image: AudioPlayerImage(
-                likeNormal: heart0,
-                likeSelected: heart,
-                likeHighlighted: heart,
-                shareNormal: UIImage(icon: .openIconic(.chevronRight), size: CGSize(width: 20, height: 20), textColor: .white),
-                tableViewCellIcon: UIImage(icon: .openIconic(.chevronRight), size: CGSize(width: 20, height: 20), textColor: .white),
-                play: UIImage(icon: .openIconic(.mediaPlay), size: CGSize(width: 50, height: 50), textColor: .white),
-                pause: UIImage(icon: .openIconic(.mediaPause), size: CGSize(width: 50, height: 50), textColor: .white),
-                thumbNormal: UIImage(icon: .openIconic(.thumbUp), size: CGSize(width: 20, height: 20), textColor: .white),
-                thumbSelected: UIImage(icon: .openIconic(.thumbUp), size: CGSize(width: 20, height: 20), textColor: .white),
-                stepForward: UIImage(icon: .openIconic(.mediaSkipForward), size: CGSize(width: 20, height: 20), textColor: .white),
-                stepBackward: UIImage(icon: .openIconic(.mediaSkipBackward), size: CGSize(width: 20, height: 20), textColor: .white),
-                shuffleActive: UIImage(icon: .openIconic(.random), size: CGSize(width: 20, height: 20), textColor: .white),
-                shuffleUnactive: UIImage(icon: .openIconic(.random), size: CGSize(width: 20, height: 20), textColor: .white),
-                repeatActive: UIImage(icon: .openIconic(.reload), size: CGSize(width: 20, height: 20), textColor: .white),
-                repeatUnactive: UIImage(icon: .openIconic(.reload), size: CGSize(width: 20, height: 20), textColor: .white),
-                heartActive: UIImage(icon: .openIconic(.heart), size: CGSize(width: 20, height: 20), textColor: .white),
-                heartUnactive: UIImage(icon: .openIconic(.heart), size: CGSize(width: 20, height: 20), textColor: .white),
-                option: UIImage(icon: .openIconic(.document), size: CGSize(width: 20, height: 20), textColor: .white),
-                share: UIImage(icon: .openIconic(.share), size: CGSize(width: 20, height: 20), textColor: .white)),
+                likeNormal: UIImage(icon: .ionicons(.iosHeart), size: CGSize(width: 30, height: 30), textColor: .white),
+                likeSelected: UIImage(icon: .ionicons(.iosHeartOutline), size: CGSize(width: 30, height: 30), textColor: .white),
+                likeHighlighted: UIImage(icon: .ionicons(.iosHeartOutline), size: CGSize(width: 30, height: 30), textColor: .white),
+                tableViewCellIcon: UIImage(icon: .openIconic(.chevronRight), size: CGSize(width: 15, height: 15), textColor: .white),
+                play: UIImage(icon: .openIconic(.mediaPlay), size: CGSize(width: 60, height: 60), textColor: .white),
+                pause: UIImage(icon: .openIconic(.mediaPause), size: CGSize(width: 60, height: 60), textColor: .white),
+                thumbNormal: UIImage(icon: .openIconic(.mediaRecord), size: CGSize(width: 20, height: 20), textColor: .white),
+                thumbSelected: UIImage(icon: .openIconic(.mediaRecord), size: CGSize(width: 30, height: 30), textColor: .white),
+                stepForward: UIImage(icon: .openIconic(.mediaStepForward), size: CGSize(width: 30, height: 30), textColor: .white),
+                stepBackward: UIImage(icon: .openIconic(.mediaStepBackward), size: CGSize(width: 30, height: 30), textColor: .white),
+                shuffleActive: UIImage(icon: .openIconic(.random), size: CGSize(width: 30, height: 30), textColor: .white),
+                shuffleUnactive: UIImage(icon: .openIconic(.random), size: CGSize(width: 30, height: 30), textColor: #colorLiteral(red: 0.9529411765, green: 0.968627451, blue: 0.9725490196, alpha: 0.4026256443)),
+                repeatActive: UIImage(icon: .openIconic(.reload), size: CGSize(width: 30, height: 30), textColor: .white),
+                repeatUnactive: UIImage(icon: .openIconic(.reload), size: CGSize(width: 30, height: 30), textColor: #colorLiteral(red: 0.9529411765, green: 0.968627451, blue: 0.9725490196, alpha: 0.4026256443)),
+                heartActive: UIImage(icon: .openIconic(.heart), size: CGSize(width: 30, height: 30), textColor: .white),
+                heartUnactive: UIImage(icon: .openIconic(.heart), size: CGSize(width: 30, height: 30), textColor: #colorLiteral(red: 0.9529411765, green: 0.968627451, blue: 0.9725490196, alpha: 0.4026256443)),
+                option: UIImage(icon: .openIconic(.ellipses), size: CGSize(width: 30, height: 30), textColor: .white),
+                share: UIImage(icon: .openIconic(.share), size: CGSize(width: 30, height: 30), textColor: .white)),
             color: AudioPlayerColor(
                 navigationBar: MGTemplate.color.navigationBar,
                 navigationBarContent: MGTemplate.color.text.primary,
@@ -225,7 +219,6 @@ struct AudioPlayerImage: MGAudioPlayerImage {
     var likeNormal: UIImage
     var likeSelected: UIImage
     var likeHighlighted: UIImage
-    var shareNormal: UIImage
     var tableViewCellIcon: UIImage
     var play: UIImage
     var pause: UIImage

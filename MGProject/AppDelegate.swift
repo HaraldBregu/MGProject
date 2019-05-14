@@ -34,6 +34,7 @@ import MGAudioPlayerKit
 import MGBrowserKit
 import MGMapKit
 import MGFeedKit
+import MGSettingsKit
 import Firebase
 import FirebaseMessaging
 import GoogleMobileAds
@@ -49,6 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var feedController: MGFeedController!
     var videoPlayerListController: MGVideoPlayerListController!
     var audioPlayerListController: MGAudioPlayerListController!
+    var settingsController: MGSettingsController!
 
     var remoteConfig = RemoteConfig.remoteConfig()
     var interstitial: GADInterstitial!
@@ -131,7 +133,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Messaging.messaging().appDidReceiveMessage(userInfo)
         // Print message ID.
         //if let messageID = userInfo[gcmMessageIDKey] {
-        //
         //}
     }
     

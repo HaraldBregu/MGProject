@@ -40,3 +40,4 @@ extension Component: MapComponent {}
 extension Component: FeedComponent {}
 extension Component: AudioPlayerComponent {}
 extension Component: VideoPlayerComponent {}
+extension Component: SettingsComponent {}

@@ -67,7 +67,7 @@ extension FeedComponent {
                 tableViewCellDescription: MGTemplate.color.text.primary),
             data: FeedData(
                 url: "",
-                enableAds: RemoteConfig.remoteConfig()["enable_admob_banner"].boolValue,
+                enableAds: true,
                 adsUnitId: "ca-app-pub-3940256099942544/2934735716",
                 keyboardAppearance: .dark,
                 activityIndicatorStyle: .white))
