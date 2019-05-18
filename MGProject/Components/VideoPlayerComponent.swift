@@ -43,7 +43,7 @@ extension VideoPlayerComponent {
         let heart0 = UIImage(icon: .ionicons(IoniconsType.iosHeart), size: heartSize, textColor: .white, backgroundColor: .clear)
         let heart = UIImage(icon: .ionicons(IoniconsType.iosHeartOutline), size: heartSize, textColor: .white, backgroundColor: .clear)
         
-        return  VideoPlayerAsset(
+        return VideoPlayerAsset(
             string: VideoPlayerString(
                 title: "Movie Player",
                 navigationBarTitle: "Movie Player",
