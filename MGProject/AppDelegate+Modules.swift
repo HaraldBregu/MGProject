@@ -255,7 +255,9 @@ extension AppDelegate {
     }
     
     func controller(_ controller: UIViewController, didSelectItem item: AnyObject, atIndexPath indexPath: IndexPath) {
-        
+        if controller is MGSettingsController {
+            
+        }
     }
     
     func controller(_ controller: UIViewController, canSelectItem item: AnyObject, atIndexPath indexPath: IndexPath) -> Bool {
@@ -263,6 +265,35 @@ extension AppDelegate {
     }
     
     func controller(_ controller: UIViewController, didSelectItem item: MGSettingsItem) {
+       
+        // Here present your web page using Phone browser
+
+        if item.title == "Terms and conditions" {
+            guard let url = URL(string: "http://www.google.com") else {
+                return
+            }
+            if UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
+        }
+        
+        if item.title == "Privacy policy" {
+            let textController = MGTextController.instance
+            textController.assets = Component.data
+            textController.leftBarButtonItems = {
+                let button2 = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: nil)
+                return [button2]
+            }
+            textController.rightBarButtonItems = {
+                let button2 = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: nil)
+                return [button2]
+            }
+            textController.textData = {
+                return MGTextData(type: .rtf(filename: "example", fileExtension: "rtf") )
+            }
+            controller.navigationController?.pushViewController(textController, animated: true)
+        }
+        
         print("item title: \(String(describing: item.title))")
         print("item slider value: \(String(describing: item.slider?.value))")
         print("item switch value: \(String(describing: item.switch?.state))")

@@ -120,7 +120,7 @@ extension SettingsComponent {
         termsAndConditionsItem.title = "Terms and conditions"
         termsAndConditionsItem.indicatorImage = UIImage(icon: .ionicons(.iosArrowRight), size: CGSize(width: 34, height: 34), textColor: .white)
         items.append(termsAndConditionsItem)
-        
+
         let helpItem = MGSettingsItem()
         helpItem.section = MGSettingsSectionItem(identifier: "INFORMATION")
         helpItem.title = "Help"
