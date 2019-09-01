@@ -30,6 +30,7 @@ import MGLandingKit
 import MGBrowserKit
 import MGMapKit
 import MGFeedKit
+import MGTextKit
 
 class Component {}
 
@@ -41,3 +42,4 @@ extension Component: FeedComponent {}
 extension Component: AudioPlayerComponent {}
 extension Component: VideoPlayerComponent {}
 extension Component: SettingsComponent {}
+extension Component: TextComponent {}

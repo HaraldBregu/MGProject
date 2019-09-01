@@ -104,6 +104,13 @@ extension SideMenuComponent {
         digitalTrend.icon = #imageLiteral(resourceName: "digitaltrend")
         digitalTrend.identifier = "menu.digitalTrend.identifier"
         newData.append(digitalTrend)
+
+        let privacyPolicy = MGSideMenuItem()
+        privacyPolicy.title = "Privacy Policy"
+        privacyPolicy.icon = UIImage(icon: .fontAwesomeSolid(.file), size: CGSize(width: 40, height: 40), textColor: .white)
+        privacyPolicy.identifier = "menu.privacypolicy.identifier"
+        newData.append(privacyPolicy)
+
         
         let settings = MGSideMenuItem()
         settings.title = "Settings"

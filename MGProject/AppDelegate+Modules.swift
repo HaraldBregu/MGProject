@@ -36,6 +36,7 @@ import MGBrowserKit
 import MGMapKit
 import MGFeedKit
 import MGSettingsKit
+import MGTextKit
 
 extension AppDelegate: MGSideMenuControllerDataSource, MGSideMenuControllerDelegate {}
 extension AppDelegate: MGLandingControllerDataSource, MGLandingControllerDelegate {}
@@ -222,6 +223,25 @@ extension AppDelegate {
             audioPlayerListController.delegate = self
             audioPlayerListController.dataSource = self
             return UINavigationController(rootViewController: audioPlayerListController)
+        case "menu.privacypolicy.identifier":
+            let controller = MGTextController.instance
+            controller.assets = Component.data
+            controller.leftBarButtonItems = {
+                let button2 = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: nil)
+                return [button2]
+            }
+            controller.rightBarButtonItems = {
+                let button2 = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: nil)
+                return [button2]
+            }
+            controller.textData = {
+                //return MGTextData(type: .text("This is an example"))
+                //return MGTextData(type: .attributed(attributedQuote))
+                //return MGTextData(type: .plain(filename: "example", fileExtension: "txt") )
+                return MGTextData(type: .rtf(filename: "example", fileExtension: "rtf") )
+                //return MGTextData(type: .html(filename: "example", fileExtension: "html") )
+            }
+            return UINavigationController(rootViewController: controller)
         case "menu.settings.identifier":
             settingsController = MGSettingsController.instance
             settingsController.assets =  Component.data

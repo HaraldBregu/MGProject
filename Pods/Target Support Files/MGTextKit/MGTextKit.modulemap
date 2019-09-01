@@ -1,0 +1,6 @@
+framework module MGTextKit {
+  umbrella header "MGTextKit-umbrella.h"
+
+  export *
+  module * { export * }
+}

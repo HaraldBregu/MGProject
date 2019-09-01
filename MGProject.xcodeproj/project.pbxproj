@@ -32,6 +32,10 @@
 		A91BBBB2227B7FF300A5D626 /* SettingsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91BBBB1227B7FF300A5D626 /* SettingsComponent.swift */; };
 		A92017FD227CE0C1004A42B1 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92017FC227CE0C1004A42B1 /* NotificationService.swift */; };
 		A9201801227CE0C1004A42B1 /* NotificationServiceExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = A92017FA227CE0C0004A42B1 /* NotificationServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		A92D2B9D231C0B33002E66DB /* example.html in Resources */ = {isa = PBXBuildFile; fileRef = A92D2B9A231C0B30002E66DB /* example.html */; };
+		A92D2B9E231C0B33002E66DB /* example.txt in Resources */ = {isa = PBXBuildFile; fileRef = A92D2B9B231C0B31002E66DB /* example.txt */; };
+		A92D2B9F231C0B33002E66DB /* example.rtf in Resources */ = {isa = PBXBuildFile; fileRef = A92D2B9C231C0B33002E66DB /* example.rtf */; };
+		A92D2BA1231C0CAE002E66DB /* TextComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92D2BA0231C0CAE002E66DB /* TextComponent.swift */; };
 		A9398078227D870C005E2736 /* AppDelegate+AdMob.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9398077227D870C005E2736 /* AppDelegate+AdMob.swift */; };
 		A989A5B2227791FE00A36CBD /* AppDelegate+Messaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = A989A5B1227791FE00A36CBD /* AppDelegate+Messaging.swift */; };
 		A989A5B42277922C00A36CBD /* AppDelegate+UserNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = A989A5B32277922C00A36CBD /* AppDelegate+UserNotification.swift */; };
@@ -98,6 +102,10 @@
 		A92017FA227CE0C0004A42B1 /* NotificationServiceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotificationServiceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		A92017FC227CE0C1004A42B1 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		A92017FE227CE0C1004A42B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A92D2B9A231C0B30002E66DB /* example.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = example.html; sourceTree = "<group>"; };
+		A92D2B9B231C0B31002E66DB /* example.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = example.txt; sourceTree = "<group>"; };
+		A92D2B9C231C0B33002E66DB /* example.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = example.rtf; sourceTree = "<group>"; };
+		A92D2BA0231C0CAE002E66DB /* TextComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextComponent.swift; sourceTree = "<group>"; };
 		A9398077227D870C005E2736 /* AppDelegate+AdMob.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+AdMob.swift"; sourceTree = "<group>"; };
 		A989A5B1227791FE00A36CBD /* AppDelegate+Messaging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Messaging.swift"; sourceTree = "<group>"; };
 		A989A5B32277922C00A36CBD /* AppDelegate+UserNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+UserNotification.swift"; sourceTree = "<group>"; };
@@ -146,6 +154,9 @@
 		A91A35D1227357C7003AD425 /* Files */ = {
 			isa = PBXGroup;
 			children = (
+				A92D2B9A231C0B30002E66DB /* example.html */,
+				A92D2B9C231C0B33002E66DB /* example.rtf */,
+				A92D2B9B231C0B31002E66DB /* example.txt */,
 				A91A35D422735882003AD425 /* aviciilevels.mp3 */,
 				A91A35D522735883003AD425 /* aviciiwakemeup.mp3 */,
 				A91A35D922735886003AD425 /* badliar.mp3 */,
@@ -172,6 +183,7 @@
 				A91B6CC722758FEF001C811E /* AudioPlayerComponent.swift */,
 				A91B6CCB227592E7001C811E /* VideoPlayerComponent.swift */,
 				A91BBBB1227B7FF300A5D626 /* SettingsComponent.swift */,
+				A92D2BA0231C0CAE002E66DB /* TextComponent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -363,11 +375,14 @@
 				A91A35E222735887003AD425 /* zombiebadwolves.mp3 in Resources */,
 				A9960438224EAF5E001FA5EE /* Localizable.strings in Resources */,
 				A91A35E322735887003AD425 /* badliar.mp3 in Resources */,
+				A92D2B9E231C0B33002E66DB /* example.txt in Resources */,
 				A91A35DC22735887003AD425 /* pinktry.mp3 in Resources */,
 				A91A35DD22735887003AD425 /* twentyonepilots.mp3 in Resources */,
 				A91A35DF22735887003AD425 /* aviciiwakemeup.mp3 in Resources */,
+				A92D2B9D231C0B33002E66DB /* example.html in Resources */,
 				A9A4C039224AC1E40093A7AE /* Assets.xcassets in Resources */,
 				A91A35E122735887003AD425 /* thunderstruck.mp3 in Resources */,
+				A92D2B9F231C0B33002E66DB /* example.rtf in Resources */,
 				A9A4C037224AC1E10093A7AE /* Main.storyboard in Resources */,
 				A91A35DE22735887003AD425 /* aviciilevels.mp3 in Resources */,
 			);
@@ -416,6 +431,7 @@
 				"${BUILT_PRODUCTS_DIR}/MGSettingsKit/MGSettingsKit.framework",
 				"${BUILT_PRODUCTS_DIR}/MGSideMenuKit/MGSideMenuKit.framework",
 				"${BUILT_PRODUCTS_DIR}/MGTemplateKit/MGTemplateKit.framework",
+				"${BUILT_PRODUCTS_DIR}/MGTextKit/MGTextKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SideMenuSwift/SideMenuSwift.framework",
@@ -437,6 +453,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MGSettingsKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MGSideMenuKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MGTemplateKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MGTextKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenuSwift.framework",
@@ -525,6 +542,7 @@
 				A91B6CC822758FF0001C811E /* AudioPlayerComponent.swift in Sources */,
 				A91B6CD42275984F001C811E /* MapComponent.swift in Sources */,
 				A989A5B42277922C00A36CBD /* AppDelegate+UserNotification.swift in Sources */,
+				A92D2BA1231C0CAE002E66DB /* TextComponent.swift in Sources */,
 				A91BBBAF227B58CA00A5D626 /* TemplateFont.swift in Sources */,
 				A989A5B2227791FE00A36CBD /* AppDelegate+Messaging.swift in Sources */,
 				A91B6CCE22759704001C811E /* SideMenuComponent.swift in Sources */,

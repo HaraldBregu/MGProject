@@ -1,84 +1,98 @@
 PODS:
   - Cosmos (18.0.1)
   - FeedKit (8.1.1)
-  - Firebase/AdMob (6.0.0):
+  - Firebase/AdMob (6.7.0):
     - Firebase/CoreOnly
-    - Google-Mobile-Ads-SDK (~> 7.43)
-  - Firebase/Core (6.0.0):
+    - Google-Mobile-Ads-SDK (~> 7.48)
+  - Firebase/Core (6.7.0):
     - Firebase/CoreOnly
-    - FirebaseAnalytics (= 6.0.0)
-  - Firebase/CoreOnly (6.0.0):
-    - FirebaseCore (= 6.0.0)
-  - Firebase/Messaging (6.0.0):
+    - FirebaseAnalytics (= 6.1.1)
+  - Firebase/CoreOnly (6.7.0):
+    - FirebaseCore (= 6.2.1)
+  - Firebase/Messaging (6.7.0):
     - Firebase/CoreOnly
-    - FirebaseMessaging (~> 4.0.0)
-  - Firebase/RemoteConfig (6.0.0):
+    - FirebaseMessaging (~> 4.1.3)
+  - Firebase/RemoteConfig (6.7.0):
     - Firebase/CoreOnly
-    - FirebaseRemoteConfig (~> 4.0.0)
-  - FirebaseABTesting (3.0.0):
-    - FirebaseCore (~> 6.0)
-    - Protobuf (~> 3.5)
-  - FirebaseAnalytics (6.0.0):
-    - FirebaseCore (~> 6.0)
-    - FirebaseInstanceID (~> 4.0)
-    - GoogleAppMeasurement (= 6.0.0)
+    - FirebaseRemoteConfig (~> 4.3.0)
+  - FirebaseABTesting (3.1.0):
+    - FirebaseAnalyticsInterop (~> 1.3)
+    - FirebaseCore (~> 6.1)
+    - Protobuf (~> 3.8)
+  - FirebaseAnalytics (6.1.1):
+    - FirebaseCore (~> 6.2)
+    - FirebaseInstanceID (~> 4.2)
+    - GoogleAppMeasurement (= 6.1.1)
     - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
     - GoogleUtilities/MethodSwizzler (~> 6.0)
     - GoogleUtilities/Network (~> 6.0)
     - "GoogleUtilities/NSData+zlib (~> 6.0)"
     - nanopb (~> 0.3)
-  - FirebaseAnalyticsInterop (1.2.0)
-  - FirebaseCore (6.0.0):
-    - GoogleUtilities/Environment (~> 6.0)
-    - GoogleUtilities/Logger (~> 6.0)
-  - FirebaseInstanceID (4.0.0):
+  - FirebaseAnalyticsInterop (1.4.0)
+  - FirebaseCore (6.2.1):
+    - FirebaseCoreDiagnostics (~> 1.0)
+    - FirebaseCoreDiagnosticsInterop (~> 1.0)
+    - GoogleUtilities/Environment (~> 6.2)
+    - GoogleUtilities/Logger (~> 6.2)
+  - FirebaseCoreDiagnostics (1.0.1):
+    - FirebaseCoreDiagnosticsInterop (~> 1.0)
+    - GoogleDataTransportCCTSupport (~> 1.0)
+    - GoogleUtilities/Environment (~> 6.2)
+    - GoogleUtilities/Logger (~> 6.2)
+  - FirebaseCoreDiagnosticsInterop (1.0.0)
+  - FirebaseInstanceID (4.2.3):
     - FirebaseCore (~> 6.0)
     - GoogleUtilities/Environment (~> 6.0)
     - GoogleUtilities/UserDefaults (~> 6.0)
-  - FirebaseMessaging (4.0.0):
-    - FirebaseAnalyticsInterop (~> 1.1)
-    - FirebaseCore (~> 6.0)
-    - FirebaseInstanceID (~> 4.0)
-    - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
-    - GoogleUtilities/Environment (~> 6.0)
-    - GoogleUtilities/Reachability (~> 6.0)
-    - GoogleUtilities/UserDefaults (~> 6.0)
+  - FirebaseMessaging (4.1.3):
+    - FirebaseAnalyticsInterop (~> 1.3)
+    - FirebaseCore (~> 6.2)
+    - FirebaseInstanceID (~> 4.1)
+    - GoogleUtilities/AppDelegateSwizzler (~> 6.2)
+    - GoogleUtilities/Environment (~> 6.2)
+    - GoogleUtilities/Reachability (~> 6.2)
+    - GoogleUtilities/UserDefaults (~> 6.2)
     - Protobuf (~> 3.1)
-  - FirebaseRemoteConfig (4.0.0):
-    - FirebaseABTesting (~> 3.0)
-    - FirebaseCore (~> 6.0)
-    - FirebaseInstanceID (~> 4.0)
+  - FirebaseRemoteConfig (4.3.0):
+    - FirebaseABTesting (~> 3.1)
+    - FirebaseAnalyticsInterop (~> 1.4)
+    - FirebaseCore (~> 6.2)
+    - FirebaseInstanceID (~> 4.2)
     - GoogleUtilities/Environment (~> 6.0)
     - "GoogleUtilities/NSData+zlib (~> 6.0)"
     - Protobuf (~> 3.5)
-  - FontBlaster (4.1.0)
-  - Google-Mobile-Ads-SDK (7.44.0):
+  - FontBlaster (5.0.1)
+  - Google-Mobile-Ads-SDK (7.49.0):
     - GoogleAppMeasurement (~> 6.0)
-  - GoogleAppMeasurement (6.0.0):
+  - GoogleAppMeasurement (6.1.1):
     - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
     - GoogleUtilities/MethodSwizzler (~> 6.0)
     - GoogleUtilities/Network (~> 6.0)
     - "GoogleUtilities/NSData+zlib (~> 6.0)"
     - nanopb (~> 0.3)
-  - GoogleUtilities/AppDelegateSwizzler (6.0.0):
+  - GoogleDataTransport (1.1.3)
+  - GoogleDataTransportCCTSupport (1.0.2):
+    - GoogleDataTransport (~> 1.1)
+    - nanopb
+  - GoogleUtilities/AppDelegateSwizzler (6.2.5):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
     - GoogleUtilities/Network
-  - GoogleUtilities/Environment (6.0.0)
-  - GoogleUtilities/Logger (6.0.0):
+  - GoogleUtilities/Environment (6.2.5)
+  - GoogleUtilities/Logger (6.2.5):
     - GoogleUtilities/Environment
-  - GoogleUtilities/MethodSwizzler (6.0.0):
+  - GoogleUtilities/MethodSwizzler (6.2.5):
     - GoogleUtilities/Logger
-  - GoogleUtilities/Network (6.0.0):
+  - GoogleUtilities/Network (6.2.5):
     - GoogleUtilities/Logger
     - "GoogleUtilities/NSData+zlib"
     - GoogleUtilities/Reachability
-  - "GoogleUtilities/NSData+zlib (6.0.0)"
-  - GoogleUtilities/Reachability (6.0.0):
+  - "GoogleUtilities/NSData+zlib (6.2.5)"
+  - GoogleUtilities/Reachability (6.2.5):
     - GoogleUtilities/Logger
-  - GoogleUtilities/UserDefaults (6.0.0):
+  - GoogleUtilities/UserDefaults (6.2.5):
     - GoogleUtilities/Logger
-  - GSImageViewerController (1.6.0)
+  - GSImageViewerController (1.6.1)
   - MGAudioPlayerKit (0.1.3):
     - Firebase/AdMob
     - Firebase/Core
@@ -108,6 +122,7 @@ PODS:
   - MGTemplateKit (0.2.0):
     - FontBlaster
     - UIColor_Hex_Swift (~> 4.2.0)
+  - MGTextKit (0.1.1)
   - MGVideoPlayerKit (0.1.4):
     - Cosmos (~> 18.0)
     - Firebase/AdMob
@@ -119,14 +134,14 @@ PODS:
     - nanopb/encode (= 0.3.901)
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
-  - OneSignal (2.10.0)
-  - Protobuf (3.7.0)
-  - SDWebImage (4.4.6):
-    - SDWebImage/Core (= 4.4.6)
-  - SDWebImage/Core (4.4.6)
-  - SideMenuSwift (2.0.0)
+  - OneSignal (2.10.1)
+  - Protobuf (3.9.0)
+  - SDWebImage (4.4.7):
+    - SDWebImage/Core (= 4.4.7)
+  - SDWebImage/Core (4.4.7)
+  - SideMenuSwift (2.0.2)
   - SnapKit (4.0.1)
-  - SwiftSoup (2.0.0)
+  - SwiftSoup (2.2.0)
   - UIColor_Hex_Swift (4.2.0)
 
 DEPENDENCIES:
@@ -134,15 +149,16 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Messaging
   - Firebase/RemoteConfig
-  - "MGAudioPlayerKit (from `https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGAudioPlayerKit.git`)"
-  - "MGBrowserKit (from `https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGBrowserKit.git`)"
-  - "MGFeedKit (from `https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGFeedKit.git`)"
-  - "MGLandingKit (from `https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGLandingKit.git`)"
-  - "MGMapKit (from `https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGMapKit.git`)"
-  - "MGSettingsKit (from `https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGSettingsKit.git`)"
-  - "MGSideMenuKit (from `https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGSideMenuKit.git`)"
-  - "MGTemplateKit (from `https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGTemplateKit.git`)"
-  - "MGVideoPlayerKit (from `https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGVideoPlayerKit.git`)"
+  - "MGAudioPlayerKit (from `https://haraldbregu:19a9927ff1db93d88f39e974f4ce4d09c683a3f1@github.com/HaraldBregu/MGAudioPlayerKit.git`)"
+  - "MGBrowserKit (from `https://haraldbregu:19a9927ff1db93d88f39e974f4ce4d09c683a3f1@github.com/HaraldBregu/MGBrowserKit.git`)"
+  - "MGFeedKit (from `https://haraldbregu:19a9927ff1db93d88f39e974f4ce4d09c683a3f1@github.com/HaraldBregu/MGFeedKit.git`)"
+  - "MGLandingKit (from `https://haraldbregu:19a9927ff1db93d88f39e974f4ce4d09c683a3f1@github.com/HaraldBregu/MGLandingKit.git`)"
+  - "MGMapKit (from `https://haraldbregu:19a9927ff1db93d88f39e974f4ce4d09c683a3f1@github.com/HaraldBregu/MGMapKit.git`)"
+  - "MGSettingsKit (from `https://haraldbregu:19a9927ff1db93d88f39e974f4ce4d09c683a3f1@github.com/HaraldBregu/MGSettingsKit.git`)"
+  - "MGSideMenuKit (from `https://haraldbregu:19a9927ff1db93d88f39e974f4ce4d09c683a3f1@github.com/HaraldBregu/MGSideMenuKit.git`)"
+  - "MGTemplateKit (from `https://haraldbregu:19a9927ff1db93d88f39e974f4ce4d09c683a3f1@github.com/HaraldBregu/MGTemplateKit.git`)"
+  - "MGTextKit (from `https://haraldbregu:19a9927ff1db93d88f39e974f4ce4d09c683a3f1@github.com/HaraldBregu/MGTextKit.git`)"
+  - "MGVideoPlayerKit (from `https://haraldbregu:19a9927ff1db93d88f39e974f4ce4d09c683a3f1@github.com/HaraldBregu/MGVideoPlayerKit.git`)"
   - OneSignal (< 3.0, >= 2.6.2)
 
 SPEC REPOS:
@@ -154,12 +170,16 @@ SPEC REPOS:
     - FirebaseAnalytics
     - FirebaseAnalyticsInterop
     - FirebaseCore
+    - FirebaseCoreDiagnostics
+    - FirebaseCoreDiagnosticsInterop
     - FirebaseInstanceID
     - FirebaseMessaging
     - FirebaseRemoteConfig
     - FontBlaster
     - Google-Mobile-Ads-SDK
     - GoogleAppMeasurement
+    - GoogleDataTransport
+    - GoogleDataTransportCCTSupport
     - GoogleUtilities
     - GSImageViewerController
     - nanopb
@@ -173,69 +193,78 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   MGAudioPlayerKit:
-    :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGAudioPlayerKit.git"
+    :git: "https://haraldbregu:19a9927ff1db93d88f39e974f4ce4d09c683a3f1@github.com/HaraldBregu/MGAudioPlayerKit.git"
   MGBrowserKit:
-    :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGBrowserKit.git"
+    :git: "https://haraldbregu:19a9927ff1db93d88f39e974f4ce4d09c683a3f1@github.com/HaraldBregu/MGBrowserKit.git"
   MGFeedKit:
-    :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGFeedKit.git"
+    :git: "https://haraldbregu:19a9927ff1db93d88f39e974f4ce4d09c683a3f1@github.com/HaraldBregu/MGFeedKit.git"
   MGLandingKit:
-    :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGLandingKit.git"
+    :git: "https://haraldbregu:19a9927ff1db93d88f39e974f4ce4d09c683a3f1@github.com/HaraldBregu/MGLandingKit.git"
   MGMapKit:
-    :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGMapKit.git"
+    :git: "https://haraldbregu:19a9927ff1db93d88f39e974f4ce4d09c683a3f1@github.com/HaraldBregu/MGMapKit.git"
   MGSettingsKit:
-    :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGSettingsKit.git"
+    :git: "https://haraldbregu:19a9927ff1db93d88f39e974f4ce4d09c683a3f1@github.com/HaraldBregu/MGSettingsKit.git"
   MGSideMenuKit:
-    :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGSideMenuKit.git"
+    :git: "https://haraldbregu:19a9927ff1db93d88f39e974f4ce4d09c683a3f1@github.com/HaraldBregu/MGSideMenuKit.git"
   MGTemplateKit:
-    :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGTemplateKit.git"
+    :git: "https://haraldbregu:19a9927ff1db93d88f39e974f4ce4d09c683a3f1@github.com/HaraldBregu/MGTemplateKit.git"
+  MGTextKit:
+    :git: "https://haraldbregu:19a9927ff1db93d88f39e974f4ce4d09c683a3f1@github.com/HaraldBregu/MGTextKit.git"
   MGVideoPlayerKit:
-    :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGVideoPlayerKit.git"
+    :git: "https://haraldbregu:19a9927ff1db93d88f39e974f4ce4d09c683a3f1@github.com/HaraldBregu/MGVideoPlayerKit.git"
 
 CHECKOUT OPTIONS:
   MGAudioPlayerKit:
     :commit: 3ee22d2457855aba561a9ee5443925f48e4382e3
-    :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGAudioPlayerKit.git"
+    :git: "https://haraldbregu:19a9927ff1db93d88f39e974f4ce4d09c683a3f1@github.com/HaraldBregu/MGAudioPlayerKit.git"
   MGBrowserKit:
     :commit: 3278db73395c68dd7e8477babb54a529f5dc3925
-    :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGBrowserKit.git"
+    :git: "https://haraldbregu:19a9927ff1db93d88f39e974f4ce4d09c683a3f1@github.com/HaraldBregu/MGBrowserKit.git"
   MGFeedKit:
     :commit: 1df072acdaa5af7daa0d3e29367f6b218f1aa8ef
-    :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGFeedKit.git"
+    :git: "https://haraldbregu:19a9927ff1db93d88f39e974f4ce4d09c683a3f1@github.com/HaraldBregu/MGFeedKit.git"
   MGLandingKit:
     :commit: bca86e3e712f6de8a9dc12a469d682539abe12b2
-    :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGLandingKit.git"
+    :git: "https://haraldbregu:19a9927ff1db93d88f39e974f4ce4d09c683a3f1@github.com/HaraldBregu/MGLandingKit.git"
   MGMapKit:
     :commit: 2684b268a837525555efb18142721e6dbc01d3d4
-    :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGMapKit.git"
+    :git: "https://haraldbregu:19a9927ff1db93d88f39e974f4ce4d09c683a3f1@github.com/HaraldBregu/MGMapKit.git"
   MGSettingsKit:
     :commit: 5e0f808b66162fee8ba6ee3e1f7e6b9bad663d86
-    :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGSettingsKit.git"
+    :git: "https://haraldbregu:19a9927ff1db93d88f39e974f4ce4d09c683a3f1@github.com/HaraldBregu/MGSettingsKit.git"
   MGSideMenuKit:
     :commit: bd7e9a98d17be043ee35da137963572f14b9d54c
-    :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGSideMenuKit.git"
+    :git: "https://haraldbregu:19a9927ff1db93d88f39e974f4ce4d09c683a3f1@github.com/HaraldBregu/MGSideMenuKit.git"
   MGTemplateKit:
     :commit: f47404df4d8b6c1ab8b5d73e5a11afd66fddad6c
-    :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGTemplateKit.git"
+    :git: "https://haraldbregu:19a9927ff1db93d88f39e974f4ce4d09c683a3f1@github.com/HaraldBregu/MGTemplateKit.git"
+  MGTextKit:
+    :commit: 4e34164dd7512fc32e829c6e81c0995357aef768
+    :git: "https://haraldbregu:19a9927ff1db93d88f39e974f4ce4d09c683a3f1@github.com/HaraldBregu/MGTextKit.git"
   MGVideoPlayerKit:
     :commit: 3dceb086edda74254d3bce7b140b636ad71d3dfc
-    :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGVideoPlayerKit.git"
+    :git: "https://haraldbregu:19a9927ff1db93d88f39e974f4ce4d09c683a3f1@github.com/HaraldBregu/MGVideoPlayerKit.git"
 
 SPEC CHECKSUMS:
   Cosmos: 7dfaa3f52584ca5f94ab74b5c2e264019cc9f7f5
   FeedKit: 3418eed25f0b493b205b4de1b8511ac21d413fa9
-  Firebase: fa80b9d987ca014a1ba9357496ef2a0178b28b12
-  FirebaseABTesting: a32c488eb75089a61eb3d86db061dfb909d765db
-  FirebaseAnalytics: 1743c5f4de3687d0745709dfdc4b1dea1484f44c
-  FirebaseAnalyticsInterop: efbe45c8385ec626e29f9525e5ebd38520dfb6c1
-  FirebaseCore: e38f025287b413255a53acc1945d048a112047f7
-  FirebaseInstanceID: 0e0348a3c00a734fa376a070f5ad4533ad975cb5
-  FirebaseMessaging: c796d50864dc822a3c06c9c1c1444b37732b795b
-  FirebaseRemoteConfig: 40f75c6ea20a52bf65ef44e3898910dd5b57c532
-  FontBlaster: 127aa66419478d1c62926c7fdb39841633344a45
-  Google-Mobile-Ads-SDK: 1e72b4f438d997ab0f2ee62b3a7b0cbcc87c47cb
-  GoogleAppMeasurement: 7f028ea162b72c8f326daec74afc95d94f7a47d6
-  GoogleUtilities: f1faafc033ea203adf1783ce00af455bb99d0e5b
-  GSImageViewerController: 397f8954afac8bd1c3a75c630e3c4ab4c4a4dfe3
+  Firebase: 291d7b0a7b393f252358083b5d224884126fa46d
+  FirebaseABTesting: a0622113a60c4dce068765e16a77e20c3331c44a
+  FirebaseAnalytics: 843c7f64a8f9c79f0d03281197ebe7bb1d58d477
+  FirebaseAnalyticsInterop: d48b6ab67bcf016a05e55b71fc39c61c0cb6b7f3
+  FirebaseCore: 32b48f41c84a56fbde73b35ed01a830b3b6dc048
+  FirebaseCoreDiagnostics: 4c04ae09d0ab027c30179828c6bb47764df1bd13
+  FirebaseCoreDiagnosticsInterop: 6829da2b8d1fc795ff1bd99df751d3788035d2cb
+  FirebaseInstanceID: 8b42755db950682e7de0d167bc6fb26a57b244af
+  FirebaseMessaging: 930e4cce01f8f1e634cfdd1881db471fb61be883
+  FirebaseRemoteConfig: 938b338e9e56f73b4e3880213cc01287b8582468
+  FontBlaster: 98f474d14dd22d965a8c834b07fb9e280c07d590
+  Google-Mobile-Ads-SDK: df315e371b29cf935f7ea872e7bdec39462a100e
+  GoogleAppMeasurement: 86a82f0e1f20b8eedf8e20326530138fd71409de
+  GoogleDataTransport: 91e682bd60a49d3f8f69f2e909a66efaed5a1e7a
+  GoogleDataTransportCCTSupport: 6b545f7149111180763dc18c6f372c963de4a310
+  GoogleUtilities: e7dc37039b19df7fe543479d3e4a02ac8d11bb69
+  GSImageViewerController: 9ae6567e21faed2aef04dd94ac00741744f1a214
   MGAudioPlayerKit: 979b33378e9b90117cae75eb2a687e2f0821b126
   MGBrowserKit: 8a9f887e4ff95b8acbaa60686e728005b35e8a0e
   MGFeedKit: ba8a69bef1c717574008562002c80a44a570503c
@@ -244,16 +273,17 @@ SPEC CHECKSUMS:
   MGSettingsKit: 4e027f3cfd7b57afbc0a0ba6a8a28a4cccc3d9b7
   MGSideMenuKit: eaa3571037129161f7e0a6716b3964e07fa04043
   MGTemplateKit: 4936ddc393c785a2986d04aa0eff09d66833ed37
+  MGTextKit: 368bda581823d80368d10a9db5dc800d2c21cc0d
   MGVideoPlayerKit: 56c5d19205ff09efd314cad78d39df1c7c52d167
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
-  OneSignal: 0f5ff711d9f25da54885e4ab06ef0abc221a46ef
-  Protobuf: 7a877b7f3e5964e3fce995e2eb323dbc6831bb5a
-  SDWebImage: 3f3f0c02f09798048c47a5ed0a13f17b063572d8
-  SideMenuSwift: 1bee5a0e54c6df7d8106f749b82567eae5c6d974
+  OneSignal: 8fb749fa07f88006403c9b659a570fb7fb74519a
+  Protobuf: 1097ca58584c8d9be81bfbf2c5ff5975648dd87a
+  SDWebImage: c10d14a8883ebd89664f02a422006f66a85c0c5d
+  SideMenuSwift: ba10587929b9090c89105ec52739e6c60b9e50de
   SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
-  SwiftSoup: 4fe21f65cdbfa3a40559047016b7962b88d29279
+  SwiftSoup: 230991361c5ba249d140161860a3864a28b63860
   UIColor_Hex_Swift: bc07fc197421ee896b9ed6dcfa2054b7fbf75145
 
-PODFILE CHECKSUM: bb9c502e5d405cad346a1aaa87023355d7bc903f
+PODFILE CHECKSUM: e98b84fad85ef80b21b1f9328ac83e3c68b79c50
 
 COCOAPODS: 1.6.1
